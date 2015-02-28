@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace ClinicManager
 {
-    public partial class Form1 : Form
+    public partial class ClinicManagerMain : Form
     {
-        public Form1()
+        public ClinicManagerMain()
         {
             InitializeComponent();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Application.Exit();
         }
     }
 }

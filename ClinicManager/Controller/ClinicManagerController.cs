@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace ClinicManager.Controller
 {
-    class Class3
+    /// <summary>
+    /// Controller for tech support program
+    /// </summary>
+    class ClinicManagerController
     {
     }
 }
