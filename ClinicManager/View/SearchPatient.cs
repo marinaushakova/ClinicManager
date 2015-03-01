@@ -16,5 +16,10 @@ namespace ClinicManager.View
         {
             InitializeComponent();
         }
+
+        private void chkDOB_CheckStateChanged(object sender, EventArgs e)
+        {
+            datDOB.Enabled = chkDOB.Checked;
+        }
     }
 }
