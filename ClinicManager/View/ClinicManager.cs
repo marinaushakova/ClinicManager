@@ -64,6 +64,10 @@ namespace ClinicManager
                 addEditPersonForm.FormClosed += new FormClosedEventHandler(addEditPersonForm_FormClosed);
                 addEditPersonForm.Show();
             }
+            else
+            {
+                addEditPersonForm.Activate();
+            }
         }
 
         /// <summary>

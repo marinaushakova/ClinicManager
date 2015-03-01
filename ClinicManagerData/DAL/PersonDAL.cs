@@ -102,5 +102,15 @@ namespace ClinicManagerData.DAL
             }
             return retval;
         }
+
+        /// <summary>
+        /// Adds
+        /// </summary>
+        /// <param name="person"></param>
+        /// <returns></returns>
+        public static int AddPerson(Person person)
+        {
+            return 0;
+        }
     }
 }
