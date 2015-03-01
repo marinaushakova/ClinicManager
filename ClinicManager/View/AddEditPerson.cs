@@ -66,14 +66,12 @@ namespace ClinicManager.View
             roleComboBox.DisplayMember = "Text";
             if (this.is_nurse == true)
             {
-                this.Text += "Patient";
                 roleComboBox.Items.Add(new { Text = "Patient" });
                 roleComboBox.TabStop = false;
                 roleComboBox.TabIndex = 50;
             }
             else
             {
-                this.Text += "Staff Member";
                 roleComboBox.Items.Add(new { Text = "Nurse" });
                 roleComboBox.Items.Add(new { Text = "Doctor" });
                 roleComboBox.Enabled = true;
