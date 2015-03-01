@@ -359,6 +359,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "AddEditPerson";
             this.Text = "Add Patient";
+            this.Load += new System.EventHandler(this.AddEditPerson_Load);
             ((System.ComponentModel.ISupportInitialize)(this.personBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
