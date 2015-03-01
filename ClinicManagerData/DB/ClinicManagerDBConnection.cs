@@ -5,12 +5,12 @@ using System.Text;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 
-namespace ClinicManager.DB
+namespace ClinicManagerData.DB
 {
     /// <summary>
     /// Database connection for clinic manager database
     /// </summary>
-    class ClinicManagerDBConnection
+    public static class ClinicManagerDBConnection
     {
         /// <summary>
         /// Get sql connection
