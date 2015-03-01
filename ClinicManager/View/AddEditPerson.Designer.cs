@@ -96,9 +96,9 @@
             dateOfBirthLabel.Location = new System.Drawing.Point(13, 203);
             dateOfBirthLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             dateOfBirthLabel.Name = "dateOfBirthLabel";
-            dateOfBirthLabel.Size = new System.Drawing.Size(106, 20);
+            dateOfBirthLabel.Size = new System.Drawing.Size(103, 20);
             dateOfBirthLabel.TabIndex = 5;
-            dateOfBirthLabel.Text = "Date Of Birth:";
+            dateOfBirthLabel.Text = "Date of Birth:";
             // 
             // firstNameLabel
             // 
@@ -191,6 +191,7 @@
             this.streetAddressTxtBox.Name = "streetAddressTxtBox";
             this.streetAddressTxtBox.Size = new System.Drawing.Size(379, 26);
             this.streetAddressTxtBox.TabIndex = 2;
+            this.streetAddressTxtBox.Tag = "Street Address";
             // 
             // cityTxtBox
             // 
@@ -200,6 +201,7 @@
             this.cityTxtBox.Name = "cityTxtBox";
             this.cityTxtBox.Size = new System.Drawing.Size(379, 26);
             this.cityTxtBox.TabIndex = 4;
+            this.cityTxtBox.Tag = "City";
             // 
             // dobDatePicker
             // 
@@ -212,6 +214,7 @@
             this.dobDatePicker.Name = "dobDatePicker";
             this.dobDatePicker.Size = new System.Drawing.Size(379, 26);
             this.dobDatePicker.TabIndex = 6;
+            this.dobDatePicker.Tag = "Date of Birth";
             this.dobDatePicker.Value = new System.DateTime(2015, 3, 1, 0, 0, 0, 0);
             // 
             // fnameTxtBox
@@ -222,6 +225,7 @@
             this.fnameTxtBox.Name = "fnameTxtBox";
             this.fnameTxtBox.Size = new System.Drawing.Size(379, 26);
             this.fnameTxtBox.TabIndex = 8;
+            this.fnameTxtBox.Tag = "First Name";
             // 
             // lnameTxtBox
             // 
@@ -231,6 +235,7 @@
             this.lnameTxtBox.Name = "lnameTxtBox";
             this.lnameTxtBox.Size = new System.Drawing.Size(379, 26);
             this.lnameTxtBox.TabIndex = 16;
+            this.lnameTxtBox.Tag = "Last Name";
             // 
             // minitTxtBox
             // 
@@ -240,6 +245,7 @@
             this.minitTxtBox.Name = "minitTxtBox";
             this.minitTxtBox.Size = new System.Drawing.Size(62, 26);
             this.minitTxtBox.TabIndex = 18;
+            this.minitTxtBox.Tag = "Middle Initial";
             // 
             // phoneTxtBox
             // 
@@ -249,6 +255,7 @@
             this.phoneTxtBox.Name = "phoneTxtBox";
             this.phoneTxtBox.Size = new System.Drawing.Size(379, 26);
             this.phoneTxtBox.TabIndex = 22;
+            this.phoneTxtBox.Tag = "Phone";
             // 
             // ssnTxtBox
             // 
@@ -258,6 +265,7 @@
             this.ssnTxtBox.Name = "ssnTxtBox";
             this.ssnTxtBox.Size = new System.Drawing.Size(379, 26);
             this.ssnTxtBox.TabIndex = 24;
+            this.ssnTxtBox.Tag = "SSN";
             // 
             // zipTxtBox
             // 
@@ -267,6 +275,7 @@
             this.zipTxtBox.Name = "zipTxtBox";
             this.zipTxtBox.Size = new System.Drawing.Size(379, 26);
             this.zipTxtBox.TabIndex = 30;
+            this.zipTxtBox.Tag = "Zip";
             // 
             // isMaleComboBox
             // 
@@ -278,6 +287,7 @@
             this.isMaleComboBox.Name = "isMaleComboBox";
             this.isMaleComboBox.Size = new System.Drawing.Size(151, 28);
             this.isMaleComboBox.TabIndex = 31;
+            this.isMaleComboBox.Tag = "Gender";
             // 
             // roleComboBox
             // 
@@ -289,6 +299,7 @@
             this.roleComboBox.Name = "roleComboBox";
             this.roleComboBox.Size = new System.Drawing.Size(180, 28);
             this.roleComboBox.TabIndex = 1;
+            this.roleComboBox.Tag = "Role";
             // 
             // label1
             // 
@@ -307,6 +318,7 @@
             this.stateTxtBox.Name = "stateTxtBox";
             this.stateTxtBox.Size = new System.Drawing.Size(379, 26);
             this.stateTxtBox.TabIndex = 34;
+            this.stateTxtBox.Tag = "State";
             // 
             // okBtn
             // 
