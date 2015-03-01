@@ -14,6 +14,7 @@ namespace ClinicManager
     public partial class ClinicManagerMain : Form
     {
         SearchPatient searchPatientForm;
+        AddEditPerson addEditPersonForm;
 
         public ClinicManagerMain()
         {
@@ -43,6 +44,32 @@ namespace ClinicManager
         void searchPatientForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             searchPatientForm = null;
+        }
+
+        /// <summary>
+        /// Brings up the add/edit person setting it up to add a patient
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void addPatientToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (addEditPersonForm == null)
+            {
+                addEditPersonForm = new AddEditPerson();
+                addEditPersonForm.MdiParent = this;
+                addEditPersonForm.FormClosed += new FormClosedEventHandler(addEditPersonForm_FormClosed);
+                addEditPersonForm.Show();
+            }
+        }
+
+        /// <summary>
+        /// Sets the addEditPerson form to null after its closed event fires. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void addEditPersonForm_FormClosed(object sender, EventArgs e)
+        {
+            addEditPersonForm = null;
         }
     }
 }
