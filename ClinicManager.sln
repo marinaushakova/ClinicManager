@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicManager", "ClinicManager\ClinicManager.csproj", "{CC519138-5045-4726-8352-72EC2AC07B3C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClinicManagerData", "ClinicManagerData\ClinicManagerData.csproj", "{2F73D9F5-9038-4A54-A68A-077ADD6E3AFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{CC519138-5045-4726-8352-72EC2AC07B3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC519138-5045-4726-8352-72EC2AC07B3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC519138-5045-4726-8352-72EC2AC07B3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F73D9F5-9038-4A54-A68A-077ADD6E3AFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F73D9F5-9038-4A54-A68A-077ADD6E3AFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F73D9F5-9038-4A54-A68A-077ADD6E3AFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F73D9F5-9038-4A54-A68A-077ADD6E3AFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

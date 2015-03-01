@@ -21,5 +21,37 @@ namespace ClinicManager.View
         {
             datDOB.Enabled = chkDOB.Checked;
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            /*
+            try
+            {
+                List<Person> openIncidents = cmController.GetOpenIncidents();
+                lvOpenIncidents.Items.Clear();
+                if (openIncidents.Count > 0)
+                {
+                    Incident incident;
+                    for (int i = 0; i < openIncidents.Count; i++)
+                    {
+                        incident = openIncidents[i];
+                        lvOpenIncidents.Items.Add(incident.ProductCode);
+                        lvOpenIncidents.Items[i].SubItems.Add(incident.DateOpened.ToShortDateString());
+                        lvOpenIncidents.Items[i].SubItems.Add(incident.CustomerName);
+                        lvOpenIncidents.Items[i].SubItems.Add(incident.TechName);
+                        lvOpenIncidents.Items[i].SubItems.Add(incident.Title);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No Open Incidents.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
+            */
+        }
     }
 }

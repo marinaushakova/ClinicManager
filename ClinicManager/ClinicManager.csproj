@@ -45,9 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\ClinicManagerController.cs" />
-    <Compile Include="DAL\Class2.cs" />
-    <Compile Include="DB\ClinicManagerDBConnection.cs" />
-    <Compile Include="Model\Class1.cs" />
     <Compile Include="View\ClinicManager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,8 +88,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DB\data-insert-cs6232-g1.sql" />
-    <Content Include="DB\db_generation_script_cs6232-g1.sql" />
+    <ProjectReference Include="..\ClinicManagerData\ClinicManagerData.csproj">
+      <Project>{2f73d9f5-9038-4a54-a68a-077add6e3afd}</Project>
+      <Name>ClinicManagerData</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
