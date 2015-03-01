@@ -17,9 +17,9 @@ namespace ClinicManager.Controller
         /// Get all customers
         /// </summary>
         /// <returns>List of customers</returns>
-        public List<Person> GetPersonSummary()
+        public List<Person> GetPersonSummary(string firstName, string lastName, DateTime? dateOfBirth)
         {
-            return PersonDAL.GetPersonSummary();
+            return PersonDAL.GetPersonSummary(firstName, lastName, dateOfBirth);
         }
     }
 }

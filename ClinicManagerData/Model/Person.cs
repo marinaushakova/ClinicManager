@@ -25,7 +25,7 @@ namespace ClinicManagerData.Model
         private string phone;
         private bool is_nurse = false;
         private bool is_doctor = false;
-        private long timestamp = 0;
+        private string timestamp;
 
         /// <summary>
         /// Get/set last name
@@ -75,7 +75,7 @@ namespace ClinicManagerData.Model
         /// <summary>
         /// Get/set gender
         /// </summary>
-        public bool Is_male
+        public bool IsMale
         {
             get { return is_male; }
             set { is_male = value; }
@@ -129,7 +129,7 @@ namespace ClinicManagerData.Model
         /// <summary>
         /// Get/set nurse status
         /// </summary>
-        public bool Is_nurse
+        public bool IsNurse
         {
             get { return is_nurse; }
             set { is_nurse = value; }
@@ -138,7 +138,7 @@ namespace ClinicManagerData.Model
         /// <summary>
         /// Get/set doctor status
         /// </summary>
-        public bool Is_doctor
+        public bool IsDoctor
         {
             get { return is_doctor; }
             set { is_doctor = value; }
@@ -147,11 +147,13 @@ namespace ClinicManagerData.Model
         public int PersonID
         {
             get { return personID; }
+            set { personID = value; }
         }
 
-        public long Timestamp
+        public string Timestamp
         {
             get { return timestamp; }
+            set { timestamp = value; }
         }
     }
 }

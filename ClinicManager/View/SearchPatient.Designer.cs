@@ -44,6 +44,7 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnSearch = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -115,9 +116,9 @@
             this.columnHeader6,
             this.columnHeader7,
             this.columnHeader8});
-            this.lvPatients.Location = new System.Drawing.Point(41, 207);
+            this.lvPatients.Location = new System.Drawing.Point(41, 167);
             this.lvPatients.Name = "lvPatients";
-            this.lvPatients.Size = new System.Drawing.Size(844, 81);
+            this.lvPatients.Size = new System.Drawing.Size(968, 340);
             this.lvPatients.TabIndex = 9;
             this.lvPatients.UseCompatibleStateImageBehavior = false;
             this.lvPatients.View = System.Windows.Forms.View.Details;
@@ -125,7 +126,7 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Last Name";
-            this.columnHeader1.Width = 108;
+            this.columnHeader1.Width = 134;
             // 
             // columnHeader2
             // 
@@ -158,10 +159,11 @@
             // columnHeader8
             // 
             this.columnHeader8.Text = "Phone";
+            this.columnHeader8.Width = 201;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(41, 178);
+            this.btnSearch.Location = new System.Drawing.Point(393, 121);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 10;
@@ -169,11 +171,22 @@
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(934, 536);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 11;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // SearchPatient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(935, 531);
+            this.ClientSize = new System.Drawing.Size(1060, 597);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.lvPatients);
             this.Controls.Add(this.chkDOB);
@@ -210,5 +223,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Button btnClose;
     }
 }
