@@ -56,7 +56,7 @@ namespace ClinicManager
             if (addEditPersonForm == null)
             {
                 addEditPersonForm = new AddEditPerson();
-                addEditPersonForm.editPerson = null;
+                addEditPersonForm.person = null;
 
                 // TODO: change from hard coded to dynamic based on the user logged in
                 addEditPersonForm.is_nurse = true;

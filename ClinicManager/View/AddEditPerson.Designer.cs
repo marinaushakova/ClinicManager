@@ -190,7 +190,7 @@
             this.streetAddressTxtBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.streetAddressTxtBox.Name = "streetAddressTxtBox";
             this.streetAddressTxtBox.Size = new System.Drawing.Size(379, 26);
-            this.streetAddressTxtBox.TabIndex = 2;
+            this.streetAddressTxtBox.TabIndex = 8;
             this.streetAddressTxtBox.Tag = "Street Address";
             // 
             // cityTxtBox
@@ -200,7 +200,7 @@
             this.cityTxtBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cityTxtBox.Name = "cityTxtBox";
             this.cityTxtBox.Size = new System.Drawing.Size(379, 26);
-            this.cityTxtBox.TabIndex = 4;
+            this.cityTxtBox.TabIndex = 9;
             this.cityTxtBox.Tag = "City";
             // 
             // dobDatePicker
@@ -224,7 +224,7 @@
             this.fnameTxtBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.fnameTxtBox.Name = "fnameTxtBox";
             this.fnameTxtBox.Size = new System.Drawing.Size(379, 26);
-            this.fnameTxtBox.TabIndex = 8;
+            this.fnameTxtBox.TabIndex = 2;
             this.fnameTxtBox.Tag = "First Name";
             // 
             // lnameTxtBox
@@ -234,7 +234,7 @@
             this.lnameTxtBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lnameTxtBox.Name = "lnameTxtBox";
             this.lnameTxtBox.Size = new System.Drawing.Size(379, 26);
-            this.lnameTxtBox.TabIndex = 16;
+            this.lnameTxtBox.TabIndex = 4;
             this.lnameTxtBox.Tag = "Last Name";
             // 
             // minitTxtBox
@@ -244,7 +244,7 @@
             this.minitTxtBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.minitTxtBox.Name = "minitTxtBox";
             this.minitTxtBox.Size = new System.Drawing.Size(62, 26);
-            this.minitTxtBox.TabIndex = 18;
+            this.minitTxtBox.TabIndex = 3;
             this.minitTxtBox.Tag = "Middle Initial";
             // 
             // phoneTxtBox
@@ -254,7 +254,7 @@
             this.phoneTxtBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.phoneTxtBox.Name = "phoneTxtBox";
             this.phoneTxtBox.Size = new System.Drawing.Size(379, 26);
-            this.phoneTxtBox.TabIndex = 22;
+            this.phoneTxtBox.TabIndex = 12;
             this.phoneTxtBox.Tag = "Phone";
             // 
             // ssnTxtBox
@@ -264,7 +264,7 @@
             this.ssnTxtBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ssnTxtBox.Name = "ssnTxtBox";
             this.ssnTxtBox.Size = new System.Drawing.Size(379, 26);
-            this.ssnTxtBox.TabIndex = 24;
+            this.ssnTxtBox.TabIndex = 5;
             this.ssnTxtBox.Tag = "SSN";
             // 
             // zipTxtBox
@@ -274,7 +274,7 @@
             this.zipTxtBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.zipTxtBox.Name = "zipTxtBox";
             this.zipTxtBox.Size = new System.Drawing.Size(379, 26);
-            this.zipTxtBox.TabIndex = 30;
+            this.zipTxtBox.TabIndex = 11;
             this.zipTxtBox.Tag = "Zip";
             // 
             // isMaleComboBox
@@ -286,7 +286,7 @@
             this.isMaleComboBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.isMaleComboBox.Name = "isMaleComboBox";
             this.isMaleComboBox.Size = new System.Drawing.Size(151, 28);
-            this.isMaleComboBox.TabIndex = 31;
+            this.isMaleComboBox.TabIndex = 7;
             this.isMaleComboBox.Tag = "Gender";
             // 
             // roleComboBox
@@ -317,7 +317,7 @@
             this.stateTxtBox.Location = new System.Drawing.Point(141, 342);
             this.stateTxtBox.Name = "stateTxtBox";
             this.stateTxtBox.Size = new System.Drawing.Size(379, 26);
-            this.stateTxtBox.TabIndex = 34;
+            this.stateTxtBox.TabIndex = 10;
             this.stateTxtBox.Tag = "State";
             // 
             // okBtn
@@ -326,18 +326,20 @@
             this.okBtn.Margin = new System.Windows.Forms.Padding(15, 5, 15, 5);
             this.okBtn.Name = "okBtn";
             this.okBtn.Size = new System.Drawing.Size(100, 30);
-            this.okBtn.TabIndex = 35;
+            this.okBtn.TabIndex = 14;
             this.okBtn.Text = "OK";
             this.okBtn.UseVisualStyleBackColor = true;
+            this.okBtn.Click += new System.EventHandler(this.okBtn_Click);
             // 
             // cancelBtn
             // 
             this.cancelBtn.Location = new System.Drawing.Point(304, 519);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(100, 30);
-            this.cancelBtn.TabIndex = 36;
+            this.cancelBtn.TabIndex = 13;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;
+            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
             // AddEditPerson
             // 
