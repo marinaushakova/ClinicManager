@@ -15,6 +15,7 @@ namespace ClinicManager.View
     public partial class SearchPatient : Form
     {
         private ClinicManagerController cmController;
+        private List<Person> persons;
 
         public SearchPatient()
         {
@@ -36,7 +37,7 @@ namespace ClinicManager.View
                 {
                     dateOfBirth = datDOB.Value;
                 }
-                List<Person> persons = cmController.GetPersonSummary(txtFirstName.Text, txtLastName.Text, dateOfBirth);
+                persons = cmController.GetPersonSummary(txtFirstName.Text, txtLastName.Text, dateOfBirth);
                 lvPatients.Items.Clear();
                 if (persons.Count > 0)
                 {
@@ -68,6 +69,32 @@ namespace ClinicManager.View
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        /// <summary>
+        /// Handles the click event on the edit button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (lvPatients.SelectedItems.Count < 1)
+            {
+                MessageBox.Show("Please select a person to edit.", "No Person Selected");
+            }
+            else
+            {
+                int index = lvPatients.SelectedItems[0].Index;
+                Person personToEdit = persons[index];
+                AddEditPerson addEditPersonForm = new AddEditPerson();
+                addEditPersonForm.person = personToEdit;
+
+                // TODO: change from hard coded to dynamic based on the user logged in
+                addEditPersonForm.is_nurse = true;
+                addEditPersonForm.MdiParent = this.MdiParent;
+                //addEditPersonForm.FormClosed += new FormClosedEventHandler(addEditPersonForm_FormClosed);
+                addEditPersonForm.Show();
+            }
         }
     }
 }

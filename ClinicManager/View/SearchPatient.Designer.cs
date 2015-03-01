@@ -45,6 +45,7 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -116,7 +117,9 @@
             this.columnHeader6,
             this.columnHeader7,
             this.columnHeader8});
+            this.lvPatients.FullRowSelect = true;
             this.lvPatients.Location = new System.Drawing.Point(41, 167);
+            this.lvPatients.MultiSelect = false;
             this.lvPatients.Name = "lvPatients";
             this.lvPatients.Size = new System.Drawing.Size(968, 340);
             this.lvPatients.TabIndex = 9;
@@ -173,19 +176,30 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(934, 536);
+            this.btnClose.Location = new System.Drawing.Point(910, 536);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.Size = new System.Drawing.Size(100, 30);
             this.btnClose.TabIndex = 11;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Location = new System.Drawing.Point(804, 536);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(100, 30);
+            this.btnEdit.TabIndex = 12;
+            this.btnEdit.Text = "Edit Patient";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // SearchPatient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1060, 597);
+            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.lvPatients);
@@ -224,5 +238,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnEdit;
     }
 }
