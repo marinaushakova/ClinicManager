@@ -31,6 +31,11 @@ namespace ClinicManager.View
             this.setUpTitle();
             this.setUpRoleComboBox();
             this.setUpGenderComboBox();
+            if (this.person != null)
+            {
+                personBindingSource.Clear();
+                personBindingSource.Add(person);
+            }
         }
 
         /// <summary>
