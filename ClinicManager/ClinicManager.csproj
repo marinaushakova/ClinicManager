@@ -45,6 +45,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\ClinicManagerController.cs" />
+    <Compile Include="View\AddEditPerson.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AddEditPerson.Designer.cs">
+      <DependentUpon>AddEditPerson.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ClinicManager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,12 +74,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\AddEditPerson.resx">
+      <DependentUpon>AddEditPerson.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\ClinicManager.resx">
       <DependentUpon>ClinicManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\SearchPatient.resx">
       <DependentUpon>SearchPatient.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\ClinicManagerData.Model.Person.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
