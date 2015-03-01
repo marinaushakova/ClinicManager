@@ -170,6 +170,15 @@
             is_maleLabel.TabIndex = 30;
             is_maleLabel.Text = "Gender:";
             // 
+            // stateLabel1
+            // 
+            stateLabel1.AutoSize = true;
+            stateLabel1.Location = new System.Drawing.Point(13, 345);
+            stateLabel1.Name = "stateLabel1";
+            stateLabel1.Size = new System.Drawing.Size(52, 20);
+            stateLabel1.TabIndex = 33;
+            stateLabel1.Text = "State:";
+            // 
             // personBindingSource
             // 
             this.personBindingSource.DataSource = typeof(ClinicManagerData.Model.Person);
@@ -262,6 +271,7 @@
             // isMaleComboBox
             // 
             this.isMaleComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "Is_male", true));
+            this.isMaleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.isMaleComboBox.FormattingEnabled = true;
             this.isMaleComboBox.Location = new System.Drawing.Point(141, 234);
             this.isMaleComboBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -271,12 +281,14 @@
             // 
             // roleComboBox
             // 
+            this.roleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.roleComboBox.Enabled = false;
             this.roleComboBox.FormattingEnabled = true;
             this.roleComboBox.Location = new System.Drawing.Point(141, 16);
             this.roleComboBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.roleComboBox.Name = "roleComboBox";
             this.roleComboBox.Size = new System.Drawing.Size(180, 28);
-            this.roleComboBox.TabIndex = 32;
+            this.roleComboBox.TabIndex = 1;
             // 
             // label1
             // 
@@ -287,15 +299,6 @@
             this.label1.Size = new System.Drawing.Size(46, 20);
             this.label1.TabIndex = 33;
             this.label1.Text = "Role:";
-            // 
-            // stateLabel1
-            // 
-            stateLabel1.AutoSize = true;
-            stateLabel1.Location = new System.Drawing.Point(13, 345);
-            stateLabel1.Name = "stateLabel1";
-            stateLabel1.Size = new System.Drawing.Size(52, 20);
-            stateLabel1.TabIndex = 33;
-            stateLabel1.Text = "State:";
             // 
             // stateTxtBox
             // 
