@@ -21,7 +21,7 @@ namespace ClinicManagerData.DAL
         /// <param name="username">user's username</param>
         /// <param name="password">user's password</param>
         /// <returns>UserID if user with given username and password exists in database, -1 otherwise</returns>
-        public static int IsValidUser(string username, string password)
+        public static void IsValidUser(string username, string password)
         {
             string selectStatement = "SELECT * FROM [user] WHERE username = @username AND password = @password";
 
@@ -40,11 +40,13 @@ namespace ClinicManagerData.DAL
                         {
                             if (reader.Read())
                             {
-                                return (int)reader["id"];
+                                CurrentUserInfo.CurrentLoggedInUsername = (string)reader["username"];
+                                
                             }
                             else
                             {
-                                return -1;
+                                CurrentUserInfo.CurrentLoggedInUsername = null;
+                                
                             }
                         }
                     }
@@ -66,9 +68,9 @@ namespace ClinicManagerData.DAL
         /// </summary>
         /// <param name="userID">User ID</param>
         /// <returns>True if user with given userID is administrator, false if not.</returns>
-        public static bool IsUserAdmin(int userID)
+        public static void IsUserAdmin()
         {
-            string selectStatement = "SELECT * FROM [user] WHERE id = @userID AND admin_privelege = 1";
+            string selectStatement = "SELECT * FROM [user] WHERE username = @username AND admin_privelege = 1";
 
             try
             {
@@ -78,17 +80,19 @@ namespace ClinicManagerData.DAL
 
                     using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
                     {
-                        selectCommand.Parameters.AddWithValue("@userID", userID);
+                        selectCommand.Parameters.AddWithValue("@username", CurrentUserInfo.CurrentLoggedInUsername);
 
                         using (SqlDataReader reader = selectCommand.ExecuteReader())
                         {
                             if (reader.Read())
                             {
-                                return true;
+                                CurrentUserInfo.IsCurrentUserAdmin = true;
+                                
                             }
                             else
                             {
-                                return false;
+                                CurrentUserInfo.IsCurrentUserAdmin = false;
+                         
                             }
                         }
                     }

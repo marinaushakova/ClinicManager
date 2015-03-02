@@ -20,6 +20,7 @@ namespace ClinicManager
         public ClinicManagerMain()
         {
             InitializeComponent();
+
             this.showLoginForm();
         }
 
@@ -90,8 +91,7 @@ namespace ClinicManager
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // TODO: Perform user logout
-            loginForm = new Login();
-            loginForm.MdiParent = this;
+          
             loginForm.Show();
         }
 
@@ -100,10 +100,21 @@ namespace ClinicManager
         /// </summary>
         private void showLoginForm()
         {
+            this.Show();
             menuStripMain.Visible = false;
             loginForm = new Login();
-            loginForm.MdiParent = this;
-            loginForm.Show();
+           // loginForm.MdiParent = this;
+            if (loginForm.ShowDialog() ==  DialogResult.OK) 
+            {
+                loginForm = null;
+                displayUserMenu();
+            }
+        }
+
+        public void displayUserMenu()
+        {
+           
+            menuStripMain.Visible = true;
         }
     }
 }

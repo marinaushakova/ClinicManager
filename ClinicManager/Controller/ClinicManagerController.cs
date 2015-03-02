@@ -48,9 +48,9 @@ namespace ClinicManager.Controller
         /// <param name="username">Username of the user</param>
         /// <param name="password">Password of the user</param>
         /// <returns></returns>
-        public int IsValidUser(string username, string password)
+        public void IsValidUser(string username, string password)
         {
-            return UserDAL.IsValidUser(username, password);
+            UserDAL.IsValidUser(username, password);
         }
 
         /// <summary>
@@ -58,9 +58,19 @@ namespace ClinicManager.Controller
         /// </summary>
         /// <param name="userID">user ID of the user</param>
         /// <returns>True if user with given userID is one of the administrators</returns>
-        public bool IsUserAdmin(int userID)
+        public void IsUserAdmin()
         {
-            return UserDAL.IsUserAdmin(userID);
+            UserDAL.IsUserAdmin();
+        }
+
+        public string CurrentLoggedInUsername()
+        {
+            return CurrentUserInfo.CurrentLoggedInUsername;
+        }
+
+        public bool IsCurrentUserAdmin()
+        {
+            return CurrentUserInfo.IsCurrentUserAdmin;
         }
 
     }

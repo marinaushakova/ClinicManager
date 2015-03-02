@@ -1,4 +1,5 @@
 ﻿using ClinicManager.Controller;
+using ClinicManagerData.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,22 +24,22 @@ namespace ClinicManager.View
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (cmController.IsValidUser(txtUsername.Text, txtPassword.Text) > 0)
-            {
-                if (cmController.IsUserAdmin(cmController.IsValidUser(txtUsername.Text, txtPassword.Text)))
-                {
-                    // TODO: show admin menu
-                }
-                else 
-                { 
-                    // TODO: show nurse menu
-                }
-            }
-            else 
+            this.lblErrMessage.Text = "";
+            cmController.IsValidUser(txtUsername.Text, txtPassword.Text);
+            
+            if (String.IsNullOrEmpty(cmController.CurrentLoggedInUsername())) 
             {
                 this.lblErrMessage.ForeColor = System.Drawing.Color.Red;
                 this.lblErrMessage.Text = "This user/password combination doesn't exist";
+
+                btnLogin.DialogResult = DialogResult.None;
             }
+            else
+            {
+                cmController.IsUserAdmin();
+                this.Close();
+            }
+            
         }
 
     }
