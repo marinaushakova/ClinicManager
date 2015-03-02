@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClinicManager.View;
+using ClinicManager.Controller;
 
 namespace ClinicManager
 {
@@ -16,11 +17,12 @@ namespace ClinicManager
         SearchPatient searchPatientForm;
         AddEditPerson addEditPersonForm;
         Login loginForm;
+        ClinicManagerController cmController;
 
         public ClinicManagerMain()
         {
             InitializeComponent();
-
+            cmController = new ClinicManagerController();
             this.showLoginForm();
         }
 
@@ -103,18 +105,51 @@ namespace ClinicManager
             this.Show();
             menuStripMain.Visible = false;
             loginForm = new Login();
-           // loginForm.MdiParent = this;
             if (loginForm.ShowDialog() ==  DialogResult.OK) 
             {
-                loginForm = null;
+                loginForm.Close();
                 displayUserMenu();
+                this.Text += ": you are logged in as " + cmController.CurrentLoggedInUsername();
             }
         }
 
-        public void displayUserMenu()
+        /// <summary>
+        /// Pickes which menu items to display base on the priveleges of the user
+        /// </summary>
+        private void displayUserMenu()
         {
-           
+            if (cmController.IsCurrentUserAdmin())
+            {
+                displayAdminMenu();
+            } 
+            else 
+            {
+                displayNurseMenu();
+            }
+        }
+
+        /// <summary>
+        /// Displays menu items for admin
+        /// </summary>
+        private void displayAdminMenu()
+        {
             menuStripMain.Visible = true;
+            
+            patientToolStripMenuItem.Visible = false;
+            visitToolStripMenuItem.Visible = false;
+            
+        }
+
+        /// <summary>
+        /// Displays menu items for nurse/doctor
+        /// </summary>
+        private void displayNurseMenu()
+        {
+            menuStripMain.Visible = true;
+            stuffToolStripMenuItem.Visible = false;
+            testToolStripMenuItem.Visible = false;
+            reportToolStripMenuItem.Visible = false;
+            
         }
     }
 }
