@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL\PersonDAL.cs" />
+    <Compile Include="DAL\UserDAL.cs" />
     <Compile Include="DB\ClinicManagerDBConnection.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Model\User.cs" />

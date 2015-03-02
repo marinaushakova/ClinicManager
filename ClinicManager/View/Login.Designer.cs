@@ -89,12 +89,11 @@
             // 
             this.lblErrMessage.AutoSize = true;
             this.lblErrMessage.Font = new System.Drawing.Font("Georgia", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblErrMessage.Location = new System.Drawing.Point(189, 28);
+            this.lblErrMessage.Location = new System.Drawing.Point(103, 33);
             this.lblErrMessage.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblErrMessage.Name = "lblErrMessage";
-            this.lblErrMessage.Size = new System.Drawing.Size(112, 18);
+            this.lblErrMessage.Size = new System.Drawing.Size(0, 18);
             this.lblErrMessage.TabIndex = 18;
-            this.lblErrMessage.Text = "Error Message";
             // 
             // Login
             // 

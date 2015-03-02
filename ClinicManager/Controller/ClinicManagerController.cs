@@ -41,5 +41,27 @@ namespace ClinicManager.Controller
         {
             return PersonDAL.AddPerson(person);
         }
+
+        /// <summary>
+        /// Returnes true is user with username and password exists in database
+        /// </summary>
+        /// <param name="username">Username of the user</param>
+        /// <param name="password">Password of the user</param>
+        /// <returns></returns>
+        public int IsValidUser(string username, string password)
+        {
+            return UserDAL.IsValidUser(username, password);
+        }
+
+        /// <summary>
+        /// Returns true is user with userID is administrator
+        /// </summary>
+        /// <param name="userID">user ID of the user</param>
+        /// <returns>True if user with given userID is one of the administrators</returns>
+        public bool IsUserAdmin(int userID)
+        {
+            return UserDAL.IsUserAdmin(userID);
+        }
+
     }
 }
