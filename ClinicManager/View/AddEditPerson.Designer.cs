@@ -41,7 +41,6 @@
             System.Windows.Forms.Label is_maleLabel;
             System.Windows.Forms.Label stateLabel1;
             this.streetAddressTxtBox = new System.Windows.Forms.TextBox();
-            this.personBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cityTxtBox = new System.Windows.Forms.TextBox();
             this.dobDatePicker = new System.Windows.Forms.DateTimePicker();
             this.fnameTxtBox = new System.Windows.Forms.TextBox();
@@ -55,6 +54,7 @@
             this.stateTxtBox = new System.Windows.Forms.TextBox();
             this.okBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
+            this.personBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.isMaleComboBox = new System.Windows.Forms.ComboBox();
             addressLabel = new System.Windows.Forms.Label();
             cityLabel = new System.Windows.Forms.Label();
@@ -183,21 +183,17 @@
             // 
             this.streetAddressTxtBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "Address", true));
             this.streetAddressTxtBox.Location = new System.Drawing.Point(141, 272);
-            this.streetAddressTxtBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.streetAddressTxtBox.Margin = new System.Windows.Forms.Padding(4);
             this.streetAddressTxtBox.Name = "streetAddressTxtBox";
             this.streetAddressTxtBox.Size = new System.Drawing.Size(379, 26);
             this.streetAddressTxtBox.TabIndex = 8;
             this.streetAddressTxtBox.Tag = "Street Address";
             // 
-            // personBindingSource
-            // 
-            this.personBindingSource.DataSource = typeof(ClinicManagerData.Model.Person);
-            // 
             // cityTxtBox
             // 
             this.cityTxtBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "City", true));
             this.cityTxtBox.Location = new System.Drawing.Point(141, 308);
-            this.cityTxtBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cityTxtBox.Margin = new System.Windows.Forms.Padding(4);
             this.cityTxtBox.Name = "cityTxtBox";
             this.cityTxtBox.Size = new System.Drawing.Size(379, 26);
             this.cityTxtBox.TabIndex = 9;
@@ -208,7 +204,7 @@
             this.dobDatePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.personBindingSource, "DateOfBirth", true));
             this.dobDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dobDatePicker.Location = new System.Drawing.Point(141, 198);
-            this.dobDatePicker.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dobDatePicker.Margin = new System.Windows.Forms.Padding(4);
             this.dobDatePicker.MaxDate = new System.DateTime(2015, 3, 1, 0, 0, 0, 0);
             this.dobDatePicker.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dobDatePicker.Name = "dobDatePicker";
@@ -221,7 +217,7 @@
             // 
             this.fnameTxtBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "FirstName", true));
             this.fnameTxtBox.Location = new System.Drawing.Point(141, 54);
-            this.fnameTxtBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.fnameTxtBox.Margin = new System.Windows.Forms.Padding(4);
             this.fnameTxtBox.Name = "fnameTxtBox";
             this.fnameTxtBox.Size = new System.Drawing.Size(379, 26);
             this.fnameTxtBox.TabIndex = 2;
@@ -231,7 +227,7 @@
             // 
             this.lnameTxtBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "LastName", true));
             this.lnameTxtBox.Location = new System.Drawing.Point(141, 126);
-            this.lnameTxtBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lnameTxtBox.Margin = new System.Windows.Forms.Padding(4);
             this.lnameTxtBox.Name = "lnameTxtBox";
             this.lnameTxtBox.Size = new System.Drawing.Size(379, 26);
             this.lnameTxtBox.TabIndex = 4;
@@ -241,7 +237,7 @@
             // 
             this.minitTxtBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "MiddleInit", true));
             this.minitTxtBox.Location = new System.Drawing.Point(141, 90);
-            this.minitTxtBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.minitTxtBox.Margin = new System.Windows.Forms.Padding(4);
             this.minitTxtBox.Name = "minitTxtBox";
             this.minitTxtBox.Size = new System.Drawing.Size(62, 26);
             this.minitTxtBox.TabIndex = 3;
@@ -251,7 +247,7 @@
             // 
             this.phoneTxtBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "Phone", true));
             this.phoneTxtBox.Location = new System.Drawing.Point(141, 412);
-            this.phoneTxtBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.phoneTxtBox.Margin = new System.Windows.Forms.Padding(4);
             this.phoneTxtBox.Name = "phoneTxtBox";
             this.phoneTxtBox.Size = new System.Drawing.Size(379, 26);
             this.phoneTxtBox.TabIndex = 12;
@@ -261,7 +257,7 @@
             // 
             this.ssnTxtBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "Social", true));
             this.ssnTxtBox.Location = new System.Drawing.Point(141, 162);
-            this.ssnTxtBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ssnTxtBox.Margin = new System.Windows.Forms.Padding(4);
             this.ssnTxtBox.Name = "ssnTxtBox";
             this.ssnTxtBox.Size = new System.Drawing.Size(379, 26);
             this.ssnTxtBox.TabIndex = 5;
@@ -271,7 +267,7 @@
             // 
             this.zipTxtBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "Zip", true));
             this.zipTxtBox.Location = new System.Drawing.Point(141, 376);
-            this.zipTxtBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.zipTxtBox.Margin = new System.Windows.Forms.Padding(4);
             this.zipTxtBox.Name = "zipTxtBox";
             this.zipTxtBox.Size = new System.Drawing.Size(379, 26);
             this.zipTxtBox.TabIndex = 11;
@@ -283,7 +279,7 @@
             this.roleComboBox.Enabled = false;
             this.roleComboBox.FormattingEnabled = true;
             this.roleComboBox.Location = new System.Drawing.Point(141, 16);
-            this.roleComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.roleComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.roleComboBox.Name = "roleComboBox";
             this.roleComboBox.Size = new System.Drawing.Size(180, 28);
             this.roleComboBox.TabIndex = 1;
@@ -329,15 +325,19 @@
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
+            // personBindingSource
+            // 
+            this.personBindingSource.DataSource = typeof(ClinicManagerData.Model.Person);
+            // 
             // isMaleComboBox
             // 
-            this.isMaleComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "IsMale", true));
             this.isMaleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.isMaleComboBox.FormattingEnabled = true;
             this.isMaleComboBox.Location = new System.Drawing.Point(141, 234);
             this.isMaleComboBox.Name = "isMaleComboBox";
-            this.isMaleComboBox.Size = new System.Drawing.Size(141, 28);
+            this.isMaleComboBox.Size = new System.Drawing.Size(134, 28);
             this.isMaleComboBox.TabIndex = 34;
+            this.isMaleComboBox.Tag = "Gender";
             // 
             // AddEditPerson
             // 
@@ -371,7 +371,7 @@
             this.Controls.Add(zipLabel);
             this.Controls.Add(this.zipTxtBox);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AddEditPerson";
             this.Text = "Add Patient";
             this.Load += new System.EventHandler(this.AddEditPerson_Load);

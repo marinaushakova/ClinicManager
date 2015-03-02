@@ -56,6 +56,10 @@ namespace ClinicManager.View
             isMaleComboBox.Items.Add(new { Text = "Male", Value = true });
             isMaleComboBox.Items.Add(new { Text = "Female", Value = false });
             if (this.person == null) isMaleComboBox.SelectedIndex = 0;
+            else
+            {
+                isMaleComboBox.SelectedIndex = (person.IsMale) ? 0 : 1;
+            }
         }
 
         /// <summary>
