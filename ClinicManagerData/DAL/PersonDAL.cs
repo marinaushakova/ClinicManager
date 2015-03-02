@@ -105,13 +105,63 @@ namespace ClinicManagerData.DAL
         }
 
         /// <summary>
-        /// Adds
+        /// Adds the passed in person object to the DB
         /// </summary>
-        /// <param name="person"></param>
-        /// <returns></returns>
+        /// <param name="person">The person object to add to the DB</param>
+        /// <returns>The id generated for the created person</returns>
         public static int AddPerson(Person person)
         {
-            return 0;
+            string insertStatement =
+                "INSERT INTO person (ssn, fname, minit, lname, birth_date, is_male, " +
+                "street_address, city, state, zip, phone, is_nurse, is_doctor) " +
+                "VALUES (@ssn, @fname, @minit, @lname, @birth_date, @is_male, " +
+                "@street_address, @city, @state, @zip, @phone, @is_nurse, @is_doctor)";
+            try
+            {
+                using (SqlConnection con = ClinicManagerDBConnection.GetConnection())
+                {
+                    con.Open();
+                    using (SqlCommand insertCommand = new SqlCommand(insertStatement, con))
+                    {
+                        insertCommand.Parameters.AddWithValue("@ssn", person.Social);
+                        insertCommand.Parameters.AddWithValue("@fname", person.FirstName);
+                        insertCommand.Parameters.AddWithValue("@minit", person.MiddleInit);
+                        insertCommand.Parameters.AddWithValue("@lname", person.LastName);
+                        insertCommand.Parameters.AddWithValue("@birth_date", person.DateOfBirth);
+                        insertCommand.Parameters.AddWithValue("@is_male", person.IsMale);
+                        insertCommand.Parameters.AddWithValue("@street_address", person.Address);
+                        insertCommand.Parameters.AddWithValue("@city", person.City);
+                        insertCommand.Parameters.AddWithValue("@state", person.State);
+                        insertCommand.Parameters.AddWithValue("@zip", person.Zip);
+                        insertCommand.Parameters.AddWithValue("@phone", person.Phone);
+                        insertCommand.Parameters.AddWithValue("@is_nurse", person.IsNurse);
+                        insertCommand.Parameters.AddWithValue("@is_doctor", person.IsDoctor);
+
+                        insertCommand.ExecuteNonQuery();
+
+                        SqlCommand identCom = new SqlCommand();
+                        identCom.Connection = con;
+                        identCom.CommandText = "SELECT IDENT_CURRENT('person') FROM person";
+                        int personID = Convert.ToInt32(identCom.ExecuteScalar());
+                        return personID;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Updates a person in the DB
+        /// </summary>
+        /// <param name="oldPerson"></param>
+        /// <param name="newPerson"></param>
+        /// <returns></returns>
+        public static bool UpdatePerson(Person oldPerson, Person newPerson)
+        {
+            return false;
         }
 
         /// <summary>

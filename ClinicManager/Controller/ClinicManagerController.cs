@@ -31,5 +31,15 @@ namespace ClinicManager.Controller
         {
             return PersonDAL.GetPersonById(id);
         }
+
+        /// <summary>
+        /// Adds the passed in person to the DB
+        /// </summary>
+        /// <param name="person">The person to add to the DB</param>
+        /// <returns>The id of the created person</returns>
+        public int AddPerson(Person person)
+        {
+            return PersonDAL.AddPerson(person);
+        }
     }
 }

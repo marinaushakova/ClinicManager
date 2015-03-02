@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClinicManagerData.Model;
+using ClinicManager.Controller;
 
 namespace ClinicManager.View
 {
@@ -16,9 +17,12 @@ namespace ClinicManager.View
         public Person person;
         public bool is_nurse;
 
+        private ClinicManagerController cmController;
+
         public AddEditPerson()
         {
             InitializeComponent();
+            cmController = new ClinicManagerController();
         }
 
         /// <summary>
@@ -56,10 +60,7 @@ namespace ClinicManager.View
             isMaleComboBox.Items.Add(new { Text = "Male", Value = true });
             isMaleComboBox.Items.Add(new { Text = "Female", Value = false });
             if (this.person == null) isMaleComboBox.SelectedIndex = 0;
-            else
-            {
-                isMaleComboBox.SelectedIndex = (person.IsMale) ? 0 : 1;
-            }
+            else isMaleComboBox.SelectedIndex = (person.IsMale) ? 0 : 1;
         }
 
         /// <summary>
@@ -117,8 +118,45 @@ namespace ClinicManager.View
 
             if (person == null)
             {
-
+                try
+                {
+                    person = new Person();
+                    this.putPersonData();
+                    int id = cmController.AddPerson(person);
+                    MessageBox.Show("Person successfully added", "Success");
+                    
+                    
+                    // Reset form instead
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, ex.GetType().ToString());
+                }
             }
+        }
+
+        /// <summary>
+        /// Puts the input values from the form into a person object
+        /// </summary>
+        private void putPersonData()
+        {
+            if (roleComboBox.Text == "Patient")
+            {
+                person.IsDoctor = false;
+                person.IsNurse = false;
+            }
+            person.IsMale = (isMaleComboBox.Text == "Male") ? true : false;
+            person.Social = ssnTxtBox.Text;
+            person.FirstName = fnameTxtBox.Text;
+            person.MiddleInit = minitTxtBox.Text;
+            person.LastName = lnameTxtBox.Text;
+            person.DateOfBirth = Convert.ToDateTime(dobDatePicker.Text);
+            person.Address = streetAddressTxtBox.Text;
+            person.City = cityTxtBox.Text;
+            person.State = stateTxtBox.Text;
+            person.Zip = zipTxtBox.Text;
+            person.Phone = phoneTxtBox.Text;
         }
 
         /// <summary>
