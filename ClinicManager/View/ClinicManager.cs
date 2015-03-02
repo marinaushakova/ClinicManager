@@ -15,10 +15,12 @@ namespace ClinicManager
     {
         SearchPatient searchPatientForm;
         AddEditPerson addEditPersonForm;
+        Login loginForm;
 
         public ClinicManagerMain()
         {
             InitializeComponent();
+            this.showLoginForm();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -78,6 +80,30 @@ namespace ClinicManager
         private void addEditPersonForm_FormClosed(object sender, EventArgs e)
         {
             addEditPersonForm = null;
+        }
+
+        /// <summary>
+        /// Logs out a user and shows the Login form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // TODO: Perform user logout
+            loginForm = new Login();
+            loginForm.MdiParent = this;
+            loginForm.Show();
+        }
+
+        /// <summary>
+        /// Displays Login form and makes menu invisible
+        /// </summary>
+        private void showLoginForm()
+        {
+            menuStripMain.Visible = false;
+            loginForm = new Login();
+            loginForm.MdiParent = this;
+            loginForm.Show();
         }
     }
 }
