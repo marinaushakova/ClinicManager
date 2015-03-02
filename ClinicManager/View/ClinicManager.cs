@@ -93,8 +93,19 @@ namespace ClinicManager
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // TODO: Perform user logout
-          
-            loginForm.Show();
+            DialogResult result = MessageBox.Show("Are you sure you want to log out?",
+                "Log out", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                this.Text = "Clinic Manager";
+                clearUserInfo();
+                showLoginForm();
+            }
+            else if (result == DialogResult.No)
+            {
+                return;
+            }
+            
         }
 
         /// <summary>
@@ -134,10 +145,11 @@ namespace ClinicManager
         private void displayAdminMenu()
         {
             menuStripMain.Visible = true;
-            
+            stuffToolStripMenuItem.Visible = true;
+            testToolStripMenuItem.Visible = true;
+            reportToolStripMenuItem.Visible = true;
             patientToolStripMenuItem.Visible = false;
             visitToolStripMenuItem.Visible = false;
-            
         }
 
         /// <summary>
@@ -149,7 +161,13 @@ namespace ClinicManager
             stuffToolStripMenuItem.Visible = false;
             testToolStripMenuItem.Visible = false;
             reportToolStripMenuItem.Visible = false;
-            
+            patientToolStripMenuItem.Visible = true;
+            visitToolStripMenuItem.Visible = true;
+        }
+
+        private void clearUserInfo()
+        {
+            cmController.ClearCurrentUser();
         }
     }
 }

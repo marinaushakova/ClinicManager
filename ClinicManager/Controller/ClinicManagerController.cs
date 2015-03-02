@@ -43,34 +43,48 @@ namespace ClinicManager.Controller
         }
 
         /// <summary>
-        /// Returnes true is user with username and password exists in database
+        /// Calls UserDAL method to determine if user is valid
         /// </summary>
         /// <param name="username">Username of the user</param>
         /// <param name="password">Password of the user</param>
-        /// <returns></returns>
         public void IsValidUser(string username, string password)
         {
             UserDAL.IsValidUser(username, password);
         }
 
         /// <summary>
-        /// Returns true is user with userID is administrator
+        /// Calls UserDAL method to determine if user is administrator
         /// </summary>
-        /// <param name="userID">user ID of the user</param>
-        /// <returns>True if user with given userID is one of the administrators</returns>
         public void IsUserAdmin()
         {
             UserDAL.IsUserAdmin();
         }
 
+        /// <summary>
+        /// Gets username of the current user
+        /// </summary>
+        /// <returns>String representation of username</returns>
         public string CurrentLoggedInUsername()
         {
             return CurrentUserInfo.CurrentLoggedInUsername;
         }
 
+        /// <summary>
+        /// Checks if current user is admin
+        /// </summary>
+        /// <returns>True is current user is admin and false if otherwise</returns>
         public bool IsCurrentUserAdmin()
         {
             return CurrentUserInfo.IsCurrentUserAdmin;
+        }
+
+        /// <summary>
+        /// resets info about current user
+        /// </summary>
+        public void ClearCurrentUser()
+        {
+            CurrentUserInfo.IsCurrentUserAdmin = false;
+            CurrentUserInfo.CurrentLoggedInUsername = null;
         }
 
     }
