@@ -40,7 +40,7 @@
             // 
             this.btnLogin.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnLogin.Location = new System.Drawing.Point(208, 208);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(112, 32);
             this.btnLogin.TabIndex = 17;
@@ -51,15 +51,16 @@
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(192, 137);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(276, 26);
             this.txtPassword.TabIndex = 14;
+            this.txtPassword.UseSystemPasswordChar = true;
             // 
             // txtUsername
             // 
             this.txtUsername.Location = new System.Drawing.Point(192, 82);
-            this.txtUsername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(276, 26);
             this.txtUsername.TabIndex = 13;
@@ -110,7 +111,7 @@
             this.Controls.Add(this.lblUsername);
             this.Font = new System.Drawing.Font("Georgia", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
