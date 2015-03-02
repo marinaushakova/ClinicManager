@@ -31,6 +31,14 @@ namespace ClinicManager.View
             this.setUpTitle();
             this.setUpRoleComboBox();
             this.setUpGenderComboBox();
+            this.setUpBinding();
+        }
+
+        /// <summary>
+        /// Sets the binding source if the person object is set
+        /// </summary>
+        private void setUpBinding()
+        {
             if (this.person != null)
             {
                 personBindingSource.Clear();
@@ -101,7 +109,7 @@ namespace ClinicManager.View
         /// <param name="e"></param>
         private void okBtn_Click(object sender, EventArgs e)
         {
-            if (!this.IsValid()) return;
+            if (!this.isValid()) return;
 
             if (person == null)
             {
@@ -113,7 +121,7 @@ namespace ClinicManager.View
         /// Checks whether all required input is present/valid and any optional input is valid
         /// </summary>
         /// <returns>true if all required input is present/valid and any optional input is valid, false otherwise</returns>
-        private bool IsValid()
+        private bool isValid()
         {
             List<Control> requiredControls = new List<Control>();
             requiredControls.Add(roleComboBox);

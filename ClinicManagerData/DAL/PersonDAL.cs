@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 using System.Data.SqlClient;
 using ClinicManagerData.DB;
 using ClinicManagerData.Model;
@@ -111,6 +112,61 @@ namespace ClinicManagerData.DAL
         public static int AddPerson(Person person)
         {
             return 0;
+        }
+
+        /// <summary>
+        /// Gets a person from the db by their id
+        /// </summary>
+        /// <param name="id">The id of the person to be retrieved</param>
+        /// <returns>The person with the passed in id, null otherwise</returns>
+        public static Person GetPersonById(int id)
+        {
+            Person person = new Person();
+            string selectStatment = 
+                "SELECT id, ssn, fname, minit, lname, birth_date, is_male, street_address, " + 
+                "city, state, zip, phone, is_nurse, is_doctor, timestamp " + 
+                "FROM person WHERE id = @id";
+            try
+            {
+                using (SqlConnection con = ClinicManagerDBConnection.GetConnection())
+                {
+                    con.Open();
+                    using (SqlCommand selectCommand = new SqlCommand(selectStatment, con))
+                    {
+                        selectCommand.Parameters.AddWithValue("@id", id);
+                        using (SqlDataReader reader = selectCommand.ExecuteReader(CommandBehavior.SingleRow))
+                        {
+                            if (reader.Read())
+                            {
+                                person.PersonID = (int)reader["id"];
+                                person.Social = reader["ssn"].ToString();
+                                person.FirstName = reader["fname"].ToString();
+                                person.MiddleInit = reader["minit"].ToString();
+                                person.LastName = reader["lname"].ToString();
+                                person.DateOfBirth = (DateTime)reader["birth_date"];
+                                person.IsMale = (bool)reader["is_male"];
+                                person.Address = reader["street_address"].ToString();
+                                person.City = reader["city"].ToString();
+                                person.State = reader["state"].ToString();
+                                person.Zip = reader["zip"].ToString();
+                                person.IsNurse = (bool)reader["is_nurse"];
+                                person.IsDoctor = (bool)reader["is_doctor"];
+                                person.Phone = reader["phone"].ToString();
+                                person.Timestamp = Convert.ToBase64String(reader["timestamp"] as byte[]);
+                            }
+                            else
+                            {
+                                person = null;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return person;
         }
     }
 }

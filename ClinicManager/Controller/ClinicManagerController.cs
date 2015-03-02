@@ -21,5 +21,15 @@ namespace ClinicManager.Controller
         {
             return PersonDAL.GetPersonSummary(firstName, lastName, dateOfBirth);
         }
+
+        /// <summary>
+        /// Gets the person with the passed in ID
+        /// </summary>
+        /// <param name="id">The ID of the person being retrieved from the DB</param>
+        /// <returns>The person object with the given ID else null</returns>
+        public Person GetPersonById(int id)
+        {
+            return PersonDAL.GetPersonById(id);
+        }
     }
 }

@@ -85,15 +85,40 @@ namespace ClinicManager.View
             else
             {
                 int index = lvPatients.SelectedItems[0].Index;
-                Person personToEdit = persons[index];
-                AddEditPerson addEditPersonForm = new AddEditPerson();
-                addEditPersonForm.person = personToEdit;
+                int id = persons[index].PersonID;
+                this.setUpEditFormWithID(id);
+            }
+        }
 
-                // TODO: change from hard coded to dynamic based on the user logged in
-                addEditPersonForm.is_nurse = true;
-                addEditPersonForm.MdiParent = this.MdiParent;
-                //addEditPersonForm.FormClosed += new FormClosedEventHandler(addEditPersonForm_FormClosed);
-                addEditPersonForm.Show();
+        /// <summary>
+        /// Sets up the edit person form populating it with the person who corresponds with the passed in id
+        /// </summary>
+        /// <param name="id">The ID of the person to be edited</param>
+        private void setUpEditFormWithID(int id)
+        {
+            Person personToEdit;
+            try
+            {
+                personToEdit = cmController.GetPersonById(id);
+                if (personToEdit == null)
+                {
+                    MessageBox.Show("No person found", "No Person Found");
+                }
+                else
+                {
+                    AddEditPerson addEditPersonForm = new AddEditPerson();
+                    addEditPersonForm.person = personToEdit;
+
+                    // TODO: change from hard coded to dynamic based on the user logged in
+                    addEditPersonForm.is_nurse = true;
+                    addEditPersonForm.MdiParent = this.MdiParent;
+                    //addEditPersonForm.FormClosed += new FormClosedEventHandler(addEditPersonForm_FormClosed);
+                    addEditPersonForm.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
             }
         }
     }
