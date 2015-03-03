@@ -143,8 +143,9 @@ namespace ClinicManager
         {
             if (loginForm.username != null)
             {
-                this.currentUsername = loginForm.username;
-                this.displayUserMenu();
+                currentUsername = loginForm.username;
+                this.Text = "Clinic Manager: you are logged in as " + currentUsername;
+                displayUserMenu();
             }
             loginForm = null;
             
