@@ -54,8 +54,8 @@
             this.stateTxtBox = new System.Windows.Forms.TextBox();
             this.okBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
-            this.personBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.isMaleComboBox = new System.Windows.Forms.ComboBox();
+            this.personBindingSource = new System.Windows.Forms.BindingSource(this.components);
             addressLabel = new System.Windows.Forms.Label();
             cityLabel = new System.Windows.Forms.Label();
             dateOfBirthLabel = new System.Windows.Forms.Label();
@@ -306,7 +306,7 @@
             // 
             // okBtn
             // 
-            this.okBtn.Location = new System.Drawing.Point(422, 519);
+            this.okBtn.Location = new System.Drawing.Point(309, 526);
             this.okBtn.Margin = new System.Windows.Forms.Padding(15, 4, 15, 4);
             this.okBtn.Name = "okBtn";
             this.okBtn.Size = new System.Drawing.Size(100, 30);
@@ -317,17 +317,13 @@
             // 
             // cancelBtn
             // 
-            this.cancelBtn.Location = new System.Drawing.Point(304, 519);
+            this.cancelBtn.Location = new System.Drawing.Point(427, 527);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(100, 30);
             this.cancelBtn.TabIndex = 13;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;
             this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
-            // 
-            // personBindingSource
-            // 
-            this.personBindingSource.DataSource = typeof(ClinicManagerData.Model.Person);
             // 
             // isMaleComboBox
             // 
@@ -339,11 +335,15 @@
             this.isMaleComboBox.TabIndex = 34;
             this.isMaleComboBox.Tag = "Gender";
             // 
+            // personBindingSource
+            // 
+            this.personBindingSource.DataSource = typeof(ClinicManagerData.Model.Person);
+            // 
             // AddEditPerson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(611, 569);
+            this.ClientSize = new System.Drawing.Size(539, 569);
             this.Controls.Add(this.isMaleComboBox);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.okBtn);
