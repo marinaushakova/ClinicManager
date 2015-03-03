@@ -43,6 +43,17 @@ namespace ClinicManager.Controller
         }
 
         /// <summary>
+        /// Updates the DB person row with the id matching the id given in the person param to the other values
+        /// given in the person param. 
+        /// </summary>
+        /// <param name="person">The person object containing the id and changed data of the person to update</param>
+        /// <returns>True if successful, false otherwise</returns>
+        public bool UpdatePerson(Person person)
+        {
+            return PersonDAL.UpdatePerson(person);
+        }
+
+        /// <summary>
         /// Calls UserDAL method to determine if user is valid
         /// </summary>
         /// <param name="username">Username of the user</param>

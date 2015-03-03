@@ -115,13 +115,11 @@ namespace ClinicManager.View
         private void okBtn_Click(object sender, EventArgs e)
         {
             if (!this.isValid()) return;
-
-            if (person == null)
-            {
-                try
+            try { 
+                if (person == null)
                 {
                     person = new Person();
-                    this.putPersonData();
+                    this.putPersonData(person);
                     int id = cmController.AddPerson(person);
                     MessageBox.Show("Person successfully added", "Success");
                     
@@ -129,34 +127,52 @@ namespace ClinicManager.View
                     // Reset form instead
                     this.Close();
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message, ex.GetType().ToString());
+                    Person newPerson = new Person();
+                    this.putPersonData(newPerson);
+                    newPerson.PersonID = person.PersonID;
+                    newPerson.Timestamp = person.Timestamp;
+                    bool result = cmController.UpdatePerson(newPerson);
+                    if (!result)
+                    {
+                        MessageBox.Show("Another user has updated or " +
+                                "deleted that person.", "Database Error");
+                      
+                    } else {
+                        MessageBox.Show("Person successully updated", "Success");
+                        this.Close();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
             }
         }
 
         /// <summary>
         /// Puts the input values from the form into a person object
         /// </summary>
-        private void putPersonData()
+        /// <param name="thePerson">The person object to fill with the form data</param>
+        private void putPersonData(Person thePerson)
         {
             if (roleComboBox.Text == "Patient")
             {
-                person.IsDoctor = false;
-                person.IsNurse = false;
+                thePerson.IsDoctor = false;
+                thePerson.IsNurse = false;
             }
-            person.IsMale = (isMaleComboBox.Text == "Male") ? true : false;
-            person.Social = ssnTxtBox.Text;
-            person.FirstName = fnameTxtBox.Text;
-            person.MiddleInit = minitTxtBox.Text;
-            person.LastName = lnameTxtBox.Text;
-            person.DateOfBirth = Convert.ToDateTime(dobDatePicker.Text);
-            person.Address = streetAddressTxtBox.Text;
-            person.City = cityTxtBox.Text;
-            person.State = stateTxtBox.Text;
-            person.Zip = zipTxtBox.Text;
-            person.Phone = phoneTxtBox.Text;
+            thePerson.IsMale = (isMaleComboBox.Text == "Male") ? true : false;
+            thePerson.Social = ssnTxtBox.Text;
+            thePerson.FirstName = fnameTxtBox.Text;
+            thePerson.MiddleInit = minitTxtBox.Text;
+            thePerson.LastName = lnameTxtBox.Text;
+            thePerson.DateOfBirth = Convert.ToDateTime(dobDatePicker.Text);
+            thePerson.Address = streetAddressTxtBox.Text;
+            thePerson.City = cityTxtBox.Text;
+            thePerson.State = stateTxtBox.Text;
+            thePerson.Zip = zipTxtBox.Text;
+            thePerson.Phone = phoneTxtBox.Text;
         }
 
         /// <summary>

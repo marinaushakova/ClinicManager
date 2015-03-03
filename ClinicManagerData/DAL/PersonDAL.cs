@@ -156,12 +156,48 @@ namespace ClinicManagerData.DAL
         /// <summary>
         /// Updates a person in the DB
         /// </summary>
-        /// <param name="oldPerson"></param>
-        /// <param name="newPerson"></param>
-        /// <returns></returns>
-        public static bool UpdatePerson(Person oldPerson, Person newPerson)
+        /// <param name="person">The person object with the altered data and the original person ID</param>
+        /// <returns>True if update successful, false otherwise</returns>
+        public static bool UpdatePerson(Person person)
         {
-            return false;
+            string updateStatement =
+                "UPDATE person SET ssn = @ssn, fname = @fname, minit = @minit, lname = @lname, " +
+                "birth_date = @birth_date, is_male = @is_male, street_address = @street_address, " +
+                "city = @city, state = @state, zip = @zip, phone = @phone, is_nurse = @is_nurse, is_doctor = @is_doctor " +
+                "WHERE id = @id AND timestamp = @timestamp";
+            try
+            {
+                using (SqlConnection con = ClinicManagerDBConnection.GetConnection())
+                {
+                    con.Open();
+                    using (SqlCommand updateCommand = new SqlCommand(updateStatement, con))
+                    {
+                        updateCommand.Parameters.AddWithValue("@id", person.PersonID);
+                        updateCommand.Parameters.AddWithValue("@ssn", person.Social);
+                        updateCommand.Parameters.AddWithValue("@fname", person.FirstName);
+                        updateCommand.Parameters.AddWithValue("@minit", person.MiddleInit);
+                        updateCommand.Parameters.AddWithValue("@lname", person.LastName);
+                        updateCommand.Parameters.AddWithValue("@birth_date", person.DateOfBirth);
+                        updateCommand.Parameters.AddWithValue("@is_male", person.IsMale);
+                        updateCommand.Parameters.AddWithValue("@street_address", person.Address);
+                        updateCommand.Parameters.AddWithValue("@city", person.City);
+                        updateCommand.Parameters.AddWithValue("@state", person.State);
+                        updateCommand.Parameters.AddWithValue("@zip", person.Zip);
+                        updateCommand.Parameters.AddWithValue("@phone", person.Phone);
+                        updateCommand.Parameters.AddWithValue("@is_nurse", person.IsNurse);
+                        updateCommand.Parameters.AddWithValue("@is_doctor", person.IsDoctor);
+                        updateCommand.Parameters.AddWithValue("@timestamp", Convert.FromBase64String(person.Timestamp));
+
+                        int count = updateCommand.ExecuteNonQuery();
+                        if (count > 0) return true;
+                        else return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         /// <summary>
