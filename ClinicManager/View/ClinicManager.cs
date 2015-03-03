@@ -18,11 +18,14 @@ namespace ClinicManager
         AddEditPerson addEditPersonForm;
         Login loginForm;
         ClinicManagerController cmController;
+        
+        private string currentUsername;
 
         public ClinicManagerMain()
         {
             InitializeComponent();
             cmController = new ClinicManagerController();
+            this.disableMenu();
             this.showLoginForm();
         }
 
@@ -92,20 +95,23 @@ namespace ClinicManager
         /// <param name="e"></param>
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // TODO: Perform user logout
             DialogResult result = MessageBox.Show("Are you sure you want to log out?",
                 "Log out", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
+                while (this.ActiveMdiChild != null)
+                {
+                    this.ActiveMdiChild.Close();
+                }
                 this.Text = "Clinic Manager";
-                clearUserInfo();
+                this.currentUsername = null;
+                disableMenu();
                 showLoginForm();
             }
             else if (result == DialogResult.No)
             {
                 return;
             }
-            
         }
 
         /// <summary>
@@ -113,61 +119,84 @@ namespace ClinicManager
         /// </summary>
         private void showLoginForm()
         {
-            this.Show();
-            menuStripMain.Visible = false;
-            loginForm = new Login();
-            if (loginForm.ShowDialog() ==  DialogResult.OK) 
+            if (loginForm == null)
             {
-                loginForm.Close();
-                displayUserMenu();
-                this.Text += ": you are logged in as " + cmController.CurrentLoggedInUsername();
+                loginForm = new Login();
+
+                loginForm.MdiParent = this;
+                loginForm.FormClosed += new FormClosedEventHandler(loginForm_FormClosed);
+                loginForm.Show();
             }
+            else
+            {
+                loginForm.Activate();
+            }
+            
         }
 
         /// <summary>
-        /// Pickes which menu items to display base on the priveleges of the user
+        /// Sets the login form to null after its closed event fires. 
+        /// If correct username was entered and login button was clicked,
+        /// sets currentUsername to username entered by user and displays user menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void loginForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (loginForm.username != null)
+            {
+                this.currentUsername = loginForm.username;
+                this.displayUserMenu();
+            }
+            loginForm = null;
+            
+        }
+
+        /// <summary>
+        /// Picks which menu items to display base on the priveleges of the user
         /// </summary>
         private void displayUserMenu()
         {
-            if (cmController.IsCurrentUserAdmin())
+            if ((int)cmController.GetUserType(loginForm.username, loginForm.password) == 1)
             {
-                displayAdminMenu();
+                stuffToolStripMenuItem.Enabled = true;
+                testToolStripMenuItem.Enabled = true;
+                reportToolStripMenuItem.Enabled = true;
+                logoutToolStripMenuItem.Enabled = true;
+                loginToolStripMenuItem.Enabled = false;
             } 
             else 
             {
-                displayNurseMenu();
+                patientToolStripMenuItem.Enabled = true;
+                visitToolStripMenuItem.Enabled = true;
+                logoutToolStripMenuItem.Enabled = true;
+                loginToolStripMenuItem.Enabled = false;
             }
         }
 
         /// <summary>
-        /// Displays menu items for admin
+        /// Disables all menu items except for File (Login, Exit) and About (Help)
         /// </summary>
-        private void displayAdminMenu()
+        private void disableMenu() 
         {
-            menuStripMain.Visible = true;
-            stuffToolStripMenuItem.Visible = true;
-            testToolStripMenuItem.Visible = true;
-            reportToolStripMenuItem.Visible = true;
-            patientToolStripMenuItem.Visible = false;
-            visitToolStripMenuItem.Visible = false;
+            loginToolStripMenuItem.Enabled = true;
+            stuffToolStripMenuItem.Enabled = false;
+            testToolStripMenuItem.Enabled = false;
+            reportToolStripMenuItem.Enabled = false;
+            patientToolStripMenuItem.Enabled = false;
+            visitToolStripMenuItem.Enabled = false;
+            logoutToolStripMenuItem.Enabled = false;
         }
 
         /// <summary>
-        /// Displays menu items for nurse/doctor
+        /// Shows login form when login menu item is clicked
         /// </summary>
-        private void displayNurseMenu()
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void loginToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            menuStripMain.Visible = true;
-            stuffToolStripMenuItem.Visible = false;
-            testToolStripMenuItem.Visible = false;
-            reportToolStripMenuItem.Visible = false;
-            patientToolStripMenuItem.Visible = true;
-            visitToolStripMenuItem.Visible = true;
+            showLoginForm();
         }
 
-        private void clearUserInfo()
-        {
-            cmController.ClearCurrentUser();
-        }
     }
 }

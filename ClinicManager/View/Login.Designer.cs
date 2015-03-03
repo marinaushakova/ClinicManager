@@ -38,7 +38,6 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnLogin.Location = new System.Drawing.Point(208, 208);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogin.Name = "btnLogin";
@@ -112,6 +111,7 @@
             this.Font = new System.Drawing.Font("Georgia", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";

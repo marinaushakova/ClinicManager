@@ -44,7 +44,6 @@
     <Compile Include="DB\ClinicManagerDBConnection.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Model\User.cs" />
-    <Compile Include="Model\CurrentUserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
