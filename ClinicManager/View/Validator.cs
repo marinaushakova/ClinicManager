@@ -54,5 +54,22 @@ namespace ClinicManager.View
             }
             return true;
         }
+
+        /// <summary>
+        /// Checks a DateTimePicker control to see if its date is before the given time
+        /// </summary>
+        /// <param name="dateTimeControl">The control to check</param>
+        /// <param name="limit">The value to check if the control is set less than or equal to</param>
+        /// <returns>True if the value of the control is before the isBefore DateTime param</returns>
+        public static bool DateIsBefore(DateTimePicker dateTimeControl, DateTime limit)
+        {
+            if (dateTimeControl.Value > limit)
+            {
+                MessageBox.Show(dateTimeControl.Tag.ToString() + " must be set to a date before now.", MESSAGE);
+                dateTimeControl.Focus();
+                return false;
+            }
+            return true;
+        }
     }
 }

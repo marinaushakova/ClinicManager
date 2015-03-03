@@ -205,7 +205,7 @@
             this.dobDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dobDatePicker.Location = new System.Drawing.Point(141, 198);
             this.dobDatePicker.Margin = new System.Windows.Forms.Padding(4);
-            this.dobDatePicker.MaxDate = new System.DateTime(2015, 3, 1, 0, 0, 0, 0);
+            this.dobDatePicker.MaxDate = new System.DateTime(2150, 12, 31, 0, 0, 0, 0);
             this.dobDatePicker.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dobDatePicker.Name = "dobDatePicker";
             this.dobDatePicker.Size = new System.Drawing.Size(379, 26);

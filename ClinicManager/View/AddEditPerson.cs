@@ -26,7 +26,8 @@ namespace ClinicManager.View
         }
 
         /// <summary>
-        /// Loads the form. Sets the form title based on the values of the public instance variables. 
+        /// Loads the form. Sets the form title, combo box defaults, and binding 
+        /// based on the values of the public instance variables.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -122,10 +123,8 @@ namespace ClinicManager.View
                     this.putPersonData(person);
                     int id = cmController.AddPerson(person);
                     MessageBox.Show("Person successfully added", "Success");
-                    
-                    
-                    // Reset form instead
-                    this.Close();
+                    this.resetInput();
+                    person = null;
                 }
                 else
                 {
@@ -198,7 +197,26 @@ namespace ClinicManager.View
                 bool result = Validator.IsPresent(current);
                 if (result == false) return false;
             }
+            if (!Validator.DateIsBefore(dobDatePicker, DateTime.Now)) return false;
             return true;
+        }
+
+        /// <summary>
+        /// Resets the form controls
+        /// </summary>
+        private void resetInput()
+        {
+            fnameTxtBox.Text = "";
+            minitTxtBox.Text = "";
+            lnameTxtBox.Text = "";
+            ssnTxtBox.Text = "";
+            dobDatePicker.Value = DateTime.Now;
+            isMaleComboBox.SelectedIndex = 0;
+            streetAddressTxtBox.Text = "";
+            cityTxtBox.Text = "";
+            stateTxtBox.Text = "";
+            zipTxtBox.Text = "";
+            phoneTxtBox.Text = "";
         }
     }
 }
