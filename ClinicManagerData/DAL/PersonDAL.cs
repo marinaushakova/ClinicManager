@@ -84,6 +84,7 @@ namespace ClinicManagerData.DAL
                                 person.LastName = reader["lname"].ToString();
                                 person.MiddleInit = reader["minit"].ToString();
                                 person.IsMale = (bool)reader["is_male"];
+                                person.Social = reader["ssn"].ToString();
                                 person.DateOfBirth = (DateTime)reader["birth_date"];
                                 person.Address = reader["street_address"].ToString();
                                 person.Phone = reader["phone"].ToString();

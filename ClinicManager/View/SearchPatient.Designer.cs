@@ -118,10 +118,10 @@
             this.columnHeader7,
             this.columnHeader8});
             this.lvPatients.FullRowSelect = true;
-            this.lvPatients.Location = new System.Drawing.Point(41, 167);
+            this.lvPatients.Location = new System.Drawing.Point(41, 171);
             this.lvPatients.MultiSelect = false;
             this.lvPatients.Name = "lvPatients";
-            this.lvPatients.Size = new System.Drawing.Size(968, 340);
+            this.lvPatients.Size = new System.Drawing.Size(1090, 340);
             this.lvPatients.TabIndex = 9;
             this.lvPatients.UseCompatibleStateImageBehavior = false;
             this.lvPatients.View = System.Windows.Forms.View.Details;
@@ -143,6 +143,7 @@
             // columnHeader4
             // 
             this.columnHeader4.Text = "SSN";
+            this.columnHeader4.Width = 129;
             // 
             // columnHeader5
             // 
@@ -157,12 +158,12 @@
             // columnHeader7
             // 
             this.columnHeader7.Text = "Address";
-            this.columnHeader7.Width = 200;
+            this.columnHeader7.Width = 318;
             // 
             // columnHeader8
             // 
             this.columnHeader8.Text = "Phone";
-            this.columnHeader8.Width = 201;
+            this.columnHeader8.Width = 150;
             // 
             // btnSearch
             // 
@@ -198,7 +199,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1060, 597);
+            this.ClientSize = new System.Drawing.Size(1164, 597);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSearch);
