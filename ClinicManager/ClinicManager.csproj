@@ -44,7 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\ClinicManagerController.cs" />
+    <Compile Include="Controller\PersonController.cs" />
+    <Compile Include="Controller\UserController.cs" />
     <Compile Include="View\AddEditPerson.cs">
       <SubType>Form</SubType>
     </Compile>

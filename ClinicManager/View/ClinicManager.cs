@@ -17,14 +17,16 @@ namespace ClinicManager
         SearchPatient searchPatientForm;
         AddEditPerson addEditPersonForm;
         Login loginForm;
-        ClinicManagerController cmController;
-        
+        private PersonController personController;
+        private UserController userController;
+
         private string currentUsername;
 
         public ClinicManagerMain()
         {
             InitializeComponent();
-            cmController = new ClinicManagerController();
+            personController = new PersonController();
+            userController = new UserController();
             this.disableMenu();
             this.showLoginForm();
         }
@@ -156,7 +158,7 @@ namespace ClinicManager
         /// </summary>
         private void displayUserMenu()
         {
-            if ((int)cmController.GetUserType(loginForm.username, loginForm.password) == 1)
+            if ((int)userController.GetUserType(loginForm.username, loginForm.password) == 1)
             {
                 stuffToolStripMenuItem.Enabled = true;
                 testToolStripMenuItem.Enabled = true;

@@ -14,13 +14,13 @@ namespace ClinicManager.View
 {
     public partial class SearchPatient : Form
     {
-        private ClinicManagerController cmController;
+        private PersonController personController;
         private List<Person> persons;
 
         public SearchPatient()
         {
             InitializeComponent();
-            cmController = new ClinicManagerController();
+            personController = new PersonController();
         }
 
         private void chkDOB_CheckStateChanged(object sender, EventArgs e)
@@ -37,7 +37,7 @@ namespace ClinicManager.View
                 {
                     dateOfBirth = datDOB.Value;
                 }
-                persons = cmController.GetPersonSummary(txtFirstName.Text, txtLastName.Text, dateOfBirth);
+                persons = personController.GetPersonSummary(txtFirstName.Text, txtLastName.Text, dateOfBirth);
                 lvPatients.Items.Clear();
                 if (persons.Count > 0)
                 {
@@ -99,7 +99,7 @@ namespace ClinicManager.View
             Person personToEdit;
             try
             {
-                personToEdit = cmController.GetPersonById(id);
+                personToEdit = personController.GetPersonById(id);
                 if (personToEdit == null)
                 {
                     MessageBox.Show("No person found", "No Person Found");
