@@ -71,5 +71,27 @@ namespace ClinicManager.View
             }
             return true;
         }
+
+        /// <summary>
+        /// Checks whether the given phone number is in the correct format
+        /// </summary>
+        /// <param name="textBox">The text box containing the format to check</param>
+        /// <returns>True if the format is acceptable, false otherwise</returns>
+        public static bool IsPhoneNumber(TextBox textBox)
+        {
+            string phone = textBox.Text.Replace("-", "");
+            try
+            {
+                Convert.ToInt64(phone);
+                return true;
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show(textBox.Tag.ToString() + " must be in one of the following formats:\n\n" +
+                    "111-222-3333\n1112223333", MESSAGE);
+                textBox.Focus();
+                return false;
+            }
+        }
     }
 }

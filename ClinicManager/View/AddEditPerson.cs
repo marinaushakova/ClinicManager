@@ -198,6 +198,7 @@ namespace ClinicManager.View
                 if (result == false) return false;
             }
             if (!Validator.DateIsBefore(dobDatePicker, DateTime.Now)) return false;
+            if (!Validator.IsPhoneNumber(phoneTxtBox)) return false;
             return true;
         }
 
