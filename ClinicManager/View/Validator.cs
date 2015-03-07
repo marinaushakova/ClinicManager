@@ -12,7 +12,7 @@ namespace ClinicManager.View
     /// </summary>
     class Validator
     {
-        private const string MESSAGE = "Invalid Input";
+        private const string TITLE = "Invalid Input";
 
         /// <summary>
         /// Checks that the control passed in has a value
@@ -27,7 +27,7 @@ namespace ClinicManager.View
                 textBox.Text = textBox.Text.Trim();
                 if (textBox.Text == "")
                 {
-                    MessageBox.Show(textBox.Tag.ToString() + " is a required field.", MESSAGE);
+                    MessageBox.Show(textBox.Tag.ToString() + " is a required field.", TITLE);
                     textBox.Focus();
                     return false;
                 }
@@ -37,7 +37,7 @@ namespace ClinicManager.View
                 ComboBox comboBox = (ComboBox)control;
                 if (comboBox.SelectedIndex == -1)
                 {
-                    MessageBox.Show(comboBox.Tag.ToString() + " is a required field.", MESSAGE);
+                    MessageBox.Show(comboBox.Tag.ToString() + " is a required field.", TITLE);
                     comboBox.Focus();
                     return false;
                 }
@@ -47,7 +47,7 @@ namespace ClinicManager.View
                 DateTimePicker dateTimePicker = (DateTimePicker)control;
                 if (dateTimePicker.Text == "")
                 {
-                    MessageBox.Show(dateTimePicker.Tag.ToString() + " is a required field.", MESSAGE);
+                    MessageBox.Show(dateTimePicker.Tag.ToString() + " is a required field.", TITLE);
                     dateTimePicker.Focus();
                     return false;
                 }
@@ -65,7 +65,7 @@ namespace ClinicManager.View
         {
             if (dateTimeControl.Value > limit)
             {
-                MessageBox.Show(dateTimeControl.Tag.ToString() + " must be set to a date before now.", MESSAGE);
+                MessageBox.Show(dateTimeControl.Tag.ToString() + " must be set to a date before now.", TITLE);
                 dateTimeControl.Focus();
                 return false;
             }
@@ -88,10 +88,42 @@ namespace ClinicManager.View
             catch (FormatException)
             {
                 MessageBox.Show(textBox.Tag.ToString() + " must be in one of the following formats:\n\n" +
-                    "111-222-3333\n1112223333", MESSAGE);
+                    "111-222-3333\n1112223333", TITLE);
                 textBox.Focus();
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Verifies that the SSN input is in the correct format
+        /// </summary>
+        /// <param name="textBox">The text box containing the format to check</param>
+        /// <returns>True if the format is acceptable, false otherwise</returns>
+        public static bool IsSSN(TextBox textBox)
+        {
+            bool isValid = true;
+            string ssn = textBox.Text;
+            int index = ssn.IndexOf("-");
+            if (index != 3) isValid = false;
+            index = ssn.IndexOf("-", 4);
+            if (index != 6) isValid = false;
+            if (ssn.Substring(7).Length != 4) isValid = false;
+            ssn = ssn.Replace("-", "");
+            try
+            {
+                Convert.ToInt64(ssn);
+            }
+            catch (FormatException)
+            {
+                isValid = false;
+            }
+            if (!isValid)
+            {
+                MessageBox.Show(textBox.Tag.ToString() + " must be in one of the following format: xxx-xx-xxxx", TITLE);
+                textBox.Focus();
+                return false;
+            }
+            return true;
         }
     }
 }
