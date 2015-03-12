@@ -255,5 +255,70 @@ namespace ClinicManagerData.DAL
             }
             return person;
         }
+
+        /// <summary>
+        /// Get the list of nurses or doctors depending on
+        /// passed in parameter
+        /// </summary>
+        /// <param name="is_doctor">
+        ///     true if returning the list of doctors, 
+        ///     false if returning the list of nurses
+        /// </param>
+        /// <returns>the list of doctors of parameter is true, the list of nurses if parameter is false</returns>
+        public static List<Person> GetAllStuffMembers(bool is_doctor)
+        {
+            List<Person> nurseList = new List<Person>();
+            string selectStatment =
+                "SELECT id, ssn, fname, minit, lname, birth_date, is_male, street_address, " +
+                "city, state, zip, phone, is_nurse, is_doctor, timestamp " +
+                "FROM person WHERE ";
+            if (is_doctor)
+            {
+                selectStatment += "is_doctor = 1";
+            }
+            else
+            {
+                selectStatment += "is_nurse = 1";
+            }
+            try
+            {
+                using (SqlConnection con = ClinicManagerDBConnection.GetConnection())
+                {
+                    con.Open();
+                    using (SqlCommand selectCommand = new SqlCommand(selectStatment, con))
+                    {
+                        using (SqlDataReader reader = selectCommand.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+
+                                Person person = new Person();
+                                person.PersonID = (int)reader["id"];
+                                person.Social = reader["ssn"].ToString();
+                                person.FirstName = reader["fname"].ToString();
+                                person.MiddleInit = reader["minit"].ToString();
+                                person.LastName = reader["lname"].ToString();
+                                person.DateOfBirth = (DateTime)reader["birth_date"];
+                                person.IsMale = (bool)reader["is_male"];
+                                person.Address = reader["street_address"].ToString();
+                                person.City = reader["city"].ToString();
+                                person.State = reader["state"].ToString();
+                                person.Zip = reader["zip"].ToString();
+                                person.IsNurse = (bool)reader["is_nurse"];
+                                person.IsDoctor = (bool)reader["is_doctor"];
+                                person.Phone = reader["phone"].ToString();
+                                person.Timestamp = Convert.ToBase64String(reader["timestamp"] as byte[]);
+                                nurseList.Add(person);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return nurseList;
+        }
     }
 }

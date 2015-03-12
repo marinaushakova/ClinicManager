@@ -52,5 +52,23 @@ namespace ClinicManager.Controller
         {
             return PersonDAL.UpdatePerson(person);
         }
+
+        /// <summary>
+        /// Gets all nurses from the DB
+        /// </summary>
+        /// <returns>List of nurses</returns>
+        public List<Person> GetAllNurses()
+        {
+            return PersonDAL.GetAllStuffMembers(false);
+        }
+
+        /// <summary>
+        /// Gets all doctors from the DB
+        /// </summary>
+        /// <returns>List of doctors</returns>
+        public List<Person> GetAllDoctors()
+        {
+            return PersonDAL.GetAllStuffMembers(true);
+        }
     }
 }
