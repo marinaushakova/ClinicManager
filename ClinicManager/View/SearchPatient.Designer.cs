@@ -126,6 +126,7 @@
             this.lvPatients.TabIndex = 9;
             this.lvPatients.UseCompatibleStateImageBehavior = false;
             this.lvPatients.View = System.Windows.Forms.View.Details;
+            this.lvPatients.ItemActivate += new System.EventHandler(this.btnOK_Click);
             this.lvPatients.SelectedIndexChanged += new System.EventHandler(this.lvPatients_SelectedIndexChanged);
             // 
             // columnHeader1
