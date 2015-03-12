@@ -43,14 +43,20 @@
     <Compile Include="DAL\UserDAL.cs" />
     <Compile Include="DB\ClinicManagerDBConnection.cs" />
     <Compile Include="Model\Person.cs" />
+    <Compile Include="Model\OrderedTest.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Model\Visit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DB\data-insert-cs6232-g1.sql" />
     <Content Include="DB\db_generation_script_cs6232-g1.sql" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Properties\DataSources\ClinicManagerData.Model.Person.datasource" />
+    <None Include="Properties\DataSources\ClinicManagerData.Model.User.datasource" />
+    <None Include="Properties\DataSources\ClinicManagerData.Model.Visit.datasource" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

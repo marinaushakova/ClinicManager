@@ -16,6 +16,7 @@ namespace ClinicManager
     {
         SearchPatient searchPatientForm;
         AddEditPerson addEditPersonForm;
+        AddEditVisit addEditVisitForm;
         Login loginForm;
         ClinicManagerController cmController;
         
@@ -195,6 +196,26 @@ namespace ClinicManager
         private void loginToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showLoginForm();
+        }
+
+        private void newVisitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (addEditVisitForm == null)
+            {
+                addEditVisitForm = new AddEditVisit();
+                addEditVisitForm.MdiParent = this;
+                addEditVisitForm.FormClosed += new FormClosedEventHandler(addEditVisitForm_FormClosed);
+                addEditVisitForm.Show();
+            }
+            else
+            {
+                addEditVisitForm.Activate();
+            }
+        }
+
+        private void addEditVisitForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            addEditVisitForm = null;
         }
 
     }
