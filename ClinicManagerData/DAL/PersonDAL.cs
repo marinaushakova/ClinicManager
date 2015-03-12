@@ -280,6 +280,7 @@ namespace ClinicManagerData.DAL
             {
                 selectStatment += "is_nurse = 1";
             }
+            selectStatment += " ORDER BY lname";
             try
             {
                 using (SqlConnection con = ClinicManagerDBConnection.GetConnection())

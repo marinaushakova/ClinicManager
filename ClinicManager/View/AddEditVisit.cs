@@ -86,12 +86,12 @@ namespace ClinicManager.View
         {
             if (String.IsNullOrEmpty(((Person)e.ListItem).MiddleInit))
             {
-                e.Value = ((Person)e.ListItem).FirstName + " " + ((Person)e.ListItem).LastName;
+                e.Value = ((Person)e.ListItem).LastName + " " + ((Person)e.ListItem).FirstName;
             }
             else
             {
-                e.Value = ((Person)e.ListItem).FirstName + " " + ((Person)e.ListItem).MiddleInit + 
-                    ". " + ((Person)e.ListItem).LastName;
+                e.Value = ((Person)e.ListItem).LastName + " " + ((Person)e.ListItem).FirstName + " " 
+                    + ((Person)e.ListItem).MiddleInit + ". ";
             }
             
         }
@@ -110,12 +110,12 @@ namespace ClinicManager.View
             searchPatientForm.ShowDialog();
             if (searchPatientForm.DialogResult == DialogResult.OK)
             {
-                txbPatient.Text = searchPatientForm.selectedPerson.FirstName + " ";
+                txbPatient.Text = searchPatientForm.selectedPerson.LastName + " ";
+                txbPatient.Text += searchPatientForm.selectedPerson.FirstName;
                 if (!String.IsNullOrEmpty(searchPatientForm.selectedPerson.MiddleInit))
                 {
-                    txbPatient.Text += searchPatientForm.selectedPerson.MiddleInit + ". ";
+                    txbPatient.Text +=  " " + searchPatientForm.selectedPerson.MiddleInit + ".";
                 }
-                txbPatient.Text += searchPatientForm.selectedPerson.LastName;
             }
             patient = searchPatientForm.selectedPerson;
             enableFormControls();
