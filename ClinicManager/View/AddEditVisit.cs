@@ -156,7 +156,11 @@ namespace ClinicManager.View
         /// <param name="e"></param>
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (!this.isValid()) return;
+            if (!this.isValid())
+            {
+                return;
+            }
+                
             try
             {
                 visit = new Visit();
@@ -187,6 +191,7 @@ namespace ClinicManager.View
             if (!Validator.IsPresent(txbBloodPressure)) return false;
             if (!Validator.IsPresent(txbSymptoms)) return false;
             if (!Validator.IsInt(txbPulseRate.Text)) return false;
+            if (!Validator.IsDouble(txbTemperature.Text)) return false;
             return true;
         }
 

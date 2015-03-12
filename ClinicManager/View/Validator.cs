@@ -175,5 +175,24 @@ namespace ClinicManager.View
                 return false;
             }
         }
+
+        /// <summary>
+        /// Checks whether the passing in string can be converted to an double
+        /// </summary>
+        /// <param name="number">The string to check</param>
+        /// <returns>True if the string can be converted, false otherwise</returns>
+        public static bool IsDouble(string number)
+        {
+            try
+            {
+                Double.Parse(number);
+                return true;
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("One oe more fields must be valid numbers", TITLE);
+                return false;
+            }
+        }
     }
 }

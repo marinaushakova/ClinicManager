@@ -327,6 +327,7 @@
             this.txbBloodPressure.ReadOnly = true;
             this.txbBloodPressure.Size = new System.Drawing.Size(174, 26);
             this.txbBloodPressure.TabIndex = 2;
+            this.txbBloodPressure.Tag = "Blood Pressure";
             // 
             // cmbDoctor
             // 
@@ -380,6 +381,7 @@
             this.txbPulseRate.ReadOnly = true;
             this.txbPulseRate.Size = new System.Drawing.Size(174, 26);
             this.txbPulseRate.TabIndex = 16;
+            this.txbPulseRate.Tag = "Pulse Rate";
             // 
             // txbSymptoms
             // 
@@ -391,6 +393,7 @@
             this.txbSymptoms.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txbSymptoms.Size = new System.Drawing.Size(444, 90);
             this.txbSymptoms.TabIndex = 18;
+            this.txbSymptoms.Tag = "Symptoms";
             // 
             // txbTemperature
             // 
@@ -400,6 +403,7 @@
             this.txbTemperature.ReadOnly = true;
             this.txbTemperature.Size = new System.Drawing.Size(174, 26);
             this.txbTemperature.TabIndex = 20;
+            this.txbTemperature.Tag = "Temperature";
             // 
             // btnSearchPatient
             // 
