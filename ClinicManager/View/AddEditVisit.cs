@@ -18,12 +18,15 @@ namespace ClinicManager.View
 
         private List<Person> doctorList;
         private List<Person> nurseList;
+        private Person patient;
         private PersonController personController;
+        private VisitController visitController;
 
         public AddEditVisit()
         {
             InitializeComponent();
             personController = new PersonController();
+            visitController = new VisitController();
         }
 
         /// <summary>
@@ -114,6 +117,7 @@ namespace ClinicManager.View
                 }
                 txbPatient.Text += searchPatientForm.selectedPerson.LastName;
             }
+            patient = searchPatientForm.selectedPerson;
             enableFormControls();
             
         }
@@ -133,6 +137,103 @@ namespace ClinicManager.View
             btnNewTest.Enabled = true;
             btnEditTest.Enabled = true;
             btnTestResult.Enabled = true;
+        }
+
+        /// <summary>
+        /// Closes this form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        /// <summary>
+        /// Handles the OK button click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            if (!this.isValid()) return;
+            try
+            {
+                visit = new Visit();
+                this.putVisitData(visit);
+                int visitID = visitController.AddVisitRecord(visit);
+                MessageBox.Show("Visit record successfully added", "Success");
+                this.resetInput();
+                visit = null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
+        }
+
+        /// <summary>
+        /// Checks whether all required input is present/valid
+        /// </summary>
+        /// <returns>true if all required input is present/valid, false otherwise</returns>
+        private bool isValid()
+        {
+            List<Control> requiredControls = new List<Control>();
+            if (!Validator.IsPresent(cmbDoctor)) return false;
+            if (!Validator.IsPresent(cmbNurse)) return false;
+            if (!Validator.IsPresent(txbPatient)) return false;
+            if (!Validator.IsPresent(txbPulseRate)) return false;
+            if (!Validator.IsPresent(txbTemperature)) return false;
+            if (!Validator.IsPresent(txbBloodPressure)) return false;
+            if (!Validator.IsPresent(txbSymptoms)) return false;
+            if (!Validator.IsInt(txbPulseRate.Text)) return false;
+            return true;
+        }
+
+        /// <summary>
+        /// Puts the input values from the form into a visit object
+        /// </summary>
+        /// <param name="thePerson">The visit object to fill with the form data</param>
+        private void putVisitData(Visit theVisit)
+        {
+            theVisit.PatientID = patient.PersonID;
+            theVisit.Date = Convert.ToDateTime(lblVisitDate.Text);
+            theVisit.DoctorID = (int)cmbDoctor.SelectedValue;
+            theVisit.NurseID = (int)cmbNurse.SelectedValue;
+            theVisit.BloodPressure = txbBloodPressure.Text;
+            theVisit.Temperature = Convert.ToDouble(txbTemperature.Text);
+            theVisit.PulseRate = Convert.ToInt32(txbPulseRate.Text);
+            theVisit.Symptoms = txbSymptoms.Text;
+            theVisit.InitialDiagnosis = txbInitialDiagnosis.Text;
+            theVisit.FinalDiagnosis = txbFinalDiagnosis.Text;
+        }
+
+        /// <summary>
+        /// Resets the form controls
+        /// </summary>
+        private void resetInput()
+        {
+            txbPatient.Text = "";
+            lblVisitDate.Text = DateTime.Now.ToShortDateString();
+            cmbDoctor.SelectedIndex = 0;
+            cmbNurse.SelectedIndex = 0;
+            txbPulseRate.Text = "";
+            txbTemperature.Text = "";
+            txbBloodPressure.Text = "";
+            txbSymptoms.Text = "";
+            txbInitialDiagnosis.Text = "";
+            txbFinalDiagnosis.Text = "";
+            lvOrderedTests.Items.Clear();
+            txbBloodPressure.ReadOnly = true;
+            txbFinalDiagnosis.ReadOnly = true;
+            txbInitialDiagnosis.ReadOnly = true;
+            txbPulseRate.ReadOnly = true;
+            txbSymptoms.ReadOnly = true;
+            txbTemperature.ReadOnly = true;
+            btnOK.Enabled = false;
+            btnNewTest.Enabled = false;
+            btnEditTest.Enabled = false;
+            btnTestResult.Enabled = false;
         }
     
     }

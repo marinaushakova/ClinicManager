@@ -200,6 +200,11 @@ namespace ClinicManager
             showLoginForm();
         }
 
+        /// <summary>
+        /// Brings up the add/edit visit record setting it up to add a visit record
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void newVisitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (addEditVisitForm == null)
@@ -215,6 +220,11 @@ namespace ClinicManager
             }
         }
 
+        /// <summary>
+        /// Sets the addEditVisit form to null after its closed event fires. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addEditVisitForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             addEditVisitForm = null;

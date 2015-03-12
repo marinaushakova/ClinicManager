@@ -12,7 +12,7 @@ namespace ClinicManagerData.Model
     public class Visit
     {
         private int visitID = 0;
-        private DateTime date;
+        DateTime date;
         private int patientID;
         private int doctorID;
         private int nurseID;
@@ -56,8 +56,8 @@ namespace ClinicManagerData.Model
         /// </summary>
         public int DoctorID
         {
-            get { return DoctorID; }
-            set { DoctorID = value; }
+            get { return doctorID; }
+            set { doctorID = value; }
         }
 
         /// <summary>

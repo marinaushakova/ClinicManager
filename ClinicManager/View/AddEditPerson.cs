@@ -110,7 +110,7 @@ namespace ClinicManager.View
         {
             this.Close();
         }
-
+         
         /// <summary>
         /// Handles the OK button click
         /// </summary>

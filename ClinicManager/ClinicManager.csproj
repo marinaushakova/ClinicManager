@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Controller\PersonController.cs" />
     <Compile Include="Controller\UserController.cs" />
+    <Compile Include="Controller\VisitController.cs" />
     <Compile Include="View\AddEditPerson.cs">
       <SubType>Form</SubType>
     </Compile>
