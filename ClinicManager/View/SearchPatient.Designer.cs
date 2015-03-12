@@ -46,6 +46,7 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
+            this.btnOK = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -125,6 +126,7 @@
             this.lvPatients.TabIndex = 9;
             this.lvPatients.UseCompatibleStateImageBehavior = false;
             this.lvPatients.View = System.Windows.Forms.View.Details;
+            this.lvPatients.SelectedIndexChanged += new System.EventHandler(this.lvPatients_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -177,7 +179,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(910, 536);
+            this.btnClose.Location = new System.Drawing.Point(922, 536);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(100, 30);
             this.btnClose.TabIndex = 11;
@@ -195,11 +197,24 @@
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
+            // btnOK
+            // 
+            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOK.Location = new System.Drawing.Point(1039, 536);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(92, 30);
+            this.btnOK.TabIndex = 13;
+            this.btnOK.Text = "OK";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Visible = false;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
             // SearchPatient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1164, 597);
+            this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSearch);
@@ -240,5 +255,6 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnOK;
     }
 }

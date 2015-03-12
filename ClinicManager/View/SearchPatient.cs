@@ -16,11 +16,14 @@ namespace ClinicManager.View
     {
         private PersonController personController;
         private List<Person> persons;
+        public Person selectedPerson;
 
         public SearchPatient()
         {
             InitializeComponent();
             personController = new PersonController();
+            selectedPerson = null;
+            
         }
 
         private void chkDOB_CheckStateChanged(object sender, EventArgs e)
@@ -119,6 +122,40 @@ namespace ClinicManager.View
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
+        }
+
+        /// <summary>
+        /// Sets public variable selectedPerson to the person object
+        /// of the selected row
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            if (lvPatients.SelectedItems.Count < 1)
+            {
+                MessageBox.Show("Please select a person you want to create a visit record for.", "No Person Selected");
+                this.DialogResult = DialogResult.None;
+                return;
+            }
+            else
+            {
+                selectedPerson = persons[lvPatients.SelectedItems[0].Index];
+            }
+        }
+
+        /// <summary>
+        /// Makes OK button visible if user selects the row in lvParients
+        /// and SearchPatient form  was opened as Dialog form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lvPatients_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.Modal)
+            {
+                btnOK.Visible = true;
             }
         }
     }

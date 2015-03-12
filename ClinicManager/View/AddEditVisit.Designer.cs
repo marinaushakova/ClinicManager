@@ -54,32 +54,32 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.visitBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.bloodPressureTextBox = new System.Windows.Forms.TextBox();
+            this.txbBloodPressure = new System.Windows.Forms.TextBox();
             this.cmbDoctor = new System.Windows.Forms.ComboBox();
             this.txbFinalDiagnosis = new System.Windows.Forms.TextBox();
             this.txbInitialDiagnosis = new System.Windows.Forms.TextBox();
             this.txbPatient = new System.Windows.Forms.TextBox();
-            this.pulseRateTextBox = new System.Windows.Forms.TextBox();
-            this.symptomsTextBox = new System.Windows.Forms.TextBox();
-            this.temperatureTextBox = new System.Windows.Forms.TextBox();
+            this.txbPulseRate = new System.Windows.Forms.TextBox();
+            this.txbSymptoms = new System.Windows.Forms.TextBox();
+            this.txbTemperature = new System.Windows.Forms.TextBox();
             this.btnSearchPatient = new System.Windows.Forms.Button();
             this.gbxRoutingChecks = new System.Windows.Forms.GroupBox();
             this.gbxDiagnosis = new System.Windows.Forms.GroupBox();
             this.gbxTestsOrdered = new System.Windows.Forms.GroupBox();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.clnTestName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.clnOrderDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.clnPerformedDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.clnResults = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnTestResult = new System.Windows.Forms.Button();
             this.btnEditTest = new System.Windows.Forms.Button();
             this.btnNewTest = new System.Windows.Forms.Button();
-            this.orderedTestDataGridView = new System.Windows.Forms.DataGridView();
-            this.TestName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.orderedTestBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.lblVisitDate = new System.Windows.Forms.Label();
-            this.personBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbNurse = new System.Windows.Forms.ComboBox();
+            this.personBindingSource = new System.Windows.Forms.BindingSource(this.components);
             bloodPressureLabel = new System.Windows.Forms.Label();
             lblDoctor = new System.Windows.Forms.Label();
             finalDiagnosisLabel = new System.Windows.Forms.Label();
@@ -96,7 +96,6 @@
             this.gbxRoutingChecks.SuspendLayout();
             this.gbxDiagnosis.SuspendLayout();
             this.gbxTestsOrdered.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.orderedTestDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderedTestBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.personBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -320,14 +319,14 @@
             this.visitBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 25);
             this.visitBindingNavigatorSaveItem.Text = "Save Data";
             // 
-            // bloodPressureTextBox
+            // txbBloodPressure
             // 
-            this.bloodPressureTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "BloodPressure", true));
-            this.bloodPressureTextBox.Location = new System.Drawing.Point(149, 92);
-            this.bloodPressureTextBox.Name = "bloodPressureTextBox";
-            this.bloodPressureTextBox.ReadOnly = true;
-            this.bloodPressureTextBox.Size = new System.Drawing.Size(174, 26);
-            this.bloodPressureTextBox.TabIndex = 2;
+            this.txbBloodPressure.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "BloodPressure", true));
+            this.txbBloodPressure.Location = new System.Drawing.Point(149, 92);
+            this.txbBloodPressure.Name = "txbBloodPressure";
+            this.txbBloodPressure.ReadOnly = true;
+            this.txbBloodPressure.Size = new System.Drawing.Size(174, 26);
+            this.txbBloodPressure.TabIndex = 2;
             // 
             // cmbDoctor
             // 
@@ -373,34 +372,34 @@
             this.txbPatient.Size = new System.Drawing.Size(254, 26);
             this.txbPatient.TabIndex = 14;
             // 
-            // pulseRateTextBox
+            // txbPulseRate
             // 
-            this.pulseRateTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "PulseRate", true));
-            this.pulseRateTextBox.Location = new System.Drawing.Point(149, 28);
-            this.pulseRateTextBox.Name = "pulseRateTextBox";
-            this.pulseRateTextBox.ReadOnly = true;
-            this.pulseRateTextBox.Size = new System.Drawing.Size(174, 26);
-            this.pulseRateTextBox.TabIndex = 16;
+            this.txbPulseRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "PulseRate", true));
+            this.txbPulseRate.Location = new System.Drawing.Point(149, 28);
+            this.txbPulseRate.Name = "txbPulseRate";
+            this.txbPulseRate.ReadOnly = true;
+            this.txbPulseRate.Size = new System.Drawing.Size(174, 26);
+            this.txbPulseRate.TabIndex = 16;
             // 
-            // symptomsTextBox
+            // txbSymptoms
             // 
-            this.symptomsTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Symptoms", true));
-            this.symptomsTextBox.Location = new System.Drawing.Point(443, 28);
-            this.symptomsTextBox.Multiline = true;
-            this.symptomsTextBox.Name = "symptomsTextBox";
-            this.symptomsTextBox.ReadOnly = true;
-            this.symptomsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.symptomsTextBox.Size = new System.Drawing.Size(444, 90);
-            this.symptomsTextBox.TabIndex = 18;
+            this.txbSymptoms.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Symptoms", true));
+            this.txbSymptoms.Location = new System.Drawing.Point(443, 28);
+            this.txbSymptoms.Multiline = true;
+            this.txbSymptoms.Name = "txbSymptoms";
+            this.txbSymptoms.ReadOnly = true;
+            this.txbSymptoms.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txbSymptoms.Size = new System.Drawing.Size(444, 90);
+            this.txbSymptoms.TabIndex = 18;
             // 
-            // temperatureTextBox
+            // txbTemperature
             // 
-            this.temperatureTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Temperature", true));
-            this.temperatureTextBox.Location = new System.Drawing.Point(149, 60);
-            this.temperatureTextBox.Name = "temperatureTextBox";
-            this.temperatureTextBox.ReadOnly = true;
-            this.temperatureTextBox.Size = new System.Drawing.Size(174, 26);
-            this.temperatureTextBox.TabIndex = 20;
+            this.txbTemperature.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Temperature", true));
+            this.txbTemperature.Location = new System.Drawing.Point(149, 60);
+            this.txbTemperature.Name = "txbTemperature";
+            this.txbTemperature.ReadOnly = true;
+            this.txbTemperature.Size = new System.Drawing.Size(174, 26);
+            this.txbTemperature.TabIndex = 20;
             // 
             // btnSearchPatient
             // 
@@ -410,16 +409,17 @@
             this.btnSearchPatient.TabIndex = 25;
             this.btnSearchPatient.Text = "Search Patient";
             this.btnSearchPatient.UseVisualStyleBackColor = true;
+            this.btnSearchPatient.Click += new System.EventHandler(this.btnSearchPatient_Click);
             // 
             // gbxRoutingChecks
             // 
-            this.gbxRoutingChecks.Controls.Add(this.temperatureTextBox);
+            this.gbxRoutingChecks.Controls.Add(this.txbTemperature);
             this.gbxRoutingChecks.Controls.Add(temperatureLabel);
-            this.gbxRoutingChecks.Controls.Add(this.symptomsTextBox);
+            this.gbxRoutingChecks.Controls.Add(this.txbSymptoms);
             this.gbxRoutingChecks.Controls.Add(symptomsLabel);
             this.gbxRoutingChecks.Controls.Add(bloodPressureLabel);
-            this.gbxRoutingChecks.Controls.Add(this.bloodPressureTextBox);
-            this.gbxRoutingChecks.Controls.Add(this.pulseRateTextBox);
+            this.gbxRoutingChecks.Controls.Add(this.txbBloodPressure);
+            this.gbxRoutingChecks.Controls.Add(this.txbPulseRate);
             this.gbxRoutingChecks.Controls.Add(pulseRateLabel);
             this.gbxRoutingChecks.Location = new System.Drawing.Point(12, 87);
             this.gbxRoutingChecks.Name = "gbxRoutingChecks";
@@ -443,16 +443,50 @@
             // 
             // gbxTestsOrdered
             // 
+            this.gbxTestsOrdered.Controls.Add(this.listView1);
             this.gbxTestsOrdered.Controls.Add(this.btnTestResult);
             this.gbxTestsOrdered.Controls.Add(this.btnEditTest);
             this.gbxTestsOrdered.Controls.Add(this.btnNewTest);
-            this.gbxTestsOrdered.Controls.Add(this.orderedTestDataGridView);
             this.gbxTestsOrdered.Location = new System.Drawing.Point(12, 489);
             this.gbxTestsOrdered.Name = "gbxTestsOrdered";
             this.gbxTestsOrdered.Size = new System.Drawing.Size(893, 165);
             this.gbxTestsOrdered.TabIndex = 30;
             this.gbxTestsOrdered.TabStop = false;
             this.gbxTestsOrdered.Text = "Tests Ordered";
+            // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.clnTestName,
+            this.clnOrderDate,
+            this.clnPerformedDate,
+            this.clnResults});
+            this.listView1.Location = new System.Drawing.Point(6, 25);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(881, 90);
+            this.listView1.TabIndex = 4;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // clnTestName
+            // 
+            this.clnTestName.Text = "Test Name";
+            this.clnTestName.Width = 400;
+            // 
+            // clnOrderDate
+            // 
+            this.clnOrderDate.Text = "Ordered Date";
+            this.clnOrderDate.Width = 150;
+            // 
+            // clnPerformedDate
+            // 
+            this.clnPerformedDate.Text = "Perform Date";
+            this.clnPerformedDate.Width = 150;
+            // 
+            // clnResults
+            // 
+            this.clnResults.Text = "Results";
+            this.clnResults.Width = 150;
             // 
             // btnTestResult
             // 
@@ -483,53 +517,6 @@
             this.btnNewTest.TabIndex = 1;
             this.btnNewTest.Text = "Order New Test";
             this.btnNewTest.UseVisualStyleBackColor = true;
-            // 
-            // orderedTestDataGridView
-            // 
-            this.orderedTestDataGridView.AutoGenerateColumns = false;
-            this.orderedTestDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.orderedTestDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.TestName,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewCheckBoxColumn1});
-            this.orderedTestDataGridView.DataSource = this.orderedTestBindingSource;
-            this.orderedTestDataGridView.Enabled = false;
-            this.orderedTestDataGridView.Location = new System.Drawing.Point(6, 25);
-            this.orderedTestDataGridView.Name = "orderedTestDataGridView";
-            this.orderedTestDataGridView.ReadOnly = true;
-            this.orderedTestDataGridView.Size = new System.Drawing.Size(881, 90);
-            this.orderedTestDataGridView.TabIndex = 0;
-            // 
-            // TestName
-            // 
-            this.TestName.HeaderText = "Test Name";
-            this.TestName.Name = "TestName";
-            this.TestName.ReadOnly = true;
-            this.TestName.Width = 300;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "OrderDate";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Order Date";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "ResultDate";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Perform Date";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 200;
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            this.dataGridViewCheckBoxColumn1.DataPropertyName = "Result";
-            this.dataGridViewCheckBoxColumn1.HeaderText = "Result";
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
             // 
             // orderedTestBindingSource
             // 
@@ -563,10 +550,6 @@
             this.lblVisitDate.TabIndex = 34;
             this.lblVisitDate.Text = "Visit Date";
             // 
-            // personBindingSource
-            // 
-            this.personBindingSource.DataSource = typeof(ClinicManagerData.Model.Person);
-            // 
             // cmbNurse
             // 
             this.cmbNurse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -576,6 +559,10 @@
             this.cmbNurse.Size = new System.Drawing.Size(255, 28);
             this.cmbNurse.TabIndex = 35;
             this.cmbNurse.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.ComboBoxFormat);
+            // 
+            // personBindingSource
+            // 
+            this.personBindingSource.DataSource = typeof(ClinicManagerData.Model.Person);
             // 
             // AddEditVisit
             // 
@@ -613,7 +600,6 @@
             this.gbxDiagnosis.ResumeLayout(false);
             this.gbxDiagnosis.PerformLayout();
             this.gbxTestsOrdered.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.orderedTestDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderedTestBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.personBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -637,32 +623,32 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton visitBindingNavigatorSaveItem;
-        private System.Windows.Forms.TextBox bloodPressureTextBox;
+        private System.Windows.Forms.TextBox txbBloodPressure;
         private System.Windows.Forms.ComboBox cmbDoctor;
         private System.Windows.Forms.TextBox txbFinalDiagnosis;
         private System.Windows.Forms.TextBox txbInitialDiagnosis;
         private System.Windows.Forms.TextBox txbPatient;
-        private System.Windows.Forms.TextBox pulseRateTextBox;
-        private System.Windows.Forms.TextBox symptomsTextBox;
-        private System.Windows.Forms.TextBox temperatureTextBox;
+        private System.Windows.Forms.TextBox txbPulseRate;
+        private System.Windows.Forms.TextBox txbSymptoms;
+        private System.Windows.Forms.TextBox txbTemperature;
         private System.Windows.Forms.Button btnSearchPatient;
         private System.Windows.Forms.GroupBox gbxRoutingChecks;
         private System.Windows.Forms.GroupBox gbxDiagnosis;
         private System.Windows.Forms.GroupBox gbxTestsOrdered;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.DataGridView orderedTestDataGridView;
         private System.Windows.Forms.BindingSource orderedTestBindingSource;
         private System.Windows.Forms.Button btnTestResult;
         private System.Windows.Forms.Button btnEditTest;
         private System.Windows.Forms.Button btnNewTest;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TestName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
         private System.Windows.Forms.Label lblVisitDate;
         private System.Windows.Forms.BindingSource personBindingSource;
         private System.Windows.Forms.ComboBox cmbNurse;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader clnTestName;
+        private System.Windows.Forms.ColumnHeader clnOrderDate;
+        private System.Windows.Forms.ColumnHeader clnPerformedDate;
+        private System.Windows.Forms.ColumnHeader clnResults;
 
     }
 }

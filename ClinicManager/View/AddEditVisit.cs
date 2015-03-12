@@ -92,6 +92,48 @@ namespace ClinicManager.View
             }
             
         }
-      
+
+        /// <summary>
+        /// Handles the Search Patient button click.
+        /// Opens search patient form.
+        /// After patient is chosen displays his/her name in the Patient text box. 
+        /// Enables form controls.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSearchPatient_Click(object sender, EventArgs e)
+        {
+            SearchPatient searchPatientForm = new SearchPatient();
+            searchPatientForm.ShowDialog();
+            if (searchPatientForm.DialogResult == DialogResult.OK)
+            {
+                txbPatient.Text = searchPatientForm.selectedPerson.FirstName + " ";
+                if (!String.IsNullOrEmpty(searchPatientForm.selectedPerson.MiddleInit))
+                {
+                    txbPatient.Text += searchPatientForm.selectedPerson.MiddleInit + ". ";
+                }
+                txbPatient.Text += searchPatientForm.selectedPerson.LastName;
+            }
+            enableFormControls();
+            
+        }
+
+        /// <summary>
+        /// Enables form controls to record visit information.
+        /// </summary>
+        private void enableFormControls()
+        {
+            txbBloodPressure.ReadOnly = false;
+            txbFinalDiagnosis.ReadOnly = false;
+            txbInitialDiagnosis.ReadOnly = false;
+            txbPulseRate.ReadOnly = false;
+            txbSymptoms.ReadOnly = false;
+            txbTemperature.ReadOnly = false;
+            btnOK.Enabled = true;
+            btnNewTest.Enabled = true;
+            btnEditTest.Enabled = true;
+            btnTestResult.Enabled = true;
+        }
+    
     }
 }
