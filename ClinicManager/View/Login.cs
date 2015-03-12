@@ -14,14 +14,14 @@ namespace ClinicManager.View
 {
     public partial class Login : Form
     {
-        private ClinicManagerController cmController;
+        private UserController userController;
         public string username;
         public string password;
 
         public Login()
         {
             InitializeComponent();
-            cmController = new ClinicManagerController();
+            userController = new UserController();
             username = null;
             password = null;
         }
@@ -30,7 +30,7 @@ namespace ClinicManager.View
         {
             this.lblErrMessage.Text = "";
 
-            if (cmController.GetUserType(txtUsername.Text, txtPassword.Text) == -1)
+            if (userController.GetUserType(txtUsername.Text, txtPassword.Text) == -1)
             {
                 this.lblErrMessage.ForeColor = System.Drawing.Color.Red;
                 this.lblErrMessage.Text = "This user/password combination doesn't exist";

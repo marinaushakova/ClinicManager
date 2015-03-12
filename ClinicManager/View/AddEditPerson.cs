@@ -17,12 +17,12 @@ namespace ClinicManager.View
         public Person person;
         public bool is_nurse;
 
-        private ClinicManagerController cmController;
+        private PersonController personController;
 
         public AddEditPerson()
         {
             InitializeComponent();
-            cmController = new ClinicManagerController();
+            personController = new PersonController();
         }
 
         /// <summary>
@@ -48,6 +48,9 @@ namespace ClinicManager.View
             {
                 personBindingSource.Clear();
                 personBindingSource.Add(person);
+                Binding b = zipTxtBox.DataBindings["Text"];
+                b.Format += FormatZipCode;
+                b.Parse += UnformatZipCode;
             }
         }
 
@@ -121,7 +124,7 @@ namespace ClinicManager.View
                 {
                     person = new Person();
                     this.putPersonData(person);
-                    int id = cmController.AddPerson(person);
+                    int id = personController.AddPerson(person);
                     MessageBox.Show("Person successfully added", "Success");
                     this.resetInput();
                     person = null;
@@ -132,7 +135,7 @@ namespace ClinicManager.View
                     this.putPersonData(newPerson);
                     newPerson.PersonID = person.PersonID;
                     newPerson.Timestamp = person.Timestamp;
-                    bool result = cmController.UpdatePerson(newPerson);
+                    bool result = personController.UpdatePerson(newPerson);
                     if (!result)
                     {
                         MessageBox.Show("Another user has updated or " +
@@ -170,7 +173,7 @@ namespace ClinicManager.View
             thePerson.Address = streetAddressTxtBox.Text;
             thePerson.City = cityTxtBox.Text;
             thePerson.State = stateTxtBox.Text;
-            thePerson.Zip = zipTxtBox.Text;
+            thePerson.Zip = zipTxtBox.Text.Replace("-", "");
             thePerson.Phone = phoneTxtBox.Text;
         }
 
@@ -198,6 +201,9 @@ namespace ClinicManager.View
                 if (result == false) return false;
             }
             if (!Validator.DateIsBefore(dobDatePicker, DateTime.Now)) return false;
+            if (!Validator.IsPhoneNumber(phoneTxtBox)) return false;
+            if (!Validator.IsSSN(ssnTxtBox)) return false;
+            if (!Validator.IsZip(zipTxtBox)) return false;
             return true;
         }
 
@@ -217,6 +223,40 @@ namespace ClinicManager.View
             stateTxtBox.Text = "";
             zipTxtBox.Text = "";
             phoneTxtBox.Text = "";
+        }
+
+        /// <summary>
+        /// Formats the zip if it is not a 5 digit simple zip
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FormatZipCode(object sender, ConvertEventArgs e)
+        {
+            if (e.Value.GetType().ToString() == "System.String")
+            {
+                string zip = e.Value.ToString();
+                if (Validator.IsInt(zip))
+                {
+                    if (zip.Length == 9)
+                    {
+                        e.Value = zip.Substring(0, 5) + "-" + zip.Substring(5);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Returns the format to a 9 digit number only format if the zip code is not a plain 5 digit zip
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UnformatZipCode(object sender, ConvertEventArgs e)
+        {
+            if (e.Value.GetType().ToString() == "System.String")
+            {
+                string zip = e.Value.ToString();
+                e.Value = zip.Replace("-", "");
+            }
         }
     }
 }
