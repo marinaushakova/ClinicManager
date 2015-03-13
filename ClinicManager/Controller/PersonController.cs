@@ -59,7 +59,7 @@ namespace ClinicManager.Controller
         /// <returns>List of nurses</returns>
         public List<Person> GetAllNurses()
         {
-            return PersonDAL.GetAllStuffMembers(false);
+            return PersonDAL.GetAllStaffMembers(false);
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace ClinicManager.Controller
         /// <returns>List of doctors</returns>
         public List<Person> GetAllDoctors()
         {
-            return PersonDAL.GetAllStuffMembers(true);
+            return PersonDAL.GetAllStaffMembers(true);
         }
     }
 }

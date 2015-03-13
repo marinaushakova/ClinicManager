@@ -155,5 +155,19 @@ namespace ClinicManagerData.Model
             get { return timestamp; }
             set { timestamp = value; }
         }
+
+        /// <summary>
+        /// Gets the full persons name
+        /// </summary>
+        /// <returns>String containing full persons name</returns>
+        public string GetFullName()
+        {
+            string fullName = "";
+            fullName = lastName + ", " + firstName;
+            if (!String.IsNullOrEmpty(middleInit)) {
+                fullName += " " + middleInit + ".";
+            }
+            return fullName;
+        }
     }
 }

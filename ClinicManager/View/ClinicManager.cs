@@ -161,7 +161,7 @@ namespace ClinicManager
         {
             if ((int)userController.GetUserType(loginForm.username, loginForm.password) == 1)
             {
-                stuffToolStripMenuItem.Enabled = true;
+                staffToolStripMenuItem.Enabled = true;
                 testToolStripMenuItem.Enabled = true;
                 reportToolStripMenuItem.Enabled = true;
                 logoutToolStripMenuItem.Enabled = true;
@@ -182,7 +182,7 @@ namespace ClinicManager
         private void disableMenu() 
         {
             loginToolStripMenuItem.Enabled = true;
-            stuffToolStripMenuItem.Enabled = false;
+            staffToolStripMenuItem.Enabled = false;
             testToolStripMenuItem.Enabled = false;
             reportToolStripMenuItem.Enabled = false;
             patientToolStripMenuItem.Enabled = false;
@@ -229,6 +229,7 @@ namespace ClinicManager
         {
             addEditVisitForm = null;
         }
+
 
     }
 }

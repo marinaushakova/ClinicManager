@@ -40,7 +40,7 @@
             this.visitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newVisitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editVisitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stuffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.staffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchScuffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addMemberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,7 +59,7 @@
             this.fileToolStripMenuItem,
             this.patientToolStripMenuItem,
             this.visitToolStripMenuItem,
-            this.stuffToolStripMenuItem,
+            this.staffToolStripMenuItem,
             this.testToolStripMenuItem,
             this.reportToolStripMenuItem,
             this.helpToolStripMenuItem});
@@ -118,14 +118,14 @@
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.searchToolStripMenuItem.Text = "Search";
             this.searchToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
             // 
             // addPatientToolStripMenuItem
             // 
             this.addPatientToolStripMenuItem.Name = "addPatientToolStripMenuItem";
-            this.addPatientToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addPatientToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.addPatientToolStripMenuItem.Text = "Add Patient";
             this.addPatientToolStripMenuItem.Click += new System.EventHandler(this.addPatientToolStripMenuItem_Click);
             // 
@@ -141,35 +141,35 @@
             // newVisitToolStripMenuItem
             // 
             this.newVisitToolStripMenuItem.Name = "newVisitToolStripMenuItem";
-            this.newVisitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newVisitToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.newVisitToolStripMenuItem.Text = "New Visit";
             this.newVisitToolStripMenuItem.Click += new System.EventHandler(this.newVisitToolStripMenuItem_Click);
             // 
             // editVisitToolStripMenuItem
             // 
             this.editVisitToolStripMenuItem.Name = "editVisitToolStripMenuItem";
-            this.editVisitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editVisitToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.editVisitToolStripMenuItem.Text = "Edit Visit";
             // 
-            // stuffToolStripMenuItem
+            // staffToolStripMenuItem
             // 
-            this.stuffToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.staffToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.searchScuffToolStripMenuItem,
             this.addMemberToolStripMenuItem});
-            this.stuffToolStripMenuItem.Name = "stuffToolStripMenuItem";
-            this.stuffToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.stuffToolStripMenuItem.Text = "Stuff";
+            this.staffToolStripMenuItem.Name = "staffToolStripMenuItem";
+            this.staffToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.staffToolStripMenuItem.Text = "Staff";
             // 
             // searchScuffToolStripMenuItem
             // 
             this.searchScuffToolStripMenuItem.Name = "searchScuffToolStripMenuItem";
-            this.searchScuffToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.searchScuffToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.searchScuffToolStripMenuItem.Text = "Search";
             // 
             // addMemberToolStripMenuItem
             // 
             this.addMemberToolStripMenuItem.Name = "addMemberToolStripMenuItem";
-            this.addMemberToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.addMemberToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.addMemberToolStripMenuItem.Text = "Add Member";
             // 
             // testToolStripMenuItem
@@ -251,7 +251,7 @@
         private System.Windows.Forms.ToolStripMenuItem visitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newVisitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editVisitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem stuffToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem staffToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem searchScuffToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addMemberToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;

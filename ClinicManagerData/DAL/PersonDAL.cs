@@ -265,7 +265,7 @@ namespace ClinicManagerData.DAL
         ///     false if returning the list of nurses
         /// </param>
         /// <returns>the list of doctors of parameter is true, the list of nurses if parameter is false</returns>
-        public static List<Person> GetAllStuffMembers(bool is_doctor)
+        public static List<Person> GetAllStaffMembers(bool is_doctor)
         {
             List<Person> nurseList = new List<Person>();
             string selectStatment =

@@ -142,11 +142,8 @@ namespace ClinicManager.View
             else
             {
                 selectedPerson = persons[lvPatients.SelectedItems[0].Index];
-                if (this != null)
-                {
-                    this.DialogResult = DialogResult.OK;
-                    this.Close();
-                }
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
         }
 

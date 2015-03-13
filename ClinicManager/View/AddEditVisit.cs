@@ -84,16 +84,7 @@ namespace ClinicManager.View
         /// <param name="e"></param>
         private void ComboBoxFormat(object sender, ListControlConvertEventArgs e)
         {
-            if (String.IsNullOrEmpty(((Person)e.ListItem).MiddleInit))
-            {
-                e.Value = ((Person)e.ListItem).LastName + " " + ((Person)e.ListItem).FirstName;
-            }
-            else
-            {
-                e.Value = ((Person)e.ListItem).LastName + " " + ((Person)e.ListItem).FirstName + " " 
-                    + ((Person)e.ListItem).MiddleInit + ". ";
-            }
-            
+            e.Value = ((Person)e.ListItem).GetFullName();
         }
 
         /// <summary>
@@ -110,16 +101,10 @@ namespace ClinicManager.View
             searchPatientForm.ShowDialog();
             if (searchPatientForm.DialogResult == DialogResult.OK)
             {
-                txbPatient.Text = searchPatientForm.selectedPerson.LastName + " ";
-                txbPatient.Text += searchPatientForm.selectedPerson.FirstName;
-                if (!String.IsNullOrEmpty(searchPatientForm.selectedPerson.MiddleInit))
-                {
-                    txbPatient.Text +=  " " + searchPatientForm.selectedPerson.MiddleInit + ".";
-                }
-            }
-            patient = searchPatientForm.selectedPerson;
-            enableFormControls();
-            
+                txbPatient.Text = searchPatientForm.selectedPerson.GetFullName();
+                patient = searchPatientForm.selectedPerson;
+                enableFormControls();
+            } 
         }
 
         /// <summary>
