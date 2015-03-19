@@ -36,6 +36,12 @@ namespace ClinicManager.View
         /// <param name="e"></param>
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            if (txtUsername.Text == "" || txtPassword.Text == "") 
+            {
+                this.lblErrMessage.ForeColor = System.Drawing.Color.Red;
+                this.lblErrMessage.Text = "Username and password can't be empty";
+                return;
+            }
             try
             {
                 this.lblErrMessage.Text = "";
