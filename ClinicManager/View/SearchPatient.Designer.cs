@@ -52,37 +52,37 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Georgia", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(38, 25);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(34, 22);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 18);
+            this.label1.Size = new System.Drawing.Size(76, 16);
             this.label1.TabIndex = 1;
             this.label1.Text = "First Name:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Georgia", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(38, 76);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(34, 68);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 18);
+            this.label2.Size = new System.Drawing.Size(76, 16);
             this.label2.TabIndex = 2;
             this.label2.Text = "Last Name:";
             // 
             // txtFirstName
             // 
-            this.txtFirstName.Location = new System.Drawing.Point(170, 25);
+            this.txtFirstName.Location = new System.Drawing.Point(151, 22);
             this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(185, 26);
+            this.txtFirstName.Size = new System.Drawing.Size(165, 22);
             this.txtFirstName.TabIndex = 4;
             // 
             // txtLastName
             // 
-            this.txtLastName.Location = new System.Drawing.Point(170, 73);
+            this.txtLastName.Location = new System.Drawing.Point(151, 65);
             this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(185, 26);
+            this.txtLastName.Size = new System.Drawing.Size(165, 22);
             this.txtLastName.TabIndex = 5;
             // 
             // datDOB
@@ -90,18 +90,18 @@
             this.datDOB.CustomFormat = "";
             this.datDOB.Enabled = false;
             this.datDOB.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.datDOB.Location = new System.Drawing.Point(170, 118);
+            this.datDOB.Location = new System.Drawing.Point(151, 105);
             this.datDOB.Name = "datDOB";
-            this.datDOB.Size = new System.Drawing.Size(185, 26);
+            this.datDOB.Size = new System.Drawing.Size(165, 22);
             this.datDOB.TabIndex = 7;
             this.datDOB.Value = new System.DateTime(2015, 3, 1, 11, 31, 32, 0);
             // 
             // chkDOB
             // 
             this.chkDOB.AutoSize = true;
-            this.chkDOB.Location = new System.Drawing.Point(18, 122);
+            this.chkDOB.Location = new System.Drawing.Point(16, 108);
             this.chkDOB.Name = "chkDOB";
-            this.chkDOB.Size = new System.Drawing.Size(122, 22);
+            this.chkDOB.Size = new System.Drawing.Size(102, 20);
             this.chkDOB.TabIndex = 8;
             this.chkDOB.Text = "Date of Birth:";
             this.chkDOB.UseVisualStyleBackColor = true;
@@ -119,10 +119,10 @@
             this.columnHeader7,
             this.columnHeader8});
             this.lvPatients.FullRowSelect = true;
-            this.lvPatients.Location = new System.Drawing.Point(41, 171);
+            this.lvPatients.Location = new System.Drawing.Point(36, 152);
             this.lvPatients.MultiSelect = false;
             this.lvPatients.Name = "lvPatients";
-            this.lvPatients.Size = new System.Drawing.Size(1090, 340);
+            this.lvPatients.Size = new System.Drawing.Size(969, 303);
             this.lvPatients.TabIndex = 9;
             this.lvPatients.UseCompatibleStateImageBehavior = false;
             this.lvPatients.View = System.Windows.Forms.View.Details;
@@ -170,9 +170,9 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(393, 121);
+            this.btnSearch.Location = new System.Drawing.Point(343, 105);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.Size = new System.Drawing.Size(81, 23);
             this.btnSearch.TabIndex = 10;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -180,9 +180,9 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(922, 536);
+            this.btnClose.Location = new System.Drawing.Point(820, 476);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(100, 30);
+            this.btnClose.Size = new System.Drawing.Size(89, 27);
             this.btnClose.TabIndex = 11;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -190,9 +190,9 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(804, 536);
+            this.btnEdit.Location = new System.Drawing.Point(715, 476);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(100, 30);
+            this.btnEdit.Size = new System.Drawing.Size(89, 27);
             this.btnEdit.TabIndex = 12;
             this.btnEdit.Text = "Edit Patient";
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -201,9 +201,9 @@
             // btnOK
             // 
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(1039, 536);
+            this.btnOK.Location = new System.Drawing.Point(924, 476);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(92, 30);
+            this.btnOK.Size = new System.Drawing.Size(82, 27);
             this.btnOK.TabIndex = 13;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
@@ -212,9 +212,9 @@
             // 
             // SearchPatient
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1164, 597);
+            this.ClientSize = new System.Drawing.Size(1035, 531);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnClose);
@@ -226,7 +226,7 @@
             this.Controls.Add(this.txtFirstName);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Font = new System.Drawing.Font("Georgia", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SearchPatient";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
