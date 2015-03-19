@@ -12,6 +12,9 @@ using ClinicManager.Controller;
 
 namespace ClinicManager.View
 {
+    /// <summary>
+    /// Form to add/edit visit information
+    /// </summary>
     public partial class AddEditVisit : Form
     {
         public Visit visit;
@@ -37,10 +40,18 @@ namespace ClinicManager.View
         /// <param name="e"></param>
         private void AddEditVisit_Load(object sender, EventArgs e)
         {
-            setUpTitle();
-            setUpDoctorCombobox();
-            setUpNurseCombobox();
-            lblVisitDate.Text = DateTime.Now.ToShortDateString();
+            try
+            {
+                setUpTitle();
+                setUpDoctorCombobox();
+                setUpNurseCombobox();
+                lblVisitDate.Text = DateTime.Now.ToShortDateString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
+            
 
         }
 
@@ -97,14 +108,22 @@ namespace ClinicManager.View
         /// <param name="e"></param>
         private void btnSearchPatient_Click(object sender, EventArgs e)
         {
-            SearchPatient searchPatientForm = new SearchPatient();
-            searchPatientForm.ShowDialog();
-            if (searchPatientForm.DialogResult == DialogResult.OK)
+            try
             {
-                txbPatient.Text = searchPatientForm.selectedPerson.GetFullName();
-                patient = searchPatientForm.selectedPerson;
-                enableFormControls();
-            } 
+                SearchPatient searchPatientForm = new SearchPatient();
+                searchPatientForm.ShowDialog();
+                if (searchPatientForm.DialogResult == DialogResult.OK)
+                {
+                    txbPatient.Text = searchPatientForm.selectedPerson.GetFullName();
+                    patient = searchPatientForm.selectedPerson;
+                    enableFormControls();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
+             
         }
 
         /// <summary>
@@ -158,6 +177,7 @@ namespace ClinicManager.View
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, ex.GetType().ToString());
+                this.BeginInvoke(new MethodInvoker(Close));
             }
         }
 

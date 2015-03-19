@@ -12,6 +12,9 @@ using ClinicManagerData.Model;
 
 namespace ClinicManager.View
 {
+    /// <summary>
+    /// Form to login with username and password
+    /// </summary>
     public partial class Login : Form
     {
         private UserController userController;
@@ -26,19 +29,32 @@ namespace ClinicManager.View
             password = null;
         }
 
+        /// <summary>
+        /// Handels Login button click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            this.lblErrMessage.Text = "";
-
-            if (userController.GetUserType(txtUsername.Text, txtPassword.Text) == -1)
+            try
             {
-                this.lblErrMessage.ForeColor = System.Drawing.Color.Red;
-                this.lblErrMessage.Text = "This user/password combination doesn't exist";
-                return;
+                this.lblErrMessage.Text = "";
+
+                if (userController.GetUserType(txtUsername.Text, txtPassword.Text) == -1)
+                {
+                    this.lblErrMessage.ForeColor = System.Drawing.Color.Red;
+                    this.lblErrMessage.Text = "This user/password combination doesn't exist";
+                    return;
+                }
+                this.username = this.txtUsername.Text;
+                this.password = this.txtPassword.Text;
+                this.Close();
             }
-            this.username = this.txtUsername.Text;
-            this.password = this.txtPassword.Text;
-            this.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+                this.BeginInvoke(new MethodInvoker(Close));
+            }
         }
     }
 }
