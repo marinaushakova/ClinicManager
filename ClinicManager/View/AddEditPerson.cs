@@ -122,24 +122,20 @@ namespace ClinicManager.View
             try { 
                 if (person == null)
                 {
-                    person = new Person();
-                    this.putPersonData(person);
-                    int id = personController.AddPerson(person);
+                    Person newPerson = new Person();
+                    this.putPersonData(newPerson);
+                    int id = personController.AddPerson(newPerson);
                     MessageBox.Show("Person successfully added", "Success");
                     this.resetInput();
-                    person = null;
                 }
                 else
                 {
-                    Person newPerson = new Person();
-                    this.putPersonData(newPerson);
-                    newPerson.PersonID = person.PersonID;
-                    newPerson.Timestamp = person.Timestamp;
-                    bool result = personController.UpdatePerson(newPerson);
+                    this.putPersonData(person);
+                    bool result = personController.UpdatePerson(person);
                     if (!result)
                     {
-                        MessageBox.Show("Another user has updated or " +
-                                "deleted that person.", "Database Error");
+                        MessageBox.Show("Update person failed.  Perhaps another user has updated or " +
+                                "deleted that person?", "Database Error");
                       
                     } else {
                         MessageBox.Show("Person successully updated", "Success");
@@ -201,9 +197,9 @@ namespace ClinicManager.View
                 if (result == false) return false;
             }
             if (!Validator.DateIsBefore(dobDatePicker, DateTime.Now)) return false;
-            if (!Validator.IsPhoneNumber(phoneTxtBox)) return false;
             if (!Validator.IsSSN(ssnTxtBox)) return false;
             if (!Validator.IsZip(zipTxtBox)) return false;
+            if (!Validator.IsPhoneNumber(phoneTxtBox)) return false;
             return true;
         }
 

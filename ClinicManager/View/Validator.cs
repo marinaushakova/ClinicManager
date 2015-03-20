@@ -79,19 +79,14 @@ namespace ClinicManager.View
         /// <returns>True if the format is acceptable, false otherwise</returns>
         public static bool IsPhoneNumber(TextBox textBox)
         {
-            string phone = textBox.Text.Replace("-", "");
-            try
-            {
-                Convert.ToInt64(phone);
-                return true;
-            }
-            catch (FormatException)
+            if (!System.Text.RegularExpressions.Regex.IsMatch(textBox.Text, "^\\d{3}-?\\d{3}-?\\d{4}$"))
             {
                 MessageBox.Show(textBox.Tag.ToString() + " must be in one of the following formats:\n\n" +
                     "111-222-3333\n1112223333", TITLE);
                 textBox.Focus();
                 return false;
             }
+            return true;
         }
 
         /// <summary>
@@ -101,24 +96,9 @@ namespace ClinicManager.View
         /// <returns>True if the format is acceptable, false otherwise</returns>
         public static bool IsSSN(TextBox textBox)
         {
-            bool isValid = true;
-            string ssn = textBox.Text;
-
-            int index = ssn.IndexOf("-");
-            if (index != 3) isValid = false;
-
-            index = ssn.IndexOf("-", 4);
-            if (index != 6) isValid = false;
-
-            if (ssn.Substring(7).Length != 4) isValid = false;
-
-            ssn = ssn.Replace("-", "");
-            if (ssn.Length > 9) isValid = false;
-            else if (!IsInt(ssn)) isValid = false;
-
-            if (!isValid)
+            if (!System.Text.RegularExpressions.Regex.IsMatch(textBox.Text, "^\\d{3}-?\\d{2}-?\\d{4}$"))
             {
-                MessageBox.Show(textBox.Tag.ToString() + " must be in the following format: xxx-xx-xxxx", TITLE);
+                MessageBox.Show(textBox.Tag.ToString() + " must be in the following format: xxx-xx-xxxx or xxxxxxxxx", TITLE);
                 textBox.Focus();
                 return false;
             }
@@ -132,21 +112,7 @@ namespace ClinicManager.View
         /// <returns>True if the format is acceptable, false otherwise</returns>
         public static bool IsZip(TextBox textBox)
         {
-            bool isValid = true;
-            string zip = textBox.Text;
-            if (zip.Length == 5)
-            {
-                if (!IsInt(zip)) isValid = false;
-            }
-            else if (zip.Length == 10)
-            {
-                if (zip.IndexOf("-") != 5) isValid = false;
-                zip = zip.Replace("-", "");
-                if (!IsInt(zip)) isValid = false;
-            }
-            else isValid = false;
-
-            if (!isValid)
+            if (!System.Text.RegularExpressions.Regex.IsMatch(textBox.Text, "^\\d{5}(-\\d{4})?$"))
             {
                 MessageBox.Show(textBox.Tag.ToString() + " must be in one of the following formats:\n\nxxxxx\nxxxxx-xxxx", TITLE);
                 textBox.Focus();
