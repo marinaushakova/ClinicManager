@@ -222,6 +222,7 @@
             this.fnameTxtBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "FirstName", true));
             this.fnameTxtBox.Location = new System.Drawing.Point(125, 43);
             this.fnameTxtBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.fnameTxtBox.MaxLength = 255;
             this.fnameTxtBox.Name = "fnameTxtBox";
             this.fnameTxtBox.Size = new System.Drawing.Size(337, 22);
             this.fnameTxtBox.TabIndex = 2;
@@ -232,6 +233,7 @@
             this.lnameTxtBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "LastName", true));
             this.lnameTxtBox.Location = new System.Drawing.Point(125, 101);
             this.lnameTxtBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.lnameTxtBox.MaxLength = 255;
             this.lnameTxtBox.Name = "lnameTxtBox";
             this.lnameTxtBox.Size = new System.Drawing.Size(337, 22);
             this.lnameTxtBox.TabIndex = 4;
@@ -242,6 +244,7 @@
             this.minitTxtBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "MiddleInit", true));
             this.minitTxtBox.Location = new System.Drawing.Point(125, 72);
             this.minitTxtBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.minitTxtBox.MaxLength = 1;
             this.minitTxtBox.Name = "minitTxtBox";
             this.minitTxtBox.Size = new System.Drawing.Size(56, 22);
             this.minitTxtBox.TabIndex = 3;
@@ -252,6 +255,7 @@
             this.phoneTxtBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "Phone", true));
             this.phoneTxtBox.Location = new System.Drawing.Point(125, 330);
             this.phoneTxtBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.phoneTxtBox.MaxLength = 12;
             this.phoneTxtBox.Name = "phoneTxtBox";
             this.phoneTxtBox.Size = new System.Drawing.Size(337, 22);
             this.phoneTxtBox.TabIndex = 12;
@@ -262,6 +266,7 @@
             this.ssnTxtBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "Social", true));
             this.ssnTxtBox.Location = new System.Drawing.Point(125, 130);
             this.ssnTxtBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.ssnTxtBox.MaxLength = 11;
             this.ssnTxtBox.Name = "ssnTxtBox";
             this.ssnTxtBox.Size = new System.Drawing.Size(337, 22);
             this.ssnTxtBox.TabIndex = 5;
@@ -272,6 +277,7 @@
             this.zipTxtBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "Zip", true));
             this.zipTxtBox.Location = new System.Drawing.Point(125, 301);
             this.zipTxtBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.zipTxtBox.MaxLength = 10;
             this.zipTxtBox.Name = "zipTxtBox";
             this.zipTxtBox.Size = new System.Drawing.Size(337, 22);
             this.zipTxtBox.TabIndex = 11;
@@ -304,6 +310,7 @@
             this.stateTxtBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "State", true));
             this.stateTxtBox.Location = new System.Drawing.Point(125, 274);
             this.stateTxtBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.stateTxtBox.MaxLength = 25;
             this.stateTxtBox.Name = "stateTxtBox";
             this.stateTxtBox.Size = new System.Drawing.Size(337, 22);
             this.stateTxtBox.TabIndex = 10;
