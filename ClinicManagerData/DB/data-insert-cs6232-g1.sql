@@ -51,8 +51,8 @@ INSERT INTO person([ssn],[fname],[minit],[lname],[birth_date],[is_male],[street_
 INSERT INTO person([ssn],[fname],[minit],[lname],[birth_date],[is_male],[street_address],[city],[state],[zip],[phone],[is_nurse],[is_doctor]) VALUES('710-26-3393','Jared','J','Kelly','12/12/1931',1,'P.O. Box 801, 2996 Arcu. Ave','Chandler','AZ','86232','780-244-2967',0,0);
 
 INSERT INTO [user]([person_id], [username], [password], [admin_privelege]) VALUES (2, 'mwalton', '29e948ebac0f451bf0591a8cc894d45d38044be6bc915396bb5a8a492ef80711', 0);
-INSERT INTO [user]([person_id], [username], [password], [admin_privelege]) VALUES (2, 'cwelch', '9f81e67fb172a28ca18e0a3144194b1a82dfa51d7a519a319f0caa012f112c1a', 0);
-INSERT INTO [user]([person_id], [username], [password], [admin_privelege]) VALUES (2, 'jcote', '2c7da8d45c3ae24b4a2249c0a88e3005a73f0f4cb1b6e842780599f3bbce69e0', 0);
+INSERT INTO [user]([person_id], [username], [password], [admin_privelege]) VALUES (3, 'cwelch', '9f81e67fb172a28ca18e0a3144194b1a82dfa51d7a519a319f0caa012f112c1a', 0);
+INSERT INTO [user]([person_id], [username], [password], [admin_privelege]) VALUES (4, 'jcote', '2c7da8d45c3ae24b4a2249c0a88e3005a73f0f4cb1b6e842780599f3bbce69e0', 0);
 
 INSERT INTO visit([date],[patient_id],[nurse_id],[doctor_id],[blood_pressure],[temperature],[pulse_rate],[symptoms],[initial_diagnosis]) VALUES('10-03-15',23,'3','9','129/85','100.3',80,'cough','cold');
 INSERT INTO visit([date],[patient_id],[nurse_id],[doctor_id],[blood_pressure],[temperature],[pulse_rate],[symptoms],[initial_diagnosis]) VALUES('10-03-15',46,'4','9','129/85','100.3',97,'fever','virus');
