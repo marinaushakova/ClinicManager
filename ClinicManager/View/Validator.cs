@@ -90,6 +90,23 @@ namespace ClinicManager.View
         }
 
         /// <summary>
+        /// Checks whether the given temperature reading is in the correct format
+        /// </summary>
+        /// <param name="textBox">The text box containing the format to check</param>
+        /// <returns>True if the format is acceptable, false otherwise</returns>
+        public static bool IsTemp(TextBox textBox)
+        {
+            if (!System.Text.RegularExpressions.Regex.IsMatch(textBox.Text, "^1?\\d{2}.\\d$"))
+            {
+                MessageBox.Show(textBox.Tag.ToString() + " must be in one of the following format:\n\n" +
+                    "xx.x or xxx.x", TITLE);
+                textBox.Focus();
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
         /// Verifies that the SSN input is in the correct format
         /// </summary>
         /// <param name="textBox">The text box containing the format to check</param>

@@ -196,7 +196,7 @@ namespace ClinicManager.View
             if (!Validator.IsPresent(txbBloodPressure)) return false;
             if (!Validator.IsPresent(txbSymptoms)) return false;
             if (!Validator.IsInt(txbPulseRate.Text)) return false;
-            if (!Validator.IsDouble(txbTemperature.Text)) return false;
+            if (!Validator.IsTemp(txbTemperature)) return false;
             return true;
         }
 

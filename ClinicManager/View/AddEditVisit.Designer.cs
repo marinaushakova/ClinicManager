@@ -183,6 +183,7 @@
             this.txbBloodPressure.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "BloodPressure", true));
             this.txbBloodPressure.Location = new System.Drawing.Point(132, 74);
             this.txbBloodPressure.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txbBloodPressure.MaxLength = 45;
             this.txbBloodPressure.Name = "txbBloodPressure";
             this.txbBloodPressure.ReadOnly = true;
             this.txbBloodPressure.Size = new System.Drawing.Size(155, 22);
@@ -218,6 +219,7 @@
             this.txbPulseRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "PulseRate", true));
             this.txbPulseRate.Location = new System.Drawing.Point(132, 22);
             this.txbPulseRate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txbPulseRate.MaxLength = 3;
             this.txbPulseRate.Name = "txbPulseRate";
             this.txbPulseRate.ReadOnly = true;
             this.txbPulseRate.Size = new System.Drawing.Size(155, 22);
@@ -242,6 +244,7 @@
             this.txbTemperature.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Temperature", true));
             this.txbTemperature.Location = new System.Drawing.Point(132, 48);
             this.txbTemperature.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txbTemperature.MaxLength = 5;
             this.txbTemperature.Name = "txbTemperature";
             this.txbTemperature.ReadOnly = true;
             this.txbTemperature.Size = new System.Drawing.Size(155, 22);
