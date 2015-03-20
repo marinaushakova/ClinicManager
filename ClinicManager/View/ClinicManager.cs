@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms;
 using ClinicManager.View;
 using ClinicManager.Controller;
 
@@ -228,6 +229,11 @@ namespace ClinicManager
         private void addEditVisitForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             addEditVisitForm = null;
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Clinic Manager version 1.0", "About");
         }
 
 
