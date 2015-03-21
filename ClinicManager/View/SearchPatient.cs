@@ -163,5 +163,17 @@ namespace ClinicManager.View
                 btnOK.Visible = true;
             }
         }
+
+        private void lvPatients_ItemActivate(object sender, EventArgs e)
+        {
+            if (btnOK.Visible)
+            {
+                btnOK_Click(sender, e);
+            }
+            else
+            {
+                btnEdit_Click(sender, e);
+            }
+        }
     }
 }
