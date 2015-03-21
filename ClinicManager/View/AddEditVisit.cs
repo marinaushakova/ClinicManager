@@ -17,7 +17,13 @@ namespace ClinicManager.View
     /// </summary>
     public partial class AddEditVisit : Form
     {
-        public Visit visit;
+        private Visit visit;
+
+        public Visit Visit
+        {
+            get { return visit; }
+            set { visit = value; }
+        }
 
         private List<Person> doctorList;
         private List<Person> nurseList;
@@ -110,12 +116,12 @@ namespace ClinicManager.View
         {
             try
             {
-                SearchPatient searchPatientForm = new SearchPatient();
+                SearchPatient searchPatientForm = new SearchPatient(false);
                 searchPatientForm.ShowDialog();
                 if (searchPatientForm.DialogResult == DialogResult.OK)
                 {
-                    txbPatient.Text = searchPatientForm.selectedPerson.GetFullName();
-                    patient = searchPatientForm.selectedPerson;
+                    txbPatient.Text = searchPatientForm.SelectedPerson.GetFullName();
+                    patient = searchPatientForm.SelectedPerson;
                     enableFormControls();
                 }
             }

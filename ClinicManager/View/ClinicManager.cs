@@ -23,12 +23,14 @@ namespace ClinicManager
         private UserController userController;
 
         private string currentUsername;
+        private bool? currentUserIsAdmin;
 
         public ClinicManagerMain()
         {
             InitializeComponent();
             personController = new PersonController();
             userController = new UserController();
+            this.currentUserIsAdmin = null;
             this.disableMenu();
             this.showLoginForm();
         }
@@ -42,10 +44,13 @@ namespace ClinicManager
         {
             if (searchPatientForm == null)
             {
-                searchPatientForm = new SearchPatient();
-                searchPatientForm.MdiParent = this;
-                searchPatientForm.FormClosed += new FormClosedEventHandler(searchPatientForm_FormClosed);
-                searchPatientForm.Show();
+                if (this.currentUserIsAdmin.HasValue)
+                {
+                    searchPatientForm = new SearchPatient(this.currentUserIsAdmin.Value);
+                    searchPatientForm.MdiParent = this;
+                    searchPatientForm.FormClosed += new FormClosedEventHandler(searchPatientForm_FormClosed);
+                    searchPatientForm.Show();
+                }
             }
             else
             {
@@ -67,9 +72,8 @@ namespace ClinicManager
         {
             if (addEditPersonForm == null)
             {
-                addEditPersonForm = new AddEditPerson();
-                addEditPersonForm.person = null;
-                addEditPersonForm.is_nurse = true;
+                addEditPersonForm = new AddEditPerson(false);
+                addEditPersonForm.Person = null;
                 addEditPersonForm.MdiParent = this;
                 addEditPersonForm.FormClosed += new FormClosedEventHandler(addEditPersonForm_FormClosed);
                 addEditPersonForm.Show();
@@ -107,6 +111,7 @@ namespace ClinicManager
                 }
                 this.Text = "Clinic Manager";
                 this.currentUsername = null;
+                this.currentUserIsAdmin = null;
                 disableMenu();
                 showLoginForm();
             }
@@ -145,9 +150,9 @@ namespace ClinicManager
         /// <param name="e"></param>
         private void loginForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (loginForm.username != null)
+            if (loginForm.Username != null)
             {
-                currentUsername = loginForm.username;
+                currentUsername = loginForm.Username;
                 this.Text = "Clinic Manager: you are logged in as " + currentUsername;
                 displayUserMenu();
             }
@@ -160,8 +165,10 @@ namespace ClinicManager
         /// </summary>
         private void displayUserMenu()
         {
-            if ((int)userController.GetUserType(loginForm.username, loginForm.password) == 1)
+            if ((int)userController.GetUserType(loginForm.Username, loginForm.Password) == 1)
             {
+                // Admin
+                this.currentUserIsAdmin = true;
                 staffToolStripMenuItem.Enabled = true;
                 testToolStripMenuItem.Enabled = true;
                 reportToolStripMenuItem.Enabled = true;
@@ -170,6 +177,8 @@ namespace ClinicManager
             } 
             else 
             {
+                // Nurse
+                this.currentUserIsAdmin = false;
                 patientToolStripMenuItem.Enabled = true;
                 visitToolStripMenuItem.Enabled = true;
                 logoutToolStripMenuItem.Enabled = true;

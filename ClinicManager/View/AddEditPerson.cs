@@ -14,15 +14,23 @@ namespace ClinicManager.View
 {
     public partial class AddEditPerson : Form
     {
-        public Person person;
-        public bool is_nurse;
+        private Person person;
+
+        public Person Person
+        {
+            get { return person; }
+            set { person = value; }
+        }
+
+        private bool is_nurse;
 
         private PersonController personController;
 
-        public AddEditPerson()
+        public AddEditPerson(bool isAdmin)
         {
             InitializeComponent();
             personController = new PersonController();
+            this.is_nurse = !isAdmin;
         }
 
         /// <summary>
@@ -48,9 +56,6 @@ namespace ClinicManager.View
             {
                 personBindingSource.Clear();
                 personBindingSource.Add(person);
-                Binding b = zipTxtBox.DataBindings["Text"];
-                b.Format += FormatZipCode;
-                b.Parse += UnformatZipCode;
             }
         }
 
@@ -110,7 +115,7 @@ namespace ClinicManager.View
         {
             this.Close();
         }
-         
+
         /// <summary>
         /// Handles the OK button click
         /// </summary>
@@ -119,7 +124,8 @@ namespace ClinicManager.View
         private void okBtn_Click(object sender, EventArgs e)
         {
             if (!this.isValid()) return;
-            try { 
+            try
+            {
                 if (person == null)
                 {
                     Person newPerson = new Person();
@@ -136,8 +142,10 @@ namespace ClinicManager.View
                     {
                         MessageBox.Show("Update person failed.  Perhaps another user has updated or " +
                                 "deleted that person?", "Database Error");
-                      
-                    } else {
+
+                    }
+                    else
+                    {
                         MessageBox.Show("Person successully updated", "Success");
                         this.Close();
                     }
@@ -219,40 +227,6 @@ namespace ClinicManager.View
             stateTxtBox.Text = "";
             zipTxtBox.Text = "";
             phoneTxtBox.Text = "";
-        }
-
-        /// <summary>
-        /// Formats the zip if it is not a 5 digit simple zip
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void FormatZipCode(object sender, ConvertEventArgs e)
-        {
-            if (e.Value.GetType().ToString() == "System.String")
-            {
-                string zip = e.Value.ToString();
-                if (Validator.IsInt(zip))
-                {
-                    if (zip.Length == 9)
-                    {
-                        e.Value = zip.Substring(0, 5) + "-" + zip.Substring(5);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Returns the format to a 9 digit number only format if the zip code is not a plain 5 digit zip
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void UnformatZipCode(object sender, ConvertEventArgs e)
-        {
-            if (e.Value.GetType().ToString() == "System.String")
-            {
-                string zip = e.Value.ToString();
-                e.Value = zip.Replace("-", "");
-            }
         }
     }
 }

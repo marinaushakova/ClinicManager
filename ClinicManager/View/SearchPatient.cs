@@ -16,14 +16,21 @@ namespace ClinicManager.View
     {
         private PersonController personController;
         private List<Person> persons;
-        public Person selectedPerson;
+        private bool isAdmin;
 
-        public SearchPatient()
+        private Person selectedPerson;
+        public Person SelectedPerson
+        {
+            get { return selectedPerson; }
+            set { selectedPerson = value; }
+        }
+
+        public SearchPatient(bool isAdmin)
         {
             InitializeComponent();
             personController = new PersonController();
             selectedPerson = null;
-            
+            this.isAdmin = isAdmin;
         }
 
         private void chkDOB_CheckStateChanged(object sender, EventArgs e)
@@ -109,13 +116,9 @@ namespace ClinicManager.View
                 }
                 else
                 {
-                    AddEditPerson addEditPersonForm = new AddEditPerson();
-                    addEditPersonForm.person = personToEdit;
-
-                    // TODO: change from hard coded to dynamic based on the user logged in
-                    addEditPersonForm.is_nurse = true;
+                    AddEditPerson addEditPersonForm = new AddEditPerson(isAdmin);
+                    addEditPersonForm.Person = personToEdit;
                     addEditPersonForm.MdiParent = this.MdiParent;
-                    //addEditPersonForm.FormClosed += new FormClosedEventHandler(addEditPersonForm_FormClosed);
                     addEditPersonForm.Show();
                 }
             }

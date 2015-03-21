@@ -18,8 +18,20 @@ namespace ClinicManager.View
     public partial class Login : Form
     {
         private UserController userController;
-        public string username;
-        public string password;
+
+        private string username;
+        public string Username
+        {
+            get { return username; }
+            set { username = value; }
+        }
+
+        private string password;
+        public string Password
+        {
+            get { return password; }
+            set { password = value; }
+        }
 
         public Login()
         {
