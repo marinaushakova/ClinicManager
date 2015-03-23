@@ -166,7 +166,6 @@
             this.searchScuffToolStripMenuItem.Name = "searchScuffToolStripMenuItem";
             this.searchScuffToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.searchScuffToolStripMenuItem.Text = "Search";
-            this.searchScuffToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
             // 
             // addMemberToolStripMenuItem
             // 
