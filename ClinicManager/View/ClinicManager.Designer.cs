@@ -38,8 +38,8 @@
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addPatientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newVisitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editVisitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newVisitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.staffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchScuffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addMemberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -139,18 +139,18 @@
             this.visitToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
             this.visitToolStripMenuItem.Text = "Visit";
             // 
+            // editVisitToolStripMenuItem
+            // 
+            this.editVisitToolStripMenuItem.Name = "editVisitToolStripMenuItem";
+            this.editVisitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editVisitToolStripMenuItem.Text = "Search";
+            // 
             // newVisitToolStripMenuItem
             // 
             this.newVisitToolStripMenuItem.Name = "newVisitToolStripMenuItem";
             this.newVisitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newVisitToolStripMenuItem.Text = "Add Visit";
             this.newVisitToolStripMenuItem.Click += new System.EventHandler(this.newVisitToolStripMenuItem_Click);
-            // 
-            // editVisitToolStripMenuItem
-            // 
-            this.editVisitToolStripMenuItem.Name = "editVisitToolStripMenuItem";
-            this.editVisitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.editVisitToolStripMenuItem.Text = "Search";
             // 
             // staffToolStripMenuItem
             // 
@@ -164,13 +164,14 @@
             // searchScuffToolStripMenuItem
             // 
             this.searchScuffToolStripMenuItem.Name = "searchScuffToolStripMenuItem";
-            this.searchScuffToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.searchScuffToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.searchScuffToolStripMenuItem.Text = "Search";
+            this.searchScuffToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
             // 
             // addMemberToolStripMenuItem
             // 
             this.addMemberToolStripMenuItem.Name = "addMemberToolStripMenuItem";
-            this.addMemberToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.addMemberToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.addMemberToolStripMenuItem.Text = "Add Member";
             // 
             // testToolStripMenuItem
