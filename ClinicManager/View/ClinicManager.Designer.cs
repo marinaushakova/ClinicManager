@@ -119,14 +119,14 @@
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.searchToolStripMenuItem.Text = "Search";
             this.searchToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
             // 
             // addPatientToolStripMenuItem
             // 
             this.addPatientToolStripMenuItem.Name = "addPatientToolStripMenuItem";
-            this.addPatientToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addPatientToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.addPatientToolStripMenuItem.Text = "Add Patient";
             this.addPatientToolStripMenuItem.Click += new System.EventHandler(this.addPatientToolStripMenuItem_Click);
             // 
@@ -142,13 +142,13 @@
             // editVisitToolStripMenuItem
             // 
             this.editVisitToolStripMenuItem.Name = "editVisitToolStripMenuItem";
-            this.editVisitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editVisitToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.editVisitToolStripMenuItem.Text = "Search";
             // 
             // newVisitToolStripMenuItem
             // 
             this.newVisitToolStripMenuItem.Name = "newVisitToolStripMenuItem";
-            this.newVisitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newVisitToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.newVisitToolStripMenuItem.Text = "Add Visit";
             this.newVisitToolStripMenuItem.Click += new System.EventHandler(this.newVisitToolStripMenuItem_Click);
             // 
@@ -166,6 +166,7 @@
             this.searchScuffToolStripMenuItem.Name = "searchScuffToolStripMenuItem";
             this.searchScuffToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.searchScuffToolStripMenuItem.Text = "Search";
+            this.searchScuffToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
             // 
             // addMemberToolStripMenuItem
             // 

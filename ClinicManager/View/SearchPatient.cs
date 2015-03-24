@@ -31,7 +31,11 @@ namespace ClinicManager.View
             personController = new PersonController();
             selectedPerson = null;
             this.isAdmin = isAdmin;
-            if (this.isAdmin) this.Text = "Search Staff";
+            if (this.isAdmin)
+            {
+                this.Text = "Search Staff";
+                btnEdit.Text = "Edit Staff";
+            }
         }
 
         private void chkDOB_CheckStateChanged(object sender, EventArgs e)
