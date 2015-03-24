@@ -96,6 +96,7 @@ namespace ClinicManager.View
                 roleComboBox.Items.Add(new { Text = "Patient" });
                 roleComboBox.TabStop = false;
                 roleComboBox.TabIndex = 50;
+                roleComboBox.SelectedIndex = 0;
             }
             else
             {
@@ -103,19 +104,20 @@ namespace ClinicManager.View
                 roleComboBox.Items.Add(new { Text = "Doctor" });
                 roleComboBox.Items.Add(new { Text = "Admin" });
                 roleComboBox.Enabled = true;
-            }
-            if (this.person.IsDoctor)
-            {
-                roleComboBox.SelectedIndex = 1;
-            }
-            else if (this.person.IsNurse)
-            {
-                roleComboBox.SelectedIndex = 0;
-            }
-            else
-            {
-                // TODO: no way to tell if the person is an admin?
-                roleComboBox.SelectedIndex = -1;
+
+                if (this.person.IsDoctor)
+                {
+                    roleComboBox.SelectedIndex = 1;
+                }
+                else if (this.person.IsNurse)
+                {
+                    roleComboBox.SelectedIndex = 0;
+                }
+                else
+                {
+                    // TODO: no way to tell if the person is an admin?
+                    roleComboBox.SelectedIndex = -1;
+                }
             }
         }
 
@@ -178,17 +180,20 @@ namespace ClinicManager.View
         {
             if (roleComboBox.Text == "Nurse")
             {
-                thePerson.IsDoctor = false;
                 thePerson.IsNurse = true;
+                thePerson.IsDoctor = false;
+                thePerson.IsAdmin = false;
             }
             else if (roleComboBox.Text == "Doctor")
             {
                 thePerson.IsDoctor = true;
                 thePerson.IsNurse = false;
+                thePerson.IsAdmin = false;
             }
-            else
+            else if (roleComboBox.Text == "Admin" )
             {
                 // TODO: Need a way to handle admin?
+                thePerson.IsAdmin = true;
                 thePerson.IsDoctor = false;
                 thePerson.IsNurse = false;
             }
