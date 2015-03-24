@@ -101,9 +101,22 @@ namespace ClinicManager.View
             {
                 roleComboBox.Items.Add(new { Text = "Nurse" });
                 roleComboBox.Items.Add(new { Text = "Doctor" });
+                roleComboBox.Items.Add(new { Text = "Admin" });
                 roleComboBox.Enabled = true;
             }
-            roleComboBox.SelectedIndex = 0;
+            if (this.person.IsDoctor)
+            {
+                roleComboBox.SelectedIndex = 1;
+            }
+            else if (this.person.IsNurse)
+            {
+                roleComboBox.SelectedIndex = 0;
+            }
+            else
+            {
+                // TODO: no way to tell if the person is an admin?
+                roleComboBox.SelectedIndex = -1;
+            }
         }
 
         /// <summary>
@@ -163,8 +176,19 @@ namespace ClinicManager.View
         /// <param name="thePerson">The person object to fill with the form data</param>
         private void putPersonData(Person thePerson)
         {
-            if (roleComboBox.Text == "Patient")
+            if (roleComboBox.Text == "Nurse")
             {
+                thePerson.IsDoctor = false;
+                thePerson.IsNurse = true;
+            }
+            else if (roleComboBox.Text == "Doctor")
+            {
+                thePerson.IsDoctor = true;
+                thePerson.IsNurse = false;
+            }
+            else
+            {
+                // TODO: Need a way to handle admin?
                 thePerson.IsDoctor = false;
                 thePerson.IsNurse = false;
             }
