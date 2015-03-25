@@ -53,6 +53,12 @@
     <Compile Include="View\AddEditPerson.Designer.cs">
       <DependentUpon>AddEditPerson.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\AddEditUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AddEditUser.Designer.cs">
+      <DependentUpon>AddEditUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\AddEditVisit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +97,9 @@
     </Compile>
     <EmbeddedResource Include="View\AddEditPerson.resx">
       <DependentUpon>AddEditPerson.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\AddEditUser.resx">
+      <DependentUpon>AddEditUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\AddEditVisit.resx">
       <DependentUpon>AddEditVisit.cs</DependentUpon>
