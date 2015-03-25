@@ -296,6 +296,12 @@ namespace ClinicManager.View
         /// <param name="e"></param>
         private void createUserBtn_Click(object sender, EventArgs e)
         {
+            if (roleComboBox.SelectedIndex != 0 && roleComboBox.SelectedIndex != 2)
+            {
+                MessageBox.Show("Please select a role before creating user credentials", "Select a Role");
+                roleComboBox.Focus();
+                return;
+            }
             try
             {
                 addEditUserForm = new AddEditUser();
@@ -328,6 +334,20 @@ namespace ClinicManager.View
                 else user = null;
             }
             addEditUserForm = null;
+        }
+
+        /// <summary>
+        /// Toggles the Add as User button based on the selected role
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void roleComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (roleComboBox.SelectedIndex == 1)
+            {
+                createUserBtn.Enabled = false;
+            }
+            else createUserBtn.Enabled = true;
         }
     }
 }

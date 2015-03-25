@@ -295,6 +295,7 @@
             this.roleComboBox.Size = new System.Drawing.Size(160, 24);
             this.roleComboBox.TabIndex = 1;
             this.roleComboBox.Tag = "Role";
+            this.roleComboBox.SelectedIndexChanged += new System.EventHandler(this.roleComboBox_SelectedIndexChanged);
             // 
             // label1
             // 
