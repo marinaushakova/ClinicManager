@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.personTxtBox = new System.Windows.Forms.TextBox();
-            this.personLbl = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.usrnameTxtBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,28 +38,10 @@
             this.okBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // personTxtBox
-            // 
-            this.personTxtBox.BackColor = System.Drawing.SystemColors.Control;
-            this.personTxtBox.Enabled = false;
-            this.personTxtBox.Location = new System.Drawing.Point(162, 26);
-            this.personTxtBox.Name = "personTxtBox";
-            this.personTxtBox.Size = new System.Drawing.Size(206, 21);
-            this.personTxtBox.TabIndex = 50;
-            // 
-            // personLbl
-            // 
-            this.personLbl.AutoSize = true;
-            this.personLbl.Location = new System.Drawing.Point(105, 29);
-            this.personLbl.Name = "personLbl";
-            this.personLbl.Size = new System.Drawing.Size(54, 16);
-            this.personLbl.TabIndex = 1;
-            this.personLbl.Text = "Person:";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(82, 82);
+            this.label2.Location = new System.Drawing.Point(48, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 16);
             this.label2.TabIndex = 3;
@@ -69,15 +49,16 @@
             // 
             // usrnameTxtBox
             // 
-            this.usrnameTxtBox.Location = new System.Drawing.Point(162, 79);
+            this.usrnameTxtBox.Location = new System.Drawing.Point(128, 53);
             this.usrnameTxtBox.Name = "usrnameTxtBox";
             this.usrnameTxtBox.Size = new System.Drawing.Size(206, 21);
             this.usrnameTxtBox.TabIndex = 1;
+            this.usrnameTxtBox.Tag = "Username";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(85, 111);
+            this.label3.Location = new System.Drawing.Point(51, 97);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 16);
             this.label3.TabIndex = 5;
@@ -85,27 +66,30 @@
             // 
             // passwordTxtBox
             // 
-            this.passwordTxtBox.Location = new System.Drawing.Point(162, 106);
+            this.passwordTxtBox.Location = new System.Drawing.Point(128, 92);
             this.passwordTxtBox.Name = "passwordTxtBox";
             this.passwordTxtBox.Size = new System.Drawing.Size(206, 21);
             this.passwordTxtBox.TabIndex = 2;
+            this.passwordTxtBox.Tag = "Password";
             this.passwordTxtBox.UseSystemPasswordChar = true;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 138);
+            this.label4.Location = new System.Drawing.Point(37, 124);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(148, 16);
+            this.label4.Size = new System.Drawing.Size(85, 16);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Password Confirmation:";
+            this.label4.Tag = "Password Confirmation";
+            this.label4.Text = "Confirmation:";
             // 
             // confirmationTxtBox
             // 
-            this.confirmationTxtBox.Location = new System.Drawing.Point(162, 135);
+            this.confirmationTxtBox.Location = new System.Drawing.Point(128, 121);
             this.confirmationTxtBox.Name = "confirmationTxtBox";
             this.confirmationTxtBox.Size = new System.Drawing.Size(206, 21);
             this.confirmationTxtBox.TabIndex = 3;
+            this.confirmationTxtBox.Tag = "Password Confirmation";
             this.confirmationTxtBox.UseSystemPasswordChar = true;
             // 
             // cancelBtn
@@ -117,6 +101,7 @@
             this.cancelBtn.TabIndex = 5;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;
+            this.cancelBtn.Click += new System.EventHandler(this.cancelBtn_Click);
             // 
             // okBtn
             // 
@@ -141,8 +126,6 @@
             this.Controls.Add(this.passwordTxtBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.usrnameTxtBox);
-            this.Controls.Add(this.personLbl);
-            this.Controls.Add(this.personTxtBox);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "AddEditUser";
             this.Text = "Add User";
@@ -153,8 +136,6 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox personTxtBox;
-        private System.Windows.Forms.Label personLbl;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox usrnameTxtBox;
         private System.Windows.Forms.Label label3;

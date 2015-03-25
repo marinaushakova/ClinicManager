@@ -45,6 +45,7 @@ namespace ClinicManager.View
             this.setUpRoleComboBox();
             this.setUpGenderComboBox();
             this.setUpBinding();
+            if (!this.is_nurse) createUserBtn.Visible = true;
         }
 
         /// <summary>
@@ -282,6 +283,26 @@ namespace ClinicManager.View
             if (!this.is_nurse)
             {
                 roleComboBox.SelectedIndex = -1;
+            }
+        }
+
+        /// <summary>
+        /// Brings up the create/edit user form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void createUserBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AddEditUser addEditUserForm = new AddEditUser();
+                addEditUserForm.User = this.person;
+                addEditUserForm.MdiParent = this.MdiParent;
+                addEditUserForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
             }
         }
     }

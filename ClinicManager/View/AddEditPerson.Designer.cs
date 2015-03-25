@@ -56,6 +56,7 @@
             this.okBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.isMaleComboBox = new System.Windows.Forms.ComboBox();
+            this.createUserBtn = new System.Windows.Forms.Button();
             addressLabel = new System.Windows.Forms.Label();
             cityLabel = new System.Windows.Forms.Label();
             dateOfBirthLabel = new System.Windows.Forms.Label();
@@ -349,11 +350,23 @@
             this.isMaleComboBox.TabIndex = 34;
             this.isMaleComboBox.Tag = "Gender";
             // 
+            // createUserBtn
+            // 
+            this.createUserBtn.Location = new System.Drawing.Point(13, 421);
+            this.createUserBtn.Name = "createUserBtn";
+            this.createUserBtn.Size = new System.Drawing.Size(99, 23);
+            this.createUserBtn.TabIndex = 35;
+            this.createUserBtn.Text = "Add as User";
+            this.createUserBtn.UseVisualStyleBackColor = true;
+            this.createUserBtn.Visible = false;
+            this.createUserBtn.Click += new System.EventHandler(this.createUserBtn_Click);
+            // 
             // AddEditPerson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(479, 455);
+            this.Controls.Add(this.createUserBtn);
             this.Controls.Add(this.isMaleComboBox);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.okBtn);
@@ -410,5 +423,6 @@
         private System.Windows.Forms.Button okBtn;
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.ComboBox isMaleComboBox;
+        private System.Windows.Forms.Button createUserBtn;
     }
 }
