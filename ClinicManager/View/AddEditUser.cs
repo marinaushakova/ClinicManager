@@ -49,6 +49,7 @@ namespace ClinicManager.View
         /// <param name="e"></param>
         private void cancelBtn_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
@@ -68,6 +69,7 @@ namespace ClinicManager.View
             errorLbl.Text = "";
             this.username = usrnameTxtBox.Text;
             this.password = passwordTxtBox.Text;
+            this.DialogResult = DialogResult.OK;
             this.Close();
         }
     }

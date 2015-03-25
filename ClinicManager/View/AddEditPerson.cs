@@ -14,6 +14,7 @@ namespace ClinicManager.View
 {
     public partial class AddEditPerson : Form
     {
+        private User user;
         private Person person;
 
         public Person Person
@@ -23,6 +24,8 @@ namespace ClinicManager.View
         }
 
         private bool is_nurse;
+
+        private AddEditUser addEditUserForm;
 
         private PersonController personController;
 
@@ -295,9 +298,10 @@ namespace ClinicManager.View
         {
             try
             {
-                AddEditUser addEditUserForm = new AddEditUser();
+                addEditUserForm = new AddEditUser();
                 addEditUserForm.User = this.person;
                 addEditUserForm.MdiParent = this.MdiParent;
+                addEditUserForm.FormClosed += new FormClosedEventHandler(addEditUserForm_FormClosed);
                 addEditUserForm.Show();
             }
             catch (Exception ex)
@@ -313,7 +317,17 @@ namespace ClinicManager.View
         /// <param name="e"></param>
         private void addEditUserForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-
+            if (addEditUserForm.Username != null && addEditUserForm.Password != null)
+            {
+                if (addEditUserForm.DialogResult == DialogResult.OK)
+                {
+                    user = new User();
+                    user.Username = addEditUserForm.Username;
+                    user.Password = addEditUserForm.Password;
+                }
+                else user = null;
+            }
+            addEditUserForm = null;
         }
     }
 }
