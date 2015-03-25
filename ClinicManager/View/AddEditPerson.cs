@@ -93,18 +93,47 @@ namespace ClinicManager.View
             roleComboBox.DisplayMember = "Text";
             if (this.is_nurse == true)
             {
-                roleComboBox.Items.Add(new { Text = "Patient" });
-                roleComboBox.TabStop = false;
-                roleComboBox.TabIndex = 50;
-                roleComboBox.SelectedIndex = 0;
+                this.setUpRoleCmboBxForNurse();
             }
             else
             {
-                roleComboBox.Items.Add(new { Text = "Nurse" });
-                roleComboBox.Items.Add(new { Text = "Doctor" });
-                roleComboBox.Items.Add(new { Text = "Admin" });
-                roleComboBox.Enabled = true;
+                this.setUpRoleCmboBxForAdmin();
+            }
+        }
 
+        /// <summary>
+        /// Sets up the role combo box if the currently logged in user is a nurse
+        /// </summary>
+        private void setUpRoleCmboBxForNurse()
+        {
+            roleComboBox.Items.Add(new { Text = "Patient" });
+            roleComboBox.TabStop = false;
+            roleComboBox.TabIndex = 50;
+            roleComboBox.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        /// Closes this form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cancelBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        /// <summary>
+        /// Sets up the role combo box if the currently logged in user is an admin
+        /// </summary>
+        private void setUpRoleCmboBxForAdmin()
+        {
+            roleComboBox.Items.Add(new { Text = "Nurse" });
+            roleComboBox.Items.Add(new { Text = "Doctor" });
+            roleComboBox.Items.Add(new { Text = "Admin" });
+            roleComboBox.Enabled = true;
+
+            if (this.person != null)
+            {
                 if (this.person.IsDoctor)
                 {
                     roleComboBox.SelectedIndex = 1;
@@ -119,16 +148,10 @@ namespace ClinicManager.View
                     roleComboBox.SelectedIndex = -1;
                 }
             }
-        }
-
-        /// <summary>
-        /// Closes this form
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cancelBtn_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            else
+            {
+                roleComboBox.SelectedIndex = -1;
+            }
         }
 
         /// <summary>
@@ -256,6 +279,10 @@ namespace ClinicManager.View
             stateTxtBox.Text = "";
             zipTxtBox.Text = "";
             phoneTxtBox.Text = "";
+            if (!this.is_nurse)
+            {
+                roleComboBox.SelectedIndex = -1;
+            }
         }
     }
 }

@@ -71,11 +71,14 @@ namespace ClinicManager
         {
             if (addEditPersonForm == null)
             {
-                addEditPersonForm = new AddEditPerson(false);
-                addEditPersonForm.Person = null;
-                addEditPersonForm.MdiParent = this;
-                addEditPersonForm.FormClosed += new FormClosedEventHandler(addEditPersonForm_FormClosed);
-                addEditPersonForm.Show();
+                if (this.currentUserIsAdmin.HasValue)
+                {
+                    addEditPersonForm = new AddEditPerson(this.currentUserIsAdmin.Value);
+                    addEditPersonForm.Person = null;
+                    addEditPersonForm.MdiParent = this;
+                    addEditPersonForm.FormClosed += new FormClosedEventHandler(addEditPersonForm_FormClosed);
+                    addEditPersonForm.Show();
+                }
             }
             else
             {
