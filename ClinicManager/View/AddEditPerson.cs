@@ -305,5 +305,15 @@ namespace ClinicManager.View
                 MessageBox.Show(ex.Message, ex.GetType().ToString());
             }
         }
+
+        /// <summary>
+        /// Sets the person object with the given user credentials
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void addEditUserForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+        }
     }
 }

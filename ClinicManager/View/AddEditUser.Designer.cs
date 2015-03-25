@@ -32,10 +32,9 @@
             this.usrnameTxtBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.passwordTxtBox = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.confirmationTxtBox = new System.Windows.Forms.TextBox();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.okBtn = new System.Windows.Forms.Button();
+            this.errorLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label2
@@ -73,25 +72,6 @@
             this.passwordTxtBox.Tag = "Password";
             this.passwordTxtBox.UseSystemPasswordChar = true;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(37, 124);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(85, 16);
-            this.label4.TabIndex = 7;
-            this.label4.Tag = "Password Confirmation";
-            this.label4.Text = "Confirmation:";
-            // 
-            // confirmationTxtBox
-            // 
-            this.confirmationTxtBox.Location = new System.Drawing.Point(128, 121);
-            this.confirmationTxtBox.Name = "confirmationTxtBox";
-            this.confirmationTxtBox.Size = new System.Drawing.Size(206, 21);
-            this.confirmationTxtBox.TabIndex = 3;
-            this.confirmationTxtBox.Tag = "Password Confirmation";
-            this.confirmationTxtBox.UseSystemPasswordChar = true;
-            // 
             // cancelBtn
             // 
             this.cancelBtn.Location = new System.Drawing.Point(302, 180);
@@ -112,16 +92,25 @@
             this.okBtn.TabIndex = 4;
             this.okBtn.Text = "OK";
             this.okBtn.UseVisualStyleBackColor = true;
+            this.okBtn.Click += new System.EventHandler(this.okBtn_Click);
+            // 
+            // errorLbl
+            // 
+            this.errorLbl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.errorLbl.Location = new System.Drawing.Point(0, 0);
+            this.errorLbl.Name = "errorLbl";
+            this.errorLbl.Size = new System.Drawing.Size(389, 16);
+            this.errorLbl.TabIndex = 6;
+            this.errorLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // AddEditUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(389, 215);
+            this.Controls.Add(this.errorLbl);
             this.Controls.Add(this.okBtn);
             this.Controls.Add(this.cancelBtn);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.confirmationTxtBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.passwordTxtBox);
             this.Controls.Add(this.label2);
@@ -140,9 +129,8 @@
         private System.Windows.Forms.TextBox usrnameTxtBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox passwordTxtBox;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox confirmationTxtBox;
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.Button okBtn;
+        private System.Windows.Forms.Label errorLbl;
     }
 }
