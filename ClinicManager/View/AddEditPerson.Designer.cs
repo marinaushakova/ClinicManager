@@ -57,6 +57,7 @@
             this.cancelBtn = new System.Windows.Forms.Button();
             this.isMaleComboBox = new System.Windows.Forms.ComboBox();
             this.createUserBtn = new System.Windows.Forms.Button();
+            this.deleteBtn = new System.Windows.Forms.Button();
             addressLabel = new System.Windows.Forms.Label();
             cityLabel = new System.Windows.Forms.Label();
             dateOfBirthLabel = new System.Windows.Forms.Label();
@@ -320,7 +321,7 @@
             // 
             // okBtn
             // 
-            this.okBtn.Location = new System.Drawing.Point(275, 421);
+            this.okBtn.Location = new System.Drawing.Point(268, 420);
             this.okBtn.Margin = new System.Windows.Forms.Padding(13, 3, 13, 3);
             this.okBtn.Name = "okBtn";
             this.okBtn.Size = new System.Drawing.Size(89, 24);
@@ -331,7 +332,7 @@
             // 
             // cancelBtn
             // 
-            this.cancelBtn.Location = new System.Drawing.Point(380, 422);
+            this.cancelBtn.Location = new System.Drawing.Point(373, 421);
             this.cancelBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(89, 24);
@@ -362,11 +363,24 @@
             this.createUserBtn.Visible = false;
             this.createUserBtn.Click += new System.EventHandler(this.createUserBtn_Click);
             // 
+            // deleteBtn
+            // 
+            this.deleteBtn.Location = new System.Drawing.Point(373, 358);
+            this.deleteBtn.Margin = new System.Windows.Forms.Padding(13, 3, 13, 3);
+            this.deleteBtn.Name = "deleteBtn";
+            this.deleteBtn.Size = new System.Drawing.Size(89, 24);
+            this.deleteBtn.TabIndex = 37;
+            this.deleteBtn.Text = "Delete";
+            this.deleteBtn.UseVisualStyleBackColor = true;
+            this.deleteBtn.Visible = false;
+            this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
+            // 
             // AddEditPerson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(479, 455);
+            this.Controls.Add(this.deleteBtn);
             this.Controls.Add(this.createUserBtn);
             this.Controls.Add(this.isMaleComboBox);
             this.Controls.Add(this.cancelBtn);
@@ -425,5 +439,6 @@
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.ComboBox isMaleComboBox;
         private System.Windows.Forms.Button createUserBtn;
+        private System.Windows.Forms.Button deleteBtn;
     }
 }

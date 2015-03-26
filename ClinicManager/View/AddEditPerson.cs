@@ -49,6 +49,7 @@ namespace ClinicManager.View
             this.setUpGenderComboBox();
             this.setUpBinding();
             if (!this.is_nurse) createUserBtn.Visible = true;
+            if (!this.is_nurse && this.person != null) deleteBtn.Visible = true;
         }
 
         /// <summary>
@@ -165,8 +166,9 @@ namespace ClinicManager.View
         /// <param name="e"></param>
         private void okBtn_Click(object sender, EventArgs e)
         {
-            if (is_nurse) this.addPatient();
-            else this.addStaff();
+            this.addPatient();
+            //if (is_nurse) this.addPatient();
+            //else this.addStaff();
         }
 
         /// <summary>
@@ -189,6 +191,8 @@ namespace ClinicManager.View
         /// </summary>
         private void addPatient()
         {
+            string name = "patient";
+            if (!this.is_nurse) name = "staff member";
             if (!this.isValid()) return;
             try
             {
@@ -197,7 +201,7 @@ namespace ClinicManager.View
                     Person newPerson = new Person();
                     this.putPersonData(newPerson);
                     int id = personController.AddPerson(newPerson);
-                    MessageBox.Show("Patient successfully added", "Success");
+                    MessageBox.Show("Successfully added " + name, "Success");
                     this.resetInput();
                 }
                 else
@@ -206,13 +210,13 @@ namespace ClinicManager.View
                     bool result = personController.UpdatePerson(person);
                     if (!result)
                     {
-                        MessageBox.Show("Update patient failed.  Perhaps another user has updated or " +
-                                "deleted that patient?", "Database Error");
+                        MessageBox.Show("Update " + name + " failed.  Perhaps another user has updated or " +
+                                "deleted that " + name + "?", "Database Error");
 
                     }
                     else
                     {
-                        MessageBox.Show("Patient successully updated", "Success");
+                        MessageBox.Show("Successully updated " + name, "Success");
                         this.Close();
                     }
                 }
@@ -415,6 +419,23 @@ namespace ClinicManager.View
                 createUserBtn.Enabled = false;
             }
             else createUserBtn.Enabled = true;
+        }
+
+        /// <summary>
+        /// Handles the delete button click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void deleteBtn_Click(object sender, EventArgs e)
+        {
+            if (this.person != null)
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("There is no staff member to delete", "Deletion Error");
+            }
         }
     }
 }

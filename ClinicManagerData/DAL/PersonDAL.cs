@@ -321,5 +321,33 @@ namespace ClinicManagerData.DAL
             }
             return nurseList;
         }
+
+        /// <summary>
+        /// Deletes the staff member with the specified ID from the database
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        public static bool DeleteStaffMember(int ID)
+        {
+            string deleteStatment = "DELETE FROM person WHERE id = @id";
+            try
+            {
+                using (SqlConnection con = ClinicManagerDBConnection.GetConnection())
+                {
+                    con.Open();
+                    using (SqlCommand deleteCommand = new SqlCommand(deleteStatment, con))
+                    {
+                        deleteCommand.Parameters.AddWithValue("@id", ID);
+                        int count = deleteCommand.ExecuteNonQuery();
+                        if (count > 0) return true;
+                        else return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
