@@ -168,6 +168,10 @@ namespace ClinicManager.View
             if (!this.isValid()) return;
             try
             {
+                if (roleComboBox.SelectedIndex == 0 || roleComboBox.SelectedIndex == 2)
+                {
+                    if (!this.checkUser()) return;
+                }
                 if (person == null)
                 {
                     Person newPerson = new Person();
@@ -197,6 +201,21 @@ namespace ClinicManager.View
             {
                 MessageBox.Show(ex.Message, ex.GetType().ToString());
             }
+        }
+
+        /// <summary>
+        /// Checks if user credentials exist 
+        /// </summary>
+        /// <returns>True if the credentials exist, false otherwise</returns>
+        private bool checkUser()
+        {
+            if (user == null)
+            {
+                MessageBox.Show("Please create user credentials for this staff member", "Missing User Credentials");
+                createUserBtn.Focus();
+                return false;
+            }
+            return true;
         }
 
         /// <summary>
