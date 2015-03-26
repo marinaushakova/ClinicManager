@@ -70,5 +70,15 @@ namespace ClinicManager.Controller
         {
             return PersonDAL.GetAllStaffMembers(true);
         }
+
+        /// <summary>
+        /// Deletes a staff member from the DB
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns>True if deletion was sucessful, false otherwise</returns>
+        public bool DeleteStaffMember(int ID)
+        {
+            return PersonDAL.DeleteStaffMember(ID);
+        }
     }
 }

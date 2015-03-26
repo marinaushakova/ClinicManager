@@ -160,6 +160,40 @@ namespace ClinicManager.View
         }
 
         /// <summary>
+        /// Handles the delete button click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void deleteBtn_Click(object sender, EventArgs e)
+        {
+            if (this.person != null)
+            {
+                try
+                {
+                    bool result = personController.DeleteStaffMember(person.PersonID);
+                    if (result)
+                    {
+                        MessageBox.Show("Successfully deleted staff member.", "Success");
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Deletion failed.  Perhaps another user has updated or " +
+                                "deleted that staff member?", "Database Error");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, ex.GetType().ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("There is no staff member to delete", "Deletion Error");
+            }
+        }
+
+        /// <summary>
         /// Handles the OK button click
         /// </summary>
         /// <param name="sender"></param>
@@ -216,7 +250,7 @@ namespace ClinicManager.View
                     }
                     else
                     {
-                        MessageBox.Show("Successully updated " + name, "Success");
+                        MessageBox.Show("Successfully updated " + name, "Success");
                         this.Close();
                     }
                 }
@@ -419,23 +453,6 @@ namespace ClinicManager.View
                 createUserBtn.Enabled = false;
             }
             else createUserBtn.Enabled = true;
-        }
-
-        /// <summary>
-        /// Handles the delete button click
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void deleteBtn_Click(object sender, EventArgs e)
-        {
-            if (this.person != null)
-            {
-
-            }
-            else
-            {
-                MessageBox.Show("There is no staff member to delete", "Deletion Error");
-            }
         }
     }
 }

@@ -326,7 +326,7 @@ namespace ClinicManagerData.DAL
         /// Deletes the staff member with the specified ID from the database
         /// </summary>
         /// <param name="ID"></param>
-        /// <returns></returns>
+        /// <returns>True if deletion was sucessful, false otherwise</returns>
         public static bool DeleteStaffMember(int ID)
         {
             string deleteStatment = "DELETE FROM person WHERE id = @id";
