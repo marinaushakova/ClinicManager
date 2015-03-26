@@ -165,42 +165,8 @@ namespace ClinicManager.View
         /// <param name="e"></param>
         private void okBtn_Click(object sender, EventArgs e)
         {
-            if (!this.isValid()) return;
-            try
-            {
-                if (roleComboBox.SelectedIndex == 0 || roleComboBox.SelectedIndex == 2)
-                {
-                    if (!this.checkUser()) return;
-                }
-                if (person == null)
-                {
-                    Person newPerson = new Person();
-                    this.putPersonData(newPerson);
-                    int id = personController.AddPerson(newPerson);
-                    MessageBox.Show("Person successfully added", "Success");
-                    this.resetInput();
-                }
-                else
-                {
-                    this.putPersonData(person);
-                    bool result = personController.UpdatePerson(person);
-                    if (!result)
-                    {
-                        MessageBox.Show("Update person failed.  Perhaps another user has updated or " +
-                                "deleted that person?", "Database Error");
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("Person successully updated", "Success");
-                        this.Close();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, ex.GetType().ToString());
-            }
+            if (is_nurse) this.addPatient();
+            else this.addStaff();
         }
 
         /// <summary>
@@ -216,6 +182,88 @@ namespace ClinicManager.View
                 return false;
             }
             return true;
+        }
+
+        /// <summary>
+        /// Adds a patient to the database
+        /// </summary>
+        private void addPatient()
+        {
+            if (!this.isValid()) return;
+            try
+            {
+                if (person == null)
+                {
+                    Person newPerson = new Person();
+                    this.putPersonData(newPerson);
+                    int id = personController.AddPerson(newPerson);
+                    MessageBox.Show("Patient successfully added", "Success");
+                    this.resetInput();
+                }
+                else
+                {
+                    this.putPersonData(person);
+                    bool result = personController.UpdatePerson(person);
+                    if (!result)
+                    {
+                        MessageBox.Show("Update patient failed.  Perhaps another user has updated or " +
+                                "deleted that patient?", "Database Error");
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Patient successully updated", "Success");
+                        this.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
+        }
+
+        /// <summary>
+        /// Adds a staff member to the db
+        /// </summary>
+        private void addStaff()
+        {
+            if (!this.isValid()) return;
+            try
+            {
+                if (roleComboBox.SelectedIndex == 0 || roleComboBox.SelectedIndex == 2)
+                {
+                    if (!this.checkUser()) return;
+                }
+                if (person == null)
+                {
+                    //Person newPerson = new Person();
+                    //this.putPersonData(newPerson);
+                    //int id = personController.AddPerson(newPerson);
+                    //MessageBox.Show("Staff member successfully added", "Success");
+                    //this.resetInput();
+                }
+                else
+                {
+                    //this.putPersonData(person);
+                    //bool result = personController.UpdatePerson(person);
+                    //if (!result)
+                    //{
+                    //    MessageBox.Show("Update staff member failed.  Perhaps another user has updated or " +
+                    //            "deleted that staff member?", "Database Error");
+
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Staff successully updated", "Success");
+                    //    this.Close();
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
         }
 
         /// <summary>
