@@ -14,32 +14,26 @@ namespace ClinicManager.View
     public partial class AddEditUser : Form
     {
         private bool isAdmin;
-
-        private string username;
-        public string Username
-        {
-            get { return username; }
-            set { username = value; }
-        }
-
-        private string password;
-        public string Password
-        {
-            get { return password; }
-            set { password = value; }
-        }
-
-        private Person user;
-        public Person User
+        private bool createAdminUser;
+        private User user;
+        public User User
         {
             get { return user; }
             set { user = value; }
         }
 
-        public AddEditUser()
+        private Person person;
+        public Person Person
+        {
+            get { return person; }
+            set { person = value; }
+        }
+
+        public AddEditUser(bool createAdminUser)
         {
             InitializeComponent();
             isAdmin = true;
+            this.createAdminUser = createAdminUser;
         }
 
         /// <summary>
@@ -67,8 +61,10 @@ namespace ClinicManager.View
                 return;
             }
             errorLbl.Text = "";
-            this.username = usrnameTxtBox.Text;
-            this.password = passwordTxtBox.Text;
+            this.user = new User();
+            this.user.Username = usrnameTxtBox.Text;
+            this.user.Password = passwordTxtBox.Text;
+            this.user.Admin_privelege = this.createAdminUser;
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

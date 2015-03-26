@@ -323,8 +323,10 @@ namespace ClinicManager.View
             }
             try
             {
-                addEditUserForm = new AddEditUser();
-                addEditUserForm.User = this.person;
+                bool createAdminUser = true;
+                if (roleComboBox.SelectedIndex != 2) createAdminUser = false;
+                addEditUserForm = new AddEditUser(createAdminUser);
+                addEditUserForm.Person = this.person;
                 addEditUserForm.MdiParent = this.MdiParent;
                 addEditUserForm.FormClosed += new FormClosedEventHandler(addEditUserForm_FormClosed);
                 addEditUserForm.Show();
@@ -342,13 +344,11 @@ namespace ClinicManager.View
         /// <param name="e"></param>
         private void addEditUserForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (addEditUserForm.Username != null && addEditUserForm.Password != null)
+            if (addEditUserForm.User != null )
             {
                 if (addEditUserForm.DialogResult == DialogResult.OK)
                 {
-                    user = new User();
-                    user.Username = addEditUserForm.Username;
-                    user.Password = addEditUserForm.Password;
+                    user = addEditUserForm.User;
                 }
                 else user = null;
             }
