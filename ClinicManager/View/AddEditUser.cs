@@ -60,6 +60,7 @@ namespace ClinicManager.View
                 errorLbl.Text = "Username and password can't be empty";
                 return;
             }
+            if (!Validator.IsValidUserPsswd(usrnameTxtBox, passwordTxtBox)) return;
             errorLbl.Text = "";
             this.user = new User();
             this.user.Username = usrnameTxtBox.Text;
