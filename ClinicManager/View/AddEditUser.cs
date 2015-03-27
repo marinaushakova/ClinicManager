@@ -22,18 +22,24 @@ namespace ClinicManager.View
             set { user = value; }
         }
 
-        private Person person;
-        public Person Person
-        {
-            get { return person; }
-            set { person = value; }
-        }
-
         public AddEditUser(bool createAdminUser)
         {
             InitializeComponent();
             isAdmin = true;
             this.createAdminUser = createAdminUser;
+            this.setUpFormForAddOrEdit();
+        }
+
+        /// <summary>
+        /// Sets the titles and button as appropriate based on whether the action to be performed is an add or edit
+        /// </summary>
+        private void setUpFormForAddOrEdit()
+        {
+            if (this.user != null)
+            {
+                this.Text = "Edit User";
+                
+            }
         }
 
         /// <summary>

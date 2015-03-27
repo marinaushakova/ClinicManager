@@ -66,6 +66,7 @@ namespace ClinicManager.View
                 try
                 {
                     this.user = userController.GetUser(this.person.PersonID);
+                    if (this.user == null) createUserBtn.Text = "Add User Credentials";
                 }
                 catch (Exception)
                 {
@@ -424,7 +425,7 @@ namespace ClinicManager.View
                 bool createAdminUser = true;
                 if (roleComboBox.SelectedIndex != 2) createAdminUser = false;
                 addEditUserForm = new AddEditUser(createAdminUser);
-                addEditUserForm.Person = this.person;
+                addEditUserForm.User = this.user;
                 addEditUserForm.MdiParent = this.MdiParent;
                 addEditUserForm.FormClosed += new FormClosedEventHandler(addEditUserForm_FormClosed);
                 addEditUserForm.Show();
