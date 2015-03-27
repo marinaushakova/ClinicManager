@@ -356,9 +356,9 @@
             // 
             this.createUserBtn.Location = new System.Drawing.Point(13, 421);
             this.createUserBtn.Name = "createUserBtn";
-            this.createUserBtn.Size = new System.Drawing.Size(99, 23);
+            this.createUserBtn.Size = new System.Drawing.Size(168, 23);
             this.createUserBtn.TabIndex = 35;
-            this.createUserBtn.Text = "Add as User";
+            this.createUserBtn.Text = "Add User Credentials";
             this.createUserBtn.UseVisualStyleBackColor = true;
             this.createUserBtn.Visible = false;
             this.createUserBtn.Click += new System.EventHandler(this.createUserBtn_Click);

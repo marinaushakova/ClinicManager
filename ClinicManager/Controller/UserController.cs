@@ -23,5 +23,15 @@ namespace ClinicManager.Controller
         {
             return UserDAL.getUserType(username, password);
         }
+
+        /// <summary>
+        /// Gets the user with the given person ID
+        /// </summary>
+        /// <param name="personID">The person ID of the sought user</param>
+        /// <returns>The User object if it exists, null otherwise</returns>
+        public User GetUser(int personID)
+        {
+            return UserDAL.getUser(personID);
+        }
     }
 }

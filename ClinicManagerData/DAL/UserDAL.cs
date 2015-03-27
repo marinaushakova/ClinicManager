@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ClinicManagerData.Model;
+using System.Data;
 using System.Data.SqlClient;
 using ClinicManagerData.DB;
+using ClinicManagerData.Model;
 
 namespace ClinicManagerData.DAL
 {
@@ -15,6 +16,45 @@ namespace ClinicManagerData.DAL
     /// </summary>
     public class UserDAL
     {
+        /// <summary>
+        /// Gets the user object for the given personID
+        /// </summary>
+        /// <param name="personID">The person ID of the sought user</param>
+        /// <returns>The found user, else null</returns>
+        public static User getUser(int personID)
+        {
+            User user = new User();
+            string selectStatement = "SELECT * FROM [user] WHERE person_id = @personID";
+            try
+            {
+                using (SqlConnection con = ClinicManagerDBConnection.GetConnection())
+                {
+                    con.Open();
+                    using (SqlCommand selectCom = new SqlCommand(selectStatement, con))
+                    {
+                        selectCom.Parameters.AddWithValue("@personID", personID);
+                        using (SqlDataReader reader = selectCom.ExecuteReader(CommandBehavior.SingleRow))
+                        {
+                            if (reader.Read())
+                            {
+                                user.UserID = (int)reader["id"];
+                                user.PersonID = (int)reader["person_id"];
+                                user.Username = reader["username"].ToString();
+                                user.Password = reader["password"].ToString();
+                                user.Admin_privelege = (bool)reader["admin_privelege"];
+                            }
+                            else user = null;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return user;
+        }
+
         /// <summary>
         /// Returns 0 if username and password match a record in database and user is not admin,
         /// returns 1 if user is admin,

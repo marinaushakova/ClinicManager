@@ -32,8 +32,8 @@ namespace ClinicManagerData.Model
         /// </summary>
         public int PersonID
         {
-            get { return PersonID; }
-            set { PersonID = value; }
+            get { return personID; }
+            set { personID = value; }
         }
 
         /// <summary>

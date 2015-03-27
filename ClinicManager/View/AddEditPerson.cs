@@ -28,11 +28,13 @@ namespace ClinicManager.View
         private AddEditUser addEditUserForm;
 
         private PersonController personController;
+        private UserController userController;
 
         public AddEditPerson(bool isAdmin)
         {
             InitializeComponent();
             personController = new PersonController();
+            userController = new UserController();
             this.is_nurse = !isAdmin;
         }
 
@@ -48,8 +50,42 @@ namespace ClinicManager.View
             this.setUpRoleComboBox();
             this.setUpGenderComboBox();
             this.setUpBinding();
+            this.setUpButtons();
+            this.getUserIfPresent();
+        }
+
+        /// <summary>
+        /// If a person object is provided, the logged in user is an admin, and 
+        /// the person provided is not a doctor, this method gets the user object 
+        /// associated with the person from the db
+        /// </summary>
+        private void getUserIfPresent()
+        {
+            if (!this.is_nurse && this.person != null && !this.person.IsDoctor)
+            {
+                try
+                {
+                    this.user = userController.GetUser(this.person.PersonID);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Failed to load user credentials associated with this staff member", "Database Error");
+                    createUserBtn.Text = "Add User Credentials";
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sets up the button text and visibility depending on the user and whether they are editing or adding a person
+        /// </summary>
+        private void setUpButtons()
+        {
             if (!this.is_nurse) createUserBtn.Visible = true;
-            if (!this.is_nurse && this.person != null) deleteBtn.Visible = true;
+            if (!this.is_nurse && this.person != null)
+            {
+                deleteBtn.Visible = true;
+                createUserBtn.Text = "Edit User Credentials";
+            }
         }
 
         /// <summary>
@@ -96,14 +132,8 @@ namespace ClinicManager.View
         private void setUpRoleComboBox()
         {
             roleComboBox.DisplayMember = "Text";
-            if (this.is_nurse == true)
-            {
-                this.setUpRoleCmboBxForNurse();
-            }
-            else
-            {
-                this.setUpRoleCmboBxForAdmin();
-            }
+            if (this.is_nurse == true) this.setUpRoleCmboBxForNurse();
+            else this.setUpRoleCmboBxForAdmin();
         }
 
         /// <summary>
@@ -118,16 +148,6 @@ namespace ClinicManager.View
         }
 
         /// <summary>
-        /// Closes this form
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void cancelBtn_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        /// <summary>
         /// Sets up the role combo box if the currently logged in user is an admin
         /// </summary>
         private void setUpRoleCmboBxForAdmin()
@@ -139,19 +159,9 @@ namespace ClinicManager.View
 
             if (this.person != null)
             {
-                if (this.person.IsDoctor)
-                {
-                    roleComboBox.SelectedIndex = 1;
-                }
-                else if (this.person.IsNurse)
-                {
-                    roleComboBox.SelectedIndex = 0;
-                }
-                else
-                {
-                    // TODO: no way to tell if the person is an admin?
-                    roleComboBox.SelectedIndex = -1;
-                }
+                if (this.person.IsDoctor) roleComboBox.SelectedIndex = 1;
+                else if (this.person.IsNurse) roleComboBox.SelectedIndex = 0;
+                else roleComboBox.SelectedIndex = -1;
             }
             else
             {
@@ -212,7 +222,7 @@ namespace ClinicManager.View
         {
             if (user == null)
             {
-                MessageBox.Show("Please create user credentials for this staff member", "Missing User Credentials");
+                MessageBox.Show("Please add user credentials for this staff member", "Missing User Credentials");
                 createUserBtn.Focus();
                 return false;
             }
@@ -455,6 +465,16 @@ namespace ClinicManager.View
                 createUserBtn.Enabled = false;
             }
             else createUserBtn.Enabled = true;
+        }
+
+        /// <summary>
+        /// Closes this form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cancelBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
