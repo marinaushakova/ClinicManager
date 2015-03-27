@@ -200,9 +200,8 @@ namespace ClinicManager.View
         /// <param name="e"></param>
         private void okBtn_Click(object sender, EventArgs e)
         {
-            this.addPatient();
-            //if (is_nurse) this.addPatient();
-            //else this.addStaff();
+            if (is_nurse) this.addPatient();
+            else this.addStaff();
         }
 
         /// <summary>
@@ -275,27 +274,30 @@ namespace ClinicManager.View
                 }
                 if (person == null)
                 {
-                    //Person newPerson = new Person();
-                    //this.putPersonData(newPerson);
-                    //int id = personController.AddPerson(newPerson);
-                    //MessageBox.Show("Staff member successfully added", "Success");
-                    //this.resetInput();
+                    Person newPerson = new Person();
+                    this.putPersonData(newPerson);
+                    int id;
+                    if (roleComboBox.SelectedIndex == 1) id = personController.AddPerson(newPerson);
+                    else id = personController.AddUserStaffMember(newPerson, user);
+
+                    MessageBox.Show("Staff member successfully added", "Success");
+                    this.resetInput();
                 }
                 else
                 {
-                    //this.putPersonData(person);
-                    //bool result = personController.UpdatePerson(person);
-                    //if (!result)
-                    //{
-                    //    MessageBox.Show("Update staff member failed.  Perhaps another user has updated or " +
-                    //            "deleted that staff member?", "Database Error");
+                    this.putPersonData(person);
+                    bool result = personController.UpdatePerson(person);
+                    if (!result)
+                    {
+                        MessageBox.Show("Update staff member failed.  Perhaps another user has updated or " +
+                                "deleted that staff member?", "Database Error");
 
-                    //}
-                    //else
-                    //{
-                    //    MessageBox.Show("Staff successully updated", "Success");
-                    //    this.Close();
-                    //}
+                    }
+                    else
+                    {
+                        MessageBox.Show("Staff successully updated", "Success");
+                        this.Close();
+                    }
                 }
             }
             catch (Exception ex)

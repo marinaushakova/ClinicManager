@@ -72,7 +72,12 @@ namespace ClinicManagerData.DAL
             }
         }
 
-        private static string HashData(string data)
+        /// <summary>
+        /// Hashes the given data
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static string HashData(string data)
         {
             SHA256 hasher = SHA256Managed.Create();
             byte[] hashedData = hasher.ComputeHash(Encoding.Unicode.GetBytes(data));
@@ -85,7 +90,13 @@ namespace ClinicManagerData.DAL
             return sb.ToString();
         }
 
-        private static string HashLogin(string userName, string password)
+        /// <summary>
+        /// Hashes the user login credentials
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public static string HashLogin(string userName, string password)
         {
             return HashData(String.Format("{0}{1}", userName.Substring(0, 4), password));
         }
