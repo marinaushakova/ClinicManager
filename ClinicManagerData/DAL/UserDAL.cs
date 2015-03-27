@@ -41,7 +41,6 @@ namespace ClinicManagerData.DAL
                                 user.PersonID = (int)reader["person_id"];
                                 user.Username = reader["username"].ToString();
                                 user.Password = reader["password"].ToString();
-                                user.Admin_privelege = (bool)reader["admin_privelege"];
                             }
                             else user = null;
                         }
@@ -58,7 +57,7 @@ namespace ClinicManagerData.DAL
         /// <summary>
         /// Returns 0 if username and password match a record in database and user is not admin,
         /// returns 1 if user is admin,
-        /// returns -1 if user doesn't exits
+        /// returns -1 if user doesn't exits or is neither nurese nor admin
         /// </summary>
         /// <param name="username">user's username</param>
         /// <param name="password">user's password</param>
@@ -67,7 +66,8 @@ namespace ClinicManagerData.DAL
         {
             string hashedPassword = HashLogin(username, password);
 
-            string selectStatement = "SELECT * FROM [user] WHERE username = @username AND password = @password";
+            string selectStatement = "SELECT p.is_admin as is_admin, p.is_nurse as is_nurse " +
+                                        "FROM [user] u JOIN [person] p ON u.person_id = p.id WHERE username = @username AND password = @password";
 
             try
             {
@@ -84,13 +84,17 @@ namespace ClinicManagerData.DAL
                         {
                             if (reader.Read())
                             {
-                                if ((bool)reader["admin_privelege"])
+                                if ((bool)reader["is_admin"])
                                 {
                                     return 1;
                                 }
-                                else
+                                else if ((bool)reader["is_nurse"])
                                 {
                                     return 0;
+                                }
+                                else
+                                {
+                                    return -1;
                                 }
                                 
                             }

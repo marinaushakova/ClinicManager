@@ -114,9 +114,9 @@ namespace ClinicManagerData.DAL
         {
             string insertStatement =
                 "INSERT INTO person (ssn, fname, minit, lname, birth_date, is_male, " +
-                "street_address, city, state, zip, phone, is_nurse, is_doctor) " +
+                "street_address, city, state, zip, phone, is_patient, is_nurse, is_doctor, is_admin) " +
                 "VALUES (@ssn, @fname, @minit, @lname, @birth_date, @is_male, " +
-                "@street_address, @city, @state, @zip, @phone, @is_nurse, @is_doctor)";
+                "@street_address, @city, @state, @zip, @phone, @is_patient, @is_nurse, @is_doctor, @is_admin)";
             try
             {
                 using (SqlConnection con = ClinicManagerDBConnection.GetConnection())
@@ -135,8 +135,10 @@ namespace ClinicManagerData.DAL
                         insertCommand.Parameters.AddWithValue("@state", person.State);
                         insertCommand.Parameters.AddWithValue("@zip", person.Zip);
                         insertCommand.Parameters.AddWithValue("@phone", person.Phone);
+                        insertCommand.Parameters.AddWithValue("@is_patient", person.IsPatient);
                         insertCommand.Parameters.AddWithValue("@is_nurse", person.IsNurse);
                         insertCommand.Parameters.AddWithValue("@is_doctor", person.IsDoctor);
+                        insertCommand.Parameters.AddWithValue("@is_admin", person.IsAdmin);
 
                         insertCommand.ExecuteNonQuery();
 
@@ -164,12 +166,12 @@ namespace ClinicManagerData.DAL
         {
             string personInsertStatement =
                 "INSERT INTO person (ssn, fname, minit, lname, birth_date, is_male, " +
-                "street_address, city, state, zip, phone, is_nurse, is_doctor) " +
+                "street_address, city, state, zip, phone, is_patient, is_nurse, is_doctor, is_admin) " +
                 "VALUES (@ssn, @fname, @minit, @lname, @birth_date, @is_male, " +
-                "@street_address, @city, @state, @zip, @phone, @is_nurse, @is_doctor)";
+                "@street_address, @city, @state, @zip, @phone, @is_patient, @is_nurse, @is_doctor, @is_admin)";
             string userInsertStatment =
-                "INSERT INTO [user] (person_id, username, password, admin_privelege)" +
-                "VALUES (@person_id, @username, @password, @admin_privelege)";
+                "INSERT INTO [user] (person_id, username, password)" +
+                "VALUES (@person_id, @username, @password)";
 
             SqlConnection con;
             try
@@ -197,8 +199,10 @@ namespace ClinicManagerData.DAL
             insPersonCom.Parameters.AddWithValue("@state", person.State);
             insPersonCom.Parameters.AddWithValue("@zip", person.Zip);
             insPersonCom.Parameters.AddWithValue("@phone", person.Phone);
+            insPersonCom.Parameters.AddWithValue("@is_patient", person.IsPatient);
             insPersonCom.Parameters.AddWithValue("@is_nurse", person.IsNurse);
             insPersonCom.Parameters.AddWithValue("@is_doctor", person.IsDoctor);
+            insPersonCom.Parameters.AddWithValue("@is_admin", person.IsAdmin);
 
             SqlCommand insUserCom = new SqlCommand();
             insUserCom.Connection = con;
@@ -227,7 +231,6 @@ namespace ClinicManagerData.DAL
                         insUserCom.Parameters.AddWithValue("@person_id", personID);
                         insUserCom.Parameters.AddWithValue("@username", user.Username);
                         insUserCom.Parameters.AddWithValue("@password", hashedPassword);
-                        insUserCom.Parameters.AddWithValue("@admin_privelege", person.IsAdmin);
                         count = insUserCom.ExecuteNonQuery();
                         if (count > 0)
                         {
@@ -273,7 +276,8 @@ namespace ClinicManagerData.DAL
             string updateStatement =
                 "UPDATE person SET ssn = @ssn, fname = @fname, minit = @minit, lname = @lname, " +
                 "birth_date = @birth_date, is_male = @is_male, street_address = @street_address, " +
-                "city = @city, state = @state, zip = @zip, phone = @phone, is_nurse = @is_nurse, is_doctor = @is_doctor " +
+                "city = @city, state = @state, zip = @zip, phone = @phone, is_patient = @is_patient, " +
+                "is_nurse = @is_nurse, is_doctor = @is_doctor, is_admin = @is_admin " +
                 "WHERE id = @id AND timestamp = @timestamp";
             try
             {
@@ -294,8 +298,10 @@ namespace ClinicManagerData.DAL
                         updateCommand.Parameters.AddWithValue("@state", person.State);
                         updateCommand.Parameters.AddWithValue("@zip", person.Zip);
                         updateCommand.Parameters.AddWithValue("@phone", person.Phone);
+                        updateCommand.Parameters.AddWithValue("@is_patient", person.IsPatient);
                         updateCommand.Parameters.AddWithValue("@is_nurse", person.IsNurse);
                         updateCommand.Parameters.AddWithValue("@is_doctor", person.IsDoctor);
+                        updateCommand.Parameters.AddWithValue("@is_admin", person.IsAdmin);
                         updateCommand.Parameters.AddWithValue("@timestamp", Convert.FromBase64String(person.Timestamp));
 
                         int count = updateCommand.ExecuteNonQuery();
@@ -320,7 +326,7 @@ namespace ClinicManagerData.DAL
             Person person = new Person();
             string selectStatment = 
                 "SELECT id, ssn, fname, minit, lname, birth_date, is_male, street_address, " + 
-                "city, state, zip, phone, is_nurse, is_doctor, timestamp " + 
+                "city, state, zip, phone, is_patient, is_nurse, is_doctor, is_admin, timestamp " + 
                 "FROM person WHERE id = @id";
             try
             {
@@ -345,8 +351,10 @@ namespace ClinicManagerData.DAL
                                 person.City = reader["city"].ToString();
                                 person.State = reader["state"].ToString();
                                 person.Zip = reader["zip"].ToString();
+                                person.IsPatient = (bool)reader["is_patient"];
                                 person.IsNurse = (bool)reader["is_nurse"];
                                 person.IsDoctor = (bool)reader["is_doctor"];
+                                person.IsAdmin = (bool)reader["is_admin"];
                                 person.Phone = reader["phone"].ToString();
                                 person.Timestamp = Convert.ToBase64String(reader["timestamp"] as byte[]);
                             }
@@ -379,7 +387,7 @@ namespace ClinicManagerData.DAL
             List<Person> nurseList = new List<Person>();
             string selectStatment =
                 "SELECT id, ssn, fname, minit, lname, birth_date, is_male, street_address, " +
-                "city, state, zip, phone, is_nurse, is_doctor, timestamp " +
+                "city, state, zip, phone, is_patient, is_nurse, is_doctor, is_admin, timestamp " +
                 "FROM person WHERE ";
             if (is_doctor)
             {
@@ -414,8 +422,10 @@ namespace ClinicManagerData.DAL
                                 person.City = reader["city"].ToString();
                                 person.State = reader["state"].ToString();
                                 person.Zip = reader["zip"].ToString();
+                                person.IsPatient = (bool)reader["is_patient"];
                                 person.IsNurse = (bool)reader["is_nurse"];
                                 person.IsDoctor = (bool)reader["is_doctor"];
+                                person.IsAdmin = (bool)reader["is_admin"];
                                 person.Phone = reader["phone"].ToString();
                                 person.Timestamp = Convert.ToBase64String(reader["timestamp"] as byte[]);
                                 nurseList.Add(person);

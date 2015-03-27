@@ -23,6 +23,7 @@ namespace ClinicManagerData.Model
         private string state;
         private string zip;
         private string phone;
+        private bool is_patient = true;
         private bool is_nurse = false;
         private bool is_doctor = false;
         private bool is_admin = false;
@@ -125,6 +126,15 @@ namespace ClinicManagerData.Model
         {
             get { return phone; }
             set { phone = value; }
+        }
+
+        /// <summary>
+        /// Get/set the patient status
+        /// </summary>
+        public bool IsPatient
+        {
+            get { return is_patient; }
+            set { is_patient = value; }
         }
 
         /// <summary>
