@@ -30,11 +30,12 @@
         {
             this.label2 = new System.Windows.Forms.Label();
             this.usrnameTxtBox = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.passwordLbl = new System.Windows.Forms.Label();
             this.passwordTxtBox = new System.Windows.Forms.TextBox();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.okBtn = new System.Windows.Forms.Button();
             this.errorLbl = new System.Windows.Forms.Label();
+            this.newPasswordLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label2
@@ -54,14 +55,15 @@
             this.usrnameTxtBox.TabIndex = 1;
             this.usrnameTxtBox.Tag = "Username";
             // 
-            // label3
+            // passwordLbl
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(51, 97);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 16);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Password:";
+            this.passwordLbl.AutoSize = true;
+            this.passwordLbl.Location = new System.Drawing.Point(51, 95);
+            this.passwordLbl.Name = "passwordLbl";
+            this.passwordLbl.Size = new System.Drawing.Size(71, 16);
+            this.passwordLbl.TabIndex = 5;
+            this.passwordLbl.Text = "Password:";
+            this.passwordLbl.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // passwordTxtBox
             // 
@@ -103,21 +105,34 @@
             this.errorLbl.TabIndex = 6;
             this.errorLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // newPasswordLbl
+            // 
+            this.newPasswordLbl.AutoSize = true;
+            this.newPasswordLbl.Location = new System.Drawing.Point(21, 95);
+            this.newPasswordLbl.Name = "newPasswordLbl";
+            this.newPasswordLbl.Size = new System.Drawing.Size(101, 16);
+            this.newPasswordLbl.TabIndex = 7;
+            this.newPasswordLbl.Text = "New Password:";
+            this.newPasswordLbl.Visible = false;
+            // 
             // AddEditUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(389, 215);
+            this.Controls.Add(this.newPasswordLbl);
             this.Controls.Add(this.errorLbl);
             this.Controls.Add(this.okBtn);
             this.Controls.Add(this.cancelBtn);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.passwordLbl);
             this.Controls.Add(this.passwordTxtBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.usrnameTxtBox);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "AddEditUser";
             this.Text = "Add User";
+            this.Load += new System.EventHandler(this.AddEditUser_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -127,10 +142,11 @@
 
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox usrnameTxtBox;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label passwordLbl;
         private System.Windows.Forms.TextBox passwordTxtBox;
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.Button okBtn;
         private System.Windows.Forms.Label errorLbl;
+        private System.Windows.Forms.Label newPasswordLbl;
     }
 }

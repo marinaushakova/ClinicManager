@@ -27,19 +27,6 @@ namespace ClinicManager.View
             InitializeComponent();
             isAdmin = true;
             this.createAdminUser = createAdminUser;
-            this.setUpFormForAddOrEdit();
-        }
-
-        /// <summary>
-        /// Sets the titles and button as appropriate based on whether the action to be performed is an add or edit
-        /// </summary>
-        private void setUpFormForAddOrEdit()
-        {
-            if (this.user != null)
-            {
-                this.Text = "Edit User";
-                
-            }
         }
 
         /// <summary>
@@ -74,6 +61,31 @@ namespace ClinicManager.View
             this.user.Admin_privelege = this.createAdminUser;
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        /// <summary>
+        /// Performs the form set up on load
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddEditUser_Load(object sender, EventArgs e)
+        {
+            this.setUpFormForAddOrEdit();
+        }
+
+
+        /// <summary>
+        /// Sets the titles and labels as appropriate based on whether the action to be performed is an add or edit
+        /// </summary>
+        private void setUpFormForAddOrEdit()
+        {
+            if (this.user != null)
+            {
+                this.Text = "Edit User";
+                usrnameTxtBox.Text = user.Username;
+                passwordLbl.Visible = false;
+                newPasswordLbl.Visible = true;
+            }
         }
     }
 }

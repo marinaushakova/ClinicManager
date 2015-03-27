@@ -279,12 +279,12 @@ namespace ClinicManager.View
             if (!this.isValid()) return;
             try
             {
-                if (roleComboBox.SelectedIndex == 0 || roleComboBox.SelectedIndex == 2)
-                {
-                    if (!this.checkUser()) return;
-                }
                 if (person == null)
                 {
+                    if (roleComboBox.SelectedIndex == 0 || roleComboBox.SelectedIndex == 2)
+                    {
+                        if (!this.checkUser()) return;
+                    }
                     Person newPerson = new Person();
                     this.putPersonData(newPerson);
                     int id;
