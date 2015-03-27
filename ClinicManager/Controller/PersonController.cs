@@ -43,6 +43,17 @@ namespace ClinicManager.Controller
         }
 
         /// <summary>
+        /// Adds the passed in person to the db and creates user credentials for them from the given user object
+        /// </summary>
+        /// <param name="person">The person to add to the DB</param>
+        /// <param name="user">The user credential to create for the new person</param>
+        /// <returns></returns>
+        public int AddUserStaffMember(Person person, User user)
+        {
+            return PersonDAL.AddUserStaffMember(person, user);
+        }
+
+        /// <summary>
         /// Updates the DB person row with the id matching the id given in the person param to the other values
         /// given in the person param. 
         /// </summary>
@@ -69,6 +80,16 @@ namespace ClinicManager.Controller
         public List<Person> GetAllDoctors()
         {
             return PersonDAL.GetAllStaffMembers(true);
+        }
+
+        /// <summary>
+        /// Deletes a staff member from the DB
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns>True if deletion was sucessful, false otherwise</returns>
+        public bool DeleteStaffMember(int ID)
+        {
+            return PersonDAL.DeleteStaffMember(ID);
         }
     }
 }

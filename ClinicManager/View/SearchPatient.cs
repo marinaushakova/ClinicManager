@@ -31,6 +31,11 @@ namespace ClinicManager.View
             personController = new PersonController();
             selectedPerson = null;
             this.isAdmin = isAdmin;
+            if (this.isAdmin)
+            {
+                this.Text = "Search Staff";
+                btnEdit.Text = "Edit Staff";
+            }
         }
 
         private void chkDOB_CheckStateChanged(object sender, EventArgs e)
@@ -119,6 +124,7 @@ namespace ClinicManager.View
                     AddEditPerson addEditPersonForm = new AddEditPerson(isAdmin);
                     addEditPersonForm.Person = personToEdit;
                     addEditPersonForm.MdiParent = this.MdiParent;
+                    addEditPersonForm.FormClosed += new FormClosedEventHandler(addEditPersonForm_FormClosed);
                     addEditPersonForm.Show();
                 }
             }
@@ -174,6 +180,20 @@ namespace ClinicManager.View
             {
                 btnEdit_Click(sender, e);
             }
+        }
+
+        /// <summary>
+        /// Clears the search form when the add edit form closes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void addEditPersonForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            lvPatients.Items.Clear();
+            txtFirstName.Clear();
+            txtLastName.Clear();
+            chkDOB.Checked = false;
+            datDOB.ResetText();
         }
     }
 }

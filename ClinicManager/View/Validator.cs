@@ -177,5 +177,27 @@ namespace ClinicManager.View
                 return false;
             }
         }
+
+
+        /// <summary>
+        /// Checks that the given username and password are at least 4 characters each
+        /// </summary>
+        /// <returns>true if valid false otherwise</returns>
+        public static bool IsValidUserPsswd(TextBox userBox, TextBox psswdBox)
+        {
+            if (userBox.Text.Length < 4)
+            {
+                MessageBox.Show(userBox.Tag + " must be at least 4 characters", TITLE);
+                userBox.Focus();
+                return false;
+            }
+            if (psswdBox.Text.Length < 4)
+            {
+                MessageBox.Show(psswdBox.Tag + " must be at least 4 characters", TITLE);
+                psswdBox.Focus();
+                return false;
+            }
+            return true;
+        }
     }
 }

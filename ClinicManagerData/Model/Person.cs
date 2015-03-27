@@ -25,6 +25,7 @@ namespace ClinicManagerData.Model
         private string phone;
         private bool is_nurse = false;
         private bool is_doctor = false;
+        private bool is_admin = false;
         private string timestamp;
 
         /// <summary>
@@ -142,6 +143,15 @@ namespace ClinicManagerData.Model
         {
             get { return is_doctor; }
             set { is_doctor = value; }
+        }
+
+        /// <summary>
+        /// Get/set the admin status
+        /// </summary>
+        public bool IsAdmin
+        {
+            get { return is_admin; }
+            set { is_admin = value; }
         }
 
         public int PersonID
