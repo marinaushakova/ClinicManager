@@ -153,6 +153,17 @@ namespace ClinicManagerData.DAL
                     }
                 }
             }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 547)
+                {
+                    throw new TestIntegrityException();
+                }
+                else
+                {
+                    throw ex;
+                }
+            }
             catch (Exception ex)
             {
                 throw ex;

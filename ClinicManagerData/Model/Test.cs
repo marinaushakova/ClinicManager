@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace ClinicManagerData.Model
 {
+    public class TestIntegrityException : Exception { };
+
     /// <summary>
     /// Test model
     /// </summary>

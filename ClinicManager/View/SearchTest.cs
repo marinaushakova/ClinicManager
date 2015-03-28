@@ -117,6 +117,10 @@ namespace ClinicManager.View
                         MessageBox.Show("Test could not be deleted.\nPerhaps another user modified or deleted the test?", "Database Error");
                     }
                 }
+                catch (TestIntegrityException)
+                {
+                    MessageBox.Show("Test could not be deleted.\nTest is in use as an ordered test on a vist!", "Database Error");
+                }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, ex.GetType().ToString());
