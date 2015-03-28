@@ -211,8 +211,8 @@ namespace ClinicManager.View
         /// <param name="e"></param>
         private void okBtn_Click(object sender, EventArgs e)
         {
-            if (is_nurse) this.addPatient();
-            else this.addStaff();
+            if (is_nurse) this.addEditPatient();
+            else this.addEditStaff();
         }
 
         /// <summary>
@@ -231,9 +231,9 @@ namespace ClinicManager.View
         }
 
         /// <summary>
-        /// Adds a patient to the database
+        /// Adds a patient to the database or edits a patient
         /// </summary>
-        private void addPatient()
+        private void addEditPatient()
         {
             string name = "patient";
             if (!this.is_nurse) name = "staff member";
@@ -272,9 +272,9 @@ namespace ClinicManager.View
         }
 
         /// <summary>
-        /// Adds a staff member to the db
+        /// Adds a staff member to the db or edits a staff member
         /// </summary>
-        private void addStaff()
+        private void addEditStaff()
         {
             if (!this.isValid()) return;
             try
