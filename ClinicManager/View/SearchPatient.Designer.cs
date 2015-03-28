@@ -161,7 +161,7 @@
             // columnHeader7
             // 
             this.columnHeader7.Text = "Address";
-            this.columnHeader7.Width = 318;
+            this.columnHeader7.Width = 208;
             // 
             // columnHeader8
             // 

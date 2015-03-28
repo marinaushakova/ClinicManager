@@ -92,6 +92,12 @@
     <Compile Include="View\SearchPatient.Designer.cs">
       <DependentUpon>SearchPatient.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\SearchTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SearchTest.Designer.cs">
+      <DependentUpon>SearchTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Validator.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -122,6 +128,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\SearchPatient.resx">
       <DependentUpon>SearchPatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\SearchTest.resx">
+      <DependentUpon>SearchTest.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\ClinicManagerData.Model.OrderedTest.datasource" />
     <None Include="Properties\DataSources\ClinicManagerData.Model.Person.datasource" />

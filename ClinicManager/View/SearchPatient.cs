@@ -38,11 +38,21 @@ namespace ClinicManager.View
             }
         }
 
+        /// <summary>
+        /// Handles the state change event on the date of birth checkbox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void chkDOB_CheckStateChanged(object sender, EventArgs e)
         {
             datDOB.Enabled = chkDOB.Checked;
         }
 
+        /// <summary>
+        /// Handles the click event on the search button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
             try
@@ -81,6 +91,11 @@ namespace ClinicManager.View
             }
         }
 
+        /// <summary>
+        /// Handles the click event on the close button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();

@@ -24,5 +24,15 @@ namespace ClinicManager.Controller
         {
             return TestDAL.AddTest(test);
         }
+
+        /// <summary>
+        /// Gets tests that match name
+        /// </summary>
+        /// <param name="name">The test name to search for</param>
+        /// <returns>List of matching tests</returns>
+        public List<Test> GetTests(String name)
+        {
+            return TestDAL.GetTests(name);
+        }
     }
 }
