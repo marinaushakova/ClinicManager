@@ -73,6 +73,7 @@
             this.columnHeader1,
             this.columnHeader2});
             this.lvTests.Location = new System.Drawing.Point(29, 79);
+            this.lvTests.MultiSelect = false;
             this.lvTests.Name = "lvTests";
             this.lvTests.Size = new System.Drawing.Size(749, 252);
             this.lvTests.TabIndex = 15;

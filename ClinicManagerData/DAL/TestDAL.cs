@@ -127,5 +127,36 @@ namespace ClinicManagerData.DAL
                 throw ex;
             }
         }
+
+        /// <summary>
+        /// Deletes a test in the DB
+        /// </summary>
+        /// <param name="test">The test object to delete</param>
+        /// <returns>True if delete successful, false otherwise</returns>
+        public static bool DeleteTest(Test test)
+        {
+            string updateStatement =
+                "DELETE FROM test WHERE id = @id AND timestamp = @timestamp";
+            try
+            {
+                using (SqlConnection con = ClinicManagerDBConnection.GetConnection())
+                {
+                    con.Open();
+                    using (SqlCommand updateCommand = new SqlCommand(updateStatement, con))
+                    {
+                        updateCommand.Parameters.AddWithValue("@id", test.TestID);
+                        updateCommand.Parameters.AddWithValue("@timestamp", Convert.FromBase64String(test.Timestamp));
+
+                        int count = updateCommand.ExecuteNonQuery();
+                        if (count > 0) return true;
+                        else return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

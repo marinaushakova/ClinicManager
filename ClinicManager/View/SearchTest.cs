@@ -98,7 +98,30 @@ namespace ClinicManager.View
         /// <param name="e"></param>
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            if (lvTests.SelectedItems.Count < 1)
+            {
+                MessageBox.Show("Please select a test to delete.", "No Test Selected");
+            }
+            else
+            {
+                try
+                {
+                    int index = lvTests.SelectedItems[0].Index;
+                    if (testController.DeleteTest(tests[index]))
+                    {
+                        MessageBox.Show("Test deleted", "Success");
+                        btnSearch_Click(sender, e);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Test could not be deleted.\nPerhaps another user modified or deleted the test?", "Database Error");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, ex.GetType().ToString());
+                }
+            }
         }
 
         /// <summary>

@@ -28,11 +28,21 @@ namespace ClinicManager.Controller
         /// <summary>
         /// Updates the passed in test to the DB
         /// </summary>
-        /// <param name="test">The test to add to the DB</param>
-        /// <returns>The id of the created test</returns>
+        /// <param name="test">The test to update in the DB</param>
+        /// <returns>The test to update</returns>
         public bool UpdateTest(Test test)
         {
             return TestDAL.UpdateTest(test);
+        }
+
+        /// <summary>
+        /// Deletes the passed in test to the DB
+        /// </summary>
+        /// <param name="test">The test to delete to the DB</param>
+        /// <returns>The test to delete</returns>
+        public bool DeleteTest(Test test)
+        {
+            return TestDAL.DeleteTest(test);
         }
 
         /// <summary>
