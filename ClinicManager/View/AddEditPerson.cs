@@ -162,7 +162,7 @@ namespace ClinicManager.View
             {
                 if (this.person.IsDoctor) roleComboBox.SelectedIndex = 1;
                 else if (this.person.IsNurse) roleComboBox.SelectedIndex = 0;
-                else roleComboBox.SelectedIndex = -1;
+                else if (this.person.IsAdmin) roleComboBox.SelectedIndex = 2;
             }
             else
             {
@@ -337,7 +337,6 @@ namespace ClinicManager.View
             }
             else if (roleComboBox.Text == "Admin" )
             {
-                // TODO: Need a way to handle admin?
                 thePerson.IsAdmin = true;
                 thePerson.IsDoctor = false;
                 thePerson.IsNurse = false;
