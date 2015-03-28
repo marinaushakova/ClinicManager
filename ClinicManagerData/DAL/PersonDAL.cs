@@ -19,12 +19,12 @@ namespace ClinicManagerData.DAL
         /// Get summary of persons containing only name, ssn, street address, city and phone
         /// </summary>
         /// <returns>List of persons</returns>
-        public static List<Person> GetPersonSummary(string firstName, string lastName, DateTime? dateOfBirth)
+        public static List<Person> GetPersonSummary(bool isPatient, string firstName, string lastName, DateTime? dateOfBirth)
         {
             List<Person> retval = new List<Person>();
             string selectStatement =
                 "SELECT id, ssn, fname, minit, lname, birth_date, is_male, street_address, phone, timestamp " +
-                "FROM person ";
+                "FROM person WHERE is_patient = @IsPatient";
             List<string> whereClauses = new List<string>();
             if (!String.IsNullOrEmpty(firstName))
             {
@@ -38,18 +38,10 @@ namespace ClinicManagerData.DAL
             {
                 whereClauses.Add("birth_date = @DateOfBirth");
             }
-            int count = 0;
             foreach (string val in whereClauses)
             {
-                if (count == 0)
-                {
-                    selectStatement += "WHERE ";
-                }
+                selectStatement += " AND ";
                 selectStatement += val;
-                if (++count != whereClauses.Count)
-                {
-                    selectStatement += " AND ";
-                }
             }
             selectStatement += " ORDER BY lname ";
 
@@ -61,6 +53,7 @@ namespace ClinicManagerData.DAL
 
                     using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
                     {
+                        selectCommand.Parameters.AddWithValue("@IsPatient", isPatient);
                         if (!String.IsNullOrEmpty(firstName))
                         {
                             selectCommand.Parameters.AddWithValue("@FirstName", firstName);

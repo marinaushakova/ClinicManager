@@ -14,12 +14,16 @@ namespace ClinicManager.Controller
     class PersonController
     {
         /// <summary>
-        /// Get all customers
+        /// Get all persons specified by the query
         /// </summary>
-        /// <returns>List of customers</returns>
-        public List<Person> GetPersonSummary(string firstName, string lastName, DateTime? dateOfBirth)
+        /// <param name="isPatient">Signals whether the sought persons are patients</param>
+        /// <param name="firstName">The first name of the sought person(s)</param>
+        /// <param name="lastName">The last name of the sought person(s)</param>
+        /// <param name="dateOfBirth">The DOB of the sought person(s)</param>
+        /// <returns>The list of persons matching the params</returns>
+        public List<Person> GetPersonSummary(bool isPatient, string firstName, string lastName, DateTime? dateOfBirth)
         {
-            return PersonDAL.GetPersonSummary(firstName, lastName, dateOfBirth);
+            return PersonDAL.GetPersonSummary(isPatient, firstName, lastName, dateOfBirth);
         }
 
         /// <summary>
