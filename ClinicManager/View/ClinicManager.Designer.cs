@@ -50,6 +50,7 @@
             this.visitReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -178,8 +179,9 @@
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editToolStripMenuItem,
             this.searchTestToolStripMenuItem,
-            this.editToolStripMenuItem});
+            this.addTestToolStripMenuItem});
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
             this.testToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
             this.testToolStripMenuItem.Text = "Test";
@@ -187,14 +189,15 @@
             // searchTestToolStripMenuItem
             // 
             this.searchTestToolStripMenuItem.Name = "searchTestToolStripMenuItem";
-            this.searchTestToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
-            this.searchTestToolStripMenuItem.Text = "Search";
+            this.searchTestToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.searchTestToolStripMenuItem.Text = "Search Test";
+            this.searchTestToolStripMenuItem.Click += new System.EventHandler(this.searchTestToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
-            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editToolStripMenuItem.Text = "Edit Test";
             // 
             // reportToolStripMenuItem
             // 
@@ -224,6 +227,13 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // addTestToolStripMenuItem
+            // 
+            this.addTestToolStripMenuItem.Name = "addTestToolStripMenuItem";
+            this.addTestToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addTestToolStripMenuItem.Text = "Add Test";
+            this.addTestToolStripMenuItem.Click += new System.EventHandler(this.addTestToolStripMenuItem_Click);
             // 
             // ClinicManagerMain
             // 
@@ -269,6 +279,7 @@
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loginToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addTestToolStripMenuItem;
     }
 }
 
