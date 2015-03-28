@@ -74,7 +74,7 @@
             this.columnHeader2});
             this.lvTests.Location = new System.Drawing.Point(29, 79);
             this.lvTests.Name = "lvTests";
-            this.lvTests.Size = new System.Drawing.Size(438, 252);
+            this.lvTests.Size = new System.Drawing.Size(749, 252);
             this.lvTests.TabIndex = 15;
             this.lvTests.UseCompatibleStateImageBehavior = false;
             this.lvTests.View = System.Windows.Forms.View.Details;
@@ -82,16 +82,16 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Name";
-            this.columnHeader1.Width = 109;
+            this.columnHeader1.Width = 100;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Description";
-            this.columnHeader2.Width = 324;
+            this.columnHeader2.Width = 645;
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(186, 344);
+            this.btnEdit.Location = new System.Drawing.Point(497, 344);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(89, 27);
             this.btnEdit.TabIndex = 17;
@@ -101,7 +101,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(378, 344);
+            this.btnClose.Location = new System.Drawing.Point(689, 344);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(89, 27);
             this.btnClose.TabIndex = 16;
@@ -111,7 +111,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(283, 344);
+            this.btnDelete.Location = new System.Drawing.Point(594, 344);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(89, 27);
             this.btnDelete.TabIndex = 18;
@@ -123,7 +123,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(508, 383);
+            this.ClientSize = new System.Drawing.Size(815, 383);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnClose);

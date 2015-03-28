@@ -13,7 +13,6 @@ namespace ClinicManager.View
 {
     public partial class AddEditUser : Form
     {
-        private bool isAdmin;
         private bool createAdminUser;
         private User user;
         public User User
@@ -25,7 +24,6 @@ namespace ClinicManager.View
         public AddEditUser(bool createAdminUser)
         {
             InitializeComponent();
-            isAdmin = true;
             this.createAdminUser = createAdminUser;
         }
 
