@@ -26,6 +26,16 @@ namespace ClinicManager.Controller
         }
 
         /// <summary>
+        /// Updates the passed in test to the DB
+        /// </summary>
+        /// <param name="test">The test to add to the DB</param>
+        /// <returns>The id of the created test</returns>
+        public bool UpdateTest(Test test)
+        {
+            return TestDAL.UpdateTest(test);
+        }
+
+        /// <summary>
         /// Gets tests that match name
         /// </summary>
         /// <param name="name">The test name to search for</param>

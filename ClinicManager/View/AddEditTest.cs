@@ -14,13 +14,36 @@ namespace ClinicManager.View
 {
     public partial class AddEditTest : Form
     {
-        Test test;
-        TestController testController;
+        private Test test;
+
+        public Test Test
+        {
+            get { return test; }
+            set { test = value; }
+        }
+
+        private TestController testController;
 
         public AddEditTest()
         {
             InitializeComponent();
             testController = new TestController();
+        }
+
+        /// <summary>
+        /// Loads the form. Sets the form title, combo box defaults, and binding 
+        /// based on the values of the public instance variables.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddEditTest_Load(object sender, EventArgs e)
+        {
+            if (test != null)
+            {
+                txtName.Text = test.Name;
+                txtDescription.Text = test.Description;
+                this.Text = "Edit Test";
+            }
         }
 
         /// <summary>
@@ -47,6 +70,7 @@ namespace ClinicManager.View
         {
             txtName.Text = "";
             txtDescription.Text = "";
+            test = null;
         }
 
         /// <summary>
@@ -59,13 +83,33 @@ namespace ClinicManager.View
             if (this.isValid())
             {
                 try {
-                    test = new Test();
-                    test.Name = txtName.Text;
-                    test.Description = txtDescription.Text;
-                    testController.AddTest(test);
-                    MessageBox.Show("Test member successfully added", "Success");
-                    this.resetInput();
-                    return;
+                    if (test == null)
+                    {
+                        //Create new test
+                        test = new Test();
+                        test.Name = txtName.Text;
+                        test.Description = txtDescription.Text;
+                        testController.AddTest(test);
+                        MessageBox.Show("Test member successfully added", "Success");
+                        this.resetInput();
+                        return;
+                    }
+                    else
+                    {
+                        //Update test
+                        test.Name = txtName.Text;
+                        test.Description = txtDescription.Text;
+                        if (testController.UpdateTest(test))
+                        {
+                            MessageBox.Show("Test member successfully updated", "Success");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Update failed.  Perhaps another user has updated or " +
+                                "deleted that test?", "Database Error");
+                        }
+                        this.Close();
+                    }
                 }
                 catch (Exception ex)
                 {

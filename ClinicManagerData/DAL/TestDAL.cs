@@ -76,6 +76,8 @@ namespace ClinicManagerData.DAL
                                 Test test = new Test();
                                 test.Name = reader["name"].ToString();
                                 test.Description = reader["description"].ToString();
+                                test.TestID = (int)reader["id"];
+                                test.Timestamp = Convert.ToBase64String(reader["timestamp"] as byte[]);
                                 retval.Add(test);
                             }
                         }
@@ -91,6 +93,39 @@ namespace ClinicManagerData.DAL
                 throw ex;
             }
             return retval;
+        }
+
+        /// <summary>
+        /// Updates a test in the DB
+        /// </summary>
+        /// <param name="test">The test object with the altered data and the original test ID</param>
+        /// <returns>True if update successful, false otherwise</returns>
+        public static bool UpdateTest(Test test)
+        {
+            string updateStatement =
+                "UPDATE test SET name = @name, description = @description WHERE id = @id AND timestamp = @timestamp";
+            try
+            {
+                using (SqlConnection con = ClinicManagerDBConnection.GetConnection())
+                {
+                    con.Open();
+                    using (SqlCommand updateCommand = new SqlCommand(updateStatement, con))
+                    {
+                        updateCommand.Parameters.AddWithValue("@id", test.TestID);
+                        updateCommand.Parameters.AddWithValue("@name", test.Name);
+                        updateCommand.Parameters.AddWithValue("@description", test.Description);
+                        updateCommand.Parameters.AddWithValue("@timestamp", Convert.FromBase64String(test.Timestamp));
+
+                        int count = updateCommand.ExecuteNonQuery();
+                        if (count > 0) return true;
+                        else return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

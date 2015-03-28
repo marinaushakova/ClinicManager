@@ -78,6 +78,7 @@
             this.lvTests.TabIndex = 15;
             this.lvTests.UseCompatibleStateImageBehavior = false;
             this.lvTests.View = System.Windows.Forms.View.Details;
+            this.lvTests.ItemActivate += new System.EventHandler(this.lvTests_ItemActivate);
             // 
             // columnHeader1
             // 

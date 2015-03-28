@@ -11,8 +11,16 @@ namespace ClinicManagerData.Model
     /// </summary>
     public class Test
     {
+        private int testID = 0;
         private string name;
         private string description;
+        private string timestamp;
+
+        public string Timestamp
+        {
+            get { return timestamp; }
+            set { timestamp = value; }
+        }
 
         public string Name
         {
@@ -24,6 +32,12 @@ namespace ClinicManagerData.Model
         {
             get { return description; }
             set { description = value; }
+        }
+
+        public int TestID
+        {
+            get { return testID; }
+            set { testID = value; }
         }
     }
 }

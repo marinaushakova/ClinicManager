@@ -185,6 +185,11 @@ namespace ClinicManager.View
             }
         }
 
+        /// <summary>
+        /// Handles user activating item in list view
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void lvPatients_ItemActivate(object sender, EventArgs e)
         {
             if (btnOK.Visible)

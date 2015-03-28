@@ -109,6 +109,7 @@
             this.Name = "AddEditTest";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Test";
+            this.Load += new System.EventHandler(this.AddEditTest_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
