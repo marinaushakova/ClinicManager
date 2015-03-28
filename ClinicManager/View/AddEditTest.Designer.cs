@@ -62,6 +62,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(322, 20);
             this.txtName.TabIndex = 2;
+            this.txtName.Tag = "Name";
             // 
             // txtDescription
             // 
@@ -70,6 +71,7 @@
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(373, 213);
             this.txtDescription.TabIndex = 3;
+            this.txtDescription.Tag = "Description";
             // 
             // btnOk
             // 

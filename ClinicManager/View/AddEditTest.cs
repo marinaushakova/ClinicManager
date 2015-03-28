@@ -17,13 +17,59 @@ namespace ClinicManager.View
             InitializeComponent();
         }
 
-        private void btnOk_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Checks whether all required input is present/valid and any optional input is valid
+        /// </summary>
+        /// <returns>true if all required input is present/valid and any optional input is valid, false otherwise</returns>
+        private bool isValid()
         {
-
+            List<Control> requiredControls = new List<Control>();
+            requiredControls.Add(txtName);
+            requiredControls.Add(txtDescription);
+            foreach (Control current in requiredControls)
+            {
+                bool result = Validator.IsPresent(current);
+                if (result == false) return false;
+            }
+            return true;
         }
 
         /// <summary>
-        /// Closes this form
+        /// Resets the form controls
+        /// </summary>
+        private void resetInput()
+        {
+            txtName.Text = "";
+            txtDescription.Text = "";
+        }
+
+        /// <summary>
+        /// Event handler for OK button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            if (this.isValid())
+            {
+                try {
+                    MessageBox.Show("Staff member successfully added", "Success");
+                    this.resetInput();
+                    return;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, ex.GetType().ToString());
+                }
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        /// <summary>
+        /// Event handler for cancel button
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
