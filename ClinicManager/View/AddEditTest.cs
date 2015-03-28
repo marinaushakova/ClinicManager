@@ -7,14 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClinicManagerData.Model;
+using ClinicManager.Controller;
 
 namespace ClinicManager.View
 {
     public partial class AddEditTest : Form
     {
+        Test test;
+        TestController testController;
+
         public AddEditTest()
         {
             InitializeComponent();
+            testController = new TestController();
         }
 
         /// <summary>
@@ -53,7 +59,11 @@ namespace ClinicManager.View
             if (this.isValid())
             {
                 try {
-                    MessageBox.Show("Staff member successfully added", "Success");
+                    test = new Test();
+                    test.Name = txtName.Text;
+                    test.Description = txtDescription.Text;
+                    testController.AddTest(test);
+                    MessageBox.Show("Test member successfully added", "Success");
                     this.resetInput();
                     return;
                 }
