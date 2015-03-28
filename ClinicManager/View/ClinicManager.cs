@@ -17,6 +17,7 @@ namespace ClinicManager
         SearchPatient searchPatientForm;
         AddEditPerson addEditPersonForm;
         AddEditVisit addEditVisitForm;
+        AddEditTest addEditTestForm;
         Login loginForm;
         private PersonController personController;
         private UserController userController;
@@ -242,11 +243,54 @@ namespace ClinicManager
             addEditVisitForm = null;
         }
 
+        /// <summary>
+        /// Show about box 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Clinic Manager version 1.0", "About");
         }
 
+        /// <summary>
+        /// Handle search test menu event 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void searchTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        /// <summary>
+        /// Handle add test menu event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void addTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (addEditTestForm == null)
+            {
+                addEditTestForm = new AddEditTest();
+                addEditTestForm.MdiParent = this;
+                addEditTestForm.FormClosed += new FormClosedEventHandler(addEditTestForm_FormClosed);
+                addEditTestForm.Show();
+            }
+            else
+            {
+                addEditTestForm.Activate();
+            }
+        }
+
+        /// <summary>
+        /// Sets the addEditTest form to null after its closed event fires. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void addEditTestForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            addEditTestForm = null;
+        }
     }
 }
