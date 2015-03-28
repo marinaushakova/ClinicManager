@@ -206,6 +206,8 @@ namespace ClinicManagerData.DAL
             identCom.Connection = con;
             identCom.CommandText = "SELECT IDENT_CURRENT('person') FROM person";
 
+            bool success = false;
+            int personID;
             try
             {
                 con.Open();
@@ -215,38 +217,39 @@ namespace ClinicManagerData.DAL
                 identCom.Transaction = createStaffUserTran;
 
                 int count = insPersonCom.ExecuteNonQuery();
-                if (count > 0)
-                {
+                //if (count > 0)
+                //{
                     
-                    int personID = Convert.ToInt32(identCom.ExecuteScalar());
-                    if (personID > 0)
-                    {
+                    personID = Convert.ToInt32(identCom.ExecuteScalar());
+                    //if (personID > 0)
+                    //{
                         insUserCom.Parameters.AddWithValue("@person_id", personID);
                         insUserCom.Parameters.AddWithValue("@username", user.Username);
                         insUserCom.Parameters.AddWithValue("@password", hashedPassword);
                         count = insUserCom.ExecuteNonQuery();
-                        if (count > 0)
-                        {
-                            createStaffUserTran.Commit();
-                            return personID;
-                        }
-                        else
-                        {
-                            createStaffUserTran.Rollback();
-                            return -1;
-                        }
-                    }
-                    else
-                    {
-                        createStaffUserTran.Rollback();
-                        return -1;
-                    }
-                }
-                else
-                {
-                    createStaffUserTran.Rollback();
-                    return -1;
-                }
+                        success = true;
+                        //if (count > 0)
+                        //{
+                        //    createStaffUserTran.Commit();
+                        //    return personID;
+                        //}
+                        //else
+                        //{
+                        //    createStaffUserTran.Rollback();
+                        //    return -1;
+                        //}
+                    //}
+                    //else
+                    //{
+                    //    createStaffUserTran.Rollback();
+                    //    return -1;
+                    //}
+                //}
+                //else
+                //{
+                //    createStaffUserTran.Rollback();
+                //    return -1;
+                //}
             }
             catch (Exception ex)
             {
@@ -256,6 +259,16 @@ namespace ClinicManagerData.DAL
             finally
             {
                 con.Close();
+            }
+            if (success)
+            {
+                createStaffUserTran.Commit();
+                return personID;
+            }
+            else
+            {
+                if (createStaffUserTran != null) createStaffUserTran.Rollback();
+                return -1;
             }
         }
 
@@ -307,6 +320,17 @@ namespace ClinicManagerData.DAL
             {
                 throw ex;
             }
+        }
+
+        /// <summary>
+        /// Updates the person and user entry for a given staff member or just one if one is null
+        /// </summary>
+        /// <param name="person">The person object holding the data to update the person entry of the person with</param>
+        /// <param name="user">The user object holding the data to update the user entry of the user with</param>
+        /// <returns>True if successful, false otherwise</returns>
+        public static bool UpdateStaffMember(Person person, User user)
+        {
+            return false;
         }
 
         /// <summary>
