@@ -23,5 +23,17 @@ namespace ClinicManager.Controller
         {
             return VisitDAL.AddVisitRecord(theVisit);
         }
+
+        /// <summary>
+        /// Get all visits specified by patient
+        /// </summary>
+        /// <param name="firstName">The first name of the sought person(s)</param>
+        /// <param name="lastName">The last name of the sought person(s)</param>
+        /// <param name="dateOfBirth">The DOB of the sought person(s)</param>
+        /// <returns>The list of visits matching the params</returns>
+        public List<VisitSummary> GetVisitSummary(string firstName, string lastName, DateTime? dateOfBirth)
+        {
+            return VisitDAL.GetVisitSummary(firstName, lastName, dateOfBirth);
+        }
     }
 }

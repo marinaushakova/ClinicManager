@@ -38,44 +38,46 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.lvPatients = new System.Windows.Forms.ListView();
+            this.lvVisits = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // btnSearch
             // 
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Location = new System.Drawing.Point(472, 132);
+            this.btnSearch.Location = new System.Drawing.Point(450, 120);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(108, 28);
             this.btnSearch.TabIndex = 17;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // chkDOB
             // 
             this.chkDOB.AutoSize = true;
             this.chkDOB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkDOB.Location = new System.Drawing.Point(36, 135);
+            this.chkDOB.Location = new System.Drawing.Point(20, 123);
             this.chkDOB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkDOB.Name = "chkDOB";
             this.chkDOB.Size = new System.Drawing.Size(102, 20);
             this.chkDOB.TabIndex = 16;
             this.chkDOB.Text = "Date of Birth:";
             this.chkDOB.UseVisualStyleBackColor = true;
+            this.chkDOB.CheckStateChanged += new System.EventHandler(this.chkDOB_CheckStateChanged);
             // 
             // datDOB
             // 
             this.datDOB.CustomFormat = "";
             this.datDOB.Enabled = false;
             this.datDOB.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.datDOB.Location = new System.Drawing.Point(216, 132);
+            this.datDOB.Location = new System.Drawing.Point(194, 120);
             this.datDOB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.datDOB.Name = "datDOB";
             this.datDOB.Size = new System.Drawing.Size(219, 22);
@@ -84,7 +86,7 @@
             // 
             // txtLastName
             // 
-            this.txtLastName.Location = new System.Drawing.Point(216, 82);
+            this.txtLastName.Location = new System.Drawing.Point(194, 70);
             this.txtLastName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(219, 22);
@@ -92,7 +94,7 @@
             // 
             // txtFirstName
             // 
-            this.txtFirstName.Location = new System.Drawing.Point(216, 30);
+            this.txtFirstName.Location = new System.Drawing.Point(194, 18);
             this.txtFirstName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(219, 22);
@@ -102,7 +104,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(60, 86);
+            this.label2.Location = new System.Drawing.Point(38, 74);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 16);
@@ -113,7 +115,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(60, 30);
+            this.label1.Location = new System.Drawing.Point(38, 18);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 16);
@@ -141,7 +143,7 @@
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(119, 33);
             this.btnEdit.TabIndex = 20;
-            this.btnEdit.Text = "Edit Patient";
+            this.btnEdit.Text = "Edit Visit";
             this.btnEdit.UseVisualStyleBackColor = true;
             // 
             // btnClose
@@ -155,58 +157,54 @@
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             // 
-            // lvPatients
+            // lvVisits
             // 
-            this.lvPatients.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvVisits.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
             this.columnHeader5,
-            this.columnHeader9,
-            this.columnHeader10,
-            this.columnHeader11,
-            this.columnHeader12});
-            this.lvPatients.FullRowSelect = true;
-            this.lvPatients.Location = new System.Drawing.Point(50, 181);
-            this.lvPatients.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.lvPatients.MultiSelect = false;
-            this.lvPatients.Name = "lvPatients";
-            this.lvPatients.Size = new System.Drawing.Size(946, 270);
-            this.lvPatients.TabIndex = 18;
-            this.lvPatients.UseCompatibleStateImageBehavior = false;
-            this.lvPatients.View = System.Windows.Forms.View.Details;
+            this.columnHeader6});
+            this.lvVisits.FullRowSelect = true;
+            this.lvVisits.Location = new System.Drawing.Point(41, 173);
+            this.lvVisits.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lvVisits.MultiSelect = false;
+            this.lvVisits.Name = "lvVisits";
+            this.lvVisits.Size = new System.Drawing.Size(946, 270);
+            this.lvVisits.TabIndex = 18;
+            this.lvVisits.UseCompatibleStateImageBehavior = false;
+            this.lvVisits.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
-            this.columnHeader1.DisplayIndex = 1;
-            this.columnHeader1.Text = "Patient";
-            this.columnHeader1.Width = 134;
+            this.columnHeader1.Text = "Visit Date";
+            this.columnHeader1.Width = 90;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Patient";
+            this.columnHeader2.Width = 135;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Patient DOB";
+            this.columnHeader3.Width = 90;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Nurse";
+            this.columnHeader4.Width = 135;
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "Date of Birth";
-            this.columnHeader5.Width = 113;
+            this.columnHeader5.Text = "Doctor";
+            this.columnHeader5.Width = 135;
             // 
-            // columnHeader9
+            // columnHeader6
             // 
-            this.columnHeader9.DisplayIndex = 3;
-            this.columnHeader9.Text = "Nurse";
-            this.columnHeader9.Width = 84;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.DisplayIndex = 6;
-            this.columnHeader10.Text = "Doctor";
-            this.columnHeader10.Width = 88;
-            // 
-            // columnHeader11
-            // 
-            this.columnHeader11.DisplayIndex = 0;
-            this.columnHeader11.Text = "Date of Visit";
-            this.columnHeader11.Width = 95;
-            // 
-            // columnHeader12
-            // 
-            this.columnHeader12.Text = "Final Diagnosis";
-            this.columnHeader12.Width = 331;
+            this.columnHeader6.Text = "Final Diagnosis";
+            this.columnHeader6.Width = 357;
             // 
             // SearchVisit
             // 
@@ -216,7 +214,7 @@
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.lvPatients);
+            this.Controls.Add(this.lvVisits);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.chkDOB);
             this.Controls.Add(this.datDOB);
@@ -247,12 +245,12 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.ListView lvPatients;
+        private System.Windows.Forms.ListView lvVisits;
         private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
-        private System.Windows.Forms.ColumnHeader columnHeader11;
-        private System.Windows.Forms.ColumnHeader columnHeader12;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
     }
 }

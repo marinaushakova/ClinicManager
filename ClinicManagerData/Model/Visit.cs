@@ -140,6 +140,7 @@ namespace ClinicManagerData.Model
     {
         private int visitID = 0;
         DateTime date;
+        DateTime dateOfBirth;
         private string patientFName;
         private string patientMInit;
         private string patientLName;
@@ -161,6 +162,12 @@ namespace ClinicManagerData.Model
         {
           get { return date; }
           set { date = value; }
+        }
+
+        public DateTime DateOfBirth
+        {
+            get { return dateOfBirth; }
+            set { dateOfBirth = value; }
         }
 
         public string PatientFName
@@ -231,7 +238,7 @@ namespace ClinicManagerData.Model
         public string GetPatientName()
         {
             string fullName = "";
-            fullName = patientLName + ", " + patientLName;
+            fullName = patientLName + ", " + patientFName;
             if (!String.IsNullOrEmpty(patientMInit))
             {
                 fullName += " " + patientMInit + ".";
@@ -246,7 +253,7 @@ namespace ClinicManagerData.Model
         public string GetNurseName()
         {
             string fullName = "";
-            fullName = nurseLName + ", " + nurseLName;
+            fullName = nurseLName + ", " + nurseFName;
             if (!String.IsNullOrEmpty(nurseMInit))
             {
                 fullName += " " + nurseMInit + ".";
@@ -261,7 +268,7 @@ namespace ClinicManagerData.Model
         public string GetDoctorName()
         {
             string fullName = "";
-            fullName = doctorLName + ", " + doctorLName;
+            fullName = doctorLName + ", " + doctorFName;
             if (!String.IsNullOrEmpty(doctorMInit))
             {
                 fullName += " " + doctorMInit + ".";
