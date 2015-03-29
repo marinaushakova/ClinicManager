@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 using System.Data.SqlClient;
 using ClinicManagerData.Model;
 using ClinicManagerData.DB;
@@ -156,6 +157,57 @@ namespace ClinicManagerData.DAL
                 throw ex;
             }
             return retval;
+        }
+
+        /// <summary>
+        /// Gets a visit from the db by their id
+        /// </summary>
+        /// <param name="id">The id of the visit to be retrieved</param>
+        /// <returns>The visit with the passed in id, null otherwise</returns>
+        public static Visit GetVisitById(int id)
+        {
+            Visit visit = new Visit();
+            string selectStatment =
+                "SELECT * " +
+                "FROM visit WHERE id = @id";
+            try
+            {
+                using (SqlConnection con = ClinicManagerDBConnection.GetConnection())
+                {
+                    con.Open();
+                    using (SqlCommand selectCommand = new SqlCommand(selectStatment, con))
+                    {
+                        selectCommand.Parameters.AddWithValue("@id", id);
+                        using (SqlDataReader reader = selectCommand.ExecuteReader(CommandBehavior.SingleRow))
+                        {
+                            if (reader.Read())
+                            {
+                                visit.VisitID = (int)reader["id"];
+                                visit.Date = (DateTime)reader["date"];
+                                visit.PatientID = (int)reader["patient_id"];
+                                visit.PatientID = (int)reader["nurse_id"];
+                                visit.PatientID = (int)reader["doctor_id"];
+                                visit.BloodPressure = reader["blood_pressure"].ToString();
+                                visit.Temperature = (double)(decimal)reader["temperature"];
+                                visit.PulseRate = (int)reader["pulse_rate"];
+                                visit.Symptoms = reader["symptoms"].ToString();
+                                visit.InitialDiagnosis = reader["initial_diagnosis"].ToString();
+                                visit.FinalDiagnosis = reader["final_diagnosis"].ToString();
+                                visit.Timestamp = Convert.ToBase64String(reader["timestamp"] as byte[]);
+                            }
+                            else
+                            {
+                                visit = null;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return visit;
         }
     }
 }

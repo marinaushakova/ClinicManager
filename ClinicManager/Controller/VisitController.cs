@@ -35,5 +35,15 @@ namespace ClinicManager.Controller
         {
             return VisitDAL.GetVisitSummary(firstName, lastName, dateOfBirth);
         }
+
+        /// <summary>
+        /// Gets the visit with the passed in ID
+        /// </summary>
+        /// <param name="id">The ID of the visit being retrieved from the DB</param>
+        /// <returns>The visit object with the given ID else null</returns>
+        public Visit GetVisitById(int id)
+        {
+            return VisitDAL.GetVisitById(id);
+        }
     }
 }

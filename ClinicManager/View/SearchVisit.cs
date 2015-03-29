@@ -70,5 +70,87 @@ namespace ClinicManager.View
                 MessageBox.Show(ex.Message, ex.GetType().ToString());
             }
         }
+
+        /// <summary>
+        /// Handles the click event on the edit button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (lvVisits.SelectedItems.Count < 1)
+            {
+                MessageBox.Show("Please select a visit to edit.", "No Visit Selected");
+            }
+            else
+            {
+                int index = lvVisits.SelectedItems[0].Index;
+                int id = visits[index].VisitID;
+                this.setUpEditFormWithID(id);
+            }
+        }
+
+        /// <summary>
+        /// Sets up the edit person form populating it with the person who corresponds with the passed in id
+        /// </summary>
+        /// <param name="id">The ID of the person to be edited</param>
+        private void setUpEditFormWithID(int id)
+        {
+            Visit visitToEdit;
+            try
+            {
+                visitToEdit = visitController.GetVisitById(id);
+                if (visitToEdit == null)
+                {
+                    MessageBox.Show("No visit found", "No Visit Found");
+                }
+                else
+                {
+                    AddEditVisit addEditVisitForm = new AddEditVisit();
+                    addEditVisitForm.Visit = visitToEdit;
+                    addEditVisitForm.MdiParent = this.MdiParent;
+                    addEditVisitForm.FormClosed += new FormClosedEventHandler(addEditVisitForm_FormClosed);
+                    addEditVisitForm.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
+        }
+
+        /// <summary>
+        /// Clears the search form when the add edit form closes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void addEditVisitForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            lvVisits.Items.Clear();
+            txtFirstName.Clear();
+            txtLastName.Clear();
+            chkDOB.Checked = false;
+            datDOB.ResetText();
+        }
+
+        /// <summary>
+        /// Handles the click event on the close button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        /// <summary>
+        /// Handles user activating item in list view
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lvVisits_ItemActivate(object sender, EventArgs e)
+        {
+            btnEdit_Click(sender, e);
+        }
     }
 }
