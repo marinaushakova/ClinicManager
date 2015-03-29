@@ -51,6 +51,7 @@ namespace ClinicManager.View
                 setUpTitle();
                 setUpDoctorCombobox();
                 setUpNurseCombobox();
+                setUpForm();
                 lblVisitDate.Text = DateTime.Now.ToShortDateString();
             }
             catch (Exception ex)
@@ -59,6 +60,21 @@ namespace ClinicManager.View
             }
             
 
+        }
+
+        /// <summary>
+        /// Fills in form data
+        /// </summary>
+        private void setUpForm()
+        {
+            if (this.visit == null)
+            {
+                lblVisitDate.Text = DateTime.Now.ToShortDateString();
+            }
+            else
+            {
+                //TODO Load Form with data from Visit
+            }
         }
 
         /// <summary>
