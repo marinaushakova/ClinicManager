@@ -18,14 +18,26 @@ namespace ClinicManagerData.DAL
         /// <summary>
         /// Get summary of persons containing only name, ssn, street address, city and phone
         /// </summary>
+        /// <param name="isAdmin">Indicates whether the user performing the search is a nurse or admin</param>
+        /// <param name="firstName">The first name of the person to find</param>
+        /// <param name="lastName">The last name of the person to find</param>
+        /// <param name="dateOfBirth">The birth date of the person to find</param>
         /// <returns>List of persons</returns>
-        public static List<Person> GetPersonSummary(bool isPatient, string firstName, string lastName, DateTime? dateOfBirth)
+        public static List<Person> GetPersonSummary(bool isAdmin, string firstName, string lastName, DateTime? dateOfBirth)
         {
             List<Person> retval = new List<Person>();
             string selectStatement =
                 "SELECT id, ssn, fname, minit, lname, birth_date, is_male, street_address, phone, timestamp " +
-                "FROM person WHERE is_patient = @IsPatient";
+                "FROM person WHERE ";
             List<string> whereClauses = new List<string>();
+            if (isAdmin)
+            {
+                selectStatement += "(is_nurse = 'true' OR is_doctor = 'true' OR is_admin = 'true') ";
+            }
+            else
+            {
+                selectStatement += "is_patient = 'true'";
+            }
             if (!String.IsNullOrEmpty(firstName))
             {
                 whereClauses.Add("fname = @FirstName");
@@ -53,7 +65,6 @@ namespace ClinicManagerData.DAL
 
                     using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
                     {
-                        selectCommand.Parameters.AddWithValue("@IsPatient", isPatient);
                         if (!String.IsNullOrEmpty(firstName))
                         {
                             selectCommand.Parameters.AddWithValue("@FirstName", firstName);

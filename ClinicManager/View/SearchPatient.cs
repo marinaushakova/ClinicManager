@@ -57,14 +57,12 @@ namespace ClinicManager.View
         {
             try
             {
-                bool isPatient = true;
-                if (isAdmin) isPatient = false;
                 DateTime? dateOfBirth = null;
                 if (chkDOB.Checked)
                 {
                     dateOfBirth = datDOB.Value;
                 }
-                persons = personController.GetPersonSummary(isPatient, txtFirstName.Text, txtLastName.Text, dateOfBirth);
+                persons = personController.GetPersonSummary(isAdmin, txtFirstName.Text, txtLastName.Text, dateOfBirth);
                 lvPatients.Items.Clear();
                 if (persons.Count > 0)
                 {
