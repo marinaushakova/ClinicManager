@@ -206,7 +206,6 @@ namespace ClinicManagerData.DAL
             identCom.Connection = con;
             identCom.CommandText = "SELECT IDENT_CURRENT('person') FROM person";
 
-            bool success = false;
             int personID;
             try
             {
@@ -217,39 +216,15 @@ namespace ClinicManagerData.DAL
                 identCom.Transaction = createStaffUserTran;
 
                 int count = insPersonCom.ExecuteNonQuery();
-                //if (count > 0)
-                //{
                     
                     personID = Convert.ToInt32(identCom.ExecuteScalar());
-                    //if (personID > 0)
-                    //{
+
                         insUserCom.Parameters.AddWithValue("@person_id", personID);
                         insUserCom.Parameters.AddWithValue("@username", user.Username);
                         insUserCom.Parameters.AddWithValue("@password", hashedPassword);
                         count = insUserCom.ExecuteNonQuery();
-                        success = true;
-                        //if (count > 0)
-                        //{
-                        //    createStaffUserTran.Commit();
-                        //    return personID;
-                        //}
-                        //else
-                        //{
-                        //    createStaffUserTran.Rollback();
-                        //    return -1;
-                        //}
-                    //}
-                    //else
-                    //{
-                    //    createStaffUserTran.Rollback();
-                    //    return -1;
-                    //}
-                //}
-                //else
-                //{
-                //    createStaffUserTran.Rollback();
-                //    return -1;
-                //}
+                        createStaffUserTran.Commit();
+                        return personID;
             }
             catch (Exception ex)
             {
@@ -259,16 +234,6 @@ namespace ClinicManagerData.DAL
             finally
             {
                 con.Close();
-            }
-            if (success)
-            {
-                createStaffUserTran.Commit();
-                return personID;
-            }
-            else
-            {
-                if (createStaffUserTran != null) createStaffUserTran.Rollback();
-                return -1;
             }
         }
 
