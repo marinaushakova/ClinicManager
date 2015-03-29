@@ -352,6 +352,8 @@ namespace ClinicManager.View
             thePerson.State = stateTxtBox.Text;
             thePerson.Zip = zipTxtBox.Text.Replace("-", "");
             thePerson.Phone = phoneTxtBox.Text;
+            if (this.is_nurse) thePerson.IsPatient = true;
+            else thePerson.IsPatient = false;
         }
 
         /// <summary>
