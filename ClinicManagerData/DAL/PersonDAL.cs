@@ -301,12 +301,84 @@ namespace ClinicManagerData.DAL
         /// <summary>
         /// Updates the person and user entry for a given staff member or just one if one is null
         /// </summary>
-        /// <param name="person">The person object holding the data to update the person entry of the person with</param>
-        /// <param name="user">The user object holding the data to update the user entry of the user with</param>
+        /// <param name="person">The person object holding the data to update the person entry of the person with. Must NOT be null</param>
+        /// <param name="user">The user object holding the data to update the user entry of the user with. Can be null</param>
         /// <returns>True if successful, false otherwise</returns>
         public static bool UpdateStaffMember(Person person, User user)
         {
-            return false;
+            if (person == null && user == null) return false;
+            string updatePersonStatement =
+                "UPDATE person SET ssn = @ssn, fname = @fname, minit = @minit, lname = @lname, " +
+                "birth_date = @birth_date, is_male = @is_male, street_address = @street_address, " +
+                "city = @city, state = @state, zip = @zip, phone = @phone, is_patient = @is_patient, " +
+                "is_nurse = @is_nurse, is_doctor = @is_doctor, is_admin = @is_admin " +
+                "WHERE id = @id AND timestamp = @timestamp";
+            string updateUserStatment =
+                "UPDATE [user] SET username = @username, password = @password WHERE person_id = @id AND timestamp = @timestamp";
+
+            SqlConnection con;
+            SqlTransaction updateStaffTran = null;
+            SqlCommand updatePersonCom = new SqlCommand();
+            SqlCommand updateUserCom = new SqlCommand();
+            try
+            {
+                con = ClinicManagerDBConnection.GetConnection();
+
+                updatePersonCom.Connection = con;
+                updatePersonCom.CommandText = updatePersonStatement;
+
+                updatePersonCom.Parameters.AddWithValue("@ssn", person.Social);
+                updatePersonCom.Parameters.AddWithValue("@fname", person.FirstName);
+                updatePersonCom.Parameters.AddWithValue("@minit", person.MiddleInit);
+                updatePersonCom.Parameters.AddWithValue("@lname", person.LastName);
+                updatePersonCom.Parameters.AddWithValue("@birth_date", person.DateOfBirth);
+                updatePersonCom.Parameters.AddWithValue("@is_male", person.IsMale);
+                updatePersonCom.Parameters.AddWithValue("@street_address", person.Address);
+                updatePersonCom.Parameters.AddWithValue("@city", person.City);
+                updatePersonCom.Parameters.AddWithValue("@state", person.State);
+                updatePersonCom.Parameters.AddWithValue("@zip", person.Zip);
+                updatePersonCom.Parameters.AddWithValue("@phone", person.Phone);
+                updatePersonCom.Parameters.AddWithValue("@is_patient", person.IsPatient);
+                updatePersonCom.Parameters.AddWithValue("@is_nurse", person.IsNurse);
+                updatePersonCom.Parameters.AddWithValue("@is_doctor", person.IsDoctor);
+                updatePersonCom.Parameters.AddWithValue("@is_admin", person.IsAdmin);
+                updatePersonCom.Parameters.AddWithValue("@timestamp", Convert.FromBase64String(person.Timestamp));
+
+                if (user != null)
+                {
+                    updateUserCom.Connection = con;
+                    updateUserCom.CommandText = updateUserStatment;
+                    string hashedPassword = UserDAL.HashLogin(user.Username, user.Password);
+                    updateUserCom.Parameters.AddWithValue("@username", user.Username);
+                    updateUserCom.Parameters.AddWithValue("@password", hashedPassword);
+                    updateUserCom.Parameters.AddWithValue("@id", user.PersonID);
+                    updateUserCom.Parameters.AddWithValue("@timestamp", Convert.FromBase64String(user.Timestamp));
+                }
+
+                con.Open();
+                updateStaffTran = con.BeginTransaction();
+                updatePersonCom.Transaction = updateStaffTran;
+                if (user != null) updateUserCom.Transaction = updateStaffTran;
+
+                int personCount;
+                int? userCount = null;
+
+                personCount = updatePersonCom.ExecuteNonQuery();
+                if (user != null) userCount = updateUserCom.ExecuteNonQuery();
+
+                if (personCount > 0 && (userCount == null || userCount > 0))
+                {
+                    updateStaffTran.Commit();
+                    return true;
+                }
+                else return false;
+
+            }
+            catch (Exception ex)
+            {
+                if (updateStaffTran != null) updateStaffTran.Rollback();
+                throw ex;
+            }
         }
 
         /// <summary>
