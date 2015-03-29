@@ -306,7 +306,7 @@ namespace ClinicManagerData.DAL
         /// <returns>True if successful, false otherwise</returns>
         public static bool UpdateStaffMember(Person person, User user)
         {
-            if (person == null && user == null) return false;
+            if (person == null) return false;
             string updatePersonStatement =
                 "UPDATE person SET ssn = @ssn, fname = @fname, minit = @minit, lname = @lname, " +
                 "birth_date = @birth_date, is_male = @is_male, street_address = @street_address, " +
@@ -327,6 +327,7 @@ namespace ClinicManagerData.DAL
                 updatePersonCom.Connection = con;
                 updatePersonCom.CommandText = updatePersonStatement;
 
+                updatePersonCom.Parameters.AddWithValue("@id", person.PersonID);
                 updatePersonCom.Parameters.AddWithValue("@ssn", person.Social);
                 updatePersonCom.Parameters.AddWithValue("@fname", person.FirstName);
                 updatePersonCom.Parameters.AddWithValue("@minit", person.MiddleInit);
@@ -371,7 +372,11 @@ namespace ClinicManagerData.DAL
                     updateStaffTran.Commit();
                     return true;
                 }
-                else return false;
+                else
+                {
+                    updateStaffTran.Rollback();
+                    return false;
+                }
 
             }
             catch (Exception ex)

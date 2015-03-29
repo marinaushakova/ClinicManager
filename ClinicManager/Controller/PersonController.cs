@@ -69,6 +69,17 @@ namespace ClinicManager.Controller
         }
 
         /// <summary>
+        /// Updates the person and user entry for a given staff member or just one if one is null
+        /// </summary>
+        /// <param name="person">The person object holding the data to update the person entry of the person with. Must NOT be null</param>
+        /// <param name="user">The user object holding the data to update the user entry of the user with. Can be null</param>
+        /// <returns>True if successful, false otherwise</returns>
+        public bool UpdateStaffMember(Person person, User user)
+        {
+            return PersonDAL.UpdateStaffMember(person, user);
+        }
+
+        /// <summary>
         /// Gets all nurses from the DB
         /// </summary>
         /// <returns>List of nurses</returns>

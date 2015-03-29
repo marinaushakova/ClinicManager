@@ -41,6 +41,7 @@ namespace ClinicManagerData.DAL
                                 user.PersonID = (int)reader["person_id"];
                                 user.Username = reader["username"].ToString();
                                 user.Password = reader["password"].ToString();
+                                user.Timestamp = Convert.ToBase64String(reader["timestamp"] as byte[]);
                             }
                             else user = null;
                         }

@@ -297,7 +297,7 @@ namespace ClinicManager.View
                 else
                 {
                     this.putPersonData(person);
-                    bool result = personController.UpdatePerson(person);
+                    bool result = personController.UpdateStaffMember(person, user);
                     if (!result)
                     {
                         MessageBox.Show("Update staff member failed.  Perhaps another user has updated or " +

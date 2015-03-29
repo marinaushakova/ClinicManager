@@ -53,7 +53,7 @@ namespace ClinicManager.View
             }
             if (!Validator.IsValidUserPsswd(usrnameTxtBox, passwordTxtBox)) return;
             errorLbl.Text = "";
-            this.user = new User();
+            if (this.user == null) this.user = new User();
             this.user.Username = usrnameTxtBox.Text;
             this.user.Password = passwordTxtBox.Text;
             this.user.Admin_privelege = this.createAdminUser;
