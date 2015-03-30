@@ -15,6 +15,7 @@ namespace ClinicManager.View
     public partial class AddEditPerson : Form
     {
         private User user;
+        private User newUser;
         private Person person;
 
         public Person Person
@@ -289,7 +290,7 @@ namespace ClinicManager.View
                     this.putPersonData(newPerson);
                     int id;
                     if (roleComboBox.SelectedIndex == 1) id = personController.AddPerson(newPerson);
-                    else id = personController.AddUserStaffMember(newPerson, user);
+                    else id = personController.AddUserStaffMember(newPerson, newUser);
 
                     MessageBox.Show("Staff member successfully added", "Success");
                     this.resetInput();
@@ -297,7 +298,7 @@ namespace ClinicManager.View
                 else
                 {
                     this.putPersonData(person);
-                    bool result = personController.UpdateStaffMember(person, user);
+                    bool result = personController.UpdateStaffMember(person, newUser);
                     if (!result)
                     {
                         MessageBox.Show("Update staff member failed.  Perhaps another user has updated or " +
@@ -448,9 +449,10 @@ namespace ClinicManager.View
             {
                 if (addEditUserForm.DialogResult == DialogResult.OK)
                 {
-                    user = addEditUserForm.User;
+                    newUser = new User();
+                    newUser = addEditUserForm.User;
                 }
-                else user = null;
+                else newUser = null;
             }
             addEditUserForm = null;
         }

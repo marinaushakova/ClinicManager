@@ -228,14 +228,14 @@ namespace ClinicManagerData.DAL
 
                 int count = insPersonCom.ExecuteNonQuery();
                     
-                    personID = Convert.ToInt32(identCom.ExecuteScalar());
+                personID = Convert.ToInt32(identCom.ExecuteScalar());
 
-                        insUserCom.Parameters.AddWithValue("@person_id", personID);
-                        insUserCom.Parameters.AddWithValue("@username", user.Username);
-                        insUserCom.Parameters.AddWithValue("@password", hashedPassword);
-                        count = insUserCom.ExecuteNonQuery();
-                        createStaffUserTran.Commit();
-                        return personID;
+                insUserCom.Parameters.AddWithValue("@person_id", personID);
+                insUserCom.Parameters.AddWithValue("@username", user.Username);
+                insUserCom.Parameters.AddWithValue("@password", hashedPassword);
+                count = insUserCom.ExecuteNonQuery();
+                createStaffUserTran.Commit();
+                return personID;
             }
             catch (Exception ex)
             {
