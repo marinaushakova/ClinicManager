@@ -73,10 +73,12 @@ namespace ClinicManager.Controller
         /// </summary>
         /// <param name="person">The person object holding the data to update the person entry of the person with. Must NOT be null</param>
         /// <param name="user">The user object holding the data to update the user entry of the user with. Can be null</param>
+        /// <param name="addUser">If true the user object will be used to create user credentials for the person. Used in the case where a doctor becomes a nurse/admin</param>
+        /// <param name="deleteUser">If true the person_id of the user object will be used to delete the user credentials for this person. Used in the case when an admin or nurse becomes a doctor</param>
         /// <returns>True if successful, false otherwise</returns>
-        public bool UpdateStaffMember(Person person, User user)
+        public bool UpdateStaffMember(Person person, User user, bool addUser, bool deleteUser)
         {
-            return PersonDAL.UpdateStaffMember(person, user);
+            return PersonDAL.UpdateStaffMember(person, user, addUser, deleteUser);
         }
 
         /// <summary>
