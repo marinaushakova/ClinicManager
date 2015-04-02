@@ -228,14 +228,14 @@ namespace ClinicManagerData.DAL
 
                 int count = insPersonCom.ExecuteNonQuery();
                     
-                    personID = Convert.ToInt32(identCom.ExecuteScalar());
+                personID = Convert.ToInt32(identCom.ExecuteScalar());
 
-                        insUserCom.Parameters.AddWithValue("@person_id", personID);
-                        insUserCom.Parameters.AddWithValue("@username", user.Username);
-                        insUserCom.Parameters.AddWithValue("@password", hashedPassword);
-                        count = insUserCom.ExecuteNonQuery();
-                        createStaffUserTran.Commit();
-                        return personID;
+                insUserCom.Parameters.AddWithValue("@person_id", personID);
+                insUserCom.Parameters.AddWithValue("@username", user.Username);
+                insUserCom.Parameters.AddWithValue("@password", hashedPassword);
+                count = insUserCom.ExecuteNonQuery();
+                createStaffUserTran.Commit();
+                return personID;
             }
             catch (Exception ex)
             {
@@ -299,27 +299,97 @@ namespace ClinicManagerData.DAL
         }
 
         /// <summary>
-        /// Updates the person and user entry for a given staff member or just one if one is null
+        /// Builds the string for the appropriate operation based on the values of the parameters. Produces an edit 
+        /// statement if both are false, an add statement if addUSer is true, and a delete statement if delete user is true. 
+        /// Returns an empty string if both params are true as this case is invalid. 
+        /// </summary>
+        /// <param name="addUser">Signifies that an insert statment should be made if true</param>
+        /// <param name="deleteUser">Signifies that a delete statment should be made if true</param>
+        /// <returns>The SQL statement to carry out the operation</returns>
+        private static string makeUserStatement(bool addUser, bool deleteUser)
+        {
+            if (addUser && deleteUser) return "";
+            string statement;
+            if (addUser)
+            {
+                statement =
+                    "INSERT INTO [user] (person_id, username, password)" +
+                    "VALUES (@person_id, @username, @password)";
+            }
+            else if (deleteUser)
+            {
+                statement =
+                    "DELETE FROM [user] WHERE id = @user_id";
+            }
+            else
+            {
+                statement =
+                    "UPDATE [user] SET username = @username, password = @password WHERE person_id = @person_id AND timestamp = @timestamp";
+            }
+            return statement;
+        }
+
+        /// <summary>
+        /// Adds parameters for the appropriate command. Adds edit 
+        /// params if both are false, an insert params if addUser is true, and delete params if deleteUser is true. 
+        /// Adds no params if both boolean params are true, since this case is invalid
+        /// </summary>
+        /// <param name="userCom">The command to add params to</param>
+        /// <param name="user">The user object containing the values to add to the command</param>
+        /// <param name="addUser">Signifies that params should be added for an insert statement</param>
+        /// <param name="deleteUser">Signifies that params should be added for a delete statement</param>
+        private static void addUserCommandParams(SqlCommand userCom, User user, bool addUser, bool deleteUser)
+        {
+            if (addUser && deleteUser) return;
+            if (addUser)
+            {
+                string hashedPassword = UserDAL.HashLogin(user.Username, user.Password);
+                userCom.Parameters.AddWithValue("@username", user.Username);
+                userCom.Parameters.AddWithValue("@password", hashedPassword);
+                userCom.Parameters.AddWithValue("@person_id", user.PersonID);
+            }
+            else if (deleteUser)
+            {
+                userCom.Parameters.AddWithValue("@user_id", user.UserID);
+            }
+            else
+            {
+                string hashedPassword = UserDAL.HashLogin(user.Username, user.Password);
+                userCom.Parameters.AddWithValue("@username", user.Username);
+                userCom.Parameters.AddWithValue("@password", hashedPassword);
+                userCom.Parameters.AddWithValue("@person_id", user.PersonID);
+                userCom.Parameters.AddWithValue("@timestamp", Convert.FromBase64String(user.Timestamp));
+            }
+        }
+
+        /// <summary>
+        /// Updates the person and user entry for a given staff member or just the person if user is null. If both boolean params are
+        /// false then an edit operation is assumed for the user object, if it is given. If one or the other of the two boolean params is true, 
+        /// then the corresponding operation is performed. If both boolean params are true the method returns false as this case is invalid. 
         /// </summary>
         /// <param name="person">The person object holding the data to update the person entry of the person with. Must NOT be null</param>
         /// <param name="user">The user object holding the data to update the user entry of the user with. Can be null</param>
+        /// <param name="addUser">If true the user object will be used to create user credentials for the person. Used in the case where a doctor becomes a nurse/admin</param>
+        /// <param name="deleteUser">If true the person_id of the user object will be used to delete the user credentials for this person. Used in the case when an admin or nurse becomes a doctor</param>
         /// <returns>True if successful, false otherwise</returns>
-        public static bool UpdateStaffMember(Person person, User user)
+        public static bool UpdateStaffMember(Person person, User user, bool addUser, bool deleteUser)
         {
             if (person == null) return false;
+            if (addUser && deleteUser) return false;
+            string userStatement = makeUserStatement(addUser, deleteUser);
             string updatePersonStatement =
                 "UPDATE person SET ssn = @ssn, fname = @fname, minit = @minit, lname = @lname, " +
                 "birth_date = @birth_date, is_male = @is_male, street_address = @street_address, " +
                 "city = @city, state = @state, zip = @zip, phone = @phone, is_patient = @is_patient, " +
                 "is_nurse = @is_nurse, is_doctor = @is_doctor, is_admin = @is_admin " +
                 "WHERE id = @id AND timestamp = @timestamp";
-            string updateUserStatment =
-                "UPDATE [user] SET username = @username, password = @password WHERE person_id = @id AND timestamp = @timestamp";
+            //string updateUserStatment =
+            //    "UPDATE [user] SET username = @username, password = @password WHERE person_id = @id AND timestamp = @timestamp";
 
             SqlConnection con;
             SqlTransaction updateStaffTran = null;
             SqlCommand updatePersonCom = new SqlCommand();
-            SqlCommand updateUserCom = new SqlCommand();
+            SqlCommand userCom = new SqlCommand();
             try
             {
                 con = ClinicManagerDBConnection.GetConnection();
@@ -347,25 +417,26 @@ namespace ClinicManagerData.DAL
 
                 if (user != null)
                 {
-                    updateUserCom.Connection = con;
-                    updateUserCom.CommandText = updateUserStatment;
-                    string hashedPassword = UserDAL.HashLogin(user.Username, user.Password);
-                    updateUserCom.Parameters.AddWithValue("@username", user.Username);
-                    updateUserCom.Parameters.AddWithValue("@password", hashedPassword);
-                    updateUserCom.Parameters.AddWithValue("@id", user.PersonID);
-                    updateUserCom.Parameters.AddWithValue("@timestamp", Convert.FromBase64String(user.Timestamp));
+                    userCom.Connection = con;
+                    userCom.CommandText = userStatement;
+                    addUserCommandParams(userCom, user, addUser, deleteUser);
+                    //string hashedPassword = UserDAL.HashLogin(user.Username, user.Password);
+                    //userCom.Parameters.AddWithValue("@username", user.Username);
+                    //userCom.Parameters.AddWithValue("@password", hashedPassword);
+                    //userCom.Parameters.AddWithValue("@id", user.PersonID);
+                    //userCom.Parameters.AddWithValue("@timestamp", Convert.FromBase64String(user.Timestamp));
                 }
 
                 con.Open();
                 updateStaffTran = con.BeginTransaction();
                 updatePersonCom.Transaction = updateStaffTran;
-                if (user != null) updateUserCom.Transaction = updateStaffTran;
+                if (user != null) userCom.Transaction = updateStaffTran;
 
                 int personCount;
                 int? userCount = null;
 
                 personCount = updatePersonCom.ExecuteNonQuery();
-                if (user != null) userCount = updateUserCom.ExecuteNonQuery();
+                if (user != null) userCount = userCom.ExecuteNonQuery();
 
                 if (personCount > 0 && (userCount == null || userCount > 0))
                 {

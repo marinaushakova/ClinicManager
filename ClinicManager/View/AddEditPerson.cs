@@ -15,6 +15,7 @@ namespace ClinicManager.View
     public partial class AddEditPerson : Form
     {
         private User user;
+        private User newUser;
         private Person person;
 
         public Person Person
@@ -24,6 +25,7 @@ namespace ClinicManager.View
         }
 
         private bool is_nurse;
+        private bool was_doctor;
 
         private AddEditUser addEditUserForm;
 
@@ -52,6 +54,11 @@ namespace ClinicManager.View
             this.setUpBinding();
             this.setUpButtons();
             this.getUserIfPresent();
+            if (this.person != null)
+            {
+                was_doctor = person.IsDoctor;
+            }
+
         }
 
         /// <summary>
@@ -221,7 +228,7 @@ namespace ClinicManager.View
         /// <returns>True if the credentials exist, false otherwise</returns>
         private bool checkUser()
         {
-            if (user == null)
+            if (newUser == null)
             {
                 MessageBox.Show("Please add user credentials for this staff member", "Missing User Credentials");
                 createUserBtn.Focus();
@@ -289,15 +296,31 @@ namespace ClinicManager.View
                     this.putPersonData(newPerson);
                     int id;
                     if (roleComboBox.SelectedIndex == 1) id = personController.AddPerson(newPerson);
-                    else id = personController.AddUserStaffMember(newPerson, user);
+                    else id = personController.AddUserStaffMember(newPerson, newUser);
 
                     MessageBox.Show("Staff member successfully added", "Success");
                     this.resetInput();
                 }
                 else
                 {
+                    // Assume the most common operation (edit)
+                    bool addUser = false;
+                    bool deleteUser = false;
+                    // If the initially loaded person was a doctor but has be set to another staff role, check that a newUser object was created and set the addUser flag to true
+                    if (this.was_doctor && (roleComboBox.SelectedIndex == 0 || roleComboBox.SelectedIndex == 2))
+                    {
+                        if (!this.checkUser()) return;
+                        addUser = true;
+                    }
+                    // If the 
+                    else if (roleComboBox.SelectedIndex == 1)
+                    {
+                        deleteUser = true;
+                        newUser = user;
+                    }
                     this.putPersonData(person);
-                    bool result = personController.UpdateStaffMember(person, user);
+                    if (newUser != null) newUser.PersonID = person.PersonID;
+                    bool result = personController.UpdateStaffMember(person, newUser, addUser, deleteUser);
                     if (!result)
                     {
                         MessageBox.Show("Update staff member failed.  Perhaps another user has updated or " +
@@ -448,9 +471,10 @@ namespace ClinicManager.View
             {
                 if (addEditUserForm.DialogResult == DialogResult.OK)
                 {
-                    user = addEditUserForm.User;
+                    newUser = new User();
+                    newUser = addEditUserForm.User;
                 }
-                else user = null;
+                else newUser = null;
             }
             addEditUserForm = null;
         }
