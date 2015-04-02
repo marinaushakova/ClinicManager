@@ -39,8 +39,8 @@
             System.Windows.Forms.Label temperatureLabel;
             System.Windows.Forms.Label lblNurse;
             System.Windows.Forms.Label lblDate;
-            this.visitBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txbBloodPressure = new System.Windows.Forms.TextBox();
+            this.visitBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbDoctor = new System.Windows.Forms.ComboBox();
             this.txbPatient = new System.Windows.Forms.TextBox();
             this.txbPulseRate = new System.Windows.Forms.TextBox();
@@ -64,8 +64,10 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.cmbNurse = new System.Windows.Forms.ComboBox();
-            this.personBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblVisitDate = new System.Windows.Forms.Label();
+            this.personBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.txbNurse = new System.Windows.Forms.TextBox();
+            this.txbDoctor = new System.Windows.Forms.TextBox();
             bloodPressureLabel = new System.Windows.Forms.Label();
             lblDoctor = new System.Windows.Forms.Label();
             finalDiagnosisLabel = new System.Windows.Forms.Label();
@@ -174,10 +176,6 @@
             lblDate.TabIndex = 33;
             lblDate.Text = "Date:";
             // 
-            // visitBindingSource
-            // 
-            this.visitBindingSource.DataSource = typeof(ClinicManagerData.Model.Visit);
-            // 
             // txbBloodPressure
             // 
             this.txbBloodPressure.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "BloodPressure", true));
@@ -190,11 +188,12 @@
             this.txbBloodPressure.TabIndex = 2;
             this.txbBloodPressure.Tag = "Blood Pressure";
             // 
+            // visitBindingSource
+            // 
+            this.visitBindingSource.DataSource = typeof(ClinicManagerData.Model.Visit);
+            // 
             // cmbDoctor
             // 
-            this.cmbDoctor.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "DoctorID", true));
-            this.cmbDoctor.DataSource = this.visitBindingSource;
-            this.cmbDoctor.DisplayMember = "DoctorID";
             this.cmbDoctor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDoctor.FormattingEnabled = true;
             this.cmbDoctor.Location = new System.Drawing.Point(404, 38);
@@ -206,7 +205,6 @@
             // 
             // txbPatient
             // 
-            this.txbPatient.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "PatientID", true));
             this.txbPatient.Location = new System.Drawing.Point(72, 13);
             this.txbPatient.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbPatient.Name = "txbPatient";
@@ -444,12 +442,36 @@
             this.lblVisitDate.TabIndex = 36;
             this.lblVisitDate.Text = "Visit Date";
             // 
+            // personBindingSource
+            // 
+            this.personBindingSource.DataSource = typeof(ClinicManagerData.Model.Person);
+            // 
+            // txbNurse
+            // 
+            this.txbNurse.Location = new System.Drawing.Point(404, 13);
+            this.txbNurse.Name = "txbNurse";
+            this.txbNurse.ReadOnly = true;
+            this.txbNurse.Size = new System.Drawing.Size(227, 22);
+            this.txbNurse.TabIndex = 37;
+            this.txbNurse.Visible = false;
+            // 
+            // txbDoctor
+            // 
+            this.txbDoctor.Location = new System.Drawing.Point(405, 41);
+            this.txbDoctor.Name = "txbDoctor";
+            this.txbDoctor.ReadOnly = true;
+            this.txbDoctor.Size = new System.Drawing.Size(227, 22);
+            this.txbDoctor.TabIndex = 38;
+            this.txbDoctor.Visible = false;
+            // 
             // AddEditVisit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(816, 574);
+            this.ClientSize = new System.Drawing.Size(825, 578);
+            this.Controls.Add(this.txbDoctor);
+            this.Controls.Add(this.txbNurse);
             this.Controls.Add(this.lblVisitDate);
             this.Controls.Add(this.cmbNurse);
             this.Controls.Add(lblDate);
@@ -512,6 +534,8 @@
         private System.Windows.Forms.Label lblVisitDate;
         private System.Windows.Forms.TextBox txbInitialDiagnosis;
         private System.Windows.Forms.TextBox txbFinalDiagnosis;
+        private System.Windows.Forms.TextBox txbNurse;
+        private System.Windows.Forms.TextBox txbDoctor;
 
     }
 }

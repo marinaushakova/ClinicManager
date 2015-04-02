@@ -49,10 +49,7 @@ namespace ClinicManager.View
             try
             {
                 setUpTitle();
-                setUpDoctorCombobox();
-                setUpNurseCombobox();
                 setUpForm();
-                lblVisitDate.Text = DateTime.Now.ToShortDateString();
             }
             catch (Exception ex)
             {
@@ -67,13 +64,32 @@ namespace ClinicManager.View
         /// </summary>
         private void setUpForm()
         {
+            
             if (this.visit == null)
             {
+                setUpDoctorCombobox();
+                setUpNurseCombobox();
+               
                 lblVisitDate.Text = DateTime.Now.ToShortDateString();
             }
             else
             {
-                //TODO Load Form with data from Visit
+                this.enableFormControls();
+
+                visitBindingSource.Clear();
+                visitBindingSource.Add(visit);
+
+                txbPatient.Text = personController.GetPersonById(visit.PatientID).GetFullName();
+                txbNurse.Text = personController.GetPersonById(visit.NurseID).GetFullName();
+                txbDoctor.Text = personController.GetPersonById(visit.DoctorID).GetFullName();
+                cmbNurse.SelectedValue = visit.NurseID;
+                cmbDoctor.SelectedValue = visit.DoctorID;
+
+                this.btnSearchPatient.Enabled = false;
+                this.cmbDoctor.Visible = false;
+                this.cmbNurse.Visible = false;
+                this.txbNurse.Visible = true;
+                this.txbDoctor.Visible = true;
             }
         }
 
@@ -96,6 +112,7 @@ namespace ClinicManager.View
             cmbDoctor.DataSource = doctorList;
             cmbDoctor.DisplayMember = "LastName";
             cmbDoctor.ValueMember = "PersonID";
+            
         }
 
         /// <summary>
@@ -189,12 +206,32 @@ namespace ClinicManager.View
                 
             try
             {
-                visit = new Visit();
-                this.putVisitData(visit);
-                int visitID = visitController.AddVisitRecord(visit);
-                MessageBox.Show("Visit record successfully added", "Success");
-                this.resetInput();
-                visit = null;
+                if (visit == null)
+                {
+                    visit = new Visit();
+                    this.putVisitData(visit);
+                    int visitID = visitController.AddVisitRecord(visit);
+                    MessageBox.Show("Visit record successfully added", "Success");
+                    this.resetInput();
+                    visit = null;
+                }
+                else
+                {
+                    this.putVisitData(visit);
+                    bool result = visitController.UpdateVisitRecord(visit);
+                    if (!result)
+                    {
+                        MessageBox.Show("Update failed.  Perhaps another user has updated or " +
+                                "deleted that?", "Database Error");
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Visit record was successfully updated" , "Success");
+                        this.Close();
+                    }
+                }
+                
             }
             catch (Exception ex)
             {
@@ -210,8 +247,6 @@ namespace ClinicManager.View
         private bool isValid()
         {
             List<Control> requiredControls = new List<Control>();
-            if (!Validator.IsPresent(cmbDoctor)) return false;
-            if (!Validator.IsPresent(cmbNurse)) return false;
             if (!Validator.IsPresent(txbPatient)) return false;
             if (!Validator.IsPresent(txbPulseRate)) return false;
             if (!Validator.IsPresent(txbTemperature)) return false;
@@ -219,6 +254,12 @@ namespace ClinicManager.View
             if (!Validator.IsPresent(txbSymptoms)) return false;
             if (!Validator.IsInt(txbPulseRate.Text)) return false;
             if (!Validator.IsTemp(txbTemperature)) return false;
+
+            if (visit == null)
+            {
+                if (!Validator.IsPresent(cmbNurse)) return false;
+                if (!Validator.IsPresent(cmbDoctor)) return false;
+            }
             return true;
         }
 
@@ -228,10 +269,20 @@ namespace ClinicManager.View
         /// <param name="thePerson">The visit object to fill with the form data</param>
         private void putVisitData(Visit theVisit)
         {
-            theVisit.PatientID = patient.PersonID;
+            if (visit == null)
+            {
+                theVisit.PatientID = patient.PersonID;
+                theVisit.DoctorID = (int)cmbDoctor.SelectedValue;
+                theVisit.NurseID = (int)cmbNurse.SelectedValue;
+            }
+            else
+            {
+                theVisit.PatientID = visit.PatientID;
+                theVisit.DoctorID = visit.DoctorID;
+                theVisit.NurseID = visit.NurseID;
+            }
+            
             theVisit.Date = Convert.ToDateTime(lblVisitDate.Text);
-            theVisit.DoctorID = (int)cmbDoctor.SelectedValue;
-            theVisit.NurseID = (int)cmbNurse.SelectedValue;
             theVisit.BloodPressure = txbBloodPressure.Text;
             theVisit.Temperature = Convert.ToDouble(txbTemperature.Text);
             theVisit.PulseRate = Convert.ToInt32(txbPulseRate.Text);
@@ -246,6 +297,8 @@ namespace ClinicManager.View
         private void resetInput()
         {
             txbPatient.Text = "";
+            txbNurse.Text = "";
+            txbDoctor.Text = "";
             lblVisitDate.Text = DateTime.Now.ToShortDateString();
             cmbDoctor.SelectedIndex = 0;
             cmbNurse.SelectedIndex = 0;
@@ -266,7 +319,12 @@ namespace ClinicManager.View
             btnNewTest.Enabled = false;
             btnEditTest.Enabled = false;
             btnTestResult.Enabled = false;
+            cmbDoctor.Visible = true;
+            cmbNurse.Visible = true;
+            txbNurse.Visible = false;
+            txbDoctor.Visible = false;
         }
-    
+
+
     }
 }

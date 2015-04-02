@@ -25,6 +25,16 @@ namespace ClinicManager.Controller
         }
 
         /// <summary>
+        /// Updates the passed in visit in the DB
+        /// </summary>
+        /// <param name="person">The visit to update in the DB</param>
+        /// <returns>True if update successful, false otherwise</returns>
+        public bool UpdateVisitRecord(Visit theVisit)
+        {
+            return VisitDAL.UpdateVisitRecord(theVisit);
+        }
+
+        /// <summary>
         /// Get all visits specified by patient
         /// </summary>
         /// <param name="firstName">The first name of the sought person(s)</param>

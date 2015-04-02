@@ -62,6 +62,50 @@ namespace ClinicManagerData.DAL
         }
 
         /// <summary>
+        /// Updates a visit in the DB
+        /// </summary>
+        /// <param name="visit">The visit object with the altered data</param>
+        /// <returns>True if update successful, false otherwise</returns>
+        public static bool UpdateVisitRecord(Visit visit)
+        {
+            string updateStatement =
+                "UPDATE visit SET date = @date, patient_id = @patient_id, nurse_id = @nurse_id, doctor_id = @doctor_id, " +
+                "blood_pressure = @blood_pressure, temperature = @temperature, pulse_rate = @pulse_rate, " +
+                "symptoms = @symptoms, initial_diagnosis = @initial_diagnosis, final_diagnosis = @final_diagnosis " +
+                "WHERE id = @id AND timestamp = @timestamp";
+            try
+            {
+                using (SqlConnection con = ClinicManagerDBConnection.GetConnection())
+                {
+                    con.Open();
+                    using (SqlCommand updateCommand = new SqlCommand(updateStatement, con))
+                    {
+                        updateCommand.Parameters.AddWithValue("@id", visit.VisitID);
+                        updateCommand.Parameters.AddWithValue("@date", visit.Date);
+                        updateCommand.Parameters.AddWithValue("@patient_id", visit.PatientID);
+                        updateCommand.Parameters.AddWithValue("@nurse_id", visit.NurseID);
+                        updateCommand.Parameters.AddWithValue("@doctor_id", visit.DoctorID);
+                        updateCommand.Parameters.AddWithValue("@blood_pressure", visit.BloodPressure);
+                        updateCommand.Parameters.AddWithValue("@temperature", visit.Temperature);
+                        updateCommand.Parameters.AddWithValue("@pulse_rate", visit.PulseRate);
+                        updateCommand.Parameters.AddWithValue("@symptoms", visit.Symptoms);
+                        updateCommand.Parameters.AddWithValue("@initial_diagnosis", visit.InitialDiagnosis);
+                        updateCommand.Parameters.AddWithValue("@final_diagnosis", visit.FinalDiagnosis);
+                        updateCommand.Parameters.AddWithValue("@timestamp", Convert.FromBase64String(visit.Timestamp));
+
+                        int count = updateCommand.ExecuteNonQuery();
+                        if (count > 0) return true;
+                        else return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
         /// Get summary of visits containing
         /// </summary>
         /// <returns>List of visits</returns>
@@ -185,8 +229,8 @@ namespace ClinicManagerData.DAL
                                 visit.VisitID = (int)reader["id"];
                                 visit.Date = (DateTime)reader["date"];
                                 visit.PatientID = (int)reader["patient_id"];
-                                visit.PatientID = (int)reader["nurse_id"];
-                                visit.PatientID = (int)reader["doctor_id"];
+                                visit.NurseID = (int)reader["nurse_id"];
+                                visit.DoctorID = (int)reader["doctor_id"];
                                 visit.BloodPressure = reader["blood_pressure"].ToString();
                                 visit.Temperature = (double)(decimal)reader["temperature"];
                                 visit.PulseRate = (int)reader["pulse_rate"];
