@@ -31,6 +31,7 @@ namespace ClinicManager.View
         private Person patient;
         private PersonController personController;
         private VisitController visitController;
+        private OrderedTestController orderedTestController;
 
         private OrderTest orderTestForm;
 
@@ -39,6 +40,7 @@ namespace ClinicManager.View
             InitializeComponent();
             personController = new PersonController();
             visitController = new VisitController();
+            orderedTestController = new OrderedTestController();
         }
 
         /// <summary>
@@ -366,6 +368,9 @@ namespace ClinicManager.View
                     newTest = new OrderedTest();
                     newTest = orderTestForm.Test;
                     // TODO: Call OrderedTest controller method, whire OrderedTestDAL method AddTest
+                    int orderedTestID = orderedTestController.OrderTest(newTest);
+                    MessageBox.Show("New test was successfully ordered", "Success");
+                    newTest = null;
                 }
                 else newTest = null;
             }
