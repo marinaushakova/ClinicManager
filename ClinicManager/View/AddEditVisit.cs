@@ -69,32 +69,71 @@ namespace ClinicManager.View
         /// </summary>
         private void setUpForm()
         {
-            
-            if (this.visit == null)
+            try
             {
-                setUpDoctorCombobox();
-                setUpNurseCombobox();
+                if (this.visit == null)
+                {
+                    setUpDoctorCombobox();
+                    setUpNurseCombobox();
                
-                lblVisitDate.Text = DateTime.Now.ToShortDateString();
+                    lblVisitDate.Text = DateTime.Now.ToShortDateString();
+                }
+                else
+                {
+                    this.enableFormControls();
+
+                    visitBindingSource.Clear();
+                    visitBindingSource.Add(visit);
+
+                    txbPatient.Text = personController.GetPersonById(visit.PatientID).GetFullName();
+                    txbNurse.Text = personController.GetPersonById(visit.NurseID).GetFullName();
+                    txbDoctor.Text = personController.GetPersonById(visit.DoctorID).GetFullName();
+                    cmbNurse.SelectedValue = visit.NurseID;
+                    cmbDoctor.SelectedValue = visit.DoctorID;
+
+                    this.btnSearchPatient.Enabled = false;
+                    this.cmbDoctor.Visible = false;
+                    this.cmbNurse.Visible = false;
+                    this.txbNurse.Visible = true;
+                    this.txbDoctor.Visible = true;
+
+                    this.FillOrderedTests();
+                   
+                }
             }
-            else
+            catch (Exception ex)
             {
-                this.enableFormControls();
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
+            
+        }
 
-                visitBindingSource.Clear();
-                visitBindingSource.Add(visit);
+        /// <summary>
+        /// Fills ordered tests list view with ordered tests from database
+        /// </summary>
+        private void FillOrderedTests()
+        {
+            List<OrderedTestSummary> orderedTestList = orderedTestController.GetOrderedTestsSummaryByVisit(visit.VisitID);
+            lvOrderedTests.Items.Clear();
 
-                txbPatient.Text = personController.GetPersonById(visit.PatientID).GetFullName();
-                txbNurse.Text = personController.GetPersonById(visit.NurseID).GetFullName();
-                txbDoctor.Text = personController.GetPersonById(visit.DoctorID).GetFullName();
-                cmbNurse.SelectedValue = visit.NurseID;
-                cmbDoctor.SelectedValue = visit.DoctorID;
-
-                this.btnSearchPatient.Enabled = false;
-                this.cmbDoctor.Visible = false;
-                this.cmbNurse.Visible = false;
-                this.txbNurse.Visible = true;
-                this.txbDoctor.Visible = true;
+            if (orderedTestList.Count > 0)
+            {
+                OrderedTestSummary theOrderedTest;
+                for (int i = 0; i < orderedTestList.Count; i++)
+                {
+                    theOrderedTest = orderedTestList[i];
+                    lvOrderedTests.Items.Add(theOrderedTest.Name);
+                    lvOrderedTests.Items[i].SubItems.Add(theOrderedTest.OrderDate.ToShortDateString());
+                    lvOrderedTests.Items[i].SubItems.Add(theOrderedTest.PerformDate.ToShortDateString());
+                    if (theOrderedTest.Result != null)
+                    {
+                        lvOrderedTests.Items[i].SubItems.Add(theOrderedTest.Result.ToString());
+                    }
+                    else
+                    {
+                        lvOrderedTests.Items[i].SubItems.Add("");
+                    }
+                }
             }
         }
 

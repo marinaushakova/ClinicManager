@@ -22,5 +22,15 @@ namespace ClinicManager.Controller
         {
             return OrderedTestDAL.OrderTest(test);
         }
+
+        /// <summary>
+        /// Gets all ordered tests for one visit specified by visitID
+        /// </summary>
+        /// <param name="visitID">Visit ID</param>
+        /// <returns>List of all ordered tests for specified visit</returns>
+        public List<OrderedTestSummary> GetOrderedTestsSummaryByVisit(int visitID)
+        {
+            return OrderedTestDAL.GetOrderedTestsSummaryByVisit(visitID);
+        }
     }
 }

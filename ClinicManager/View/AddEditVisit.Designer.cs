@@ -350,7 +350,7 @@
             // clnTestName
             // 
             this.clnTestName.Text = "Test Name";
-            this.clnTestName.Width = 400;
+            this.clnTestName.Width = 288;
             // 
             // clnOrderDate
             // 

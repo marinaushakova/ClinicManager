@@ -51,5 +51,60 @@ namespace ClinicManagerData.DAL
                 throw ex;
             }
         }
+
+        /// <summary>
+        /// Get summary of tests ordered for specified visit
+        /// </summary>
+        /// <returns>List of ordered tests</returns>
+        public static List<OrderedTestSummary> GetOrderedTestsSummaryByVisit(int visitID)
+        {
+            List<OrderedTestSummary> testList = new List<OrderedTestSummary>();
+            string selectStatement =
+                "SELECT ot.id AS ord_test_id, ot.visit_id, ot.order_date, ot.result_date, ot.result, t.Name " +
+                    "FROM orderedtest ot JOIN test t ON ot.test_id = t.id " +
+                    "WHERE visit_id = @visitID " +
+                    "ORDER BY ot.order_date, ot.result_date";
+            try
+            {
+                using (SqlConnection connection = ClinicManagerDBConnection.GetConnection())
+                {
+                    connection.Open();
+
+                    using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                    {
+                        selectCommand.Parameters.AddWithValue("@VisitID", visitID);
+                        
+                        using (SqlDataReader reader = selectCommand.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                OrderedTestSummary orderedTestSummary = new OrderedTestSummary();
+                                orderedTestSummary.OrderedTestID = (int)reader["ord_test_id"];
+                                orderedTestSummary.VisitID = (int)reader["visit_id"];
+                                orderedTestSummary.OrderDate = (DateTime)reader["order_date"];
+                                orderedTestSummary.PerformDate = (DateTime)reader["result_date"];
+                                if (reader["result"] != System.DBNull.Value) {
+                                    orderedTestSummary.Result = (bool)reader["result"];
+                                } else {
+                                    orderedTestSummary.Result = null;
+                                }
+                                
+                                orderedTestSummary.Name = reader["Name"].ToString();
+                                testList.Add(orderedTestSummary);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return testList;
+        }
     }
 }
