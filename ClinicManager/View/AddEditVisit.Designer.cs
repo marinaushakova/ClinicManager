@@ -239,6 +239,7 @@
             // 
             // txbTemperature
             // 
+            this.txbTemperature.CausesValidation = false;
             this.txbTemperature.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Temperature", true));
             this.txbTemperature.Location = new System.Drawing.Point(132, 48);
             this.txbTemperature.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -398,6 +399,7 @@
             this.btnNewTest.TabIndex = 1;
             this.btnNewTest.Text = "Order New Test";
             this.btnNewTest.UseVisualStyleBackColor = true;
+            this.btnNewTest.Click += new System.EventHandler(this.btnNewTest_Click);
             // 
             // btnCancel
             // 

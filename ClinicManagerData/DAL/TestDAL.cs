@@ -169,5 +169,48 @@ namespace ClinicManagerData.DAL
                 throw ex;
             }
         }
+
+        /// <summary>
+        /// Get all tests from DB
+        /// </summary>
+        /// <returns>List of tests</returns>
+        public static List<Test> GetAllTests()
+        {
+            List<Test> testList = new List<Test>();
+            string selectStatement =
+                "SELECT * FROM test";
+            try
+            {
+                using (SqlConnection connection = ClinicManagerDBConnection.GetConnection())
+                {
+                    connection.Open();
+
+                    using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                    {
+                        using (SqlDataReader reader = selectCommand.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Test test = new Test();
+                                test.Name = reader["name"].ToString();
+                                test.Description = reader["description"].ToString();
+                                test.TestID = (int)reader["id"];
+                                test.Timestamp = Convert.ToBase64String(reader["timestamp"] as byte[]);
+                                testList.Add(test);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return testList;
+        }
     }
 }

@@ -18,6 +18,7 @@ namespace ClinicManager.View
     public partial class AddEditVisit : Form
     {
         private Visit visit;
+        private OrderedTest newTest;
 
         public Visit Visit
         {
@@ -30,6 +31,8 @@ namespace ClinicManager.View
         private Person patient;
         private PersonController personController;
         private VisitController visitController;
+
+        private OrderTest orderTestForm;
 
         public AddEditVisit()
         {
@@ -325,6 +328,49 @@ namespace ClinicManager.View
             txbDoctor.Visible = false;
         }
 
+        /// <summary>
+        /// Handels event of Order New Test button click. 
+        /// Opens OrderTest form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnNewTest_Click(object sender, EventArgs e)
+        {
+            if (this.visit == null)
+            {
+                MessageBox.Show("You must enter checkup information and save the visit record before ordering tests", "Error");
+                return;
+            }
+            else
+            {
+                orderTestForm = new OrderTest(this.visit);
+                orderTestForm.MdiParent = this.MdiParent;
+                orderTestForm.FormClosed += new FormClosedEventHandler(orderTestForm_FormClosed);
+                orderTestForm.Show();
+            }
+           
+        }
+
+
+        /// <summary>
+        /// Sets the OrderedTest object with the given values
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void orderTestForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (orderTestForm.Test != null)
+            {
+                if (orderTestForm.DialogResult == DialogResult.OK)
+                {
+                    newTest = new OrderedTest();
+                    newTest = orderTestForm.Test;
+                    // TODO: Call OrderedTest controller method, whire OrderedTestDAL method AddTest
+                }
+                else newTest = null;
+            }
+            orderTestForm = null;
+        }
 
     }
 }

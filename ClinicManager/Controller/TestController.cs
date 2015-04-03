@@ -54,5 +54,14 @@ namespace ClinicManager.Controller
         {
             return TestDAL.GetTests(name);
         }
+
+        /// <summary>
+        /// Gets all tests saved in DB
+        /// </summary>
+        /// <returns>List of tests</returns>
+        public List<Test> GetAllTests()
+        {
+            return TestDAL.GetAllTests();
+        }
     }
 }

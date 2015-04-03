@@ -15,7 +15,7 @@ namespace ClinicManagerData.Model
         private int visitID;
         private int testID;
         private DateTime orderDate;
-        private DateTime resultDate;
+        private DateTime performDate;
         private bool result;
         private string timestamp;
 
@@ -58,10 +58,10 @@ namespace ClinicManagerData.Model
         /// <summary>
         /// Get/set resultDate
         /// </summary>
-        public DateTime ResultDate
+        public DateTime PerformDate
         {
-            get { return resultDate; }
-            set { resultDate = value; }
+            get { return performDate; }
+            set { performDate = value; }
         }
 
         /// <summary>

@@ -86,6 +86,12 @@
     <Compile Include="View\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\OrderTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\OrderTest.Designer.cs">
+      <DependentUpon>OrderTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\SearchPatient.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,6 +138,9 @@
     <EmbeddedResource Include="View\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\OrderTest.resx">
+      <DependentUpon>OrderTest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\SearchPatient.resx">
       <DependentUpon>SearchPatient.cs</DependentUpon>
     </EmbeddedResource>
@@ -143,6 +152,7 @@
     </EmbeddedResource>
     <None Include="Properties\DataSources\ClinicManagerData.Model.OrderedTest.datasource" />
     <None Include="Properties\DataSources\ClinicManagerData.Model.Person.datasource" />
+    <None Include="Properties\DataSources\ClinicManagerData.Model.Test.datasource" />
     <None Include="Properties\DataSources\ClinicManagerData.Model.Visit1.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
