@@ -53,7 +53,6 @@
             this.clnPerformedDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clnResults = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnTestResult = new System.Windows.Forms.Button();
-            this.btnEditTest = new System.Windows.Forms.Button();
             this.btnNewTest = new System.Windows.Forms.Button();
             this.orderedTestBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnCancel = new System.Windows.Forms.Button();
@@ -70,6 +69,7 @@
             this.tbpDiagnosis = new System.Windows.Forms.TabPage();
             this.txbInitialDiagnosis = new System.Windows.Forms.TextBox();
             this.txbFinalDiagnosis = new System.Windows.Forms.TextBox();
+            this.btnSaveCheckup = new System.Windows.Forms.Button();
             bloodPressureLabel = new System.Windows.Forms.Label();
             lblDoctor = new System.Windows.Forms.Label();
             lblPatient = new System.Windows.Forms.Label();
@@ -215,7 +215,7 @@
             this.txbSymptoms.Name = "txbSymptoms";
             this.txbSymptoms.ReadOnly = true;
             this.txbSymptoms.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txbSymptoms.Size = new System.Drawing.Size(655, 178);
+            this.txbSymptoms.Size = new System.Drawing.Size(655, 141);
             this.txbSymptoms.TabIndex = 18;
             this.txbSymptoms.Tag = "Symptoms";
             // 
@@ -245,6 +245,7 @@
             // 
             // gbxRoutingChecks
             // 
+            this.gbxRoutingChecks.Controls.Add(this.btnSaveCheckup);
             this.gbxRoutingChecks.Controls.Add(this.txbTemperature);
             this.gbxRoutingChecks.Controls.Add(temperatureLabel);
             this.gbxRoutingChecks.Controls.Add(this.txbSymptoms);
@@ -308,21 +309,10 @@
             this.btnTestResult.Text = "Record Test Result";
             this.btnTestResult.UseVisualStyleBackColor = true;
             // 
-            // btnEditTest
-            // 
-            this.btnEditTest.Enabled = false;
-            this.btnEditTest.Location = new System.Drawing.Point(532, 429);
-            this.btnEditTest.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnEditTest.Name = "btnEditTest";
-            this.btnEditTest.Size = new System.Drawing.Size(83, 22);
-            this.btnEditTest.TabIndex = 2;
-            this.btnEditTest.Text = "Edit Test";
-            this.btnEditTest.UseVisualStyleBackColor = true;
-            // 
             // btnNewTest
             // 
             this.btnNewTest.Enabled = false;
-            this.btnNewTest.Location = new System.Drawing.Point(389, 429);
+            this.btnNewTest.Location = new System.Drawing.Point(491, 429);
             this.btnNewTest.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnNewTest.Name = "btnNewTest";
             this.btnNewTest.Size = new System.Drawing.Size(122, 22);
@@ -437,7 +427,6 @@
             // 
             this.tbpTests.Controls.Add(this.lvOrderedTests);
             this.tbpTests.Controls.Add(this.btnTestResult);
-            this.tbpTests.Controls.Add(this.btnEditTest);
             this.tbpTests.Controls.Add(this.btnNewTest);
             this.tbpTests.Location = new System.Drawing.Point(4, 25);
             this.tbpTests.Name = "tbpTests";
@@ -500,6 +489,17 @@
             this.txbFinalDiagnosis.Size = new System.Drawing.Size(657, 212);
             this.txbFinalDiagnosis.TabIndex = 38;
             // 
+            // btnSaveCheckup
+            // 
+            this.btnSaveCheckup.Enabled = false;
+            this.btnSaveCheckup.Location = new System.Drawing.Point(604, 269);
+            this.btnSaveCheckup.Name = "btnSaveCheckup";
+            this.btnSaveCheckup.Size = new System.Drawing.Size(167, 23);
+            this.btnSaveCheckup.TabIndex = 21;
+            this.btnSaveCheckup.Text = "Save Checkup Info";
+            this.btnSaveCheckup.UseVisualStyleBackColor = true;
+            this.btnSaveCheckup.Click += new System.EventHandler(this.btnSaveCheckup_Click);
+            // 
             // AddEditVisit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -545,7 +545,6 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.BindingSource orderedTestBindingSource;
         private System.Windows.Forms.Button btnTestResult;
-        private System.Windows.Forms.Button btnEditTest;
         private System.Windows.Forms.Button btnNewTest;
         private System.Windows.Forms.BindingSource personBindingSource;
         private System.Windows.Forms.ComboBox cmbNurse;
@@ -563,6 +562,7 @@
         private System.Windows.Forms.TabPage tbpDiagnosis;
         private System.Windows.Forms.TextBox txbInitialDiagnosis;
         private System.Windows.Forms.TextBox txbFinalDiagnosis;
+        private System.Windows.Forms.Button btnSaveCheckup;
 
     }
 }

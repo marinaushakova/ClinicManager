@@ -220,10 +220,18 @@ namespace ClinicManager.View
             txbPulseRate.ReadOnly = false;
             txbSymptoms.ReadOnly = false;
             txbTemperature.ReadOnly = false;
-            btnOK.Enabled = true;
             btnNewTest.Enabled = true;
             btnEditTest.Enabled = true;
             btnTestResult.Enabled = true;
+            if (visit == null)
+            {
+                btnSaveCheckup.Enabled = true;
+            }
+            else
+            {
+                btnSaveCheckup.Enabled = false;
+                btnOK.Enabled = true;
+            }
         }
 
         /// <summary>
@@ -252,16 +260,11 @@ namespace ClinicManager.View
             {
                 if (visit == null)
                 {
-                    visit = new Visit();
-                    this.putVisitData(visit);
-                    int visitID = visitController.AddVisitRecord(visit);
-                    MessageBox.Show("Visit record successfully added", "Success");
-                    this.resetInput();
-                    visit = null;
+                    MessageBox.Show("Update failed. There is no visit to save", "Error");
                 }
                 else
                 {
-                    this.putVisitData(visit);
+                    this.putVisitData();
                     bool result = visitController.UpdateVisitRecord(visit);
                     if (!result)
                     {
@@ -271,7 +274,7 @@ namespace ClinicManager.View
                     }
                     else
                     {
-                        MessageBox.Show("Visit record was successfully updated" , "Success");
+                        MessageBox.Show("Visit record was successfully saved/updated" , "Success");
                         this.Close();
                     }
                 }
@@ -280,7 +283,7 @@ namespace ClinicManager.View
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, ex.GetType().ToString());
-                this.BeginInvoke(new MethodInvoker(Close));
+                //this.BeginInvoke(new MethodInvoker(Close));
             }
         }
 
@@ -311,28 +314,30 @@ namespace ClinicManager.View
         /// Puts the input values from the form into a visit object
         /// </summary>
         /// <param name="thePerson">The visit object to fill with the form data</param>
-        private void putVisitData(Visit theVisit)
+        private void putVisitData()
         {
             if (visit == null)
             {
-                theVisit.PatientID = patient.PersonID;
-                theVisit.DoctorID = (int)cmbDoctor.SelectedValue;
-                theVisit.NurseID = (int)cmbNurse.SelectedValue;
+                visit = new Visit();
+                visit.PatientID = patient.PersonID;
+                visit.DoctorID = (int)cmbDoctor.SelectedValue;
+                visit.NurseID = (int)cmbNurse.SelectedValue;
+                visit.Date = Convert.ToDateTime(lblVisitDate.Text);
             }
-            else
+           /* else
             {
-                theVisit.PatientID = visit.PatientID;
-                theVisit.DoctorID = visit.DoctorID;
-                theVisit.NurseID = visit.NurseID;
-            }
+                visit.PatientID = visit.PatientID;
+                visit.DoctorID = visit.DoctorID;
+                visit.NurseID = visit.NurseID;
+            }*/
+
             
-            theVisit.Date = Convert.ToDateTime(lblVisitDate.Text);
-            theVisit.BloodPressure = txbBloodPressure.Text;
-            theVisit.Temperature = Convert.ToDouble(txbTemperature.Text);
-            theVisit.PulseRate = Convert.ToInt32(txbPulseRate.Text);
-            theVisit.Symptoms = txbSymptoms.Text;
-            theVisit.InitialDiagnosis = txbInitialDiagnosis.Text;
-            theVisit.FinalDiagnosis = txbFinalDiagnosis.Text;
+            visit.BloodPressure = txbBloodPressure.Text;
+            visit.Temperature = Convert.ToDouble(txbTemperature.Text);
+            visit.PulseRate = Convert.ToInt32(txbPulseRate.Text);
+            visit.Symptoms = txbSymptoms.Text;
+            visit.InitialDiagnosis = txbInitialDiagnosis.Text;
+            visit.FinalDiagnosis = txbFinalDiagnosis.Text;
         }
 
         /// <summary>
@@ -359,6 +364,7 @@ namespace ClinicManager.View
             txbPulseRate.ReadOnly = true;
             txbSymptoms.ReadOnly = true;
             txbTemperature.ReadOnly = true;
+            btnSaveCheckup.Enabled = false;
             btnOK.Enabled = false;
             btnNewTest.Enabled = false;
             btnEditTest.Enabled = false;
@@ -379,7 +385,7 @@ namespace ClinicManager.View
         {
             if (this.visit == null)
             {
-                MessageBox.Show("You must enter checkup information and save the visit record before ordering tests", "Error");
+                MessageBox.Show("You must enter and save checkup information before ordering tests", "Error");
                 return;
             }
             else
@@ -406,14 +412,37 @@ namespace ClinicManager.View
                 {
                     newTest = new OrderedTest();
                     newTest = orderTestForm.Test;
-                    // TODO: Call OrderedTest controller method, whire OrderedTestDAL method AddTest
                     int orderedTestID = orderedTestController.OrderTest(newTest);
+                    this.FillOrderedTests();
                     MessageBox.Show("New test was successfully ordered", "Success");
                     newTest = null;
                 }
                 else newTest = null;
             }
             orderTestForm = null;
+        }
+
+        private void btnSaveCheckup_Click(object sender, EventArgs e)
+        {
+            if (!this.isValid())
+            {
+                return;
+            }
+            try 
+            {
+                
+                this.putVisitData();
+                int visitID = visitController.AddVisitRecord(visit);
+                MessageBox.Show("Visit record successfully created", "Success");
+                visit = visitController.GetVisitById(visitID);
+                setUpTitle();
+                setUpForm();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+                this.BeginInvoke(new MethodInvoker(Close));
+            }
         }
 
     }
