@@ -594,7 +594,7 @@ namespace ClinicManagerData.DAL
         public static bool DeleteStaffMember(Person person, User user)
         {
             string updatePersonStatement = 
-                "UPDATE person SET is_nurse = false, is_admin = false, is_doctor = false " + 
+                "UPDATE person SET is_nurse = 'false', is_admin = 'false', is_doctor = 'false' " + 
                 "WHERE id = @id AND timestamp = @timestamp";
             string deleteUserStatement =
                 "DELETE FROM [user] WHERE person_id = @person_id AND timestamp = @timestamp";

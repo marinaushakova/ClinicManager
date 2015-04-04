@@ -25,7 +25,6 @@ namespace ClinicManager.View
         }
 
         private bool is_nurse;
-        private bool was_doctor;
 
         private AddEditUser addEditUserForm;
 
@@ -54,11 +53,6 @@ namespace ClinicManager.View
             this.setUpBinding();
             this.setUpButtons();
             this.getUserIfPresent();
-            if (this.person != null)
-            {
-                was_doctor = person.IsDoctor;
-            }
-
         }
 
         /// <summary>
@@ -163,7 +157,8 @@ namespace ClinicManager.View
             roleComboBox.Items.Add(new { Text = "Nurse" });
             roleComboBox.Items.Add(new { Text = "Doctor" });
             roleComboBox.Items.Add(new { Text = "Admin" });
-            roleComboBox.Enabled = false;
+            if (person != null) roleComboBox.Enabled = false;
+            else roleComboBox.Enabled = true;
 
             if (this.person != null)
             {
