@@ -100,11 +100,12 @@ namespace ClinicManager.Controller
         /// <summary>
         /// Deletes a staff member from the DB
         /// </summary>
-        /// <param name="ID"></param>
+        /// <param name="person">The person to be deleted</param>
+        /// <param name="user">The user credentials (if they exist) of the person to be deleted</param>
         /// <returns>True if deletion was sucessful, false otherwise</returns>
-        public bool DeleteStaffMember(int ID)
+        public bool DeleteStaffMember(Person person, User user)
         {
-            return PersonDAL.DeleteStaffMember(ID);
+            return PersonDAL.DeleteStaffMember(person, user);
         }
     }
 }

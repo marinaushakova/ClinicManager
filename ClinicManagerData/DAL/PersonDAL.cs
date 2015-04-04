@@ -383,7 +383,7 @@ namespace ClinicManagerData.DAL
             string userStatement =
                 "UPDATE [user] SET username = @username, password = @password WHERE person_id = @person_id AND timestamp = @timestamp";
 
-            SqlConnection con;
+            SqlConnection con = null;
             SqlTransaction updateStaffTran = null;
             SqlCommand updatePersonCom = new SqlCommand();
             SqlCommand userCom = new SqlCommand();
@@ -450,6 +450,10 @@ namespace ClinicManagerData.DAL
             {
                 if (updateStaffTran != null) updateStaffTran.Rollback();
                 throw ex;
+            }
+            finally
+            {
+                if (con != null) con.Close();
             }
         }
 
@@ -579,29 +583,68 @@ namespace ClinicManagerData.DAL
         }
 
         /// <summary>
-        /// Deletes the staff member with the specified ID from the database
+        /// Changes the role flag (nurse, doctor, admin) of the given staff member to false such that 
+        /// they can be excluded from the application edit functionality but still be referenced in visits
+        /// they have already been associated with. Delets a staff member from the application while keeping 
+        /// them in the database.
         /// </summary>
-        /// <param name="ID"></param>
+        /// <param name="person">The person to be "deleted"</param>
+        /// <param name="user">The user object associated with the staff member to be "deleted". May be null</param>
         /// <returns>True if deletion was sucessful, false otherwise</returns>
-        public static bool DeleteStaffMember(int ID)
+        public static bool DeleteStaffMember(Person person, User user)
         {
-            string deleteStatment = "DELETE FROM person WHERE id = @id";
+            string updatePersonStatement = 
+                "UPDATE person SET is_nurse = false, is_admin = false, is_doctor = false " + 
+                "WHERE id = @id AND timestamp = @timestamp";
+            string deleteUserStatement =
+                "DELETE FROM [user] WHERE person_id = @person_id AND timestamp = @timestamp";
+
+            SqlConnection con = null;
+            SqlTransaction deleteStaffTran = null;
+            SqlCommand updatePersonCom = new SqlCommand();
+            SqlCommand deleteUserCom = new SqlCommand();
             try
             {
-                using (SqlConnection con = ClinicManagerDBConnection.GetConnection())
+                con = ClinicManagerDBConnection.GetConnection();
+                updatePersonCom.Connection = con;
+                updatePersonCom.CommandText = updatePersonStatement;
+
+                updatePersonCom.Parameters.AddWithValue("@id", person.PersonID);
+                updatePersonCom.Parameters.AddWithValue("@timestamp", Convert.FromBase64String(person.Timestamp));
+
+                if (user != null)
                 {
-                    con.Open();
-                    using (SqlCommand deleteCommand = new SqlCommand(deleteStatment, con))
-                    {
-                        deleteCommand.Parameters.AddWithValue("@id", ID);
-                        int count = deleteCommand.ExecuteNonQuery();
-                        if (count > 0) return true;
-                        else return false;
-                    }
+                    deleteUserCom.Connection = con;
+                    deleteUserCom.CommandText = deleteUserStatement;
+                    deleteUserCom.Parameters.AddWithValue("@person_id", user.PersonID);
+                    deleteUserCom.Parameters.AddWithValue("@timestamp", Convert.FromBase64String(user.Timestamp));
+                }
+
+                con.Open();
+                deleteStaffTran = con.BeginTransaction();
+                updatePersonCom.Transaction = deleteStaffTran;
+                if (user != null) deleteUserCom.Transaction = deleteStaffTran;
+
+                int personCount;
+                int? userCount = null;
+
+                personCount = updatePersonCom.ExecuteNonQuery();
+                if (user != null) userCount = deleteUserCom.ExecuteNonQuery();
+
+                if (personCount > 0 && (userCount == null || userCount > 0))
+                {
+                    deleteStaffTran.Commit();
+                    return true;
+                }
+                else
+                {
+                    deleteStaffTran.Rollback();
+                    return false;
                 }
             }
             catch (SqlException ex)
             {
+                if (deleteStaffTran != null) deleteStaffTran.Rollback();
                 if (ex.Number == 547)
                 {
                     throw new TestIntegrityException();
@@ -614,6 +657,10 @@ namespace ClinicManagerData.DAL
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                if (con != null) con.Close();
             }
         }
     }

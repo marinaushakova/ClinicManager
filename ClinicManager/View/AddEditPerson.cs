@@ -188,7 +188,7 @@ namespace ClinicManager.View
             {
                 try
                 {
-                    bool result = personController.DeleteStaffMember(person.PersonID);
+                    bool result = personController.DeleteStaffMember(person, user);
                     if (result)
                     {
                         MessageBox.Show("Successfully deleted staff member.", "Success");
