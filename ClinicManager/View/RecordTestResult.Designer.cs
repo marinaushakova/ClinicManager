@@ -32,13 +32,15 @@
             this.rbtnNegative = new System.Windows.Forms.RadioButton();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.datDateTested = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // rbtnPositive
             // 
             this.rbtnPositive.AutoSize = true;
             this.rbtnPositive.Checked = true;
-            this.rbtnPositive.Location = new System.Drawing.Point(44, 40);
+            this.rbtnPositive.Location = new System.Drawing.Point(76, 76);
             this.rbtnPositive.Name = "rbtnPositive";
             this.rbtnPositive.Size = new System.Drawing.Size(74, 20);
             this.rbtnPositive.TabIndex = 0;
@@ -49,7 +51,7 @@
             // rbtnNegative
             // 
             this.rbtnNegative.AutoSize = true;
-            this.rbtnNegative.Location = new System.Drawing.Point(44, 80);
+            this.rbtnNegative.Location = new System.Drawing.Point(199, 76);
             this.rbtnNegative.Name = "rbtnNegative";
             this.rbtnNegative.Size = new System.Drawing.Size(81, 20);
             this.rbtnNegative.TabIndex = 1;
@@ -58,7 +60,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(130, 143);
+            this.btnOK.Location = new System.Drawing.Point(183, 124);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 30);
             this.btnOK.TabIndex = 2;
@@ -68,7 +70,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(247, 143);
+            this.btnCancel.Location = new System.Drawing.Point(264, 124);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 30);
             this.btnCancel.TabIndex = 3;
@@ -76,11 +78,29 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(23, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(86, 16);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Date Tested:";
+            // 
+            // datDateTested
+            // 
+            this.datDateTested.Location = new System.Drawing.Point(116, 27);
+            this.datDateTested.Name = "datDateTested";
+            this.datDateTested.Size = new System.Drawing.Size(223, 21);
+            this.datDateTested.TabIndex = 5;
+            // 
             // RecordTestResult
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(351, 198);
+            this.ClientSize = new System.Drawing.Size(351, 174);
+            this.Controls.Add(this.datDateTested);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.rbtnNegative);
@@ -89,6 +109,7 @@
             this.Name = "RecordTestResult";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Record Test Result";
+            this.Load += new System.EventHandler(this.RecordTestResult_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -100,5 +121,7 @@
         private System.Windows.Forms.RadioButton rbtnNegative;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker datDateTested;
     }
 }

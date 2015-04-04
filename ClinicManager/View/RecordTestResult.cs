@@ -20,8 +20,25 @@ namespace ClinicManager.View
             set { result = value; }
         }
 
-        public RecordTestResult()
+        private DateTime resultDate;
+
+        public DateTime ResultDate
         {
+            get { return resultDate; }
+            set { resultDate = value; }
+        }
+
+        private DateTime dateRangeStart;
+        private DateTime dateRangeEnd;
+
+        public RecordTestResult(DateTime rangeStart, DateTime rangeEnd)
+        {
+            dateRangeStart = rangeStart;
+            dateRangeEnd = rangeEnd;
+            if (dateRangeStart > dateRangeEnd)
+            {
+                dateRangeStart = dateRangeEnd;
+            }
             InitializeComponent();
         }
 
@@ -33,6 +50,7 @@ namespace ClinicManager.View
         private void btnOK_Click(object sender, EventArgs e)
         {
             result = rbtnPositive.Checked;
+            resultDate = datDateTested.Value;
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -46,6 +64,12 @@ namespace ClinicManager.View
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void RecordTestResult_Load(object sender, EventArgs e)
+        {
+            datDateTested.MinDate = dateRangeStart;
+            datDateTested.MaxDate = dateRangeEnd;
         }
     }
 }

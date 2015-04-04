@@ -126,8 +126,15 @@ namespace ClinicManager.View
                     theOrderedTest = orderedTestList[i];
                     lvOrderedTests.Items.Add(theOrderedTest.Name);
                     lvOrderedTests.Items[i].SubItems.Add(theOrderedTest.OrderDate.ToShortDateString());
-                    lvOrderedTests.Items[i].SubItems.Add(theOrderedTest.PerformDate.ToShortDateString());
-                    if (theOrderedTest.Result != null)
+                    if (theOrderedTest.PerformDate.HasValue)
+                    {
+                        lvOrderedTests.Items[i].SubItems.Add(theOrderedTest.PerformDate.Value.ToShortDateString());
+                    }
+                    else
+                    {
+                        lvOrderedTests.Items[i].SubItems.Add("");
+                    }
+                    if (theOrderedTest.Result.HasValue)
                     {
                         String result = (bool)theOrderedTest.Result ? "Positive" : "Negative";
                         lvOrderedTests.Items[i].SubItems.Add(result);
@@ -407,16 +414,23 @@ namespace ClinicManager.View
         /// <param name="e"></param>
         private void orderTestForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (orderTestForm.Test != null)
+            try
             {
-                if (orderTestForm.DialogResult == DialogResult.OK)
+                if (orderTestForm.Test != null)
                 {
-                    theTest = new OrderedTest();
-                    theTest = orderTestForm.Test;
-                    int orderedTestID = orderedTestController.OrderTest(theTest);
-                    this.FillOrderedTests();
-                    MessageBox.Show("New test was successfully ordered", "Success");
-                }   
+                    if (orderTestForm.DialogResult == DialogResult.OK)
+                    {
+                        theTest = new OrderedTest();
+                        theTest = orderTestForm.Test;
+                        int orderedTestID = orderedTestController.OrderTest(theTest);
+                        this.FillOrderedTests();
+                        MessageBox.Show("New test was successfully ordered", "Success");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
             }
             theTest = null;
             orderTestForm = null;
@@ -456,15 +470,7 @@ namespace ClinicManager.View
                 int index = lvOrderedTests.SelectedItems[0].Index;
                 int id = orderedTestList[index].OrderedTestID;
                 theTest = orderedTestController.GetTestById(id);
-
-                if (theTest.PerformDate > DateTime.Now)
-                {
-                    MessageBox.Show("Test results cannot be recorded until the date " +
-                           "test is performed.", "Error");
-                    return;
-                }
-
-                testResultForm = new RecordTestResult();
+                testResultForm = new RecordTestResult(theTest.OrderDate, DateTime.Today);
                 testResultForm.MdiParent = this.MdiParent;
                 testResultForm.FormClosed += new FormClosedEventHandler(testResultForm_FormClosed);
                 testResultForm.Show();
@@ -480,29 +486,29 @@ namespace ClinicManager.View
         {
             if (testResultForm.DialogResult == DialogResult.OK)
             {
-                if (testResultForm.Result) 
+                try
                 {
-                    theTest.Result = true;
-                }
-                else
-                {
-                    theTest.Result = false;
-                }
-                bool isUpdated = orderedTestController.RecordTestResult(theTest);
-                if (!isUpdated)
-                {
-                    MessageBox.Show("Update failed.  Perhaps another user has updated or " +
-                            "deleted that?", "Database Error");
+                    theTest.Result = testResultForm.Result;
+                    theTest.PerformDate = testResultForm.ResultDate;
+                    bool isUpdated = orderedTestController.RecordTestResult(theTest);
+                    if (!isUpdated)
+                    {
+                        MessageBox.Show("Update failed.  Perhaps another user has updated or " +
+                                "deleted that?", "Database Error");
 
+                    }
+                    else
+                    {
+                        this.FillOrderedTests();
+                        MessageBox.Show("The result was successfully recorded", "Success");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    this.FillOrderedTests();
-                    MessageBox.Show("The result was successfully recorded", "Success");
+                    MessageBox.Show(ex.Message, ex.GetType().ToString());
                 }
             }
             theTest = null;
-            orderTestForm = null;
         }
     }
 }

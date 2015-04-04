@@ -44,7 +44,8 @@ namespace ClinicManager.View
             this.test.TestID = (int)cmbTestName.SelectedValue;
             this.test.VisitID = this.visit.VisitID;
             this.test.OrderDate = Convert.ToDateTime(lblOrderDate.Text);
-            this.test.PerformDate = Convert.ToDateTime(dtpPerformDate.Text);
+            this.test.PerformDate = null;
+            this.test.Result = null;
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

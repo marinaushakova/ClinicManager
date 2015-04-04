@@ -23,8 +23,8 @@ namespace ClinicManagerData.DAL
         public static int OrderTest(OrderedTest orderedTest)
         {
             string insertStatement =
-                "INSERT INTO orderedtest (visit_id, test_id, order_date, result_date) " 
-                + "VALUES (@visitID, @testID, @orderDate, @resultDate)";
+                "INSERT INTO orderedtest (visit_id, test_id, order_date, result_date, result) " 
+                + "VALUES (@visitID, @testID, @orderDate, @resultDate, @result)";
             try
             {
                 using (SqlConnection con = ClinicManagerDBConnection.GetConnection())
@@ -35,7 +35,22 @@ namespace ClinicManagerData.DAL
                         insertCommand.Parameters.AddWithValue("@visitID", orderedTest.VisitID);
                         insertCommand.Parameters.AddWithValue("@testID", orderedTest.TestID);
                         insertCommand.Parameters.AddWithValue("@orderDate", orderedTest.OrderDate);
-                        insertCommand.Parameters.AddWithValue("@resultDate", orderedTest.PerformDate);
+                        if (orderedTest.PerformDate.HasValue)
+                        {
+                            insertCommand.Parameters.AddWithValue("@resultDate", orderedTest.PerformDate);
+                        }
+                        else
+                        {
+                            insertCommand.Parameters.AddWithValue("@resultDate", DBNull.Value);
+                        }
+                        if (orderedTest.Result.HasValue)
+                        {
+                            insertCommand.Parameters.AddWithValue("@result", orderedTest.Result);
+                        }
+                        else
+                        {
+                            insertCommand.Parameters.AddWithValue("@result", DBNull.Value);
+                        }
 
                         insertCommand.ExecuteNonQuery();
 
@@ -83,7 +98,15 @@ namespace ClinicManagerData.DAL
                                 orderedTestSummary.OrderedTestID = (int)reader["ord_test_id"];
                                 orderedTestSummary.VisitID = (int)reader["visit_id"];
                                 orderedTestSummary.OrderDate = (DateTime)reader["order_date"];
-                                orderedTestSummary.PerformDate = (DateTime)reader["result_date"];
+                                if (reader["result_date"] != System.DBNull.Value)
+                                {
+                                    orderedTestSummary.PerformDate = (DateTime)reader["result_date"];
+                                }
+                                else
+                                {
+                                    orderedTestSummary.PerformDate = null;
+                                }
+                                
                                 if (reader["result"] != System.DBNull.Value) {
                                     orderedTestSummary.Result = (bool)reader["result"];
                                 } else {
@@ -115,8 +138,12 @@ namespace ClinicManagerData.DAL
         /// <returns>True if update successful, false otherwise</returns>
         public static bool RecordTestResults(OrderedTest orderedTest)
         {
+            if (orderedTest.PerformDate == null || orderedTest.Result == null)
+            {
+                return false;
+            }
             string updateStatement =
-                "UPDATE orderedtest SET result = @result " +
+                "UPDATE orderedtest SET result_date = @result_date, result = @result " +
                 "WHERE id = @id AND timestamp = @timestamp";
             try
             {
@@ -126,6 +153,7 @@ namespace ClinicManagerData.DAL
                     using (SqlCommand updateCommand = new SqlCommand(updateStatement, con))
                     {
                         updateCommand.Parameters.AddWithValue("@id", orderedTest.OrderedTestID);
+                        updateCommand.Parameters.AddWithValue("@result_date", orderedTest.PerformDate);
                         updateCommand.Parameters.AddWithValue("@result", orderedTest.Result);
                         updateCommand.Parameters.AddWithValue("@timestamp", Convert.FromBase64String(orderedTest.Timestamp));
 
@@ -163,7 +191,14 @@ namespace ClinicManagerData.DAL
                                 ordTest.TestID = (int)reader["test_id"];
                                 ordTest.VisitID = (int)reader["visit_id"];
                                 ordTest.OrderDate = (DateTime)reader["order_date"];
-                                ordTest.PerformDate = (DateTime)reader["result_date"];
+                                if (reader["result_date"] != System.DBNull.Value)
+                                {
+                                    ordTest.PerformDate = (DateTime)reader["result_date"];
+                                }
+                                else
+                                {
+                                    ordTest.PerformDate = null;
+                                }
                                 if (reader["result"] != System.DBNull.Value)
                                 {
                                     ordTest.Result = (bool)reader["result"];

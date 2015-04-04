@@ -30,10 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label lblDate;
-            System.Windows.Forms.Label lblPerformDate;
             System.Windows.Forms.Label lblDescription;
             System.Windows.Forms.Label lblTestName;
-            this.dtpPerformDate = new System.Windows.Forms.DateTimePicker();
             this.orderedTestBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblOrderDate = new System.Windows.Forms.Label();
             this.txbDescription = new System.Windows.Forms.TextBox();
@@ -42,7 +40,6 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             lblDate = new System.Windows.Forms.Label();
-            lblPerformDate = new System.Windows.Forms.Label();
             lblDescription = new System.Windows.Forms.Label();
             lblTestName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.orderedTestBindingSource)).BeginInit();
@@ -58,19 +55,10 @@
             lblDate.TabIndex = 1;
             lblDate.Text = "Order Date:";
             // 
-            // lblPerformDate
-            // 
-            lblPerformDate.AutoSize = true;
-            lblPerformDate.Location = new System.Drawing.Point(14, 67);
-            lblPerformDate.Name = "lblPerformDate";
-            lblPerformDate.Size = new System.Drawing.Size(90, 16);
-            lblPerformDate.TabIndex = 7;
-            lblPerformDate.Text = "Perform Date:";
-            // 
             // lblDescription
             // 
             lblDescription.AutoSize = true;
-            lblDescription.Location = new System.Drawing.Point(24, 147);
+            lblDescription.Location = new System.Drawing.Point(24, 111);
             lblDescription.Name = "lblDescription";
             lblDescription.Size = new System.Drawing.Size(79, 16);
             lblDescription.TabIndex = 9;
@@ -79,22 +67,11 @@
             // lblTestName
             // 
             lblTestName.AutoSize = true;
-            lblTestName.Location = new System.Drawing.Point(54, 100);
+            lblTestName.Location = new System.Drawing.Point(54, 64);
             lblTestName.Name = "lblTestName";
             lblTestName.Size = new System.Drawing.Size(48, 16);
             lblTestName.TabIndex = 11;
             lblTestName.Text = "Name:";
-            // 
-            // dtpPerformDate
-            // 
-            this.dtpPerformDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.orderedTestBindingSource, "PerformDate", true));
-            this.dtpPerformDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpPerformDate.Location = new System.Drawing.Point(105, 60);
-            this.dtpPerformDate.MinDate = new System.DateTime(2015, 4, 3, 0, 0, 0, 0);
-            this.dtpPerformDate.Name = "dtpPerformDate";
-            this.dtpPerformDate.Size = new System.Drawing.Size(241, 21);
-            this.dtpPerformDate.TabIndex = 8;
-            this.dtpPerformDate.Value = new System.DateTime(2015, 4, 3, 10, 36, 42, 0);
             // 
             // orderedTestBindingSource
             // 
@@ -112,7 +89,7 @@
             // txbDescription
             // 
             this.txbDescription.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.testBindingSource, "Description", true));
-            this.txbDescription.Location = new System.Drawing.Point(105, 143);
+            this.txbDescription.Location = new System.Drawing.Point(105, 107);
             this.txbDescription.Multiline = true;
             this.txbDescription.Name = "txbDescription";
             this.txbDescription.ReadOnly = true;
@@ -131,7 +108,7 @@
             this.cmbTestName.DisplayMember = "Name";
             this.cmbTestName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTestName.FormattingEnabled = true;
-            this.cmbTestName.Location = new System.Drawing.Point(105, 100);
+            this.cmbTestName.Location = new System.Drawing.Point(105, 64);
             this.cmbTestName.Name = "cmbTestName";
             this.cmbTestName.Size = new System.Drawing.Size(241, 23);
             this.cmbTestName.TabIndex = 12;
@@ -140,7 +117,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(478, 290);
+            this.btnOK.Location = new System.Drawing.Point(478, 254);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(87, 27);
             this.btnOK.TabIndex = 13;
@@ -150,7 +127,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(617, 290);
+            this.btnCancel.Location = new System.Drawing.Point(617, 254);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(87, 27);
             this.btnCancel.TabIndex = 14;
@@ -162,7 +139,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(724, 337);
+            this.ClientSize = new System.Drawing.Size(724, 298);
             this.Controls.Add(this.cmbTestName);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
@@ -171,8 +148,6 @@
             this.Controls.Add(lblTestName);
             this.Controls.Add(this.lblOrderDate);
             this.Controls.Add(lblDate);
-            this.Controls.Add(lblPerformDate);
-            this.Controls.Add(this.dtpPerformDate);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "OrderTest";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -188,7 +163,6 @@
         #endregion
 
         private System.Windows.Forms.BindingSource orderedTestBindingSource;
-        private System.Windows.Forms.DateTimePicker dtpPerformDate;
         private System.Windows.Forms.Label lblOrderDate;
         private System.Windows.Forms.BindingSource testBindingSource;
         private System.Windows.Forms.TextBox txbDescription;
