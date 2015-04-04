@@ -16,7 +16,7 @@ namespace ClinicManagerData.Model
         private int testID;
         private DateTime orderDate;
         private DateTime performDate;
-        private bool result;
+        private bool? result;
         private string timestamp;
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace ClinicManagerData.Model
         /// <summary>
         /// Get/set result
         /// </summary>
-        public bool Result
+        public bool? Result
         {
             get { return result; }
             set { result = value; }

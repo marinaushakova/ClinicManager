@@ -93,6 +93,12 @@
     <Compile Include="View\OrderTest.Designer.cs">
       <DependentUpon>OrderTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\RecordTestResult.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RecordTestResult.Designer.cs">
+      <DependentUpon>RecordTestResult.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\SearchPatient.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\OrderTest.resx">
       <DependentUpon>OrderTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RecordTestResult.resx">
+      <DependentUpon>RecordTestResult.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\SearchPatient.resx">
       <DependentUpon>SearchPatient.cs</DependentUpon>

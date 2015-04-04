@@ -270,8 +270,10 @@
             this.clnOrderDate,
             this.clnPerformedDate,
             this.clnResults});
+            this.lvOrderedTests.FullRowSelect = true;
             this.lvOrderedTests.Location = new System.Drawing.Point(11, 17);
             this.lvOrderedTests.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lvOrderedTests.MultiSelect = false;
             this.lvOrderedTests.Name = "lvOrderedTests";
             this.lvOrderedTests.Size = new System.Drawing.Size(784, 388);
             this.lvOrderedTests.TabIndex = 4;
@@ -308,6 +310,7 @@
             this.btnTestResult.TabIndex = 3;
             this.btnTestResult.Text = "Record Test Result";
             this.btnTestResult.UseVisualStyleBackColor = true;
+            this.btnTestResult.Click += new System.EventHandler(this.btnTestResult_Click);
             // 
             // btnNewTest
             // 

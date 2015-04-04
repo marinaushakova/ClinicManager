@@ -32,5 +32,20 @@ namespace ClinicManager.Controller
         {
             return OrderedTestDAL.GetOrderedTestsSummaryByVisit(visitID);
         }
+
+        /// <summary>
+        /// Saves test results to the database
+        /// </summary>
+        /// <param name="ordTest">Ordered Test object that contains test results</param>
+        /// <returns>True if update successful, false otherwise</returns>
+        public bool RecordTestResult(OrderedTest ordTest)
+        {
+            return OrderedTestDAL.RecordTestResults(ordTest);
+        }
+
+        public OrderedTest GetTestById(int id)
+        {
+            return OrderedTestDAL.GetTestById(id);
+        }
     }
 }

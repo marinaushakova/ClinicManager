@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ClinicManagerData.Model;
 using System.Data.SqlClient;
 using ClinicManagerData.DB;
+using System.Data;
 
 namespace ClinicManagerData.DAL
 {
@@ -106,5 +107,87 @@ namespace ClinicManagerData.DAL
             }
             return testList;
         }
+
+        /// <summary>
+        /// Records results of an ordered test in the DB
+        /// </summary>
+        /// <param name="test">The orderedtest object with the altered data and the original test ID</param>
+        /// <returns>True if update successful, false otherwise</returns>
+        public static bool RecordTestResults(OrderedTest orderedTest)
+        {
+            string updateStatement =
+                "UPDATE orderedtest SET result = @result " +
+                "WHERE id = @id AND timestamp = @timestamp";
+            try
+            {
+                using (SqlConnection con = ClinicManagerDBConnection.GetConnection())
+                {
+                    con.Open();
+                    using (SqlCommand updateCommand = new SqlCommand(updateStatement, con))
+                    {
+                        updateCommand.Parameters.AddWithValue("@id", orderedTest.OrderedTestID);
+                        updateCommand.Parameters.AddWithValue("@result", orderedTest.Result);
+                        updateCommand.Parameters.AddWithValue("@timestamp", Convert.FromBase64String(orderedTest.Timestamp));
+
+                        int count = updateCommand.ExecuteNonQuery();
+                        if (count > 0) return true;
+                        else return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static OrderedTest GetTestById(int id)
+        {
+            OrderedTest ordTest = new OrderedTest();
+            string selectStatment =
+                "SELECT id, test_id, visit_id, order_date, result_date, result, timestamp " +
+                "FROM orderedtest WHERE id = @id";
+            try
+            {
+                using (SqlConnection con = ClinicManagerDBConnection.GetConnection())
+                {
+                    con.Open();
+                    using (SqlCommand selectCommand = new SqlCommand(selectStatment, con))
+                    {
+                        selectCommand.Parameters.AddWithValue("@id", id);
+                        using (SqlDataReader reader = selectCommand.ExecuteReader(CommandBehavior.SingleRow))
+                        {
+                            if (reader.Read())
+                            {
+                                ordTest.OrderedTestID = (int)reader["id"];
+                                ordTest.TestID = (int)reader["test_id"];
+                                ordTest.VisitID = (int)reader["visit_id"];
+                                ordTest.OrderDate = (DateTime)reader["order_date"];
+                                ordTest.PerformDate = (DateTime)reader["result_date"];
+                                if (reader["result"] != System.DBNull.Value)
+                                {
+                                    ordTest.Result = (bool)reader["result"];
+                                }
+                                else
+                                {
+                                    ordTest.Result = null;
+                                }
+                                ordTest.Timestamp = Convert.ToBase64String(reader["timestamp"] as byte[]);
+                            }
+                            else
+                            {
+                                ordTest = null;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return ordTest;
+        }
     }
+
 }

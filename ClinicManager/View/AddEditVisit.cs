@@ -18,7 +18,7 @@ namespace ClinicManager.View
     public partial class AddEditVisit : Form
     {
         private Visit visit;
-        private OrderedTest newTest;
+        private OrderedTest theTest;
 
         public Visit Visit
         {
@@ -28,12 +28,14 @@ namespace ClinicManager.View
 
         private List<Person> doctorList;
         private List<Person> nurseList;
+        private List<OrderedTestSummary> orderedTestList;
         private Person patient;
         private PersonController personController;
         private VisitController visitController;
         private OrderedTestController orderedTestController;
 
         private OrderTest orderTestForm;
+        private RecordTestResult testResultForm;
 
         public AddEditVisit()
         {
@@ -113,7 +115,7 @@ namespace ClinicManager.View
         /// </summary>
         private void FillOrderedTests()
         {
-            List<OrderedTestSummary> orderedTestList = orderedTestController.GetOrderedTestsSummaryByVisit(visit.VisitID);
+            orderedTestList = orderedTestController.GetOrderedTestsSummaryByVisit(visit.VisitID);
             lvOrderedTests.Items.Clear();
 
             if (orderedTestList.Count > 0)
@@ -221,7 +223,6 @@ namespace ClinicManager.View
             txbSymptoms.ReadOnly = false;
             txbTemperature.ReadOnly = false;
             btnNewTest.Enabled = true;
-            btnEditTest.Enabled = true;
             btnTestResult.Enabled = true;
             if (visit == null)
             {
@@ -367,7 +368,6 @@ namespace ClinicManager.View
             btnSaveCheckup.Enabled = false;
             btnOK.Enabled = false;
             btnNewTest.Enabled = false;
-            btnEditTest.Enabled = false;
             btnTestResult.Enabled = false;
             cmbDoctor.Visible = true;
             cmbNurse.Visible = true;
@@ -410,15 +410,14 @@ namespace ClinicManager.View
             {
                 if (orderTestForm.DialogResult == DialogResult.OK)
                 {
-                    newTest = new OrderedTest();
-                    newTest = orderTestForm.Test;
-                    int orderedTestID = orderedTestController.OrderTest(newTest);
+                    theTest = new OrderedTest();
+                    theTest = orderTestForm.Test;
+                    int orderedTestID = orderedTestController.OrderTest(theTest);
                     this.FillOrderedTests();
                     MessageBox.Show("New test was successfully ordered", "Success");
-                    newTest = null;
-                }
-                else newTest = null;
+                }   
             }
+            theTest = null;
             orderTestForm = null;
         }
 
@@ -445,5 +444,57 @@ namespace ClinicManager.View
             }
         }
 
+        private void btnTestResult_Click(object sender, EventArgs e)
+        {
+            if (lvOrderedTests.SelectedItems.Count < 1)
+            {
+                MessageBox.Show("Please select a test to record results.", "No Test Selected");
+            }
+            else
+            {
+                int index = lvOrderedTests.SelectedItems[0].Index;
+                int id = orderedTestList[index].OrderedTestID;
+                theTest = orderedTestController.GetTestById(id);
+
+                testResultForm = new RecordTestResult();
+                testResultForm.MdiParent = this.MdiParent;
+                testResultForm.FormClosed += new FormClosedEventHandler(testResultForm_FormClosed);
+                testResultForm.Show();
+            }
+        }
+        
+        /// <summary>
+        /// Sets the test result to the given values, closes the form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void testResultForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (testResultForm.DialogResult == DialogResult.OK)
+            {
+                if (testResultForm.Result) 
+                {
+                    theTest.Result = true;
+                }
+                else
+                {
+                    theTest.Result = false;
+                }
+                bool isUpdated = orderedTestController.RecordTestResult(theTest);
+                if (!isUpdated)
+                {
+                    MessageBox.Show("Update failed.  Perhaps another user has updated or " +
+                            "deleted that?", "Database Error");
+
+                }
+                else
+                {
+                    this.FillOrderedTests();
+                    MessageBox.Show("The result was successfully recorded", "Success");
+                }
+            }
+            theTest = null;
+            orderTestForm = null;
+        }
     }
 }
