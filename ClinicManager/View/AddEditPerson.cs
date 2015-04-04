@@ -157,18 +157,18 @@ namespace ClinicManager.View
             roleComboBox.Items.Add(new { Text = "Nurse" });
             roleComboBox.Items.Add(new { Text = "Doctor" });
             roleComboBox.Items.Add(new { Text = "Admin" });
-            if (person != null) roleComboBox.Enabled = false;
-            else roleComboBox.Enabled = true;
 
             if (this.person != null)
             {
                 if (this.person.IsDoctor) roleComboBox.SelectedIndex = 1;
                 else if (this.person.IsNurse) roleComboBox.SelectedIndex = 0;
                 else if (this.person.IsAdmin) roleComboBox.SelectedIndex = 2;
+                roleComboBox.Enabled = false;
             }
             else
             {
                 roleComboBox.SelectedIndex = -1;
+                roleComboBox.Enabled = true;
             }
         }
 
