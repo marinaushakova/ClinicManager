@@ -87,8 +87,7 @@ namespace ClinicManager.View
                 return;
             }
             Test selectedTest = this.testList[cmbTestName.SelectedIndex];
-            testBindingSource.Clear();
-            testBindingSource.Add(selectedTest);
+            txbDescription.Text = selectedTest.Description;
         }
     }
 }
