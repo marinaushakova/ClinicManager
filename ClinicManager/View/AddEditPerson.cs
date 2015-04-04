@@ -163,7 +163,7 @@ namespace ClinicManager.View
             roleComboBox.Items.Add(new { Text = "Nurse" });
             roleComboBox.Items.Add(new { Text = "Doctor" });
             roleComboBox.Items.Add(new { Text = "Admin" });
-            roleComboBox.Enabled = true;
+            roleComboBox.Enabled = false;
 
             if (this.person != null)
             {
@@ -303,24 +303,9 @@ namespace ClinicManager.View
                 }
                 else
                 {
-                    // Assume the most common operation (edit)
-                    bool addUser = false;
-                    bool deleteUser = false;
-                    // If the initially loaded person was a doctor but has be set to another staff role, check that a newUser object was created and set the addUser flag to true
-                    if (this.was_doctor && (roleComboBox.SelectedIndex == 0 || roleComboBox.SelectedIndex == 2))
-                    {
-                        if (!this.checkUser()) return;
-                        addUser = true;
-                    }
-                    // If the 
-                    else if (roleComboBox.SelectedIndex == 1)
-                    {
-                        deleteUser = true;
-                        newUser = user;
-                    }
                     this.putPersonData(person);
                     if (newUser != null) newUser.PersonID = person.PersonID;
-                    bool result = personController.UpdateStaffMember(person, newUser, addUser, deleteUser);
+                    bool result = personController.UpdateStaffMember(person, newUser);
                     if (!result)
                     {
                         MessageBox.Show("Update staff member failed.  Perhaps another user has updated or " +
