@@ -129,7 +129,8 @@ namespace ClinicManager.View
                     lvOrderedTests.Items[i].SubItems.Add(theOrderedTest.PerformDate.ToShortDateString());
                     if (theOrderedTest.Result != null)
                     {
-                        lvOrderedTests.Items[i].SubItems.Add(theOrderedTest.Result.ToString());
+                        String result = (bool)theOrderedTest.Result ? "Positive" : "Negative";
+                        lvOrderedTests.Items[i].SubItems.Add(result);
                     }
                     else
                     {
@@ -455,6 +456,13 @@ namespace ClinicManager.View
                 int index = lvOrderedTests.SelectedItems[0].Index;
                 int id = orderedTestList[index].OrderedTestID;
                 theTest = orderedTestController.GetTestById(id);
+
+                if (theTest.PerformDate > DateTime.Now)
+                {
+                    MessageBox.Show("Test results cannot be recorded until the date " +
+                           "test is performed.", "Error");
+                    return;
+                }
 
                 testResultForm = new RecordTestResult();
                 testResultForm.MdiParent = this.MdiParent;
