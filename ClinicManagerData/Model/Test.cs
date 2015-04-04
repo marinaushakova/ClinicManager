@@ -16,6 +16,7 @@ namespace ClinicManagerData.Model
         private int testID = 0;
         private string name;
         private string description;
+        private bool is_active;
         private string timestamp;
 
         public string Timestamp
@@ -34,6 +35,12 @@ namespace ClinicManagerData.Model
         {
             get { return description; }
             set { description = value; }
+        }
+
+        public bool IsActive
+        {
+            get { return is_active; }
+            set { is_active = value; }
         }
 
         public int TestID

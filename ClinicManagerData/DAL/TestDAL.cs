@@ -59,7 +59,7 @@ namespace ClinicManagerData.DAL
         {
             List<Test> retval = new List<Test>();
             string selectStatement =
-                "SELECT * FROM test WHERE name LIKE @name ORDER BY name";
+                "SELECT * FROM test WHERE name LIKE @name AND is_active = 1 ORDER BY name";
             try
             {
                 using (SqlConnection connection = ClinicManagerDBConnection.GetConnection())
@@ -103,7 +103,7 @@ namespace ClinicManagerData.DAL
         public static bool UpdateTest(Test test)
         {
             string updateStatement =
-                "UPDATE test SET name = @name, description = @description WHERE id = @id AND timestamp = @timestamp";
+                "UPDATE test SET name = @name, description = @description, is_active = @is_active WHERE id = @id AND timestamp = @timestamp";
             try
             {
                 using (SqlConnection con = ClinicManagerDBConnection.GetConnection())
@@ -114,6 +114,7 @@ namespace ClinicManagerData.DAL
                         updateCommand.Parameters.AddWithValue("@id", test.TestID);
                         updateCommand.Parameters.AddWithValue("@name", test.Name);
                         updateCommand.Parameters.AddWithValue("@description", test.Description);
+                        updateCommand.Parameters.AddWithValue("@is_active", test.IsActive);
                         updateCommand.Parameters.AddWithValue("@timestamp", Convert.FromBase64String(test.Timestamp));
 
                         int count = updateCommand.ExecuteNonQuery();
@@ -135,39 +136,8 @@ namespace ClinicManagerData.DAL
         /// <returns>True if delete successful, false otherwise</returns>
         public static bool DeleteTest(Test test)
         {
-            string updateStatement =
-                "DELETE FROM test WHERE id = @id AND timestamp = @timestamp";
-            try
-            {
-                using (SqlConnection con = ClinicManagerDBConnection.GetConnection())
-                {
-                    con.Open();
-                    using (SqlCommand updateCommand = new SqlCommand(updateStatement, con))
-                    {
-                        updateCommand.Parameters.AddWithValue("@id", test.TestID);
-                        updateCommand.Parameters.AddWithValue("@timestamp", Convert.FromBase64String(test.Timestamp));
-
-                        int count = updateCommand.ExecuteNonQuery();
-                        if (count > 0) return true;
-                        else return false;
-                    }
-                }
-            }
-            catch (SqlException ex)
-            {
-                if (ex.Number == 547)
-                {
-                    throw new TestIntegrityException();
-                }
-                else
-                {
-                    throw ex;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            test.IsActive = false;
+            return UpdateTest(test);
         }
 
         /// <summary>
@@ -178,7 +148,7 @@ namespace ClinicManagerData.DAL
         {
             List<Test> testList = new List<Test>();
             string selectStatement =
-                "SELECT * FROM test";
+                "SELECT * FROM test WHERE is_active = 1";
             try
             {
                 using (SqlConnection connection = ClinicManagerDBConnection.GetConnection())
@@ -194,6 +164,7 @@ namespace ClinicManagerData.DAL
                                 Test test = new Test();
                                 test.Name = reader["name"].ToString();
                                 test.Description = reader["description"].ToString();
+                                test.IsActive = (bool)reader["is_active"];
                                 test.TestID = (int)reader["id"];
                                 test.Timestamp = Convert.ToBase64String(reader["timestamp"] as byte[]);
                                 testList.Add(test);
