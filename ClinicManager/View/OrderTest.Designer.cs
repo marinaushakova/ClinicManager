@@ -88,7 +88,6 @@
             // 
             // txbDescription
             // 
-            this.txbDescription.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.testBindingSource, "Description", true));
             this.txbDescription.Location = new System.Drawing.Point(105, 107);
             this.txbDescription.Multiline = true;
             this.txbDescription.Name = "txbDescription";
