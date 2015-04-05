@@ -90,7 +90,7 @@ namespace ClinicManager.View
                         test.Name = txtName.Text;
                         test.Description = txtDescription.Text;
                         testController.AddTest(test);
-                        MessageBox.Show("Test member successfully added", "Success");
+                        MessageBox.Show("Test successfully added", "Success");
                         this.resetInput();
                         return;
                     }
@@ -101,7 +101,7 @@ namespace ClinicManager.View
                         test.Description = txtDescription.Text;
                         if (testController.UpdateTest(test))
                         {
-                            MessageBox.Show("Test member successfully updated", "Success");
+                            MessageBox.Show("Test successfully updated", "Success");
                         }
                         else
                         {
