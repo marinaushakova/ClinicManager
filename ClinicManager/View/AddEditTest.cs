@@ -99,6 +99,7 @@ namespace ClinicManager.View
                         //Update test
                         test.Name = txtName.Text;
                         test.Description = txtDescription.Text;
+                        test.IsActive = true;
                         if (testController.UpdateTest(test))
                         {
                             MessageBox.Show("Test successfully updated", "Success");
