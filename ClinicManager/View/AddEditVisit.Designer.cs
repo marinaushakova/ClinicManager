@@ -40,6 +40,7 @@
             System.Windows.Forms.Label finalDiagnosisLabel;
             System.Windows.Forms.Label initialDiagnosisLabel;
             this.txbBloodPressure = new System.Windows.Forms.TextBox();
+            this.visitBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbDoctor = new System.Windows.Forms.ComboBox();
             this.txbPatient = new System.Windows.Forms.TextBox();
             this.txbPulseRate = new System.Windows.Forms.TextBox();
@@ -47,6 +48,7 @@
             this.txbTemperature = new System.Windows.Forms.TextBox();
             this.btnSearchPatient = new System.Windows.Forms.Button();
             this.gbxRoutingChecks = new System.Windows.Forms.GroupBox();
+            this.btnSaveCheckup = new System.Windows.Forms.Button();
             this.lvOrderedTests = new System.Windows.Forms.ListView();
             this.clnTestName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clnOrderDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -61,7 +63,6 @@
             this.lblVisitDate = new System.Windows.Forms.Label();
             this.txbNurse = new System.Windows.Forms.TextBox();
             this.txbDoctor = new System.Windows.Forms.TextBox();
-            this.visitBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.personBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tbpRoutineChecks = new System.Windows.Forms.TabPage();
@@ -69,7 +70,6 @@
             this.tbpDiagnosis = new System.Windows.Forms.TabPage();
             this.txbInitialDiagnosis = new System.Windows.Forms.TextBox();
             this.txbFinalDiagnosis = new System.Windows.Forms.TextBox();
-            this.btnSaveCheckup = new System.Windows.Forms.Button();
             bloodPressureLabel = new System.Windows.Forms.Label();
             lblDoctor = new System.Windows.Forms.Label();
             lblPatient = new System.Windows.Forms.Label();
@@ -80,9 +80,9 @@
             lblDate = new System.Windows.Forms.Label();
             finalDiagnosisLabel = new System.Windows.Forms.Label();
             initialDiagnosisLabel = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).BeginInit();
             this.gbxRoutingChecks.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.orderedTestBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.personBindingSource)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tbpRoutineChecks.SuspendLayout();
@@ -162,6 +162,24 @@
             lblDate.TabIndex = 33;
             lblDate.Text = "Date:";
             // 
+            // finalDiagnosisLabel
+            // 
+            finalDiagnosisLabel.AutoSize = true;
+            finalDiagnosisLabel.Location = new System.Drawing.Point(22, 245);
+            finalDiagnosisLabel.Name = "finalDiagnosisLabel";
+            finalDiagnosisLabel.Size = new System.Drawing.Size(104, 16);
+            finalDiagnosisLabel.TabIndex = 7;
+            finalDiagnosisLabel.Text = "Final Diagnosis:";
+            // 
+            // initialDiagnosisLabel
+            // 
+            initialDiagnosisLabel.AutoSize = true;
+            initialDiagnosisLabel.Location = new System.Drawing.Point(21, 18);
+            initialDiagnosisLabel.Name = "initialDiagnosisLabel";
+            initialDiagnosisLabel.Size = new System.Drawing.Size(105, 16);
+            initialDiagnosisLabel.TabIndex = 9;
+            initialDiagnosisLabel.Text = "Initial Diagnosis:";
+            // 
             // txbBloodPressure
             // 
             this.txbBloodPressure.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "BloodPressure", true));
@@ -171,8 +189,12 @@
             this.txbBloodPressure.Name = "txbBloodPressure";
             this.txbBloodPressure.ReadOnly = true;
             this.txbBloodPressure.Size = new System.Drawing.Size(226, 22);
-            this.txbBloodPressure.TabIndex = 2;
+            this.txbBloodPressure.TabIndex = 4;
             this.txbBloodPressure.Tag = "Blood Pressure";
+            // 
+            // visitBindingSource
+            // 
+            this.visitBindingSource.DataSource = typeof(ClinicManagerData.Model.Visit);
             // 
             // cmbDoctor
             // 
@@ -203,7 +225,7 @@
             this.txbPulseRate.Name = "txbPulseRate";
             this.txbPulseRate.ReadOnly = true;
             this.txbPulseRate.Size = new System.Drawing.Size(226, 22);
-            this.txbPulseRate.TabIndex = 16;
+            this.txbPulseRate.TabIndex = 2;
             this.txbPulseRate.Tag = "Pulse Rate";
             // 
             // txbSymptoms
@@ -216,7 +238,7 @@
             this.txbSymptoms.ReadOnly = true;
             this.txbSymptoms.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txbSymptoms.Size = new System.Drawing.Size(655, 141);
-            this.txbSymptoms.TabIndex = 18;
+            this.txbSymptoms.TabIndex = 5;
             this.txbSymptoms.Tag = "Symptoms";
             // 
             // txbTemperature
@@ -229,7 +251,7 @@
             this.txbTemperature.Name = "txbTemperature";
             this.txbTemperature.ReadOnly = true;
             this.txbTemperature.Size = new System.Drawing.Size(226, 22);
-            this.txbTemperature.TabIndex = 20;
+            this.txbTemperature.TabIndex = 3;
             this.txbTemperature.Tag = "Temperature";
             // 
             // btnSearchPatient
@@ -238,7 +260,7 @@
             this.btnSearchPatient.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSearchPatient.Name = "btnSearchPatient";
             this.btnSearchPatient.Size = new System.Drawing.Size(108, 22);
-            this.btnSearchPatient.TabIndex = 25;
+            this.btnSearchPatient.TabIndex = 1;
             this.btnSearchPatient.Text = "Search Patient";
             this.btnSearchPatient.UseVisualStyleBackColor = true;
             this.btnSearchPatient.Click += new System.EventHandler(this.btnSearchPatient_Click);
@@ -262,6 +284,17 @@
             this.gbxRoutingChecks.TabIndex = 28;
             this.gbxRoutingChecks.TabStop = false;
             this.gbxRoutingChecks.Text = "Routing Checks";
+            // 
+            // btnSaveCheckup
+            // 
+            this.btnSaveCheckup.Enabled = false;
+            this.btnSaveCheckup.Location = new System.Drawing.Point(604, 269);
+            this.btnSaveCheckup.Name = "btnSaveCheckup";
+            this.btnSaveCheckup.Size = new System.Drawing.Size(167, 23);
+            this.btnSaveCheckup.TabIndex = 6;
+            this.btnSaveCheckup.Text = "Save Checkup Info";
+            this.btnSaveCheckup.UseVisualStyleBackColor = true;
+            this.btnSaveCheckup.Click += new System.EventHandler(this.btnSaveCheckup_Click);
             // 
             // lvOrderedTests
             // 
@@ -307,7 +340,7 @@
             this.btnTestResult.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTestResult.Name = "btnTestResult";
             this.btnTestResult.Size = new System.Drawing.Size(148, 22);
-            this.btnTestResult.TabIndex = 3;
+            this.btnTestResult.TabIndex = 2;
             this.btnTestResult.Text = "Record Test Result";
             this.btnTestResult.UseVisualStyleBackColor = true;
             this.btnTestResult.Click += new System.EventHandler(this.btnTestResult_Click);
@@ -330,7 +363,7 @@
             this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(88, 22);
-            this.btnCancel.TabIndex = 31;
+            this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -342,7 +375,7 @@
             this.btnOK.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(84, 22);
-            this.btnOK.TabIndex = 32;
+            this.btnOK.TabIndex = 3;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -385,10 +418,6 @@
             this.txbDoctor.TabIndex = 38;
             this.txbDoctor.Visible = false;
             // 
-            // visitBindingSource
-            // 
-            this.visitBindingSource.DataSource = typeof(ClinicManagerData.Model.Visit);
-            // 
             // personBindingSource
             // 
             this.personBindingSource.DataSource = typeof(ClinicManagerData.Model.Person);
@@ -402,7 +431,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(816, 504);
-            this.tabControl1.TabIndex = 39;
+            this.tabControl1.TabIndex = 1;
             // 
             // tbpRoutineChecks
             // 
@@ -452,24 +481,6 @@
             this.tbpDiagnosis.Text = "Diagnosis";
             this.tbpDiagnosis.UseVisualStyleBackColor = true;
             // 
-            // finalDiagnosisLabel
-            // 
-            finalDiagnosisLabel.AutoSize = true;
-            finalDiagnosisLabel.Location = new System.Drawing.Point(22, 245);
-            finalDiagnosisLabel.Name = "finalDiagnosisLabel";
-            finalDiagnosisLabel.Size = new System.Drawing.Size(104, 16);
-            finalDiagnosisLabel.TabIndex = 7;
-            finalDiagnosisLabel.Text = "Final Diagnosis:";
-            // 
-            // initialDiagnosisLabel
-            // 
-            initialDiagnosisLabel.AutoSize = true;
-            initialDiagnosisLabel.Location = new System.Drawing.Point(21, 18);
-            initialDiagnosisLabel.Name = "initialDiagnosisLabel";
-            initialDiagnosisLabel.Size = new System.Drawing.Size(105, 16);
-            initialDiagnosisLabel.TabIndex = 9;
-            initialDiagnosisLabel.Text = "Initial Diagnosis:";
-            // 
             // txbInitialDiagnosis
             // 
             this.txbInitialDiagnosis.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "InitialDiagnosis", true));
@@ -479,7 +490,7 @@
             this.txbInitialDiagnosis.Name = "txbInitialDiagnosis";
             this.txbInitialDiagnosis.ReadOnly = true;
             this.txbInitialDiagnosis.Size = new System.Drawing.Size(657, 212);
-            this.txbInitialDiagnosis.TabIndex = 37;
+            this.txbInitialDiagnosis.TabIndex = 1;
             // 
             // txbFinalDiagnosis
             // 
@@ -490,18 +501,7 @@
             this.txbFinalDiagnosis.Name = "txbFinalDiagnosis";
             this.txbFinalDiagnosis.ReadOnly = true;
             this.txbFinalDiagnosis.Size = new System.Drawing.Size(657, 212);
-            this.txbFinalDiagnosis.TabIndex = 38;
-            // 
-            // btnSaveCheckup
-            // 
-            this.btnSaveCheckup.Enabled = false;
-            this.btnSaveCheckup.Location = new System.Drawing.Point(604, 269);
-            this.btnSaveCheckup.Name = "btnSaveCheckup";
-            this.btnSaveCheckup.Size = new System.Drawing.Size(167, 23);
-            this.btnSaveCheckup.TabIndex = 21;
-            this.btnSaveCheckup.Text = "Save Checkup Info";
-            this.btnSaveCheckup.UseVisualStyleBackColor = true;
-            this.btnSaveCheckup.Click += new System.EventHandler(this.btnSaveCheckup_Click);
+            this.txbFinalDiagnosis.TabIndex = 2;
             // 
             // AddEditVisit
             // 
@@ -518,10 +518,10 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Visit Record";
             this.Load += new System.EventHandler(this.AddEditVisit_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).EndInit();
             this.gbxRoutingChecks.ResumeLayout(false);
             this.gbxRoutingChecks.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.orderedTestBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.personBindingSource)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tbpRoutineChecks.ResumeLayout(false);
