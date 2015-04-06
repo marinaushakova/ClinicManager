@@ -19,6 +19,13 @@ namespace ClinicManager.View
     {
         private UserController userController;
 
+        private User user;
+        public User User
+        {
+            get { return user; }
+            set { user = value; }
+        }
+
         private string username;
         public string Username
         {
@@ -57,15 +64,18 @@ namespace ClinicManager.View
             try
             {
                 this.lblErrMessage.Text = "";
-
-                if (userController.GetUserType(txtUsername.Text, txtPassword.Text) == -1)
+                this.user = new User();
+                this.user = userController.GetUserByCredentials(txtUsername.Text, txtPassword.Text);
+                if (this.user == null)
                 {
                     this.lblErrMessage.ForeColor = System.Drawing.Color.Red;
                     this.lblErrMessage.Text = "This user/password combination doesn't exist";
                     return;
                 }
-                this.username = this.txtUsername.Text;
-                this.password = this.txtPassword.Text;
+                //this.username = this.txtUsername.Text;
+                //this.password = this.txtPassword.Text;
+                this.user.Username = this.txtUsername.Text;
+                this.user.Password = this.txtPassword.Text;
                 this.Close();
             }
             catch (Exception ex)

@@ -117,6 +117,71 @@ namespace ClinicManagerData.DAL
         }
 
         /// <summary>
+        /// Gets the user object with the admin privilege flag set to true or false depending on the users role. 
+        /// Returns null if no user exists as a nurse or admin
+        /// </summary>
+        /// <param name="username">user's username</param>
+        /// <param name="password">user's password</param>
+        /// <returns>The populated user object if the use exists, else null</returns>
+        public static User getUserByCredentials(string username, string password)
+        {
+            string hashedPassword = HashLogin(username, password);
+
+            string selectStatement = "SELECT p.is_admin as is_admin, p.is_nurse as is_nurse, p.id as person_id " +
+                                        "FROM [user] u JOIN [person] p ON u.person_id = p.id WHERE username = @username AND password = @password";
+
+            try
+            {
+                using (SqlConnection connection = ClinicManagerDBConnection.GetConnection())
+                {
+                    connection.Open();
+
+                    using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                    {
+                        selectCommand.Parameters.AddWithValue("@username", username);
+                        selectCommand.Parameters.AddWithValue("@password", hashedPassword);
+
+                        using (SqlDataReader reader = selectCommand.ExecuteReader())
+                        {
+                            User user = new User();
+                            if (reader.Read())
+                            {
+                                user.PersonID = (int)reader["person_id"];
+                                if ((bool)reader["is_admin"])
+                                {
+                                    user.Admin_privelege = true;
+                                    return user;
+                                }
+                                else if ((bool)reader["is_nurse"])
+                                {
+                                    user.Admin_privelege = false;
+                                    return user;
+                                }
+                                else
+                                {
+                                    return null;
+                                }
+
+                            }
+                            else
+                            {
+                                return null;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
         /// Hashes the given data
         /// </summary>
         /// <param name="data"></param>

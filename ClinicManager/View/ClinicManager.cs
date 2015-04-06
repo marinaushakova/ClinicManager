@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClinicManager.View;
 using ClinicManager.Controller;
+using ClinicManagerData.Model;
 
 namespace ClinicManager
 {
@@ -24,15 +25,13 @@ namespace ClinicManager
         private PersonController personController;
         private UserController userController;
 
-        private string currentUsername;
-        private bool? currentUserIsAdmin;
+        private User user;
 
         public ClinicManagerMain()
         {
             InitializeComponent();
             personController = new PersonController();
             userController = new UserController();
-            this.currentUserIsAdmin = null;
             this.disableMenu();
             this.showLoginForm();
         }
@@ -46,9 +45,9 @@ namespace ClinicManager
         {
             if (searchPatientForm == null)
             {
-                if (this.currentUserIsAdmin.HasValue)
+                if (this.user != null)
                 {
-                    searchPatientForm = new SearchPatient(this.currentUserIsAdmin.Value);
+                    searchPatientForm = new SearchPatient(this.user.Admin_privelege);
                     searchPatientForm.MdiParent = this;
                     searchPatientForm.FormClosed += new FormClosedEventHandler(searchPatientForm_FormClosed);
                     searchPatientForm.Show();
@@ -74,9 +73,9 @@ namespace ClinicManager
         {
             if (addEditPersonForm == null)
             {
-                if (this.currentUserIsAdmin.HasValue)
+                if (this.user != null)
                 {
-                    addEditPersonForm = new AddEditPerson(this.currentUserIsAdmin.Value);
+                    addEditPersonForm = new AddEditPerson(this.user.Admin_privelege);
                     addEditPersonForm.Person = null;
                     addEditPersonForm.MdiParent = this;
                     addEditPersonForm.FormClosed += new FormClosedEventHandler(addEditPersonForm_FormClosed);
@@ -115,8 +114,7 @@ namespace ClinicManager
                     this.ActiveMdiChild.Close();
                 }
                 this.Text = "Clinic Manager";
-                this.currentUsername = null;
-                this.currentUserIsAdmin = null;
+                this.user = null;
                 disableMenu();
                 showLoginForm();
             }
@@ -149,16 +147,16 @@ namespace ClinicManager
         /// <summary>
         /// Sets the login form to null after its closed event fires. 
         /// If correct username was entered and login button was clicked,
-        /// sets currentUsername to username entered by user and displays user menu
+        /// sets the title to the username entered by user and displays user menu
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void loginForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (loginForm.Username != null)
+            if (loginForm.User != null)
             {
-                currentUsername = loginForm.Username;
-                this.Text = "Clinic Manager: you are logged in as " + currentUsername;
+                this.user = loginForm.User;
+                this.Text = "Clinic Manager: you are logged in as " + this.user.Username;
                 displayUserMenu();
             }
             loginForm = null;
@@ -170,10 +168,9 @@ namespace ClinicManager
         /// </summary>
         private void displayUserMenu()
         {
-            if ((int)userController.GetUserType(loginForm.Username, loginForm.Password) == 1)
+            if (this.user.Admin_privelege)
             {
                 // Admin
-                this.currentUserIsAdmin = true;
                 staffToolStripMenuItem.Enabled = true;
                 testToolStripMenuItem.Enabled = true;
                 reportToolStripMenuItem.Enabled = true;
@@ -183,7 +180,6 @@ namespace ClinicManager
             else 
             {
                 // Nurse
-                this.currentUserIsAdmin = false;
                 patientToolStripMenuItem.Enabled = true;
                 visitToolStripMenuItem.Enabled = true;
                 logoutToolStripMenuItem.Enabled = true;
@@ -227,6 +223,7 @@ namespace ClinicManager
                 addEditVisitForm = new AddEditVisit();
                 addEditVisitForm.MdiParent = this;
                 addEditVisitForm.FormClosed += new FormClosedEventHandler(addEditVisitForm_FormClosed);
+                addEditVisitForm.NurseID = user.PersonID;
                 addEditVisitForm.Show();
             }
             else

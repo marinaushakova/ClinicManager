@@ -26,8 +26,14 @@ namespace ClinicManager.View
             set { visit = value; }
         }
 
+        private int nurseID;
+        public int NurseID
+        {
+            get { return nurseID; }
+            set { nurseID = value; }
+        }
+
         private List<Person> doctorList;
-        private List<Person> nurseList;
         private List<OrderedTestSummary> orderedTestList;
         private Person patient;
         private PersonController personController;
@@ -76,7 +82,7 @@ namespace ClinicManager.View
                 if (this.visit == null)
                 {
                     setUpDoctorCombobox();
-                    setUpNurseCombobox();
+                    txbNurse.Text = personController.GetPersonById(nurseID).GetFullName();
                
                     lblVisitDate.Text = DateTime.Now.ToShortDateString();
                 }
@@ -90,13 +96,10 @@ namespace ClinicManager.View
                     txbPatient.Text = personController.GetPersonById(visit.PatientID).GetFullName();
                     txbNurse.Text = personController.GetPersonById(visit.NurseID).GetFullName();
                     txbDoctor.Text = personController.GetPersonById(visit.DoctorID).GetFullName();
-                    cmbNurse.SelectedValue = visit.NurseID;
                     cmbDoctor.SelectedValue = visit.DoctorID;
 
                     this.btnSearchPatient.Enabled = false;
                     this.cmbDoctor.Visible = false;
-                    this.cmbNurse.Visible = false;
-                    this.txbNurse.Visible = true;
                     this.txbDoctor.Visible = true;
 
                     this.FillOrderedTests();
@@ -167,17 +170,6 @@ namespace ClinicManager.View
             cmbDoctor.DisplayMember = "LastName";
             cmbDoctor.ValueMember = "PersonID";
             
-        }
-
-        /// <summary>
-        /// Fills the nurse combobox with nurses' names
-        /// </summary>
-        private void setUpNurseCombobox()
-        {
-            nurseList = personController.GetAllNurses();
-            cmbNurse.DataSource = nurseList;
-            cmbNurse.DisplayMember = "LastName";
-            cmbNurse.ValueMember = "PersonID";
         }
 
         /// <summary>
@@ -313,7 +305,7 @@ namespace ClinicManager.View
 
             if (visit == null)
             {
-                if (!Validator.IsPresent(cmbNurse)) return false;
+                //if (!Validator.IsPresent(cmbNurse)) return false;
                 if (!Validator.IsPresent(cmbDoctor)) return false;
             }
             return true;
@@ -330,7 +322,7 @@ namespace ClinicManager.View
                 visit = new Visit();
                 visit.PatientID = patient.PersonID;
                 visit.DoctorID = (int)cmbDoctor.SelectedValue;
-                visit.NurseID = (int)cmbNurse.SelectedValue;
+                visit.NurseID = this.nurseID;
                 visit.Date = Convert.ToDateTime(lblVisitDate.Text);
             }
            /* else
@@ -359,7 +351,7 @@ namespace ClinicManager.View
             txbDoctor.Text = "";
             lblVisitDate.Text = DateTime.Now.ToShortDateString();
             cmbDoctor.SelectedIndex = 0;
-            cmbNurse.SelectedIndex = 0;
+            //cmbNurse.SelectedIndex = 0;
             txbPulseRate.Text = "";
             txbTemperature.Text = "";
             txbBloodPressure.Text = "";
@@ -378,7 +370,7 @@ namespace ClinicManager.View
             btnNewTest.Enabled = false;
             btnTestResult.Enabled = false;
             cmbDoctor.Visible = true;
-            cmbNurse.Visible = true;
+            //cmbNurse.Visible = true;
             txbNurse.Visible = false;
             txbDoctor.Visible = false;
         }

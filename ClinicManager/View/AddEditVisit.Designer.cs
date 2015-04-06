@@ -59,7 +59,6 @@
             this.orderedTestBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.cmbNurse = new System.Windows.Forms.ComboBox();
             this.lblVisitDate = new System.Windows.Forms.Label();
             this.txbNurse = new System.Windows.Forms.TextBox();
             this.txbDoctor = new System.Windows.Forms.TextBox();
@@ -380,17 +379,6 @@
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // cmbNurse
-            // 
-            this.cmbNurse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbNurse.FormattingEnabled = true;
-            this.cmbNurse.Location = new System.Drawing.Point(121, 72);
-            this.cmbNurse.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cmbNurse.Name = "cmbNurse";
-            this.cmbNurse.Size = new System.Drawing.Size(227, 24);
-            this.cmbNurse.TabIndex = 35;
-            this.cmbNurse.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.ComboBoxFormat);
-            // 
             // lblVisitDate
             // 
             this.lblVisitDate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Date", true));
@@ -402,12 +390,11 @@
             // 
             // txbNurse
             // 
-            this.txbNurse.Location = new System.Drawing.Point(121, 73);
+            this.txbNurse.Location = new System.Drawing.Point(122, 72);
             this.txbNurse.Name = "txbNurse";
             this.txbNurse.ReadOnly = true;
             this.txbNurse.Size = new System.Drawing.Size(227, 22);
             this.txbNurse.TabIndex = 37;
-            this.txbNurse.Visible = false;
             // 
             // txbDoctor
             // 
@@ -442,7 +429,6 @@
             this.tbpRoutineChecks.Controls.Add(this.gbxRoutingChecks);
             this.tbpRoutineChecks.Controls.Add(this.lblVisitDate);
             this.tbpRoutineChecks.Controls.Add(this.cmbDoctor);
-            this.tbpRoutineChecks.Controls.Add(this.cmbNurse);
             this.tbpRoutineChecks.Controls.Add(lblDoctor);
             this.tbpRoutineChecks.Controls.Add(lblDate);
             this.tbpRoutineChecks.Controls.Add(this.btnSearchPatient);
@@ -550,7 +536,6 @@
         private System.Windows.Forms.Button btnTestResult;
         private System.Windows.Forms.Button btnNewTest;
         private System.Windows.Forms.BindingSource personBindingSource;
-        private System.Windows.Forms.ComboBox cmbNurse;
         private System.Windows.Forms.ListView lvOrderedTests;
         private System.Windows.Forms.ColumnHeader clnTestName;
         private System.Windows.Forms.ColumnHeader clnOrderDate;

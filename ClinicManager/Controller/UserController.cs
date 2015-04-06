@@ -33,5 +33,17 @@ namespace ClinicManager.Controller
         {
             return UserDAL.getUser(personID);
         }
+
+        /// <summary>
+        /// Gets the user object with the admin privilege flag set to true or false depending on the users role. 
+        /// Returns null if no user exists as a nurse or admin
+        /// </summary>
+        /// <param name="username">user's username</param>
+        /// <param name="password">user's password</param>
+        /// <returns>The populated user object if the use exists, else null</returns>
+        public User GetUserByCredentials(string username, string password)
+        {
+            return UserDAL.getUserByCredentials(username, password);
+        }
     }
 }
