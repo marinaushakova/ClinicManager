@@ -21,6 +21,7 @@ namespace ClinicManager
         AddEditTest addEditTestForm;
         SearchTest searchTestForm;
         SearchVisit searchVisitForm;
+        ViewVisitReport visitReportForm;
         Login loginForm;
         private PersonController personController;
         private UserController userController;
@@ -340,6 +341,36 @@ namespace ClinicManager
         private void searchVisitForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             searchVisitForm = null;
+        }
+
+        /// <summary>
+        /// Handle report menu event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void visitReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (visitReportForm == null)
+            {
+                visitReportForm = new ViewVisitReport();
+                visitReportForm.MdiParent = this;
+                visitReportForm.FormClosed += new FormClosedEventHandler(visitReportForm_FormClosed);
+                visitReportForm.Show();
+            }
+            else
+            {
+                visitReportForm.Activate();
+            }
+        }
+
+        /// <summary>
+        /// Sets the visitReport form to null after its closed event fires. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void visitReportForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            visitReportForm = null;
         }
     }
 }

@@ -142,14 +142,14 @@
             // searchVisitToolStripMenuItem
             // 
             this.searchVisitToolStripMenuItem.Name = "searchVisitToolStripMenuItem";
-            this.searchVisitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.searchVisitToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.searchVisitToolStripMenuItem.Text = "Search";
             this.searchVisitToolStripMenuItem.Click += new System.EventHandler(this.searchVisitToolStripMenuItem_Click);
             // 
             // newVisitToolStripMenuItem
             // 
             this.newVisitToolStripMenuItem.Name = "newVisitToolStripMenuItem";
-            this.newVisitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newVisitToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.newVisitToolStripMenuItem.Text = "Add Visit";
             this.newVisitToolStripMenuItem.Click += new System.EventHandler(this.newVisitToolStripMenuItem_Click);
             // 
@@ -165,14 +165,14 @@
             // searchScuffToolStripMenuItem
             // 
             this.searchScuffToolStripMenuItem.Name = "searchScuffToolStripMenuItem";
-            this.searchScuffToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.searchScuffToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.searchScuffToolStripMenuItem.Text = "Search";
             this.searchScuffToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
             // 
             // addMemberToolStripMenuItem
             // 
             this.addMemberToolStripMenuItem.Name = "addMemberToolStripMenuItem";
-            this.addMemberToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addMemberToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.addMemberToolStripMenuItem.Text = "Add Member";
             this.addMemberToolStripMenuItem.Click += new System.EventHandler(this.addPatientToolStripMenuItem_Click);
             // 
@@ -210,8 +210,9 @@
             // visitReportToolStripMenuItem
             // 
             this.visitReportToolStripMenuItem.Name = "visitReportToolStripMenuItem";
-            this.visitReportToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
+            this.visitReportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.visitReportToolStripMenuItem.Text = "Visit Report";
+            this.visitReportToolStripMenuItem.Click += new System.EventHandler(this.visitReportToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
