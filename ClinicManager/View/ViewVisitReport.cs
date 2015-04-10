@@ -29,8 +29,16 @@ namespace ClinicManager.View
         /// <param name="e"></param>
         private void btnShowReport_Click(object sender, EventArgs e)
         {
-            this.visitTableAdapter.Fill(this._cs6232_g1DataSet.visit, dtpStartDate.Value, dtpEndDate.Value);
-            this.visitReportViewer.RefreshReport();
+            try
+            {
+                this.visitTableAdapter.Fill(this._cs6232_g1DataSet.visit, dtpStartDate.Value, dtpEndDate.Value);
+                this.visitReportViewer.RefreshReport();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+                this.BeginInvoke(new MethodInvoker(Close));
+            }
         }
 
 
