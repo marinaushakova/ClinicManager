@@ -55,68 +55,6 @@ namespace ClinicManagerData.DAL
         }
 
         /// <summary>
-        /// Returns 0 if username and password match a record in database and user is not admin,
-        /// returns 1 if user is admin,
-        /// returns -1 if user doesn't exits or is neither nurese nor admin
-        /// </summary>
-        /// <param name="username">user's username</param>
-        /// <param name="password">user's password</param>
-        /// <returns>1 if user is admin, 0 if user is not admin, -1 if user doesn't exist</returns>
-        public static int getUserType(string username, string password)
-        {
-            string hashedPassword = HashLogin(username, password);
-
-            string selectStatement = "SELECT p.is_admin as is_admin, p.is_nurse as is_nurse " +
-                                        "FROM [user] u JOIN [person] p ON u.person_id = p.id WHERE username = @username AND password = @password";
-
-            try
-            {
-                using (SqlConnection connection = ClinicManagerDBConnection.GetConnection())
-                {
-                    connection.Open();
-
-                    using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
-                    {
-                        selectCommand.Parameters.AddWithValue("@username", username);
-                        selectCommand.Parameters.AddWithValue("@password", hashedPassword);
-
-                        using (SqlDataReader reader = selectCommand.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                if ((bool)reader["is_admin"])
-                                {
-                                    return 1;
-                                }
-                                else if ((bool)reader["is_nurse"])
-                                {
-                                    return 0;
-                                }
-                                else
-                                {
-                                    return -1;
-                                }
-                                
-                            }
-                            else
-                            {
-                                return -1;
-                            }
-                        }
-                    }
-                }
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        /// <summary>
         /// Gets the user object with the admin privilege flag set to true or false depending on the users role. 
         /// Returns null if no user exists as a nurse or admin
         /// </summary>

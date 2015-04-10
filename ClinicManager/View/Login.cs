@@ -61,6 +61,12 @@ namespace ClinicManager.View
                 this.lblErrMessage.Text = "Username and password can't be empty";
                 return;
             }
+            if (txtUsername.Text.Length < 4 || txtPassword.Text.Length < 4)
+            {
+                this.lblErrMessage.ForeColor = System.Drawing.Color.Red;
+                this.lblErrMessage.Text = "This user/password combination doesn't exist";
+                return;
+            }
             try
             {
                 this.lblErrMessage.Text = "";
