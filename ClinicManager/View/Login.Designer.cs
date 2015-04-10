@@ -89,11 +89,11 @@
             // lblErrMessage
             // 
             this.lblErrMessage.AutoSize = true;
-            this.lblErrMessage.Font = new System.Drawing.Font("Georgia", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblErrMessage.Location = new System.Drawing.Point(92, 29);
             this.lblErrMessage.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblErrMessage.Name = "lblErrMessage";
-            this.lblErrMessage.Size = new System.Drawing.Size(0, 18);
+            this.lblErrMessage.Size = new System.Drawing.Size(0, 16);
             this.lblErrMessage.TabIndex = 18;
             // 
             // Login
