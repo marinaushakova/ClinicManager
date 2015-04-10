@@ -313,6 +313,8 @@ namespace ClinicManager {
             
             private global::System.Data.DataColumn columnid;
             
+            private global::System.Data.DataColumn columnpatientID;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public visitDataTable() {
@@ -484,6 +486,14 @@ namespace ClinicManager {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn patientIDColumn {
+                get {
+                    return this.columnpatientID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -535,7 +545,8 @@ namespace ClinicManager {
                         string fname1, 
                         string minit1, 
                         string fname2, 
-                        string minit2) {
+                        string minit2, 
+                        int patientID) {
                 visitRow rowvisitRow = ((visitRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         date,
@@ -554,7 +565,8 @@ namespace ClinicManager {
                         minit1,
                         fname2,
                         minit2,
-                        null};
+                        null,
+                        patientID};
                 rowvisitRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowvisitRow);
                 return rowvisitRow;
@@ -594,6 +606,7 @@ namespace ClinicManager {
                 this.columnfname2 = base.Columns["fname2"];
                 this.columnminit2 = base.Columns["minit2"];
                 this.columnid = base.Columns["id"];
+                this.columnpatientID = base.Columns["patientID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -633,6 +646,8 @@ namespace ClinicManager {
                 base.Columns.Add(this.columnminit2);
                 this.columnid = new global::System.Data.DataColumn("id", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnid);
+                this.columnpatientID = new global::System.Data.DataColumn("patientID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpatientID);
                 this.columnsymptoms.MaxLength = 2147483647;
                 this.columninitial_diagnosis.MaxLength = 2147483647;
                 this.columnfinal_diagnosis.MaxLength = 2147483647;
@@ -1064,6 +1079,22 @@ namespace ClinicManager {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int patientID {
+                get {
+                    try {
+                        return ((int)(this[this.tablevisit.patientIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'patientID\' in table \'visit\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablevisit.patientIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsdateNull() {
                 return this.IsNull(this.tablevisit.dateColumn);
             }
@@ -1265,6 +1296,18 @@ namespace ClinicManager {
             public void SetidNull() {
                 this[this.tablevisit.idColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IspatientIDNull() {
+                return this.IsNull(this.tablevisit.patientIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetpatientIDNull() {
+                this[this.tablevisit.patientIDColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -1443,6 +1486,7 @@ namespace ClinicManager._cs6232_g1DataSetTableAdapters {
             tableMapping.ColumnMappings.Add("fname2", "fname2");
             tableMapping.ColumnMappings.Add("minit2", "minit2");
             tableMapping.ColumnMappings.Add("id", "id");
+            tableMapping.ColumnMappings.Add("patientID", "patientID");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -1459,7 +1503,7 @@ namespace ClinicManager._cs6232_g1DataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT visit.id, visit.date, patient.lname, patient.fname, patient.minit,
+            this._commandCollection[0].CommandText = @"SELECT visit.id, visit.date, visit.patient_id AS patientID, patient.lname, patient.fname, patient.minit,
 	doctor.lname, doctor.fname, doctor.minit,
                   nurse.lname, nurse.fname, nurse.minit, symptoms, 
 	initial_diagnosis, final_diagnosis , test.name, 

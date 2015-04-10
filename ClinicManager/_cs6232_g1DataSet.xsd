@@ -12,7 +12,7 @@
               <DbSource ConnectionRef="cs6232_g1ConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT visit.id, visit.date, patient.lname, patient.fname, patient.minit,
+                    <CommandText>SELECT visit.id, visit.date, visit.patient_id AS patientID, patient.lname, patient.fname, patient.minit,
 	doctor.lname, doctor.fname, doctor.minit,
                   nurse.lname, nurse.fname, nurse.minit, symptoms, 
 	initial_diagnosis, final_diagnosis , test.name, 
@@ -49,6 +49,7 @@ WHERE [date] &gt; @startDate AND [date] &lt; @endDate</CommandText>
               <Mapping SourceColumn="fname2" DataSetColumn="fname2" />
               <Mapping SourceColumn="minit2" DataSetColumn="minit2" />
               <Mapping SourceColumn="id" DataSetColumn="id" />
+              <Mapping SourceColumn="patientID" DataSetColumn="patientID" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -158,6 +159,7 @@ WHERE [date] &gt; @startDate AND [date] &lt; @endDate</CommandText>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" minOccurs="0" />
+              <xs:element name="patientID" msprop:Generator_ColumnVarNameInTable="columnpatientID" msprop:Generator_ColumnPropNameInRow="patientID" msprop:Generator_ColumnPropNameInTable="patientIDColumn" msprop:Generator_UserColumnName="patientID" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

@@ -33,12 +33,12 @@
             this.visitReportViewer = new Microsoft.Reporting.WinForms.ReportViewer();
             this.dtpEndDate = new System.Windows.Forms.DateTimePicker();
             this.btnShowReport = new System.Windows.Forms.Button();
-            this.visitBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this._cs6232_g1DataSet = new ClinicManager._cs6232_g1DataSet();
-            this.visitTableAdapter = new ClinicManager._cs6232_g1DataSetTableAdapters.visitTableAdapter();
             this.dtpStartDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.visitBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._cs6232_g1DataSet = new ClinicManager._cs6232_g1DataSet();
+            this.visitTableAdapter = new ClinicManager._cs6232_g1DataSetTableAdapters.visitTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._cs6232_g1DataSet)).BeginInit();
             this.SuspendLayout();
@@ -72,20 +72,6 @@
             this.btnShowReport.UseVisualStyleBackColor = true;
             this.btnShowReport.Click += new System.EventHandler(this.btnShowReport_Click);
             // 
-            // visitBindingSource
-            // 
-            this.visitBindingSource.DataMember = "visit";
-            this.visitBindingSource.DataSource = this._cs6232_g1DataSet;
-            // 
-            // _cs6232_g1DataSet
-            // 
-            this._cs6232_g1DataSet.DataSetName = "_cs6232_g1DataSet";
-            this._cs6232_g1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // visitTableAdapter
-            // 
-            this.visitTableAdapter.ClearBeforeFill = true;
-            // 
             // dtpStartDate
             // 
             this.dtpStartDate.Location = new System.Drawing.Point(100, 10);
@@ -110,6 +96,20 @@
             this.label2.Size = new System.Drawing.Size(55, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "End Date:";
+            // 
+            // visitBindingSource
+            // 
+            this.visitBindingSource.DataMember = "visit";
+            this.visitBindingSource.DataSource = this._cs6232_g1DataSet;
+            // 
+            // _cs6232_g1DataSet
+            // 
+            this._cs6232_g1DataSet.DataSetName = "_cs6232_g1DataSet";
+            this._cs6232_g1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // visitTableAdapter
+            // 
+            this.visitTableAdapter.ClearBeforeFill = true;
             // 
             // ViewVisitReport
             // 
