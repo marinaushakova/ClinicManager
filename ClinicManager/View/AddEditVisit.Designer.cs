@@ -92,7 +92,7 @@
             // bloodPressureLabel
             // 
             bloodPressureLabel.AutoSize = true;
-            bloodPressureLabel.Location = new System.Drawing.Point(5, 86);
+            bloodPressureLabel.Location = new System.Drawing.Point(6, 87);
             bloodPressureLabel.Name = "bloodPressureLabel";
             bloodPressureLabel.Size = new System.Drawing.Size(104, 16);
             bloodPressureLabel.TabIndex = 1;
@@ -101,7 +101,7 @@
             // lblDoctor
             // 
             lblDoctor.AutoSize = true;
-            lblDoctor.Location = new System.Drawing.Point(61, 103);
+            lblDoctor.Location = new System.Drawing.Point(6, 103);
             lblDoctor.Name = "lblDoctor";
             lblDoctor.Size = new System.Drawing.Size(51, 16);
             lblDoctor.TabIndex = 5;
@@ -110,7 +110,7 @@
             // lblPatient
             // 
             lblPatient.AutoSize = true;
-            lblPatient.Location = new System.Drawing.Point(58, 18);
+            lblPatient.Location = new System.Drawing.Point(6, 18);
             lblPatient.Name = "lblPatient";
             lblPatient.Size = new System.Drawing.Size(52, 16);
             lblPatient.TabIndex = 13;
@@ -119,7 +119,7 @@
             // pulseRateLabel
             // 
             pulseRateLabel.AutoSize = true;
-            pulseRateLabel.Location = new System.Drawing.Point(29, 35);
+            pulseRateLabel.Location = new System.Drawing.Point(6, 35);
             pulseRateLabel.Name = "pulseRateLabel";
             pulseRateLabel.Size = new System.Drawing.Size(77, 16);
             pulseRateLabel.TabIndex = 15;
@@ -128,7 +128,7 @@
             // symptomsLabel
             // 
             symptomsLabel.AutoSize = true;
-            symptomsLabel.Location = new System.Drawing.Point(25, 116);
+            symptomsLabel.Location = new System.Drawing.Point(6, 113);
             symptomsLabel.Name = "symptomsLabel";
             symptomsLabel.Size = new System.Drawing.Size(75, 16);
             symptomsLabel.TabIndex = 17;
@@ -137,7 +137,7 @@
             // temperatureLabel
             // 
             temperatureLabel.AutoSize = true;
-            temperatureLabel.Location = new System.Drawing.Point(19, 60);
+            temperatureLabel.Location = new System.Drawing.Point(6, 61);
             temperatureLabel.Name = "temperatureLabel";
             temperatureLabel.Size = new System.Drawing.Size(89, 16);
             temperatureLabel.TabIndex = 19;
@@ -146,7 +146,7 @@
             // lblNurse
             // 
             lblNurse.AutoSize = true;
-            lblNurse.Location = new System.Drawing.Point(67, 75);
+            lblNurse.Location = new System.Drawing.Point(6, 75);
             lblNurse.Name = "lblNurse";
             lblNurse.Size = new System.Drawing.Size(47, 16);
             lblNurse.TabIndex = 32;
@@ -182,12 +182,12 @@
             // txbBloodPressure
             // 
             this.txbBloodPressure.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "BloodPressure", true));
-            this.txbBloodPressure.Location = new System.Drawing.Point(116, 84);
+            this.txbBloodPressure.Location = new System.Drawing.Point(145, 84);
             this.txbBloodPressure.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbBloodPressure.MaxLength = 45;
             this.txbBloodPressure.Name = "txbBloodPressure";
             this.txbBloodPressure.ReadOnly = true;
-            this.txbBloodPressure.Size = new System.Drawing.Size(226, 22);
+            this.txbBloodPressure.Size = new System.Drawing.Size(224, 22);
             this.txbBloodPressure.TabIndex = 4;
             this.txbBloodPressure.Tag = "Blood Pressure";
             // 
@@ -214,25 +214,25 @@
             // txbPulseRate
             // 
             this.txbPulseRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "PulseRate", true));
-            this.txbPulseRate.Location = new System.Drawing.Point(116, 32);
+            this.txbPulseRate.Location = new System.Drawing.Point(145, 32);
             this.txbPulseRate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbPulseRate.MaxLength = 3;
             this.txbPulseRate.Name = "txbPulseRate";
             this.txbPulseRate.ReadOnly = true;
-            this.txbPulseRate.Size = new System.Drawing.Size(226, 22);
+            this.txbPulseRate.Size = new System.Drawing.Size(224, 22);
             this.txbPulseRate.TabIndex = 2;
             this.txbPulseRate.Tag = "Pulse Rate";
             // 
             // txbSymptoms
             // 
             this.txbSymptoms.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Symptoms", true));
-            this.txbSymptoms.Location = new System.Drawing.Point(116, 110);
+            this.txbSymptoms.Location = new System.Drawing.Point(145, 110);
             this.txbSymptoms.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbSymptoms.Multiline = true;
             this.txbSymptoms.Name = "txbSymptoms";
             this.txbSymptoms.ReadOnly = true;
             this.txbSymptoms.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txbSymptoms.Size = new System.Drawing.Size(655, 141);
+            this.txbSymptoms.Size = new System.Drawing.Size(626, 141);
             this.txbSymptoms.TabIndex = 5;
             this.txbSymptoms.Tag = "Symptoms";
             // 
@@ -240,12 +240,12 @@
             // 
             this.txbTemperature.CausesValidation = false;
             this.txbTemperature.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Temperature", true));
-            this.txbTemperature.Location = new System.Drawing.Point(116, 58);
+            this.txbTemperature.Location = new System.Drawing.Point(145, 58);
             this.txbTemperature.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbTemperature.MaxLength = 5;
             this.txbTemperature.Name = "txbTemperature";
             this.txbTemperature.ReadOnly = true;
-            this.txbTemperature.Size = new System.Drawing.Size(226, 22);
+            this.txbTemperature.Size = new System.Drawing.Size(224, 22);
             this.txbTemperature.TabIndex = 3;
             this.txbTemperature.Tag = "Temperature";
             // 
@@ -254,7 +254,7 @@
             this.btnSearchPatient.Location = new System.Drawing.Point(407, 15);
             this.btnSearchPatient.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSearchPatient.Name = "btnSearchPatient";
-            this.btnSearchPatient.Size = new System.Drawing.Size(108, 22);
+            this.btnSearchPatient.Size = new System.Drawing.Size(108, 25);
             this.btnSearchPatient.TabIndex = 1;
             this.btnSearchPatient.Text = "Search Patient";
             this.btnSearchPatient.UseVisualStyleBackColor = true;
@@ -285,7 +285,7 @@
             this.btnSaveCheckup.Enabled = false;
             this.btnSaveCheckup.Location = new System.Drawing.Point(604, 269);
             this.btnSaveCheckup.Name = "btnSaveCheckup";
-            this.btnSaveCheckup.Size = new System.Drawing.Size(167, 23);
+            this.btnSaveCheckup.Size = new System.Drawing.Size(167, 25);
             this.btnSaveCheckup.TabIndex = 6;
             this.btnSaveCheckup.Text = "Save Checkup Info";
             this.btnSaveCheckup.UseVisualStyleBackColor = true;
@@ -334,7 +334,7 @@
             this.btnTestResult.Location = new System.Drawing.Point(636, 429);
             this.btnTestResult.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTestResult.Name = "btnTestResult";
-            this.btnTestResult.Size = new System.Drawing.Size(148, 22);
+            this.btnTestResult.Size = new System.Drawing.Size(148, 25);
             this.btnTestResult.TabIndex = 2;
             this.btnTestResult.Text = "Record Test Result";
             this.btnTestResult.UseVisualStyleBackColor = true;
@@ -346,7 +346,7 @@
             this.btnNewTest.Location = new System.Drawing.Point(491, 429);
             this.btnNewTest.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnNewTest.Name = "btnNewTest";
-            this.btnNewTest.Size = new System.Drawing.Size(122, 22);
+            this.btnNewTest.Size = new System.Drawing.Size(122, 25);
             this.btnNewTest.TabIndex = 1;
             this.btnNewTest.Text = "Order New Test";
             this.btnNewTest.UseVisualStyleBackColor = true;
@@ -357,7 +357,7 @@
             this.btnCancel.Location = new System.Drawing.Point(719, 521);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(88, 22);
+            this.btnCancel.Size = new System.Drawing.Size(88, 25);
             this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -369,7 +369,7 @@
             this.btnOK.Location = new System.Drawing.Point(615, 521);
             this.btnOK.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(84, 22);
+            this.btnOK.Size = new System.Drawing.Size(84, 25);
             this.btnOK.TabIndex = 3;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
