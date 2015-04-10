@@ -287,7 +287,7 @@
             this.btnSaveCheckup.Name = "btnSaveCheckup";
             this.btnSaveCheckup.Size = new System.Drawing.Size(167, 25);
             this.btnSaveCheckup.TabIndex = 6;
-            this.btnSaveCheckup.Text = "Save Checkup Info";
+            this.btnSaveCheckup.Text = "Create Visit";
             this.btnSaveCheckup.UseVisualStyleBackColor = true;
             this.btnSaveCheckup.Click += new System.EventHandler(this.btnSaveCheckup_Click);
             // 
