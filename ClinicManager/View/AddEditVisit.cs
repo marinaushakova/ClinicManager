@@ -218,16 +218,17 @@ namespace ClinicManager.View
         /// </summary>
         private void enableFormControls()
         {
-            txbBloodPressure.ReadOnly = false;
+            
             txbFinalDiagnosis.ReadOnly = false;
             txbInitialDiagnosis.ReadOnly = false;
-            txbPulseRate.ReadOnly = false;
-            txbSymptoms.ReadOnly = false;
-            txbTemperature.ReadOnly = false;
             btnNewTest.Enabled = true;
             btnTestResult.Enabled = true;
             if (visit == null)
             {
+                txbBloodPressure.ReadOnly = false;
+                txbPulseRate.ReadOnly = false;
+                txbSymptoms.ReadOnly = false;
+                txbTemperature.ReadOnly = false;
                 btnSaveCheckup.Enabled = true;
             }
             else
@@ -236,6 +237,10 @@ namespace ClinicManager.View
                 tbpTests.Enabled = true;
                 tbpDiagnosis.Enabled = true;                
                 btnOK.Enabled = true;
+                if (!string.IsNullOrEmpty(visit.InitialDiagnosis)) 
+                {
+                    txbInitialDiagnosis.ReadOnly = true;
+                }
             }
         }
 
