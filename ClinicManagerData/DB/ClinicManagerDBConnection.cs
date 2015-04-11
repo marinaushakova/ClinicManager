@@ -19,7 +19,7 @@ namespace ClinicManagerData.DB
         public static SqlConnection GetConnection()
         {
             string connectionString =
-                "Data Source=blah;Initial Catalog=cs6232-g1;" +
+                "Data Source=localhost;Initial Catalog=cs6232-g1;" +
                 "Integrated Security=True";
             SqlConnection connection = new SqlConnection(connectionString);
             return connection;
