@@ -41,7 +41,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(48, 56);
+            this.label2.Location = new System.Drawing.Point(55, 60);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 16);
             this.label2.TabIndex = 3;
@@ -49,16 +49,16 @@
             // 
             // usrnameTxtBox
             // 
-            this.usrnameTxtBox.Location = new System.Drawing.Point(128, 53);
+            this.usrnameTxtBox.Location = new System.Drawing.Point(146, 57);
             this.usrnameTxtBox.Name = "usrnameTxtBox";
-            this.usrnameTxtBox.Size = new System.Drawing.Size(206, 21);
+            this.usrnameTxtBox.Size = new System.Drawing.Size(235, 22);
             this.usrnameTxtBox.TabIndex = 1;
             this.usrnameTxtBox.Tag = "Username";
             // 
             // passwordLbl
             // 
             this.passwordLbl.AutoSize = true;
-            this.passwordLbl.Location = new System.Drawing.Point(51, 95);
+            this.passwordLbl.Location = new System.Drawing.Point(58, 101);
             this.passwordLbl.Name = "passwordLbl";
             this.passwordLbl.Size = new System.Drawing.Size(71, 16);
             this.passwordLbl.TabIndex = 5;
@@ -67,19 +67,19 @@
             // 
             // passwordTxtBox
             // 
-            this.passwordTxtBox.Location = new System.Drawing.Point(128, 92);
+            this.passwordTxtBox.Location = new System.Drawing.Point(146, 98);
             this.passwordTxtBox.Name = "passwordTxtBox";
-            this.passwordTxtBox.Size = new System.Drawing.Size(206, 21);
+            this.passwordTxtBox.Size = new System.Drawing.Size(235, 22);
             this.passwordTxtBox.TabIndex = 2;
             this.passwordTxtBox.Tag = "Password";
             this.passwordTxtBox.UseSystemPasswordChar = true;
             // 
             // cancelBtn
             // 
-            this.cancelBtn.Location = new System.Drawing.Point(302, 180);
+            this.cancelBtn.Location = new System.Drawing.Point(345, 192);
             this.cancelBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(75, 23);
+            this.cancelBtn.Size = new System.Drawing.Size(86, 25);
             this.cancelBtn.TabIndex = 5;
             this.cancelBtn.Text = "Cancel";
             this.cancelBtn.UseVisualStyleBackColor = true;
@@ -87,10 +87,10 @@
             // 
             // okBtn
             // 
-            this.okBtn.Location = new System.Drawing.Point(203, 180);
+            this.okBtn.Location = new System.Drawing.Point(232, 192);
             this.okBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.okBtn.Name = "okBtn";
-            this.okBtn.Size = new System.Drawing.Size(75, 23);
+            this.okBtn.Size = new System.Drawing.Size(86, 25);
             this.okBtn.TabIndex = 4;
             this.okBtn.Text = "OK";
             this.okBtn.UseVisualStyleBackColor = true;
@@ -101,14 +101,14 @@
             this.errorLbl.Dock = System.Windows.Forms.DockStyle.Top;
             this.errorLbl.Location = new System.Drawing.Point(0, 0);
             this.errorLbl.Name = "errorLbl";
-            this.errorLbl.Size = new System.Drawing.Size(389, 16);
+            this.errorLbl.Size = new System.Drawing.Size(445, 17);
             this.errorLbl.TabIndex = 6;
             this.errorLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // newPasswordLbl
             // 
             this.newPasswordLbl.AutoSize = true;
-            this.newPasswordLbl.Location = new System.Drawing.Point(21, 95);
+            this.newPasswordLbl.Location = new System.Drawing.Point(24, 101);
             this.newPasswordLbl.Name = "newPasswordLbl";
             this.newPasswordLbl.Size = new System.Drawing.Size(101, 16);
             this.newPasswordLbl.TabIndex = 7;
@@ -117,10 +117,10 @@
             // 
             // AddEditUser
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(389, 215);
+            this.ClientSize = new System.Drawing.Size(445, 229);
             this.Controls.Add(this.newPasswordLbl);
             this.Controls.Add(this.errorLbl);
             this.Controls.Add(this.okBtn);
@@ -129,7 +129,7 @@
             this.Controls.Add(this.passwordTxtBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.usrnameTxtBox);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "AddEditUser";
             this.Text = "Add User";
             this.Load += new System.EventHandler(this.AddEditUser_Load);
