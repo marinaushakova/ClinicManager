@@ -186,6 +186,7 @@
             this.streetAddressTxtBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "Address", true));
             this.streetAddressTxtBox.Location = new System.Drawing.Point(125, 218);
             this.streetAddressTxtBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.streetAddressTxtBox.MaxLength = 255;
             this.streetAddressTxtBox.Name = "streetAddressTxtBox";
             this.streetAddressTxtBox.Size = new System.Drawing.Size(337, 22);
             this.streetAddressTxtBox.TabIndex = 8;
@@ -200,6 +201,7 @@
             this.cityTxtBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "City", true));
             this.cityTxtBox.Location = new System.Drawing.Point(125, 246);
             this.cityTxtBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cityTxtBox.MaxLength = 255;
             this.cityTxtBox.Name = "cityTxtBox";
             this.cityTxtBox.Size = new System.Drawing.Size(337, 22);
             this.cityTxtBox.TabIndex = 9;
