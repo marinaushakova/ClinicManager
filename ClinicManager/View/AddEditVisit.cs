@@ -49,6 +49,8 @@ namespace ClinicManager.View
             personController = new PersonController();
             visitController = new VisitController();
             orderedTestController = new OrderedTestController();
+            tbpTests.Enabled = false;
+            tbpDiagnosis.Enabled = false;
         }
 
         /// <summary>
@@ -231,6 +233,8 @@ namespace ClinicManager.View
             else
             {
                 btnSaveCheckup.Enabled = false;
+                tbpTests.Enabled = true;
+                tbpDiagnosis.Enabled = true;                
                 btnOK.Enabled = true;
             }
         }
