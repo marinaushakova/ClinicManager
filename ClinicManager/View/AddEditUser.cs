@@ -54,7 +54,7 @@ namespace ClinicManager.View
                 errorLbl.Text = "Username and password can't be empty";
                 return;
             }
-            if (this.userController.UsernameExists(usrnameTxtBox.Text))
+            if (this.user == null && this.userController.UsernameExists(usrnameTxtBox.Text))
             {
                 errorLbl.ForeColor = System.Drawing.Color.Red;
                 errorLbl.Text = "That username is in use, please choose another!";
