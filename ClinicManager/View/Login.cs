@@ -78,8 +78,6 @@ namespace ClinicManager.View
                     this.lblErrMessage.Text = "This user/password combination doesn't exist";
                     return;
                 }
-                //this.username = this.txtUsername.Text;
-                //this.password = this.txtPassword.Text;
                 this.user.Username = this.txtUsername.Text;
                 this.user.Password = this.txtPassword.Text;
                 this.Close();
@@ -87,7 +85,7 @@ namespace ClinicManager.View
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, ex.GetType().ToString());
-                this.BeginInvoke(new MethodInvoker(Close));
+                return;
             }
         }
     }
