@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClinicManager.Controller;
 using ClinicManagerData.Model;
 
 namespace ClinicManager.View
@@ -14,6 +15,7 @@ namespace ClinicManager.View
     public partial class AddEditUser : Form
     {
         private bool createAdminUser;
+        private UserController userController;
         private User user;
         public User User
         {
@@ -25,6 +27,7 @@ namespace ClinicManager.View
         {
             InitializeComponent();
             this.createAdminUser = createAdminUser;
+            userController = new UserController();
         }
 
         /// <summary>
@@ -49,6 +52,12 @@ namespace ClinicManager.View
             {
                 errorLbl.ForeColor = System.Drawing.Color.Red;
                 errorLbl.Text = "Username and password can't be empty";
+                return;
+            }
+            if (this.userController.UsernameExists(usrnameTxtBox.Text))
+            {
+                errorLbl.ForeColor = System.Drawing.Color.Red;
+                errorLbl.Text = "That username is in use, please choose another!";
                 return;
             }
             if (!Validator.IsValidUserPsswd(usrnameTxtBox, passwordTxtBox)) return;

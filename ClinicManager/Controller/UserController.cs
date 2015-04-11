@@ -34,5 +34,15 @@ namespace ClinicManager.Controller
         {
             return UserDAL.getUserByCredentials(username, password);
         }
+
+        /// <summary>
+        /// Check if a username exists
+        /// </summary>
+        /// <param name="username">user's username</param>
+        /// <returns>True if username already exists, false otherwise</returns>
+        public bool UsernameExists(string username)
+        {
+            return UserDAL.UsernameExists(username);
+        }
     }
 }

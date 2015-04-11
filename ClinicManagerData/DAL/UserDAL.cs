@@ -120,6 +120,50 @@ namespace ClinicManagerData.DAL
         }
 
         /// <summary>
+        /// Checks if a username exists
+        /// </summary>
+        /// <param name="username">user's username</param>
+        /// <returns>True if username exists, false otherwise</returns>
+        public static bool UsernameExists(string username)
+        {
+            string selectStatement = "SELECT id " +
+                                        "FROM [user] WHERE username = @username";
+
+            try
+            {
+                using (SqlConnection connection = ClinicManagerDBConnection.GetConnection())
+                {
+                    connection.Open();
+
+                    using (SqlCommand selectCommand = new SqlCommand(selectStatement, connection))
+                    {
+                        selectCommand.Parameters.AddWithValue("@username", username);
+
+                        using (SqlDataReader reader = selectCommand.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
         /// Hashes the given data
         /// </summary>
         /// <param name="data"></param>
