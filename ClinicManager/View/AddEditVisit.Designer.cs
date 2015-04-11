@@ -92,7 +92,7 @@
             // bloodPressureLabel
             // 
             bloodPressureLabel.AutoSize = true;
-            bloodPressureLabel.Location = new System.Drawing.Point(6, 87);
+            bloodPressureLabel.Location = new System.Drawing.Point(6, 103);
             bloodPressureLabel.Name = "bloodPressureLabel";
             bloodPressureLabel.Size = new System.Drawing.Size(104, 16);
             bloodPressureLabel.TabIndex = 1;
@@ -101,7 +101,7 @@
             // lblDoctor
             // 
             lblDoctor.AutoSize = true;
-            lblDoctor.Location = new System.Drawing.Point(6, 103);
+            lblDoctor.Location = new System.Drawing.Point(13, 90);
             lblDoctor.Name = "lblDoctor";
             lblDoctor.Size = new System.Drawing.Size(51, 16);
             lblDoctor.TabIndex = 5;
@@ -110,7 +110,7 @@
             // lblPatient
             // 
             lblPatient.AutoSize = true;
-            lblPatient.Location = new System.Drawing.Point(6, 18);
+            lblPatient.Location = new System.Drawing.Point(12, 18);
             lblPatient.Name = "lblPatient";
             lblPatient.Size = new System.Drawing.Size(52, 16);
             lblPatient.TabIndex = 13;
@@ -128,7 +128,7 @@
             // symptomsLabel
             // 
             symptomsLabel.AutoSize = true;
-            symptomsLabel.Location = new System.Drawing.Point(6, 113);
+            symptomsLabel.Location = new System.Drawing.Point(6, 137);
             symptomsLabel.Name = "symptomsLabel";
             symptomsLabel.Size = new System.Drawing.Size(75, 16);
             symptomsLabel.TabIndex = 17;
@@ -137,7 +137,7 @@
             // temperatureLabel
             // 
             temperatureLabel.AutoSize = true;
-            temperatureLabel.Location = new System.Drawing.Point(6, 61);
+            temperatureLabel.Location = new System.Drawing.Point(6, 69);
             temperatureLabel.Name = "temperatureLabel";
             temperatureLabel.Size = new System.Drawing.Size(89, 16);
             temperatureLabel.TabIndex = 19;
@@ -146,7 +146,7 @@
             // lblNurse
             // 
             lblNurse.AutoSize = true;
-            lblNurse.Location = new System.Drawing.Point(6, 75);
+            lblNurse.Location = new System.Drawing.Point(13, 54);
             lblNurse.Name = "lblNurse";
             lblNurse.Size = new System.Drawing.Size(47, 16);
             lblNurse.TabIndex = 32;
@@ -182,7 +182,7 @@
             // txbBloodPressure
             // 
             this.txbBloodPressure.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "BloodPressure", true));
-            this.txbBloodPressure.Location = new System.Drawing.Point(145, 84);
+            this.txbBloodPressure.Location = new System.Drawing.Point(145, 102);
             this.txbBloodPressure.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbBloodPressure.MaxLength = 45;
             this.txbBloodPressure.Name = "txbBloodPressure";
@@ -199,7 +199,7 @@
             // 
             this.cmbDoctor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDoctor.FormattingEnabled = true;
-            this.cmbDoctor.Location = new System.Drawing.Point(121, 100);
+            this.cmbDoctor.Location = new System.Drawing.Point(122, 87);
             this.cmbDoctor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbDoctor.Name = "cmbDoctor";
             this.cmbDoctor.Size = new System.Drawing.Size(227, 24);
@@ -212,7 +212,7 @@
             this.txbPatient.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbPatient.Name = "txbPatient";
             this.txbPatient.ReadOnly = true;
-            this.txbPatient.Size = new System.Drawing.Size(229, 22);
+            this.txbPatient.Size = new System.Drawing.Size(227, 22);
             this.txbPatient.TabIndex = 14;
             // 
             // txbPulseRate
@@ -230,13 +230,13 @@
             // txbSymptoms
             // 
             this.txbSymptoms.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Symptoms", true));
-            this.txbSymptoms.Location = new System.Drawing.Point(145, 110);
+            this.txbSymptoms.Location = new System.Drawing.Point(145, 137);
             this.txbSymptoms.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbSymptoms.Multiline = true;
             this.txbSymptoms.Name = "txbSymptoms";
             this.txbSymptoms.ReadOnly = true;
             this.txbSymptoms.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txbSymptoms.Size = new System.Drawing.Size(626, 141);
+            this.txbSymptoms.Size = new System.Drawing.Size(626, 133);
             this.txbSymptoms.TabIndex = 5;
             this.txbSymptoms.Tag = "Symptoms";
             // 
@@ -244,7 +244,7 @@
             // 
             this.txbTemperature.CausesValidation = false;
             this.txbTemperature.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.visitBindingSource, "Temperature", true));
-            this.txbTemperature.Location = new System.Drawing.Point(145, 58);
+            this.txbTemperature.Location = new System.Drawing.Point(145, 67);
             this.txbTemperature.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txbTemperature.MaxLength = 5;
             this.txbTemperature.Name = "txbTemperature";
@@ -258,7 +258,7 @@
             this.btnSearchPatient.Location = new System.Drawing.Point(407, 15);
             this.btnSearchPatient.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSearchPatient.Name = "btnSearchPatient";
-            this.btnSearchPatient.Size = new System.Drawing.Size(108, 25);
+            this.btnSearchPatient.Size = new System.Drawing.Size(131, 25);
             this.btnSearchPatient.TabIndex = 1;
             this.btnSearchPatient.Text = "Search Patient";
             this.btnSearchPatient.UseVisualStyleBackColor = true;
@@ -275,11 +275,11 @@
             this.gbxRoutingChecks.Controls.Add(this.txbBloodPressure);
             this.gbxRoutingChecks.Controls.Add(this.txbPulseRate);
             this.gbxRoutingChecks.Controls.Add(pulseRateLabel);
-            this.gbxRoutingChecks.Location = new System.Drawing.Point(7, 148);
+            this.gbxRoutingChecks.Location = new System.Drawing.Point(7, 129);
             this.gbxRoutingChecks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbxRoutingChecks.Name = "gbxRoutingChecks";
             this.gbxRoutingChecks.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbxRoutingChecks.Size = new System.Drawing.Size(794, 304);
+            this.gbxRoutingChecks.Size = new System.Drawing.Size(794, 323);
             this.gbxRoutingChecks.TabIndex = 28;
             this.gbxRoutingChecks.TabStop = false;
             this.gbxRoutingChecks.Text = "Routine Checks";
@@ -287,9 +287,9 @@
             // btnSaveCheckup
             // 
             this.btnSaveCheckup.Enabled = false;
-            this.btnSaveCheckup.Location = new System.Drawing.Point(604, 269);
+            this.btnSaveCheckup.Location = new System.Drawing.Point(604, 284);
             this.btnSaveCheckup.Name = "btnSaveCheckup";
-            this.btnSaveCheckup.Size = new System.Drawing.Size(167, 25);
+            this.btnSaveCheckup.Size = new System.Drawing.Size(167, 26);
             this.btnSaveCheckup.TabIndex = 6;
             this.btnSaveCheckup.Text = "Create Visit";
             this.btnSaveCheckup.UseVisualStyleBackColor = true;
@@ -390,7 +390,7 @@
             // 
             // txbNurse
             // 
-            this.txbNurse.Location = new System.Drawing.Point(122, 72);
+            this.txbNurse.Location = new System.Drawing.Point(123, 52);
             this.txbNurse.Name = "txbNurse";
             this.txbNurse.ReadOnly = true;
             this.txbNurse.Size = new System.Drawing.Size(227, 22);
@@ -398,7 +398,7 @@
             // 
             // txbDoctor
             // 
-            this.txbDoctor.Location = new System.Drawing.Point(122, 103);
+            this.txbDoctor.Location = new System.Drawing.Point(123, 90);
             this.txbDoctor.Name = "txbDoctor";
             this.txbDoctor.ReadOnly = true;
             this.txbDoctor.Size = new System.Drawing.Size(226, 22);
