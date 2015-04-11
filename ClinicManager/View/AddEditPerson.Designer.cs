@@ -356,6 +356,7 @@
             // 
             // createUserBtn
             // 
+            this.createUserBtn.Enabled = false;
             this.createUserBtn.Location = new System.Drawing.Point(13, 421);
             this.createUserBtn.Name = "createUserBtn";
             this.createUserBtn.Size = new System.Drawing.Size(168, 23);
