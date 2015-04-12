@@ -345,7 +345,7 @@ namespace ClinicManager.View
                 thePerson.IsNurse = false;
             }
             thePerson.IsMale = (isMaleComboBox.Text == "Male") ? true : false;
-            thePerson.Social = ssnTxtBox.Text;
+            thePerson.Social = ssnTxtBox.Text.Length == 9 ? ssnTxtBox.Text.Insert(5, "-").Insert(3, "-") : ssnTxtBox.Text;
             thePerson.FirstName = fnameTxtBox.Text;
             thePerson.MiddleInit = minitTxtBox.Text;
             thePerson.LastName = lnameTxtBox.Text;
@@ -353,8 +353,8 @@ namespace ClinicManager.View
             thePerson.Address = streetAddressTxtBox.Text;
             thePerson.City = cityTxtBox.Text;
             thePerson.State = stateTxtBox.Text;
-            thePerson.Zip = zipTxtBox.Text.Replace("-", "");
-            thePerson.Phone = phoneTxtBox.Text;
+            thePerson.Zip = zipTxtBox.Text.Length == 9 ? zipTxtBox.Text.Insert(5, "-") : zipTxtBox.Text;
+            thePerson.Phone = phoneTxtBox.Text.Length == 10 ? phoneTxtBox.Text.Insert(6, "-").Insert(3, "-") : phoneTxtBox.Text;
             if (this.is_nurse) thePerson.IsPatient = true;
             else thePerson.IsPatient = false;
         }
