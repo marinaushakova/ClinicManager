@@ -237,10 +237,6 @@ namespace ClinicManager.View
                 tbpTests.Enabled = true;
                 tbpDiagnosis.Enabled = true;                
                 btnOK.Enabled = true;
-                if (!string.IsNullOrEmpty(visit.InitialDiagnosis)) 
-                {
-                    txbInitialDiagnosis.ReadOnly = true;
-                }
             }
         }
 
