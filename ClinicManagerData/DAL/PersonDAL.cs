@@ -451,6 +451,63 @@ namespace ClinicManagerData.DAL
         }
 
         /// <summary>
+        /// Gets a person from the db by their ssn
+        /// </summary>
+        /// <param name="id">The ssn of the person to be retrieved</param>
+        /// <returns>The person with the passed in ssn, null otherwise</returns>
+        public static Person GetPersonBySSN(string ssn)
+        {
+            Person person = new Person();
+            string selectStatment =
+                "SELECT id, ssn, fname, minit, lname, birth_date, is_male, street_address, " +
+                "city, state, zip, phone, is_patient, is_nurse, is_doctor, is_admin, timestamp " +
+                "FROM person WHERE ssn = @ssn";
+            try
+            {
+                using (SqlConnection con = ClinicManagerDBConnection.GetConnection())
+                {
+                    con.Open();
+                    using (SqlCommand selectCommand = new SqlCommand(selectStatment, con))
+                    {
+                        selectCommand.Parameters.AddWithValue("@ssn", ssn);
+                        using (SqlDataReader reader = selectCommand.ExecuteReader(CommandBehavior.SingleRow))
+                        {
+                            if (reader.Read())
+                            {
+                                person.PersonID = (int)reader["id"];
+                                person.Social = reader["ssn"].ToString();
+                                person.FirstName = reader["fname"].ToString();
+                                person.MiddleInit = reader["minit"].ToString();
+                                person.LastName = reader["lname"].ToString();
+                                person.DateOfBirth = (DateTime)reader["birth_date"];
+                                person.IsMale = (bool)reader["is_male"];
+                                person.Address = reader["street_address"].ToString();
+                                person.City = reader["city"].ToString();
+                                person.State = reader["state"].ToString();
+                                person.Zip = reader["zip"].ToString();
+                                person.IsPatient = (bool)reader["is_patient"];
+                                person.IsNurse = (bool)reader["is_nurse"];
+                                person.IsDoctor = (bool)reader["is_doctor"];
+                                person.IsAdmin = (bool)reader["is_admin"];
+                                person.Phone = reader["phone"].ToString();
+                                person.Timestamp = Convert.ToBase64String(reader["timestamp"] as byte[]);
+                            }
+                            else
+                            {
+                                person = null;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return person;
+        }
+
+        /// <summary>
         /// Get the list of nurses or doctors depending on
         /// passed in parameter
         /// </summary>

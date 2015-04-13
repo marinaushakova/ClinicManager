@@ -37,6 +37,16 @@ namespace ClinicManager.Controller
         }
 
         /// <summary>
+        /// Gets the person with the passed in ssn
+        /// </summary>
+        /// <param name="id">The ssn of the person being retrieved from the DB</param>
+        /// <returns>The person object with the given ssn else null</returns>
+        public Person GetPersonBySSN(string ssn)
+        {
+            return PersonDAL.GetPersonBySSN(ssn);
+        }
+
+        /// <summary>
         /// Adds the passed in person to the DB
         /// </summary>
         /// <param name="person">The person to add to the DB</param>

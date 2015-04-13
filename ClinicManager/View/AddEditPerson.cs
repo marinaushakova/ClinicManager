@@ -246,24 +246,52 @@ namespace ClinicManager.View
                 {
                     Person newPerson = new Person();
                     this.putPersonData(newPerson);
-                    int id = personController.AddPerson(newPerson);
-                    MessageBox.Show("Successfully added " + name, "Success");
-                    this.resetInput();
+                    Person duplicatePerson = personController.GetPersonBySSN(newPerson.Social);
+                    if (duplicatePerson == null) 
+                    {
+                        int id = personController.AddPerson(newPerson);
+                        MessageBox.Show("Successfully added " + name, "Success");
+                        this.resetInput();
+                    }
+                    else if (duplicatePerson.IsPatient)
+                    {
+                        MessageBox.Show("Patient with this SSN already exists", "Error");
+                    }
+                    else
+                    {
+                        DialogResult result = MessageBox.Show("One of the staff members has this SSN. Do you want to make him/her a patient?",
+                                        "Warning", MessageBoxButtons.YesNo);
+                        if (result == DialogResult.Yes)
+                        {
+                            this.person = duplicatePerson;
+                            this.person.IsPatient = true;
+                            this.setUpBinding();
+                            isMaleComboBox.SelectedIndex = (person.IsMale) ? 0 : 1;
+                        }
+                    }
                 }
                 else
                 {
                     this.putPersonData(person);
-                    bool result = personController.UpdatePerson(person);
-                    if (!result)
+                    Person duplicatePerson = personController.GetPersonBySSN(person.Social);
+                    if (duplicatePerson == null)
                     {
-                        MessageBox.Show("Update " + name + " failed.  Perhaps another user has updated or " +
-                                "deleted that " + name + "?", "Database Error");
+                        bool result = personController.UpdatePerson(person);
+                        if (!result)
+                        {
+                            MessageBox.Show("Update " + name + " failed.  Perhaps another user has updated or " +
+                                    "deleted that " + name + "?", "Database Error");
 
+                        }
+                        else
+                        {
+                            MessageBox.Show("Successfully updated " + name, "Success");
+                            this.Close();
+                        }
                     }
-                    else
+                    else if (duplicatePerson.IsPatient)
                     {
-                        MessageBox.Show("Successfully updated " + name, "Success");
-                        this.Close();
+                        MessageBox.Show("Patient with this SSN already exists", "Error");
                     }
                 }
             }
