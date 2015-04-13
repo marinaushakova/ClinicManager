@@ -25,6 +25,7 @@ namespace ClinicManager.View
         }
 
         private bool is_nurse;
+        private bool patientToStaff;
 
         private AddEditUser addEditUserForm;
 
@@ -37,6 +38,7 @@ namespace ClinicManager.View
             personController = new PersonController();
             userController = new UserController();
             this.is_nurse = !isAdmin;
+            this.patientToStaff = false;
         }
 
         /// <summary>
@@ -237,8 +239,6 @@ namespace ClinicManager.View
         /// </summary>
         private void addEditPatient()
         {
-            string name = "patient";
-            if (!this.is_nurse) name = "staff member";
             if (!this.isValid()) return;
             try
             {
@@ -250,7 +250,7 @@ namespace ClinicManager.View
                     if (duplicatePerson == null) 
                     {
                         int id = personController.AddPerson(newPerson);
-                        MessageBox.Show("Successfully added " + name, "Success");
+                        MessageBox.Show("Successfully added patient", "Success");
                         this.resetInput();
                     }
                     else if (duplicatePerson.IsPatient)
@@ -276,13 +276,13 @@ namespace ClinicManager.View
                     bool result = personController.UpdatePerson(person);
                     if (!result)
                     {
-                        MessageBox.Show("Update " + name + " failed.  Perhaps another user has updated or " +
-                                "deleted that " + name + "?", "Database Error");
+                        MessageBox.Show("Update patient failed.  Perhaps another user has updated or " +
+                                "deleted that patient?", "Database Error");
 
                     }
                     else
                     {
-                        MessageBox.Show("Successfully updated " + name, "Success");
+                        MessageBox.Show("Successfully updated patient.", "Success");
                         this.Close();
                     }
                 }
@@ -309,14 +309,35 @@ namespace ClinicManager.View
                     }
                     Person newPerson = new Person();
                     this.putPersonData(newPerson);
-                    int id;
-                    if (roleComboBox.SelectedIndex == 1) id = personController.AddPerson(newPerson);
-                    else id = personController.AddUserStaffMember(newPerson, newUser);
+                    Person duplicatePerson = personController.GetPersonBySSN(newPerson.Social);
+                    if (duplicatePerson == null)
+                    {
+                        int id;
+                        if (roleComboBox.SelectedIndex == 1) id = personController.AddPerson(newPerson);
+                        else id = personController.AddUserStaffMember(newPerson, newUser);
 
-                    MessageBox.Show("Staff member successfully added", "Success");
-                    this.resetInput();
+                        MessageBox.Show("Staff member successfully added", "Success");
+                        this.resetInput();
+                    }
+                    else if (duplicatePerson.IsAdmin || duplicatePerson.IsDoctor || duplicatePerson.IsNurse)
+                    {
+                        MessageBox.Show("A staff member with this SSN already exists", "Error");
+                    }
+                    else
+                    {
+                        DialogResult result = MessageBox.Show("One of the patients has this SSN. Do you want to make him/her a staff member?",
+                                        "Warning", MessageBoxButtons.YesNo);
+                        if (result == DialogResult.Yes)
+                        {
+                            this.patientToStaff = true;
+                            this.person = duplicatePerson;
+                            this.person.IsPatient = true;
+                            this.setUpBinding();
+                            isMaleComboBox.SelectedIndex = (person.IsMale) ? 0 : 1;
+                        }
+                    }
                 }
-                else
+                else if (!patientToStaff)
                 {
                     this.putPersonData(person);
                     if (newUser != null) newUser.PersonID = person.PersonID;
@@ -332,6 +353,24 @@ namespace ClinicManager.View
                         MessageBox.Show("Staff successully updated", "Success");
                         this.Close();
                     }
+                }
+                else
+                {
+                    this.putPersonData(person);
+                    if (newUser != null) newUser.PersonID = person.PersonID;
+                    bool result = personController.CreatePatientAsStaff(person, newUser);
+                    if (!result)
+                    {
+                        MessageBox.Show("Create staff member failed. Perhaps another user has updated or " +
+                                "deleted that staff member? ", "Database Error");
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Staff successully created", "Success");
+                        this.Close();
+                    }
+                    this.patientToStaff = false;
                 }
             }
             catch (Exception ex)
@@ -364,6 +403,10 @@ namespace ClinicManager.View
                 thePerson.IsDoctor = false;
                 thePerson.IsNurse = false;
             }
+            else if (roleComboBox.Text == "Patient")
+            {
+                thePerson.IsPatient = true;
+            }
             thePerson.IsMale = (isMaleComboBox.Text == "Male") ? true : false;
             thePerson.Social = ssnTxtBox.Text.Length == 9 ? ssnTxtBox.Text.Insert(5, "-").Insert(3, "-") : ssnTxtBox.Text;
             thePerson.FirstName = fnameTxtBox.Text;
@@ -375,8 +418,8 @@ namespace ClinicManager.View
             thePerson.State = stateTxtBox.Text;
             thePerson.Zip = zipTxtBox.Text.Length == 9 ? zipTxtBox.Text.Insert(5, "-") : zipTxtBox.Text;
             thePerson.Phone = phoneTxtBox.Text.Length == 10 ? phoneTxtBox.Text.Insert(6, "-").Insert(3, "-") : phoneTxtBox.Text;
-            if (this.is_nurse) thePerson.IsPatient = true;
-            else thePerson.IsPatient = false;
+            //if (this.is_nurse) thePerson.IsPatient = true;
+            //else thePerson.IsPatient = false;
         }
 
         /// <summary>

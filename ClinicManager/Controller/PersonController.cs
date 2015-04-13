@@ -90,6 +90,17 @@ namespace ClinicManager.Controller
         }
 
         /// <summary>
+        /// Updates a person object and creates a user object. Used when a staff member is created who happens to exist as a patient
+        /// </summary>
+        /// <param name="person">The person object holding the data to update the person entry of the person with. Must NOT be null</param>
+        /// <param name="user">The user object holding the data to update the user entry of the user with. Must NOT be null</param>
+        /// <returns>Ture if successful false otherwise</returns>
+        public bool CreatePatientAsStaff(Person person, User user)
+        {
+            return PersonDAL.CreatePatientAsStaff(person, user);
+        }
+
+        /// <summary>
         /// Gets all nurses from the DB
         /// </summary>
         /// <returns>List of nurses</returns>

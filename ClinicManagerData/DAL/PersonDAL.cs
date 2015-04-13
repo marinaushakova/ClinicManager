@@ -394,6 +394,96 @@ namespace ClinicManagerData.DAL
         }
 
         /// <summary>
+        /// Updates a person object and creates a user object. Used when a staff member is created who happens to exist as a patient
+        /// </summary>
+        /// <param name="person">The person object holding the data to update the person entry of the person with. Must NOT be null</param>
+        /// <param name="user">The user object holding the data to update the user entry of the user with. Must NOT be null</param>
+        /// <returns>Ture if successful false otherwise</returns>
+        public static bool CreatePatientAsStaff(Person person, User user)
+        {
+            if (person == null || user == null) return false;
+
+            string updatePersonStatement =
+                "UPDATE person SET ssn = @ssn, fname = @fname, minit = @minit, lname = @lname, " +
+                "birth_date = @birth_date, is_male = @is_male, street_address = @street_address, " +
+                "city = @city, state = @state, zip = @zip, phone = @phone, is_patient = @is_patient, " +
+                "is_nurse = @is_nurse, is_doctor = @is_doctor, is_admin = @is_admin " +
+                "WHERE id = @id AND timestamp = @timestamp";
+            string userStatement =
+                "INSERT INTO [user] (person_id, username, password)" +
+                "VALUES (@person_id, @username, @password)";
+
+            SqlConnection con = null;
+            SqlTransaction updateStaffTran = null;
+            SqlCommand updatePersonCom = new SqlCommand();
+            SqlCommand userCom = new SqlCommand();
+            try
+            {
+                con = ClinicManagerDBConnection.GetConnection();
+
+                updatePersonCom.Connection = con;
+                updatePersonCom.CommandText = updatePersonStatement;
+
+                updatePersonCom.Parameters.AddWithValue("@id", person.PersonID);
+                updatePersonCom.Parameters.AddWithValue("@ssn", person.Social);
+                updatePersonCom.Parameters.AddWithValue("@fname", person.FirstName);
+                updatePersonCom.Parameters.AddWithValue("@minit", person.MiddleInit);
+                updatePersonCom.Parameters.AddWithValue("@lname", person.LastName);
+                updatePersonCom.Parameters.AddWithValue("@birth_date", person.DateOfBirth);
+                updatePersonCom.Parameters.AddWithValue("@is_male", person.IsMale);
+                updatePersonCom.Parameters.AddWithValue("@street_address", person.Address);
+                updatePersonCom.Parameters.AddWithValue("@city", person.City);
+                updatePersonCom.Parameters.AddWithValue("@state", person.State);
+                updatePersonCom.Parameters.AddWithValue("@zip", person.Zip);
+                updatePersonCom.Parameters.AddWithValue("@phone", person.Phone);
+                updatePersonCom.Parameters.AddWithValue("@is_patient", person.IsPatient);
+                updatePersonCom.Parameters.AddWithValue("@is_nurse", person.IsNurse);
+                updatePersonCom.Parameters.AddWithValue("@is_doctor", person.IsDoctor);
+                updatePersonCom.Parameters.AddWithValue("@is_admin", person.IsAdmin);
+                updatePersonCom.Parameters.AddWithValue("@timestamp", Convert.FromBase64String(person.Timestamp));
+
+                userCom.Connection = con;
+                userCom.CommandText = userStatement;
+                string hashedPassword = UserDAL.HashLogin(user.Username, user.Password);
+                userCom.Parameters.AddWithValue("@username", user.Username);
+                userCom.Parameters.AddWithValue("@password", hashedPassword);
+                userCom.Parameters.AddWithValue("@person_id", user.PersonID);
+                
+                con.Open();
+                updateStaffTran = con.BeginTransaction();
+                updatePersonCom.Transaction = updateStaffTran;
+                userCom.Transaction = updateStaffTran;
+
+                int personCount;
+                int? userCount = null;
+
+                personCount = updatePersonCom.ExecuteNonQuery();
+                userCount = userCom.ExecuteNonQuery();
+
+                if (personCount > 0 && (userCount == null || userCount > 0))
+                {
+                    updateStaffTran.Commit();
+                    return true;
+                }
+                else
+                {
+                    updateStaffTran.Rollback();
+                    return false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                if (updateStaffTran != null) updateStaffTran.Rollback();
+                throw ex;
+            }
+            finally
+            {
+                if (con != null) con.Close();
+            }
+        }
+
+        /// <summary>
         /// Gets a person from the db by their id
         /// </summary>
         /// <param name="id">The id of the person to be retrieved</param>

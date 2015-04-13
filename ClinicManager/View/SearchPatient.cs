@@ -82,7 +82,7 @@ namespace ClinicManager.View
                 }
                 else
                 {
-                    MessageBox.Show("No Matching Patients Found.");
+                    MessageBox.Show("No Matching Person Found.");
                 }
             }
             catch (Exception ex)
