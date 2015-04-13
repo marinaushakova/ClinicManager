@@ -273,25 +273,17 @@ namespace ClinicManager.View
                 else
                 {
                     this.putPersonData(person);
-                    Person duplicatePerson = personController.GetPersonBySSN(person.Social);
-                    if (duplicatePerson == null)
+                    bool result = personController.UpdatePerson(person);
+                    if (!result)
                     {
-                        bool result = personController.UpdatePerson(person);
-                        if (!result)
-                        {
-                            MessageBox.Show("Update " + name + " failed.  Perhaps another user has updated or " +
-                                    "deleted that " + name + "?", "Database Error");
+                        MessageBox.Show("Update " + name + " failed.  Perhaps another user has updated or " +
+                                "deleted that " + name + "?", "Database Error");
 
-                        }
-                        else
-                        {
-                            MessageBox.Show("Successfully updated " + name, "Success");
-                            this.Close();
-                        }
                     }
-                    else if (duplicatePerson.IsPatient)
+                    else
                     {
-                        MessageBox.Show("Patient with this SSN already exists", "Error");
+                        MessageBox.Show("Successfully updated " + name, "Success");
+                        this.Close();
                     }
                 }
             }
