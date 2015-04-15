@@ -52,6 +52,7 @@ namespace ClinicManager.View
             this.setUpTitle();
             this.setUpRoleComboBox();
             this.setUpGenderComboBox();
+            this.setUpStateComboBox();
             this.setUpBinding();
             this.setUpButtons();
             this.getUserIfPresent();
@@ -115,6 +116,66 @@ namespace ClinicManager.View
             isMaleComboBox.Items.Add(new { Text = "Female", Value = false });
             if (this.person == null) isMaleComboBox.SelectedIndex = 0;
             else isMaleComboBox.SelectedIndex = (person.IsMale) ? 0 : 1;
+        }
+
+        /// <summary>
+        /// Sets up the states 
+        /// </summary>
+        private void setUpStateComboBox()
+        {
+            cmbState.Items.Add("AL");
+            cmbState.Items.Add("AK");
+            cmbState.Items.Add("AZ");
+            cmbState.Items.Add("AR");
+            cmbState.Items.Add("CA");
+            cmbState.Items.Add("CO");
+            cmbState.Items.Add("CT");
+            cmbState.Items.Add("DE");
+            cmbState.Items.Add("DC");
+            cmbState.Items.Add("FL");
+            cmbState.Items.Add("GA");
+            cmbState.Items.Add("HI");
+            cmbState.Items.Add("ID");
+            cmbState.Items.Add("IL");
+            cmbState.Items.Add("IN");
+            cmbState.Items.Add("IA");
+            cmbState.Items.Add("KS");
+            cmbState.Items.Add("KY");
+            cmbState.Items.Add("LA");
+            cmbState.Items.Add("ME");
+            cmbState.Items.Add("MD");
+            cmbState.Items.Add("MA");
+            cmbState.Items.Add("MI");
+            cmbState.Items.Add("MN");
+            cmbState.Items.Add("MS");
+            cmbState.Items.Add("MO");
+            cmbState.Items.Add("MT");
+            cmbState.Items.Add("NE");
+            cmbState.Items.Add("NV");
+            cmbState.Items.Add("NH");
+            cmbState.Items.Add("NJ");
+            cmbState.Items.Add("NM");
+            cmbState.Items.Add("NY");
+            cmbState.Items.Add("NC");
+            cmbState.Items.Add("ND");
+            cmbState.Items.Add("OH");
+            cmbState.Items.Add("OK");
+            cmbState.Items.Add("OR");
+            cmbState.Items.Add("PA");
+            cmbState.Items.Add("RI");
+            cmbState.Items.Add("SC");
+            cmbState.Items.Add("SD");
+            cmbState.Items.Add("TN");
+            cmbState.Items.Add("TX");
+            cmbState.Items.Add("UT");
+            cmbState.Items.Add("VT");
+            cmbState.Items.Add("VA");
+            cmbState.Items.Add("WA");
+            cmbState.Items.Add("WV");
+            cmbState.Items.Add("WI");
+            cmbState.Items.Add("WY");
+            if (this.person == null) cmbState.SelectedIndex = 0;
+            else cmbState.SelectedItem = person.State;
         }
 
         /// <summary>
@@ -415,7 +476,7 @@ namespace ClinicManager.View
             thePerson.DateOfBirth = Convert.ToDateTime(dobDatePicker.Text);
             thePerson.Address = streetAddressTxtBox.Text;
             thePerson.City = cityTxtBox.Text;
-            thePerson.State = stateTxtBox.Text;
+            thePerson.State = cmbState.Text;
             thePerson.Zip = zipTxtBox.Text.Length == 9 ? zipTxtBox.Text.Insert(5, "-") : zipTxtBox.Text;
             thePerson.Phone = phoneTxtBox.Text.Length == 10 ? phoneTxtBox.Text.Insert(6, "-").Insert(3, "-") : phoneTxtBox.Text;
             //if (this.is_nurse) thePerson.IsPatient = true;
@@ -437,7 +498,7 @@ namespace ClinicManager.View
             requiredControls.Add(isMaleComboBox);
             requiredControls.Add(streetAddressTxtBox);
             requiredControls.Add(cityTxtBox);
-            requiredControls.Add(stateTxtBox);
+            requiredControls.Add(cmbState);
             requiredControls.Add(zipTxtBox);
             requiredControls.Add(phoneTxtBox);
             foreach (Control current in requiredControls)
@@ -465,7 +526,7 @@ namespace ClinicManager.View
             isMaleComboBox.SelectedIndex = 0;
             streetAddressTxtBox.Text = "";
             cityTxtBox.Text = "";
-            stateTxtBox.Text = "";
+            cmbState.Text = "";
             zipTxtBox.Text = "";
             phoneTxtBox.Text = "";
             if (!this.is_nurse)

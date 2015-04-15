@@ -41,7 +41,6 @@
             System.Windows.Forms.Label is_maleLabel;
             System.Windows.Forms.Label stateLabel1;
             this.streetAddressTxtBox = new System.Windows.Forms.TextBox();
-            this.personBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cityTxtBox = new System.Windows.Forms.TextBox();
             this.dobDatePicker = new System.Windows.Forms.DateTimePicker();
             this.fnameTxtBox = new System.Windows.Forms.TextBox();
@@ -52,12 +51,13 @@
             this.zipTxtBox = new System.Windows.Forms.TextBox();
             this.roleComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.stateTxtBox = new System.Windows.Forms.TextBox();
             this.okBtn = new System.Windows.Forms.Button();
             this.cancelBtn = new System.Windows.Forms.Button();
             this.isMaleComboBox = new System.Windows.Forms.ComboBox();
             this.createUserBtn = new System.Windows.Forms.Button();
             this.deleteBtn = new System.Windows.Forms.Button();
+            this.cmbState = new System.Windows.Forms.ComboBox();
+            this.personBindingSource = new System.Windows.Forms.BindingSource(this.components);
             addressLabel = new System.Windows.Forms.Label();
             cityLabel = new System.Windows.Forms.Label();
             dateOfBirthLabel = new System.Windows.Forms.Label();
@@ -192,10 +192,6 @@
             this.streetAddressTxtBox.TabIndex = 8;
             this.streetAddressTxtBox.Tag = "Street Address";
             // 
-            // personBindingSource
-            // 
-            this.personBindingSource.DataSource = typeof(ClinicManagerData.Model.Person);
-            // 
             // cityTxtBox
             // 
             this.cityTxtBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "City", true));
@@ -310,17 +306,6 @@
             this.label1.TabIndex = 33;
             this.label1.Text = "Role:";
             // 
-            // stateTxtBox
-            // 
-            this.stateTxtBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "State", true));
-            this.stateTxtBox.Location = new System.Drawing.Point(125, 274);
-            this.stateTxtBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.stateTxtBox.MaxLength = 25;
-            this.stateTxtBox.Name = "stateTxtBox";
-            this.stateTxtBox.Size = new System.Drawing.Size(337, 22);
-            this.stateTxtBox.TabIndex = 10;
-            this.stateTxtBox.Tag = "State";
-            // 
             // okBtn
             // 
             this.okBtn.Location = new System.Drawing.Point(268, 420);
@@ -378,18 +363,31 @@
             this.deleteBtn.Visible = false;
             this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
+            // cmbState
+            // 
+            this.cmbState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbState.FormattingEnabled = true;
+            this.cmbState.Location = new System.Drawing.Point(125, 272);
+            this.cmbState.Name = "cmbState";
+            this.cmbState.Size = new System.Drawing.Size(121, 24);
+            this.cmbState.TabIndex = 38;
+            // 
+            // personBindingSource
+            // 
+            this.personBindingSource.DataSource = typeof(ClinicManagerData.Model.Person);
+            // 
             // AddEditPerson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(479, 455);
+            this.Controls.Add(this.cmbState);
             this.Controls.Add(this.deleteBtn);
             this.Controls.Add(this.createUserBtn);
             this.Controls.Add(this.isMaleComboBox);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.okBtn);
             this.Controls.Add(stateLabel1);
-            this.Controls.Add(this.stateTxtBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.roleComboBox);
             this.Controls.Add(is_maleLabel);
@@ -437,11 +435,11 @@
         private System.Windows.Forms.TextBox zipTxtBox;
         private System.Windows.Forms.ComboBox roleComboBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox stateTxtBox;
         private System.Windows.Forms.Button okBtn;
         private System.Windows.Forms.Button cancelBtn;
         private System.Windows.Forms.ComboBox isMaleComboBox;
         private System.Windows.Forms.Button createUserBtn;
         private System.Windows.Forms.Button deleteBtn;
+        private System.Windows.Forms.ComboBox cmbState;
     }
 }
