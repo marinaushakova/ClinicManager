@@ -43,6 +43,16 @@ namespace ClinicManager.Controller
             return OrderedTestDAL.RecordTestResults(ordTest);
         }
 
+        /// <summary>
+        /// Deletes an ordered test
+        /// </summary>
+        /// <param name="id">Ordered Test object id</param>
+        /// <returns>True if delete successful, false otherwise</returns>
+        public bool DeleteTest(int id)
+        {
+            return OrderedTestDAL.DeleteTest(id);
+        }
+
         public OrderedTest GetTestById(int id)
         {
             return OrderedTestDAL.GetTestById(id);

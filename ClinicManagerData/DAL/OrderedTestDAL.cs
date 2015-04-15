@@ -169,6 +169,37 @@ namespace ClinicManagerData.DAL
             }
         }
 
+        /// <summary>
+        /// Deletes a test
+        /// </summary>
+        /// <param name="id">The orderedtest object id to delete</param>
+        /// <returns>True if delete successful, false otherwise</returns>
+        public static bool DeleteTest(int id)
+        {
+            string statement =
+                "DELETE orderedtest " +
+                "WHERE id = @id";
+            try
+            {
+                using (SqlConnection con = ClinicManagerDBConnection.GetConnection())
+                {
+                    con.Open();
+                    using (SqlCommand updateCommand = new SqlCommand(statement, con))
+                    {
+                        updateCommand.Parameters.AddWithValue("@id", id);
+
+                        int count = updateCommand.ExecuteNonQuery();
+                        if (count > 0) return true;
+                        else return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static OrderedTest GetTestById(int id)
         {
             OrderedTest ordTest = new OrderedTest();

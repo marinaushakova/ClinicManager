@@ -69,6 +69,7 @@
             this.txbInitialDiagnosis = new System.Windows.Forms.TextBox();
             this.txbFinalDiagnosis = new System.Windows.Forms.TextBox();
             this.personBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnDelete = new System.Windows.Forms.Button();
             bloodPressureLabel = new System.Windows.Forms.Label();
             lblDoctor = new System.Windows.Forms.Label();
             lblPatient = new System.Windows.Forms.Label();
@@ -335,7 +336,7 @@
             // btnTestResult
             // 
             this.btnTestResult.Enabled = false;
-            this.btnTestResult.Location = new System.Drawing.Point(636, 429);
+            this.btnTestResult.Location = new System.Drawing.Point(519, 429);
             this.btnTestResult.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnTestResult.Name = "btnTestResult";
             this.btnTestResult.Size = new System.Drawing.Size(148, 25);
@@ -347,7 +348,7 @@
             // btnNewTest
             // 
             this.btnNewTest.Enabled = false;
-            this.btnNewTest.Location = new System.Drawing.Point(491, 429);
+            this.btnNewTest.Location = new System.Drawing.Point(391, 429);
             this.btnNewTest.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnNewTest.Name = "btnNewTest";
             this.btnNewTest.Size = new System.Drawing.Size(122, 25);
@@ -439,6 +440,7 @@
             // 
             // tbpTests
             // 
+            this.tbpTests.Controls.Add(this.btnDelete);
             this.tbpTests.Controls.Add(this.lvOrderedTests);
             this.tbpTests.Controls.Add(this.btnTestResult);
             this.tbpTests.Controls.Add(this.btnNewTest);
@@ -488,6 +490,18 @@
             // personBindingSource
             // 
             this.personBindingSource.DataSource = typeof(ClinicManagerData.Model.Person);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Enabled = false;
+            this.btnDelete.Location = new System.Drawing.Point(673, 429);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(122, 25);
+            this.btnDelete.TabIndex = 5;
+            this.btnDelete.Text = "Delete Test";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // AddEditVisit
             // 
@@ -551,6 +565,7 @@
         private System.Windows.Forms.TextBox txbInitialDiagnosis;
         private System.Windows.Forms.TextBox txbFinalDiagnosis;
         private System.Windows.Forms.Button btnSaveCheckup;
+        private System.Windows.Forms.Button btnDelete;
 
     }
 }

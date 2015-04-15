@@ -223,6 +223,7 @@ namespace ClinicManager.View
             txbInitialDiagnosis.ReadOnly = false;
             btnNewTest.Enabled = true;
             btnTestResult.Enabled = true;
+            btnDelete.Enabled = true;
             if (visit == null)
             {
                 txbBloodPressure.ReadOnly = false;
@@ -374,6 +375,7 @@ namespace ClinicManager.View
             btnOK.Enabled = false;
             btnNewTest.Enabled = false;
             btnTestResult.Enabled = false;
+            btnDelete.Enabled = false;
             cmbDoctor.Visible = true;
             //cmbNurse.Visible = true;
             txbNurse.Visible = false;
@@ -506,6 +508,35 @@ namespace ClinicManager.View
                 }
             }
             theTest = null;
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (lvOrderedTests.SelectedItems.Count < 1)
+            {
+                MessageBox.Show("Please select a test to delete.", "No Test Selected");
+            }
+            else
+            {
+                try{
+                    int index = lvOrderedTests.SelectedItems[0].Index;
+                    int id = orderedTestList[index].OrderedTestID;
+                    if (orderedTestController.DeleteTest(id))
+                    {
+                        this.FillOrderedTests();
+                        MessageBox.Show("The test was successfully deleted", "Success");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Delete failed.  Perhaps another user has updated or " +
+                                "deleted that test?", "Database Error");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, ex.GetType().ToString());
+                }
+            }
         }
     }
 }
