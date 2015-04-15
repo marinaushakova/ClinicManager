@@ -184,7 +184,7 @@
             // streetAddressTxtBox
             // 
             this.streetAddressTxtBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "Address", true));
-            this.streetAddressTxtBox.Location = new System.Drawing.Point(125, 218);
+            this.streetAddressTxtBox.Location = new System.Drawing.Point(146, 216);
             this.streetAddressTxtBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.streetAddressTxtBox.MaxLength = 255;
             this.streetAddressTxtBox.Name = "streetAddressTxtBox";
@@ -195,7 +195,7 @@
             // cityTxtBox
             // 
             this.cityTxtBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "City", true));
-            this.cityTxtBox.Location = new System.Drawing.Point(125, 246);
+            this.cityTxtBox.Location = new System.Drawing.Point(146, 244);
             this.cityTxtBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cityTxtBox.MaxLength = 255;
             this.cityTxtBox.Name = "cityTxtBox";
@@ -207,7 +207,7 @@
             // 
             this.dobDatePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.personBindingSource, "DateOfBirth", true));
             this.dobDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dobDatePicker.Location = new System.Drawing.Point(125, 158);
+            this.dobDatePicker.Location = new System.Drawing.Point(146, 156);
             this.dobDatePicker.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dobDatePicker.MaxDate = new System.DateTime(2150, 12, 31, 0, 0, 0, 0);
             this.dobDatePicker.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
@@ -220,7 +220,7 @@
             // fnameTxtBox
             // 
             this.fnameTxtBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "FirstName", true));
-            this.fnameTxtBox.Location = new System.Drawing.Point(125, 43);
+            this.fnameTxtBox.Location = new System.Drawing.Point(146, 41);
             this.fnameTxtBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.fnameTxtBox.MaxLength = 255;
             this.fnameTxtBox.Name = "fnameTxtBox";
@@ -231,7 +231,7 @@
             // lnameTxtBox
             // 
             this.lnameTxtBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "LastName", true));
-            this.lnameTxtBox.Location = new System.Drawing.Point(125, 101);
+            this.lnameTxtBox.Location = new System.Drawing.Point(146, 99);
             this.lnameTxtBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.lnameTxtBox.MaxLength = 255;
             this.lnameTxtBox.Name = "lnameTxtBox";
@@ -242,7 +242,7 @@
             // minitTxtBox
             // 
             this.minitTxtBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "MiddleInit", true));
-            this.minitTxtBox.Location = new System.Drawing.Point(125, 72);
+            this.minitTxtBox.Location = new System.Drawing.Point(146, 70);
             this.minitTxtBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.minitTxtBox.MaxLength = 1;
             this.minitTxtBox.Name = "minitTxtBox";
@@ -253,7 +253,7 @@
             // phoneTxtBox
             // 
             this.phoneTxtBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "Phone", true));
-            this.phoneTxtBox.Location = new System.Drawing.Point(125, 330);
+            this.phoneTxtBox.Location = new System.Drawing.Point(146, 328);
             this.phoneTxtBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.phoneTxtBox.MaxLength = 12;
             this.phoneTxtBox.Name = "phoneTxtBox";
@@ -264,7 +264,7 @@
             // ssnTxtBox
             // 
             this.ssnTxtBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "Social", true));
-            this.ssnTxtBox.Location = new System.Drawing.Point(125, 130);
+            this.ssnTxtBox.Location = new System.Drawing.Point(146, 128);
             this.ssnTxtBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ssnTxtBox.MaxLength = 11;
             this.ssnTxtBox.Name = "ssnTxtBox";
@@ -275,7 +275,7 @@
             // zipTxtBox
             // 
             this.zipTxtBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.personBindingSource, "Zip", true));
-            this.zipTxtBox.Location = new System.Drawing.Point(125, 301);
+            this.zipTxtBox.Location = new System.Drawing.Point(146, 299);
             this.zipTxtBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.zipTxtBox.MaxLength = 10;
             this.zipTxtBox.Name = "zipTxtBox";
@@ -288,7 +288,7 @@
             this.roleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.roleComboBox.Enabled = false;
             this.roleComboBox.FormattingEnabled = true;
-            this.roleComboBox.Location = new System.Drawing.Point(125, 13);
+            this.roleComboBox.Location = new System.Drawing.Point(146, 11);
             this.roleComboBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.roleComboBox.Name = "roleComboBox";
             this.roleComboBox.Size = new System.Drawing.Size(160, 24);
@@ -332,7 +332,7 @@
             // 
             this.isMaleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.isMaleComboBox.FormattingEnabled = true;
-            this.isMaleComboBox.Location = new System.Drawing.Point(125, 187);
+            this.isMaleComboBox.Location = new System.Drawing.Point(146, 185);
             this.isMaleComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.isMaleComboBox.Name = "isMaleComboBox";
             this.isMaleComboBox.Size = new System.Drawing.Size(120, 24);
@@ -353,7 +353,7 @@
             // 
             // deleteBtn
             // 
-            this.deleteBtn.Location = new System.Drawing.Point(373, 358);
+            this.deleteBtn.Location = new System.Drawing.Point(394, 356);
             this.deleteBtn.Margin = new System.Windows.Forms.Padding(13, 3, 13, 3);
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(89, 24);
@@ -367,7 +367,7 @@
             // 
             this.cmbState.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbState.FormattingEnabled = true;
-            this.cmbState.Location = new System.Drawing.Point(125, 272);
+            this.cmbState.Location = new System.Drawing.Point(146, 270);
             this.cmbState.Name = "cmbState";
             this.cmbState.Size = new System.Drawing.Size(121, 24);
             this.cmbState.TabIndex = 38;
@@ -380,7 +380,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(479, 455);
+            this.ClientSize = new System.Drawing.Size(502, 455);
             this.Controls.Add(this.cmbState);
             this.Controls.Add(this.deleteBtn);
             this.Controls.Add(this.createUserBtn);

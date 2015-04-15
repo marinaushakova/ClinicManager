@@ -40,7 +40,6 @@
             System.Windows.Forms.Label finalDiagnosisLabel;
             System.Windows.Forms.Label initialDiagnosisLabel;
             this.txbBloodPressure = new System.Windows.Forms.TextBox();
-            this.visitBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmbDoctor = new System.Windows.Forms.ComboBox();
             this.txbPatient = new System.Windows.Forms.TextBox();
             this.txbPulseRate = new System.Windows.Forms.TextBox();
@@ -68,8 +67,9 @@
             this.tbpDiagnosis = new System.Windows.Forms.TabPage();
             this.txbInitialDiagnosis = new System.Windows.Forms.TextBox();
             this.txbFinalDiagnosis = new System.Windows.Forms.TextBox();
-            this.personBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnDelete = new System.Windows.Forms.Button();
+            this.visitBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.personBindingSource = new System.Windows.Forms.BindingSource(this.components);
             bloodPressureLabel = new System.Windows.Forms.Label();
             lblDoctor = new System.Windows.Forms.Label();
             lblPatient = new System.Windows.Forms.Label();
@@ -80,13 +80,13 @@
             lblDate = new System.Windows.Forms.Label();
             finalDiagnosisLabel = new System.Windows.Forms.Label();
             initialDiagnosisLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).BeginInit();
             this.gbxRoutingChecks.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.orderedTestBindingSource)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tbpRoutineChecks.SuspendLayout();
             this.tbpTests.SuspendLayout();
             this.tbpDiagnosis.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.personBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -165,7 +165,7 @@
             // finalDiagnosisLabel
             // 
             finalDiagnosisLabel.AutoSize = true;
-            finalDiagnosisLabel.Location = new System.Drawing.Point(22, 245);
+            finalDiagnosisLabel.Location = new System.Drawing.Point(3, 248);
             finalDiagnosisLabel.Name = "finalDiagnosisLabel";
             finalDiagnosisLabel.Size = new System.Drawing.Size(104, 16);
             finalDiagnosisLabel.TabIndex = 7;
@@ -174,7 +174,7 @@
             // initialDiagnosisLabel
             // 
             initialDiagnosisLabel.AutoSize = true;
-            initialDiagnosisLabel.Location = new System.Drawing.Point(21, 18);
+            initialDiagnosisLabel.Location = new System.Drawing.Point(6, 18);
             initialDiagnosisLabel.Name = "initialDiagnosisLabel";
             initialDiagnosisLabel.Size = new System.Drawing.Size(105, 16);
             initialDiagnosisLabel.TabIndex = 9;
@@ -191,10 +191,6 @@
             this.txbBloodPressure.Size = new System.Drawing.Size(224, 22);
             this.txbBloodPressure.TabIndex = 4;
             this.txbBloodPressure.Tag = "Blood Pressure";
-            // 
-            // visitBindingSource
-            // 
-            this.visitBindingSource.DataSource = typeof(ClinicManagerData.Model.Visit);
             // 
             // cmbDoctor
             // 
@@ -487,10 +483,6 @@
             this.txbFinalDiagnosis.Size = new System.Drawing.Size(657, 212);
             this.txbFinalDiagnosis.TabIndex = 2;
             // 
-            // personBindingSource
-            // 
-            this.personBindingSource.DataSource = typeof(ClinicManagerData.Model.Person);
-            // 
             // btnDelete
             // 
             this.btnDelete.Enabled = false;
@@ -502,6 +494,14 @@
             this.btnDelete.Text = "Delete Test";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // visitBindingSource
+            // 
+            this.visitBindingSource.DataSource = typeof(ClinicManagerData.Model.Visit);
+            // 
+            // personBindingSource
+            // 
+            this.personBindingSource.DataSource = typeof(ClinicManagerData.Model.Person);
             // 
             // AddEditVisit
             // 
@@ -518,7 +518,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Visit Record";
             this.Load += new System.EventHandler(this.AddEditVisit_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).EndInit();
             this.gbxRoutingChecks.ResumeLayout(false);
             this.gbxRoutingChecks.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.orderedTestBindingSource)).EndInit();
@@ -528,6 +527,7 @@
             this.tbpTests.ResumeLayout(false);
             this.tbpDiagnosis.ResumeLayout(false);
             this.tbpDiagnosis.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.visitBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.personBindingSource)).EndInit();
             this.ResumeLayout(false);
 
