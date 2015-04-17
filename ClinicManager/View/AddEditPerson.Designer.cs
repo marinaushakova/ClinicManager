@@ -41,6 +41,7 @@
             System.Windows.Forms.Label is_maleLabel;
             System.Windows.Forms.Label stateLabel1;
             this.streetAddressTxtBox = new System.Windows.Forms.TextBox();
+            this.personBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cityTxtBox = new System.Windows.Forms.TextBox();
             this.dobDatePicker = new System.Windows.Forms.DateTimePicker();
             this.fnameTxtBox = new System.Windows.Forms.TextBox();
@@ -57,7 +58,6 @@
             this.createUserBtn = new System.Windows.Forms.Button();
             this.deleteBtn = new System.Windows.Forms.Button();
             this.cmbState = new System.Windows.Forms.ComboBox();
-            this.personBindingSource = new System.Windows.Forms.BindingSource(this.components);
             addressLabel = new System.Windows.Forms.Label();
             cityLabel = new System.Windows.Forms.Label();
             dateOfBirthLabel = new System.Windows.Forms.Label();
@@ -191,6 +191,10 @@
             this.streetAddressTxtBox.Size = new System.Drawing.Size(337, 22);
             this.streetAddressTxtBox.TabIndex = 8;
             this.streetAddressTxtBox.Tag = "Street Address";
+            // 
+            // personBindingSource
+            // 
+            this.personBindingSource.DataSource = typeof(ClinicManagerData.Model.Person);
             // 
             // cityTxtBox
             // 
@@ -371,10 +375,7 @@
             this.cmbState.Name = "cmbState";
             this.cmbState.Size = new System.Drawing.Size(121, 24);
             this.cmbState.TabIndex = 38;
-            // 
-            // personBindingSource
-            // 
-            this.personBindingSource.DataSource = typeof(ClinicManagerData.Model.Person);
+            this.cmbState.Tag = "State";
             // 
             // AddEditPerson
             // 
