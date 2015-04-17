@@ -76,7 +76,7 @@ namespace ClinicManagerData.DAL
         {
             List<OrderedTestSummary> testList = new List<OrderedTestSummary>();
             string selectStatement =
-                "SELECT ot.id AS ord_test_id, ot.visit_id, ot.order_date, ot.result_date, ot.result, t.Name " +
+                "SELECT ot.id AS ord_test_id, ot.visit_id, ot.order_date, ot.result_date, ot.result, t.Name, ot.timestamp AS timestamp " +
                     "FROM orderedtest ot JOIN test t ON ot.test_id = t.id " +
                     "WHERE visit_id = @visitID " +
                     "ORDER BY ot.order_date, ot.result_date";
@@ -98,6 +98,7 @@ namespace ClinicManagerData.DAL
                                 orderedTestSummary.OrderedTestID = (int)reader["ord_test_id"];
                                 orderedTestSummary.VisitID = (int)reader["visit_id"];
                                 orderedTestSummary.OrderDate = (DateTime)reader["order_date"];
+                                orderedTestSummary.Timestamp = Convert.ToBase64String(reader["timestamp"] as byte[]);
                                 if (reader["result_date"] != System.DBNull.Value)
                                 {
                                     orderedTestSummary.PerformDate = (DateTime)reader["result_date"];
@@ -173,12 +174,13 @@ namespace ClinicManagerData.DAL
         /// Deletes a test
         /// </summary>
         /// <param name="id">The orderedtest object id to delete</param>
+        /// <param name="timestamp">The orderedtest timestamp for the given id</param>
         /// <returns>True if delete successful, false otherwise</returns>
-        public static bool DeleteTest(int id)
+        public static bool DeleteTest(int id, string timestamp)
         {
             string statement =
                 "DELETE orderedtest " +
-                "WHERE id = @id";
+                "WHERE id = @id AND timestamp = @timestamp";
             try
             {
                 using (SqlConnection con = ClinicManagerDBConnection.GetConnection())
@@ -187,6 +189,7 @@ namespace ClinicManagerData.DAL
                     using (SqlCommand updateCommand = new SqlCommand(statement, con))
                     {
                         updateCommand.Parameters.AddWithValue("@id", id);
+                        updateCommand.Parameters.AddWithValue("@timestamp", Convert.FromBase64String(timestamp));
 
                         int count = updateCommand.ExecuteNonQuery();
                         if (count > 0) return true;

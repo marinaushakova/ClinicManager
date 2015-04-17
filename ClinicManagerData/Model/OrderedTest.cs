@@ -94,6 +94,16 @@ namespace ClinicManagerData.Model
         private DateTime orderDate;
         private DateTime? performDate;
         private bool? result;
+        private string timestamp;
+
+        /// <summary>
+        /// Get/set timestamp
+        /// </summary>
+        public string Timestamp
+        {
+            get { return timestamp; }
+            set { timestamp = value; }
+        }
 
         /// <summary>
         /// Get/set ordered test ID

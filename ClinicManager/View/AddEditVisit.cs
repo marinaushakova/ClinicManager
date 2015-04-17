@@ -521,7 +521,8 @@ namespace ClinicManager.View
                 try{
                     int index = lvOrderedTests.SelectedItems[0].Index;
                     int id = orderedTestList[index].OrderedTestID;
-                    if (orderedTestController.DeleteTest(id))
+                    string timestamp = orderedTestList[index].Timestamp;
+                    if (orderedTestController.DeleteTest(id, timestamp))
                     {
                         this.FillOrderedTests();
                         MessageBox.Show("The test was successfully deleted", "Success");

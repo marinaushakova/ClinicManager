@@ -47,10 +47,11 @@ namespace ClinicManager.Controller
         /// Deletes an ordered test
         /// </summary>
         /// <param name="id">Ordered Test object id</param>
+        /// <param name="timestamp">Ordered Test object timestamp</param>
         /// <returns>True if delete successful, false otherwise</returns>
-        public bool DeleteTest(int id)
+        public bool DeleteTest(int id, string timestamp)
         {
-            return OrderedTestDAL.DeleteTest(id);
+            return OrderedTestDAL.DeleteTest(id, timestamp);
         }
 
         public OrderedTest GetTestById(int id)
